@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LightAndLens_FormApp
 {
-    public partial class RentalRequests: Form
+    public partial class RentalRequests : Form
     {
         public RentalRequests()
         {
@@ -44,6 +44,11 @@ namespace LightAndLens_FormApp
         }
 
         private void analyticsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }
