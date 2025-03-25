@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace LightAndLens_FormApp
 {
-    public partial class Equipment: Form
+    public partial class Equipment : Form
     {
         public Equipment()
         {
             InitializeComponent();
+        }
+
+        private void Equipment_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
