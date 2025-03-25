@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             sidePanel = new Panel();
-            settingsBtn = new Button();
             analyticsBtn = new Button();
             returnsBtn = new Button();
             rentalRequestsBtn = new Button();
@@ -40,43 +39,35 @@
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
-            cmbStatusFilter = new ComboBox();
+            comboBoxFilterConditions = new ComboBox();
+            comboBoxFilterStatus = new ComboBox();
             txtSearch = new TextBox();
-            button2 = new Button();
-            button1 = new Button();
-            panel5 = new Panel();
-            label12 = new Label();
-            panel6 = new Panel();
-            label13 = new Label();
-            panel2 = new Panel();
-            label1 = new Label();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            dataGridView1 = new DataGridView();
+            btmApply = new Button();
+            btnClear = new Button();
+            panelListReturns = new Panel();
+            panelProcessReturn = new Panel();
+            dgvListReturns = new DataGridView();
             label3 = new Label();
             label2 = new Label();
-            comboBox2 = new ComboBox();
+            comboBoxSelectCondition = new ComboBox();
             label4 = new Label();
-            textBox2 = new TextBox();
-            checkBox1 = new CheckBox();
-            newRentalBtn = new Button();
+            textBoxDesc = new TextBox();
+            checkBoxLate = new CheckBox();
+            btnReturn = new Button();
+            label5 = new Label();
+            label6 = new Label();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panelListReturns.SuspendLayout();
+            panelProcessReturn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvListReturns).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(31, 41, 55);
-            sidePanel.Controls.Add(settingsBtn);
             sidePanel.Controls.Add(analyticsBtn);
             sidePanel.Controls.Add(returnsBtn);
             sidePanel.Controls.Add(rentalRequestsBtn);
@@ -89,19 +80,6 @@
             sidePanel.Padding = new Padding(10);
             sidePanel.Size = new Size(230, 825);
             sidePanel.TabIndex = 2;
-            // 
-            // settingsBtn
-            // 
-            settingsBtn.BackColor = Color.Transparent;
-            settingsBtn.FlatStyle = FlatStyle.Flat;
-            settingsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            settingsBtn.ForeColor = Color.LightGray;
-            settingsBtn.Location = new Point(10, 385);
-            settingsBtn.Name = "settingsBtn";
-            settingsBtn.Size = new Size(211, 44);
-            settingsBtn.TabIndex = 6;
-            settingsBtn.Text = "Settings";
-            settingsBtn.UseVisualStyleBackColor = false;
             // 
             // analyticsBtn
             // 
@@ -183,6 +161,7 @@
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(31, 41, 55);
+            topHeaderPanel.Controls.Add(label5);
             topHeaderPanel.Controls.Add(pictureBox1);
             topHeaderPanel.Controls.Add(textBox1);
             topHeaderPanel.Dock = DockStyle.Top;
@@ -215,41 +194,43 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(31, 41, 55);
-            panel1.Controls.Add(comboBox1);
-            panel1.Controls.Add(cmbStatusFilter);
+            panel1.Controls.Add(comboBoxFilterConditions);
+            panel1.Controls.Add(comboBoxFilterStatus);
             panel1.Controls.Add(txtSearch);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btmApply);
+            panel1.Controls.Add(btnClear);
             panel1.Location = new Point(270, 74);
             panel1.Name = "panel1";
             panel1.Size = new Size(1037, 60);
             panel1.TabIndex = 5;
             // 
-            // comboBox1
+            // comboBoxFilterConditions
             // 
-            comboBox1.BackColor = Color.FromArgb(76, 85, 100);
-            comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBox1.ForeColor = Color.LightGray;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(653, 17);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(140, 25);
-            comboBox1.TabIndex = 4;
-            comboBox1.Text = "filter options";
+            comboBoxFilterConditions.BackColor = Color.FromArgb(76, 85, 100);
+            comboBoxFilterConditions.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxFilterConditions.FlatStyle = FlatStyle.Flat;
+            comboBoxFilterConditions.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxFilterConditions.ForeColor = Color.LightGray;
+            comboBoxFilterConditions.FormattingEnabled = true;
+            comboBoxFilterConditions.Items.AddRange(new object[] { "All Conditions", "Good", "Damaged", "Defective" });
+            comboBoxFilterConditions.Location = new Point(653, 17);
+            comboBoxFilterConditions.Name = "comboBoxFilterConditions";
+            comboBoxFilterConditions.Size = new Size(140, 25);
+            comboBoxFilterConditions.TabIndex = 4;
             // 
-            // cmbStatusFilter
+            // comboBoxFilterStatus
             // 
-            cmbStatusFilter.BackColor = Color.FromArgb(76, 85, 100);
-            cmbStatusFilter.FlatStyle = FlatStyle.Flat;
-            cmbStatusFilter.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            cmbStatusFilter.ForeColor = Color.LightGray;
-            cmbStatusFilter.FormattingEnabled = true;
-            cmbStatusFilter.Location = new Point(494, 17);
-            cmbStatusFilter.Name = "cmbStatusFilter";
-            cmbStatusFilter.Size = new Size(140, 25);
-            cmbStatusFilter.TabIndex = 3;
-            cmbStatusFilter.Text = "filter options";
+            comboBoxFilterStatus.BackColor = Color.FromArgb(76, 85, 100);
+            comboBoxFilterStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxFilterStatus.FlatStyle = FlatStyle.Flat;
+            comboBoxFilterStatus.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxFilterStatus.ForeColor = Color.LightGray;
+            comboBoxFilterStatus.FormattingEnabled = true;
+            comboBoxFilterStatus.Items.AddRange(new object[] { "All Status", "Returned", "Pending", "Overdue" });
+            comboBoxFilterStatus.Location = new Point(494, 17);
+            comboBoxFilterStatus.Name = "comboBoxFilterStatus";
+            comboBoxFilterStatus.Size = new Size(140, 25);
+            comboBoxFilterStatus.TabIndex = 3;
             // 
             // txtSearch
             // 
@@ -263,126 +244,69 @@
             txtSearch.TabIndex = 2;
             txtSearch.Text = "        Search by customer or equipment name";
             // 
-            // button2
+            // btmApply
             // 
-            button2.BackColor = SystemColors.HotTrack;
-            button2.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(811, 14);
-            button2.Name = "button2";
-            button2.Size = new Size(105, 30);
-            button2.TabIndex = 1;
-            button2.Text = "Search";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.UseVisualStyleBackColor = false;
+            btmApply.BackColor = SystemColors.HotTrack;
+            btmApply.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
+            btmApply.FlatStyle = FlatStyle.Flat;
+            btmApply.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btmApply.ForeColor = Color.White;
+            btmApply.Location = new Point(811, 14);
+            btmApply.Name = "btmApply";
+            btmApply.Size = new Size(105, 30);
+            btmApply.TabIndex = 1;
+            btmApply.Text = "Apply";
+            btmApply.TextAlign = ContentAlignment.MiddleRight;
+            btmApply.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnClear
             // 
-            button1.BackColor = Color.Gray;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(932, 14);
-            button1.Name = "button1";
-            button1.Size = new Size(85, 30);
-            button1.TabIndex = 0;
-            button1.Text = "Clear";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
+            btnClear.BackColor = Color.Gray;
+            btnClear.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(932, 14);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(85, 30);
+            btnClear.TabIndex = 0;
+            btnClear.Text = "Clear";
+            btnClear.TextAlign = ContentAlignment.MiddleRight;
+            btnClear.UseVisualStyleBackColor = false;
             // 
-            // panel5
+            // panelListReturns
             // 
-            panel5.BackColor = Color.Red;
-            panel5.Controls.Add(label12);
-            panel5.Location = new Point(285, 742);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(100, 10);
-            panel5.TabIndex = 13;
+            panelListReturns.BackColor = Color.FromArgb(31, 41, 55);
+            panelListReturns.Controls.Add(label6);
+            panelListReturns.Controls.Add(dgvListReturns);
+            panelListReturns.Location = new Point(270, 161);
+            panelListReturns.Name = "panelListReturns";
+            panelListReturns.Size = new Size(698, 284);
+            panelListReturns.TabIndex = 15;
             // 
-            // label12
+            // panelProcessReturn
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 6.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(31, -2);
-            label12.Name = "label12";
-            label12.Size = new Size(26, 12);
-            label12.TabIndex = 0;
-            label12.Text = "10px";
+            panelProcessReturn.BackColor = Color.FromArgb(31, 41, 55);
+            panelProcessReturn.Controls.Add(btnReturn);
+            panelProcessReturn.Controls.Add(checkBoxLate);
+            panelProcessReturn.Controls.Add(textBoxDesc);
+            panelProcessReturn.Controls.Add(label4);
+            panelProcessReturn.Controls.Add(comboBoxSelectCondition);
+            panelProcessReturn.Controls.Add(label2);
+            panelProcessReturn.Controls.Add(label3);
+            panelProcessReturn.Location = new Point(988, 161);
+            panelProcessReturn.Name = "panelProcessReturn";
+            panelProcessReturn.Size = new Size(319, 375);
+            panelProcessReturn.TabIndex = 16;
             // 
-            // panel6
+            // dgvListReturns
             // 
-            panel6.BackColor = Color.Red;
-            panel6.Controls.Add(label13);
-            panel6.Location = new Point(391, 655);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(15, 97);
-            panel6.TabIndex = 14;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(-2, 40);
-            label13.Name = "label13";
-            label13.Size = new Size(19, 13);
-            label13.TabIndex = 0;
-            label13.Text = "15";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Red;
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(342, 676);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(41, 60);
-            panel2.TabIndex = 12;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(10, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 21);
-            label1.TabIndex = 0;
-            label1.Text = "41";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(31, 41, 55);
-            panel3.Controls.Add(dataGridView1);
-            panel3.Location = new Point(270, 161);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(698, 284);
-            panel3.TabIndex = 15;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(31, 41, 55);
-            panel4.Controls.Add(newRentalBtn);
-            panel4.Controls.Add(checkBox1);
-            panel4.Controls.Add(textBox2);
-            panel4.Controls.Add(label4);
-            panel4.Controls.Add(comboBox2);
-            panel4.Controls.Add(label2);
-            panel4.Controls.Add(label3);
-            panel4.Location = new Point(988, 161);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(319, 375);
-            panel4.TabIndex = 16;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 15);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(674, 257);
-            dataGridView1.TabIndex = 0;
+            dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListReturns.Location = new Point(12, 15);
+            dgvListReturns.Name = "dgvListReturns";
+            dgvListReturns.RowTemplate.Height = 25;
+            dgvListReturns.Size = new Size(674, 257);
+            dgvListReturns.TabIndex = 0;
             // 
             // label3
             // 
@@ -406,19 +330,19 @@
             label2.TabIndex = 3;
             label2.Text = "Condition";
             // 
-            // comboBox2
+            // comboBoxSelectCondition
             // 
-            comboBox2.BackColor = Color.FromArgb(76, 85, 100);
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FlatStyle = FlatStyle.Flat;
-            comboBox2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBox2.ForeColor = Color.LightGray;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Select Condition", "Good Condition", "Damaged", "Defective" });
-            comboBox2.Location = new Point(22, 86);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(277, 25);
-            comboBox2.TabIndex = 5;
+            comboBoxSelectCondition.BackColor = Color.FromArgb(76, 85, 100);
+            comboBoxSelectCondition.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSelectCondition.FlatStyle = FlatStyle.Flat;
+            comboBoxSelectCondition.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxSelectCondition.ForeColor = Color.LightGray;
+            comboBoxSelectCondition.FormattingEnabled = true;
+            comboBoxSelectCondition.Items.AddRange(new object[] { "Select Condition", "Good Condition", "Damaged", "Defective" });
+            comboBoxSelectCondition.Location = new Point(22, 86);
+            comboBoxSelectCondition.Name = "comboBoxSelectCondition";
+            comboBoxSelectCondition.Size = new Size(277, 25);
+            comboBoxSelectCondition.TabIndex = 5;
             // 
             // label4
             // 
@@ -431,36 +355,58 @@
             label4.TabIndex = 6;
             label4.Text = "Return notes";
             // 
-            // textBox2
+            // textBoxDesc
             // 
-            textBox2.Location = new Point(22, 163);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(277, 23);
-            textBox2.TabIndex = 7;
+            textBoxDesc.Location = new Point(22, 163);
+            textBoxDesc.Name = "textBoxDesc";
+            textBoxDesc.Size = new Size(277, 23);
+            textBoxDesc.TabIndex = 7;
             // 
-            // checkBox1
+            // checkBoxLate
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            checkBox1.ForeColor = Color.White;
-            checkBox1.Location = new Point(29, 273);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(98, 21);
-            checkBox1.TabIndex = 8;
-            checkBox1.Text = "Late Return";
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBoxLate.AutoSize = true;
+            checkBoxLate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            checkBoxLate.ForeColor = Color.White;
+            checkBoxLate.Location = new Point(29, 273);
+            checkBoxLate.Name = "checkBoxLate";
+            checkBoxLate.Size = new Size(98, 21);
+            checkBoxLate.TabIndex = 8;
+            checkBoxLate.Text = "Late Return";
+            checkBoxLate.UseVisualStyleBackColor = true;
             // 
-            // newRentalBtn
+            // btnReturn
             // 
-            newRentalBtn.BackColor = Color.FromArgb(16, 139, 106);
-            newRentalBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            newRentalBtn.ForeColor = Color.White;
-            newRentalBtn.Location = new Point(22, 310);
-            newRentalBtn.Name = "newRentalBtn";
-            newRentalBtn.Size = new Size(277, 39);
-            newRentalBtn.TabIndex = 9;
-            newRentalBtn.Text = "Mark as Returned";
-            newRentalBtn.UseVisualStyleBackColor = false;
+            btnReturn.BackColor = Color.FromArgb(16, 139, 106);
+            btnReturn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReturn.ForeColor = Color.White;
+            btnReturn.Location = new Point(22, 310);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(277, 39);
+            btnReturn.TabIndex = 9;
+            btnReturn.Text = "Mark as Returned";
+            btnReturn.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(390, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(340, 21);
+            label5.TabIndex = 11;
+            label5.Text = "Filter options Already set in Item Collection";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(227, 131);
+            label6.Name = "label6";
+            label6.Size = new Size(154, 21);
+            label6.TabIndex = 12;
+            label6.Text = "List returns records";
             // 
             // Returns
             // 
@@ -468,11 +414,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 23, 42);
             ClientSize = new Size(1350, 825);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel5);
-            Controls.Add(panel6);
-            Controls.Add(panel2);
+            Controls.Add(panelProcessReturn);
+            Controls.Add(panelListReturns);
             Controls.Add(panel1);
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
@@ -487,23 +430,17 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panelListReturns.ResumeLayout(false);
+            panelListReturns.PerformLayout();
+            panelProcessReturn.ResumeLayout(false);
+            panelProcessReturn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvListReturns).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel sidePanel;
-        private Button settingsBtn;
         private Button analyticsBtn;
         private Button returnsBtn;
         private Button rentalRequestsBtn;
@@ -514,26 +451,22 @@
         private PictureBox pictureBox1;
         private TextBox textBox1;
         private Panel panel1;
-        private ComboBox comboBox1;
-        private ComboBox cmbStatusFilter;
+        private ComboBox comboBoxFilterConditions;
+        private ComboBox comboBoxFilterStatus;
         private TextBox txtSearch;
-        private Button button2;
-        private Button button1;
-        private Panel panel5;
-        private Label label12;
-        private Panel panel6;
-        private Label label13;
-        private Panel panel2;
-        private Label label1;
-        private Panel panel3;
-        private DataGridView dataGridView1;
-        private Panel panel4;
+        private Button btmApply;
+        private Button btnClear;
+        private Panel panelListReturns;
+        private DataGridView dgvListReturns;
+        private Panel panelProcessReturn;
         private Label label3;
         private Label label2;
-        private ComboBox comboBox2;
-        private TextBox textBox2;
+        private ComboBox comboBoxSelectCondition;
+        private TextBox textBoxDesc;
         private Label label4;
-        private CheckBox checkBox1;
-        private Button newRentalBtn;
+        private CheckBox checkBoxLate;
+        private Button btnReturn;
+        private Label label5;
+        private Label label6;
     }
 }

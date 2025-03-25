@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             sidePanel = new Panel();
-            settingsBtn = new Button();
             analyticsBtn = new Button();
             returnsBtn = new Button();
             rentalRequestsBtn = new Button();
@@ -41,53 +40,43 @@
             topHeaderPanel = new Panel();
             label5 = new Label();
             panel1 = new Panel();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
+            dateTimePickerTo = new DateTimePicker();
+            dateTimePickerFrom = new DateTimePicker();
             cmbStatusFilter = new ComboBox();
-            txtSearch = new TextBox();
-            button2 = new Button();
-            button1 = new Button();
+            txtSearchCustOrEq = new TextBox();
+            btnSearch = new Button();
+            btnClear = new Button();
             label4 = new Label();
-            panel2 = new Panel();
-            label1 = new Label();
             rentalRequestsPnl = new Panel();
             dgvRentalRequests = new DataGridView();
             label2 = new Label();
             requestDetailsPnl = new Panel();
-            button3 = new Button();
-            newRentalBtn = new Button();
+            btnReject = new Button();
+            btnApprove = new Button();
             panel3 = new Panel();
-            label11 = new Label();
-            label10 = new Label();
-            label9 = new Label();
+            lblPurpose = new Label();
+            lblRentPeriod = new Label();
+            lblEqName = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
-            pictureBox2 = new PictureBox();
-            lblCustomerName = new Label();
+            pictureBoxCust = new PictureBox();
+            lblCustName = new Label();
             label3 = new Label();
-            panel5 = new Panel();
-            label12 = new Label();
-            panel6 = new Panel();
-            label13 = new Label();
             sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             topHeaderPanel.SuspendLayout();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             rentalRequestsPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentalRequests).BeginInit();
             requestDetailsPnl.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCust).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(31, 41, 55);
-            sidePanel.Controls.Add(settingsBtn);
             sidePanel.Controls.Add(analyticsBtn);
             sidePanel.Controls.Add(returnsBtn);
             sidePanel.Controls.Add(rentalRequestsBtn);
@@ -100,20 +89,6 @@
             sidePanel.Padding = new Padding(10);
             sidePanel.Size = new Size(230, 825);
             sidePanel.TabIndex = 1;
-            // 
-            // settingsBtn
-            // 
-            settingsBtn.BackColor = Color.Transparent;
-            settingsBtn.FlatStyle = FlatStyle.Flat;
-            settingsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            settingsBtn.ForeColor = Color.LightGray;
-            settingsBtn.Location = new Point(10, 385);
-            settingsBtn.Name = "settingsBtn";
-            settingsBtn.Size = new Size(211, 44);
-            settingsBtn.TabIndex = 6;
-            settingsBtn.Text = "Settings";
-            settingsBtn.UseVisualStyleBackColor = false;
-            settingsBtn.Click += settingsBtn_Click;
             // 
             // analyticsBtn
             // 
@@ -233,96 +208,98 @@
             label5.ForeColor = Color.White;
             label5.Location = new Point(288, 33);
             label5.Name = "label5";
-            label5.Size = new Size(497, 21);
+            label5.Size = new Size(340, 21);
             label5.TabIndex = 9;
-            label5.Text = "Filter options examples: All Status, Pending, Approved, Rejected";
+            label5.Text = "Filter options Already set in Item Collection";
+            label5.Click += label5_Click;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(31, 41, 55);
-            panel1.Controls.Add(dateTimePicker2);
-            panel1.Controls.Add(dateTimePicker1);
+            panel1.Controls.Add(dateTimePickerTo);
+            panel1.Controls.Add(dateTimePickerFrom);
             panel1.Controls.Add(cmbStatusFilter);
-            panel1.Controls.Add(txtSearch);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(txtSearchCustOrEq);
+            panel1.Controls.Add(btnSearch);
+            panel1.Controls.Add(btnClear);
             panel1.Controls.Add(label4);
             panel1.Location = new Point(271, 85);
             panel1.Name = "panel1";
             panel1.Size = new Size(1037, 60);
             panel1.TabIndex = 3;
             // 
-            // dateTimePicker2
+            // dateTimePickerTo
             // 
-            dateTimePicker2.CalendarFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker2.Location = new Point(636, 19);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(195, 23);
-            dateTimePicker2.TabIndex = 5;
+            dateTimePickerTo.CalendarFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerTo.Location = new Point(636, 19);
+            dateTimePickerTo.Name = "dateTimePickerTo";
+            dateTimePickerTo.Size = new Size(195, 23);
+            dateTimePickerTo.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // dateTimePickerFrom
             // 
-            dateTimePicker1.CalendarFont = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(423, 19);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(188, 23);
-            dateTimePicker1.TabIndex = 4;
+            dateTimePickerFrom.CalendarFont = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerFrom.Location = new Point(423, 19);
+            dateTimePickerFrom.Name = "dateTimePickerFrom";
+            dateTimePickerFrom.Size = new Size(188, 23);
+            dateTimePickerFrom.TabIndex = 4;
             // 
             // cmbStatusFilter
             // 
             cmbStatusFilter.BackColor = Color.FromArgb(76, 85, 100);
+            cmbStatusFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatusFilter.FlatStyle = FlatStyle.Flat;
             cmbStatusFilter.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             cmbStatusFilter.ForeColor = Color.LightGray;
             cmbStatusFilter.FormattingEnabled = true;
+            cmbStatusFilter.Items.AddRange(new object[] { "All Status", "Approved", "Pending ", "Rejected" });
             cmbStatusFilter.Location = new Point(287, 17);
             cmbStatusFilter.Name = "cmbStatusFilter";
             cmbStatusFilter.Size = new Size(118, 25);
             cmbStatusFilter.TabIndex = 3;
-            cmbStatusFilter.Text = "filter options";
             // 
-            // txtSearch
+            // txtSearchCustOrEq
             // 
-            txtSearch.BackColor = Color.FromArgb(76, 85, 100);
-            txtSearch.BorderStyle = BorderStyle.FixedSingle;
-            txtSearch.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSearch.ForeColor = Color.LightGray;
-            txtSearch.Location = new Point(15, 17);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(253, 25);
-            txtSearch.TabIndex = 2;
-            txtSearch.Text = "Search by customer or equipment ";
-            txtSearch.TextAlign = HorizontalAlignment.Right;
+            txtSearchCustOrEq.BackColor = Color.FromArgb(76, 85, 100);
+            txtSearchCustOrEq.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchCustOrEq.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            txtSearchCustOrEq.ForeColor = Color.LightGray;
+            txtSearchCustOrEq.Location = new Point(15, 17);
+            txtSearchCustOrEq.Name = "txtSearchCustOrEq";
+            txtSearchCustOrEq.Size = new Size(253, 25);
+            txtSearchCustOrEq.TabIndex = 2;
+            txtSearchCustOrEq.Text = "Search by customer or equipment ";
+            txtSearchCustOrEq.TextAlign = HorizontalAlignment.Right;
             // 
-            // button2
+            // btnSearch
             // 
-            button2.BackColor = SystemColors.HotTrack;
-            button2.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(847, 14);
-            button2.Name = "button2";
-            button2.Size = new Size(85, 30);
-            button2.TabIndex = 1;
-            button2.Text = "Search";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.UseVisualStyleBackColor = false;
+            btnSearch.BackColor = SystemColors.HotTrack;
+            btnSearch.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(847, 14);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(85, 30);
+            btnSearch.TabIndex = 1;
+            btnSearch.Text = "Search";
+            btnSearch.TextAlign = ContentAlignment.MiddleRight;
+            btnSearch.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnClear
             // 
-            button1.BackColor = Color.Gray;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(944, 14);
-            button1.Name = "button1";
-            button1.Size = new Size(76, 30);
-            button1.TabIndex = 0;
-            button1.Text = "Clear";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
+            btnClear.BackColor = Color.Gray;
+            btnClear.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(944, 14);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(76, 30);
+            btnClear.TabIndex = 0;
+            btnClear.Text = "Clear";
+            btnClear.TextAlign = ContentAlignment.MiddleRight;
+            btnClear.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -334,26 +311,6 @@
             label4.Size = new Size(26, 17);
             label4.TabIndex = 6;
             label4.Text = "TO";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Red;
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(341, 691);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(41, 60);
-            panel2.TabIndex = 4;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(8, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 21);
-            label1.TabIndex = 0;
-            label1.Text = "41";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // rentalRequestsPnl
             // 
@@ -388,8 +345,8 @@
             // requestDetailsPnl
             // 
             requestDetailsPnl.BackColor = Color.FromArgb(31, 41, 55);
-            requestDetailsPnl.Controls.Add(button3);
-            requestDetailsPnl.Controls.Add(newRentalBtn);
+            requestDetailsPnl.Controls.Add(btnReject);
+            requestDetailsPnl.Controls.Add(btnApprove);
             requestDetailsPnl.Controls.Add(panel3);
             requestDetailsPnl.Controls.Add(label3);
             requestDetailsPnl.Location = new Point(958, 159);
@@ -397,77 +354,77 @@
             requestDetailsPnl.Size = new Size(350, 422);
             requestDetailsPnl.TabIndex = 6;
             // 
-            // button3
+            // btnReject
             // 
-            button3.BackColor = Color.FromArgb(200, 47, 46);
-            button3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(47, 372);
-            button3.Name = "button3";
-            button3.Size = new Size(256, 39);
-            button3.TabIndex = 8;
-            button3.Text = "Reject Request";
-            button3.UseVisualStyleBackColor = false;
+            btnReject.BackColor = Color.FromArgb(200, 47, 46);
+            btnReject.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReject.ForeColor = Color.White;
+            btnReject.Location = new Point(47, 372);
+            btnReject.Name = "btnReject";
+            btnReject.Size = new Size(256, 39);
+            btnReject.TabIndex = 8;
+            btnReject.Text = "Reject Request";
+            btnReject.UseVisualStyleBackColor = false;
             // 
-            // newRentalBtn
+            // btnApprove
             // 
-            newRentalBtn.BackColor = Color.FromArgb(16, 139, 106);
-            newRentalBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            newRentalBtn.ForeColor = Color.White;
-            newRentalBtn.Location = new Point(47, 326);
-            newRentalBtn.Name = "newRentalBtn";
-            newRentalBtn.Size = new Size(256, 39);
-            newRentalBtn.TabIndex = 7;
-            newRentalBtn.Text = "Approve Request";
-            newRentalBtn.UseVisualStyleBackColor = false;
+            btnApprove.BackColor = Color.FromArgb(16, 139, 106);
+            btnApprove.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnApprove.ForeColor = Color.White;
+            btnApprove.Location = new Point(47, 326);
+            btnApprove.Name = "btnApprove";
+            btnApprove.Size = new Size(256, 39);
+            btnApprove.TabIndex = 7;
+            btnApprove.Text = "Approve Request";
+            btnApprove.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
-            panel3.Controls.Add(label11);
-            panel3.Controls.Add(label10);
-            panel3.Controls.Add(label9);
+            panel3.Controls.Add(lblPurpose);
+            panel3.Controls.Add(lblRentPeriod);
+            panel3.Controls.Add(lblEqName);
             panel3.Controls.Add(label8);
             panel3.Controls.Add(label7);
             panel3.Controls.Add(label6);
-            panel3.Controls.Add(pictureBox2);
-            panel3.Controls.Add(lblCustomerName);
+            panel3.Controls.Add(pictureBoxCust);
+            panel3.Controls.Add(lblCustName);
             panel3.Location = new Point(20, 61);
             panel3.Name = "panel3";
             panel3.Size = new Size(313, 254);
             panel3.TabIndex = 2;
             // 
-            // label11
+            // lblPurpose
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(11, 217);
-            label11.Name = "label11";
-            label11.Size = new Size(148, 17);
-            label11.TabIndex = 10;
-            label11.Text = "Wedding Photography";
+            lblPurpose.AutoSize = true;
+            lblPurpose.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPurpose.ForeColor = Color.White;
+            lblPurpose.Location = new Point(11, 217);
+            lblPurpose.Name = "lblPurpose";
+            lblPurpose.Size = new Size(148, 17);
+            lblPurpose.TabIndex = 10;
+            lblPurpose.Text = "Wedding Photography";
             // 
-            // label10
+            // lblRentPeriod
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(11, 158);
-            label10.Name = "label10";
-            label10.Size = new Size(171, 17);
-            label10.TabIndex = 9;
-            label10.Text = "Jan 15, 2025 - Jan 18, 2025";
+            lblRentPeriod.AutoSize = true;
+            lblRentPeriod.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRentPeriod.ForeColor = Color.White;
+            lblRentPeriod.Location = new Point(11, 158);
+            lblRentPeriod.Name = "lblRentPeriod";
+            lblRentPeriod.Size = new Size(171, 17);
+            lblRentPeriod.TabIndex = 9;
+            lblRentPeriod.Text = "Jan 15, 2025 - Jan 18, 2025";
             // 
-            // label9
+            // lblEqName
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(11, 98);
-            label9.Name = "label9";
-            label9.Size = new Size(94, 17);
-            label9.TabIndex = 5;
-            label9.Text = "Canon EOS R5";
+            lblEqName.AutoSize = true;
+            lblEqName.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblEqName.ForeColor = Color.White;
+            lblEqName.Location = new Point(11, 98);
+            lblEqName.Name = "lblEqName";
+            lblEqName.Size = new Size(94, 17);
+            lblEqName.TabIndex = 5;
+            lblEqName.Text = "Canon EOS R5";
             // 
             // label8
             // 
@@ -502,24 +459,24 @@
             label6.TabIndex = 2;
             label6.Text = "Equipment";
             // 
-            // pictureBox2
+            // pictureBoxCust
             // 
-            pictureBox2.Location = new Point(11, 11);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(42, 38);
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
+            pictureBoxCust.Location = new Point(11, 11);
+            pictureBoxCust.Name = "pictureBoxCust";
+            pictureBoxCust.Size = new Size(42, 38);
+            pictureBoxCust.TabIndex = 1;
+            pictureBoxCust.TabStop = false;
             // 
-            // lblCustomerName
+            // lblCustName
             // 
-            lblCustomerName.AutoSize = true;
-            lblCustomerName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCustomerName.ForeColor = Color.LightGray;
-            lblCustomerName.Location = new Point(61, 18);
-            lblCustomerName.Name = "lblCustomerName";
-            lblCustomerName.Size = new Size(93, 21);
-            lblCustomerName.TabIndex = 0;
-            lblCustomerName.Text = "Cust Name";
+            lblCustName.AutoSize = true;
+            lblCustName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCustName.ForeColor = Color.LightGray;
+            lblCustName.Location = new Point(61, 18);
+            lblCustName.Name = "lblCustName";
+            lblCustName.Size = new Size(93, 21);
+            lblCustName.TabIndex = 0;
+            lblCustName.Text = "Cust Name";
             // 
             // label3
             // 
@@ -532,55 +489,14 @@
             label3.TabIndex = 1;
             label3.Text = "Request Details";
             // 
-            // panel5
-            // 
-            panel5.BackColor = Color.Red;
-            panel5.Controls.Add(label12);
-            panel5.Location = new Point(455, 712);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(100, 10);
-            panel5.TabIndex = 7;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 6.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(31, -2);
-            label12.Name = "label12";
-            label12.Size = new Size(26, 12);
-            label12.TabIndex = 0;
-            label12.Text = "10px";
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Red;
-            panel6.Controls.Add(label13);
-            panel6.Location = new Point(416, 672);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(15, 97);
-            panel6.TabIndex = 8;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(-2, 40);
-            label13.Name = "label13";
-            label13.Size = new Size(19, 13);
-            label13.TabIndex = 0;
-            label13.Text = "15";
-            // 
             // RentalRequests
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 23, 42);
             ClientSize = new Size(1350, 825);
-            Controls.Add(panel6);
-            Controls.Add(panel5);
             Controls.Add(requestDetailsPnl);
             Controls.Add(rentalRequestsPnl);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
@@ -595,8 +511,6 @@
             topHeaderPanel.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             rentalRequestsPnl.ResumeLayout(false);
             rentalRequestsPnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentalRequests).EndInit();
@@ -604,11 +518,7 @@
             requestDetailsPnl.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCust).EndInit();
             ResumeLayout(false);
         }
 
@@ -622,26 +532,19 @@
         private PictureBox pictureBox1;
         private TextBox textBox1;
         private Panel topHeaderPanel;
-        private Button settingsBtn;
         private Button analyticsBtn;
         private Button returnsBtn;
         private Panel panel1;
-        private Panel panel2;
-        private Label label1;
         private Panel rentalRequestsPnl;
         private Panel requestDetailsPnl;
-        private Panel panel5;
-        private Label label12;
         private Label label2;
-        private Panel panel6;
-        private Label label13;
         private Label label3;
-        private Button button1;
-        private Button button2;
-        private TextBox txtSearch;
+        private Button btnClear;
+        private Button btnSearch;
+        private TextBox txtSearchCustOrEq;
         private ComboBox cmbStatusFilter;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePickerTo;
+        private DateTimePicker dateTimePickerFrom;
         private Label label4;
         private Label label5;
         private DataGridView dgvRentalRequests;
@@ -649,12 +552,12 @@
         private Label label8;
         private Label label7;
         private Label label6;
-        private PictureBox pictureBox2;
-        private Label lblCustomerName;
-        private Label label11;
-        private Label label10;
-        private Label label9;
-        private Button button3;
-        private Button newRentalBtn;
+        private PictureBox pictureBoxCust;
+        private Label lblCustName;
+        private Label lblPurpose;
+        private Label lblRentPeriod;
+        private Label lblEqName;
+        private Button btnReject;
+        private Button btnApprove;
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             sidePanel = new Panel();
-            settingsBtn = new Button();
             panel2 = new Panel();
             label10 = new Label();
             analyticsBtn = new Button();
@@ -70,18 +69,18 @@
             label4 = new Label();
             dataGridViewRecentActivities = new DataGridView();
             equipmentInventoryPanel = new Panel();
-            label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
+            accessoriesPercentageLabel = new Label();
+            lightsPercentageLabel = new Label();
+            lensesPercentageLabel = new Label();
+            cameraPercentageLabel = new Label();
             label5 = new Label();
-            progressBar4 = new ProgressBar();
+            accessoriesProgressBar = new ProgressBar();
             label3 = new Label();
-            progressBar3 = new ProgressBar();
+            lightsProgressBar = new ProgressBar();
             label2 = new Label();
-            progressBar2 = new ProgressBar();
+            lensesProgressBar = new ProgressBar();
             label1 = new Label();
-            progressBar1 = new ProgressBar();
+            cameraProgressBar = new ProgressBar();
             equipmentInventoryTxt = new Label();
             panel1 = new Panel();
             label11 = new Label();
@@ -114,7 +113,6 @@
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(31, 41, 55);
-            sidePanel.Controls.Add(settingsBtn);
             sidePanel.Controls.Add(panel2);
             sidePanel.Controls.Add(analyticsBtn);
             sidePanel.Controls.Add(returnsBtn);
@@ -128,20 +126,6 @@
             sidePanel.Padding = new Padding(10);
             sidePanel.Size = new Size(230, 825);
             sidePanel.TabIndex = 0;
-            // 
-            // settingsBtn
-            // 
-            settingsBtn.BackColor = Color.Transparent;
-            settingsBtn.FlatStyle = FlatStyle.Flat;
-            settingsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            settingsBtn.ForeColor = Color.LightGray;
-            settingsBtn.Location = new Point(10, 385);
-            settingsBtn.Name = "settingsBtn";
-            settingsBtn.Size = new Size(211, 44);
-            settingsBtn.TabIndex = 10;
-            settingsBtn.Text = "Settings";
-            settingsBtn.UseVisualStyleBackColor = false;
-            settingsBtn.Click += settingsBtn_Click;
             // 
             // panel2
             // 
@@ -581,67 +565,67 @@
             // equipmentInventoryPanel
             // 
             equipmentInventoryPanel.BackColor = Color.FromArgb(31, 41, 55);
-            equipmentInventoryPanel.Controls.Add(label9);
-            equipmentInventoryPanel.Controls.Add(label8);
-            equipmentInventoryPanel.Controls.Add(label7);
-            equipmentInventoryPanel.Controls.Add(label6);
+            equipmentInventoryPanel.Controls.Add(accessoriesPercentageLabel);
+            equipmentInventoryPanel.Controls.Add(lightsPercentageLabel);
+            equipmentInventoryPanel.Controls.Add(lensesPercentageLabel);
+            equipmentInventoryPanel.Controls.Add(cameraPercentageLabel);
             equipmentInventoryPanel.Controls.Add(label5);
-            equipmentInventoryPanel.Controls.Add(progressBar4);
+            equipmentInventoryPanel.Controls.Add(accessoriesProgressBar);
             equipmentInventoryPanel.Controls.Add(label3);
-            equipmentInventoryPanel.Controls.Add(progressBar3);
+            equipmentInventoryPanel.Controls.Add(lightsProgressBar);
             equipmentInventoryPanel.Controls.Add(label2);
-            equipmentInventoryPanel.Controls.Add(progressBar2);
+            equipmentInventoryPanel.Controls.Add(lensesProgressBar);
             equipmentInventoryPanel.Controls.Add(label1);
-            equipmentInventoryPanel.Controls.Add(progressBar1);
+            equipmentInventoryPanel.Controls.Add(cameraProgressBar);
             equipmentInventoryPanel.Controls.Add(equipmentInventoryTxt);
             equipmentInventoryPanel.Location = new Point(988, 230);
             equipmentInventoryPanel.Name = "equipmentInventoryPanel";
             equipmentInventoryPanel.Size = new Size(320, 296);
             equipmentInventoryPanel.TabIndex = 14;
             // 
-            // label9
+            // accessoriesPercentageLabel
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.LightGray;
-            label9.Location = new Point(267, 226);
-            label9.Name = "label9";
-            label9.Size = new Size(42, 21);
-            label9.TabIndex = 19;
-            label9.Text = "71%";
+            accessoriesPercentageLabel.AutoSize = true;
+            accessoriesPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            accessoriesPercentageLabel.ForeColor = Color.LightGray;
+            accessoriesPercentageLabel.Location = new Point(267, 226);
+            accessoriesPercentageLabel.Name = "accessoriesPercentageLabel";
+            accessoriesPercentageLabel.Size = new Size(42, 21);
+            accessoriesPercentageLabel.TabIndex = 19;
+            accessoriesPercentageLabel.Text = "71%";
             // 
-            // label8
+            // lightsPercentageLabel
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.LightGray;
-            label8.Location = new Point(267, 175);
-            label8.Name = "label8";
-            label8.Size = new Size(42, 21);
-            label8.TabIndex = 18;
-            label8.Text = "47%";
+            lightsPercentageLabel.AutoSize = true;
+            lightsPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lightsPercentageLabel.ForeColor = Color.LightGray;
+            lightsPercentageLabel.Location = new Point(267, 175);
+            lightsPercentageLabel.Name = "lightsPercentageLabel";
+            lightsPercentageLabel.Size = new Size(42, 21);
+            lightsPercentageLabel.TabIndex = 18;
+            lightsPercentageLabel.Text = "47%";
             // 
-            // label7
+            // lensesPercentageLabel
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.LightGray;
-            label7.Location = new Point(267, 124);
-            label7.Name = "label7";
-            label7.Size = new Size(42, 21);
-            label7.TabIndex = 17;
-            label7.Text = "62%";
+            lensesPercentageLabel.AutoSize = true;
+            lensesPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lensesPercentageLabel.ForeColor = Color.LightGray;
+            lensesPercentageLabel.Location = new Point(267, 124);
+            lensesPercentageLabel.Name = "lensesPercentageLabel";
+            lensesPercentageLabel.Size = new Size(42, 21);
+            lensesPercentageLabel.TabIndex = 17;
+            lensesPercentageLabel.Text = "62%";
             // 
-            // label6
+            // cameraPercentageLabel
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.LightGray;
-            label6.Location = new Point(267, 73);
-            label6.Name = "label6";
-            label6.Size = new Size(42, 21);
-            label6.TabIndex = 16;
-            label6.Text = "85%";
+            cameraPercentageLabel.AutoSize = true;
+            cameraPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            cameraPercentageLabel.ForeColor = Color.LightGray;
+            cameraPercentageLabel.Location = new Point(267, 73);
+            cameraPercentageLabel.Name = "cameraPercentageLabel";
+            cameraPercentageLabel.Size = new Size(42, 21);
+            cameraPercentageLabel.TabIndex = 16;
+            cameraPercentageLabel.Text = "85%";
             // 
             // label5
             // 
@@ -654,13 +638,13 @@
             label5.TabIndex = 15;
             label5.Text = "Accessories";
             // 
-            // progressBar4
+            // accessoriesProgressBar
             // 
-            progressBar4.BackColor = Color.FromArgb(55, 65, 81);
-            progressBar4.Location = new Point(107, 230);
-            progressBar4.Name = "progressBar4";
-            progressBar4.Size = new Size(149, 17);
-            progressBar4.TabIndex = 14;
+            accessoriesProgressBar.BackColor = Color.FromArgb(55, 65, 81);
+            accessoriesProgressBar.Location = new Point(107, 230);
+            accessoriesProgressBar.Name = "accessoriesProgressBar";
+            accessoriesProgressBar.Size = new Size(149, 17);
+            accessoriesProgressBar.TabIndex = 14;
             // 
             // label3
             // 
@@ -673,13 +657,13 @@
             label3.TabIndex = 13;
             label3.Text = "Lights";
             // 
-            // progressBar3
+            // lightsProgressBar
             // 
-            progressBar3.BackColor = Color.FromArgb(55, 65, 81);
-            progressBar3.Location = new Point(107, 179);
-            progressBar3.Name = "progressBar3";
-            progressBar3.Size = new Size(149, 17);
-            progressBar3.TabIndex = 12;
+            lightsProgressBar.BackColor = Color.FromArgb(55, 65, 81);
+            lightsProgressBar.Location = new Point(107, 179);
+            lightsProgressBar.Name = "lightsProgressBar";
+            lightsProgressBar.Size = new Size(149, 17);
+            lightsProgressBar.TabIndex = 12;
             // 
             // label2
             // 
@@ -692,13 +676,13 @@
             label2.TabIndex = 11;
             label2.Text = "Lenses";
             // 
-            // progressBar2
+            // lensesProgressBar
             // 
-            progressBar2.BackColor = Color.FromArgb(55, 65, 81);
-            progressBar2.Location = new Point(107, 128);
-            progressBar2.Name = "progressBar2";
-            progressBar2.Size = new Size(149, 17);
-            progressBar2.TabIndex = 10;
+            lensesProgressBar.BackColor = Color.FromArgb(55, 65, 81);
+            lensesProgressBar.Location = new Point(107, 128);
+            lensesProgressBar.Name = "lensesProgressBar";
+            lensesProgressBar.Size = new Size(149, 17);
+            lensesProgressBar.TabIndex = 10;
             // 
             // label1
             // 
@@ -711,13 +695,13 @@
             label1.TabIndex = 9;
             label1.Text = "Cameras";
             // 
-            // progressBar1
+            // cameraProgressBar
             // 
-            progressBar1.BackColor = Color.FromArgb(55, 65, 81);
-            progressBar1.Location = new Point(107, 77);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(149, 17);
-            progressBar1.TabIndex = 8;
+            cameraProgressBar.BackColor = Color.FromArgb(55, 65, 81);
+            cameraProgressBar.Location = new Point(107, 77);
+            cameraProgressBar.Name = "cameraProgressBar";
+            cameraProgressBar.Size = new Size(149, 17);
+            cameraProgressBar.TabIndex = 8;
             // 
             // equipmentInventoryTxt
             // 
@@ -890,20 +874,19 @@
         private DataGridView dataGridViewRecentActivities;
         private Panel equipmentInventoryPanel;
         private Label recentActivitiesTxt;
-        private ProgressBar progressBar1;
+        private ProgressBar cameraProgressBar;
         private Label equipmentInventoryTxt;
         private Label label1;
         private Label label5;
-        private ProgressBar progressBar4;
+        private ProgressBar accessoriesProgressBar;
         private Label label3;
-        private ProgressBar progressBar3;
+        private ProgressBar lightsProgressBar;
         private Label label2;
-        private ProgressBar progressBar2;
-        private Label label6;
-        private Label label9;
-        private Label label8;
-        private Label label7;
-        private Button settingsBtn;
+        private ProgressBar lensesProgressBar;
+        private Label cameraPercentageLabel;
+        private Label accessoriesPercentageLabel;
+        private Label lightsPercentageLabel;
+        private Label lensesPercentageLabel;
         private Button analyticsBtn;
         private Button returnsBtn;
         private Button rentalRequestsBtn;
