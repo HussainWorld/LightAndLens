@@ -16,5 +16,36 @@ namespace LightAndLens_FormApp
         {
             InitializeComponent();
         }
+
+        private void dashboardBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EquipmentBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void settingsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rentalRequestsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void returnsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void analyticsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
