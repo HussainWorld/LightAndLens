@@ -36,33 +36,33 @@
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
+            label5 = new Label();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
             panel1 = new Panel();
             comboBoxFilterConditions = new ComboBox();
             comboBoxFilterStatus = new ComboBox();
             txtSearch = new TextBox();
-            btmApply = new Button();
+            btnApply = new Button();
             btnClear = new Button();
             panelListReturns = new Panel();
-            panelProcessReturn = new Panel();
-            dgvListReturns = new DataGridView();
-            label3 = new Label();
-            label2 = new Label();
-            comboBoxSelectCondition = new ComboBox();
-            label4 = new Label();
-            textBoxDesc = new TextBox();
-            checkBoxLate = new CheckBox();
-            btnReturn = new Button();
-            label5 = new Label();
             label6 = new Label();
+            dgvListReturns = new DataGridView();
+            panelProcessReturn = new Panel();
+            btnReturn = new Button();
+            checkBoxLate = new CheckBox();
+            textBoxDesc = new TextBox();
+            label4 = new Label();
+            comboBoxSelectCondition = new ComboBox();
+            label2 = new Label();
+            label3 = new Label();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panelListReturns.SuspendLayout();
-            panelProcessReturn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).BeginInit();
+            panelProcessReturn.SuspendLayout();
             SuspendLayout();
             // 
             // sidePanel
@@ -171,6 +171,17 @@
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 3;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(390, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(340, 21);
+            label5.TabIndex = 11;
+            label5.Text = "Filter options Already set in Item Collection";
+            // 
             // pictureBox1
             // 
             pictureBox1.Location = new Point(46, 19);
@@ -197,7 +208,7 @@
             panel1.Controls.Add(comboBoxFilterConditions);
             panel1.Controls.Add(comboBoxFilterStatus);
             panel1.Controls.Add(txtSearch);
-            panel1.Controls.Add(btmApply);
+            panel1.Controls.Add(btnApply);
             panel1.Controls.Add(btnClear);
             panel1.Location = new Point(270, 74);
             panel1.Name = "panel1";
@@ -244,20 +255,20 @@
             txtSearch.TabIndex = 2;
             txtSearch.Text = "        Search by customer or equipment name";
             // 
-            // btmApply
+            // btnApply
             // 
-            btmApply.BackColor = SystemColors.HotTrack;
-            btmApply.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
-            btmApply.FlatStyle = FlatStyle.Flat;
-            btmApply.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btmApply.ForeColor = Color.White;
-            btmApply.Location = new Point(811, 14);
-            btmApply.Name = "btmApply";
-            btmApply.Size = new Size(105, 30);
-            btmApply.TabIndex = 1;
-            btmApply.Text = "Apply";
-            btmApply.TextAlign = ContentAlignment.MiddleRight;
-            btmApply.UseVisualStyleBackColor = false;
+            btnApply.BackColor = SystemColors.HotTrack;
+            btnApply.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
+            btnApply.FlatStyle = FlatStyle.Flat;
+            btnApply.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnApply.ForeColor = Color.White;
+            btnApply.Location = new Point(811, 14);
+            btnApply.Name = "btnApply";
+            btnApply.Size = new Size(105, 30);
+            btnApply.TabIndex = 1;
+            btnApply.Text = "Apply";
+            btnApply.TextAlign = ContentAlignment.MiddleRight;
+            btnApply.UseVisualStyleBackColor = false;
             // 
             // btnClear
             // 
@@ -284,6 +295,26 @@
             panelListReturns.Size = new Size(698, 284);
             panelListReturns.TabIndex = 15;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(227, 131);
+            label6.Name = "label6";
+            label6.Size = new Size(154, 21);
+            label6.TabIndex = 12;
+            label6.Text = "List returns records";
+            // 
+            // dgvListReturns
+            // 
+            dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListReturns.Location = new Point(12, 15);
+            dgvListReturns.Name = "dgvListReturns";
+            dgvListReturns.RowTemplate.Height = 25;
+            dgvListReturns.Size = new Size(674, 257);
+            dgvListReturns.TabIndex = 0;
+            // 
             // panelProcessReturn
             // 
             panelProcessReturn.BackColor = Color.FromArgb(31, 41, 55);
@@ -299,36 +330,47 @@
             panelProcessReturn.Size = new Size(319, 375);
             panelProcessReturn.TabIndex = 16;
             // 
-            // dgvListReturns
+            // btnReturn
             // 
-            dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListReturns.Location = new Point(12, 15);
-            dgvListReturns.Name = "dgvListReturns";
-            dgvListReturns.RowTemplate.Height = 25;
-            dgvListReturns.Size = new Size(674, 257);
-            dgvListReturns.TabIndex = 0;
+            btnReturn.BackColor = Color.FromArgb(16, 139, 106);
+            btnReturn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReturn.ForeColor = Color.White;
+            btnReturn.Location = new Point(22, 310);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(277, 39);
+            btnReturn.TabIndex = 9;
+            btnReturn.Text = "Mark as Returned";
+            btnReturn.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // checkBoxLate
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(22, 15);
-            label3.Name = "label3";
-            label3.Size = new Size(122, 21);
-            label3.TabIndex = 2;
-            label3.Text = "Process Return";
+            checkBoxLate.AutoSize = true;
+            checkBoxLate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            checkBoxLate.ForeColor = Color.White;
+            checkBoxLate.Location = new Point(29, 273);
+            checkBoxLate.Name = "checkBoxLate";
+            checkBoxLate.Size = new Size(98, 21);
+            checkBoxLate.TabIndex = 8;
+            checkBoxLate.Text = "Late Return";
+            checkBoxLate.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // textBoxDesc
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.LightGray;
-            label2.Location = new Point(29, 47);
-            label2.Name = "label2";
-            label2.Size = new Size(69, 17);
-            label2.TabIndex = 3;
-            label2.Text = "Condition";
+            textBoxDesc.Location = new Point(22, 163);
+            textBoxDesc.Name = "textBoxDesc";
+            textBoxDesc.Size = new Size(277, 23);
+            textBoxDesc.TabIndex = 7;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(29, 131);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 17);
+            label4.TabIndex = 6;
+            label4.Text = "Return notes";
             // 
             // comboBoxSelectCondition
             // 
@@ -344,69 +386,27 @@
             comboBoxSelectCondition.Size = new Size(277, 25);
             comboBoxSelectCondition.TabIndex = 5;
             // 
-            // label4
+            // label2
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(29, 131);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 17);
-            label4.TabIndex = 6;
-            label4.Text = "Return notes";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.LightGray;
+            label2.Location = new Point(29, 47);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 17);
+            label2.TabIndex = 3;
+            label2.Text = "Condition";
             // 
-            // textBoxDesc
+            // label3
             // 
-            textBoxDesc.Location = new Point(22, 163);
-            textBoxDesc.Name = "textBoxDesc";
-            textBoxDesc.Size = new Size(277, 23);
-            textBoxDesc.TabIndex = 7;
-            // 
-            // checkBoxLate
-            // 
-            checkBoxLate.AutoSize = true;
-            checkBoxLate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            checkBoxLate.ForeColor = Color.White;
-            checkBoxLate.Location = new Point(29, 273);
-            checkBoxLate.Name = "checkBoxLate";
-            checkBoxLate.Size = new Size(98, 21);
-            checkBoxLate.TabIndex = 8;
-            checkBoxLate.Text = "Late Return";
-            checkBoxLate.UseVisualStyleBackColor = true;
-            // 
-            // btnReturn
-            // 
-            btnReturn.BackColor = Color.FromArgb(16, 139, 106);
-            btnReturn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnReturn.ForeColor = Color.White;
-            btnReturn.Location = new Point(22, 310);
-            btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(277, 39);
-            btnReturn.TabIndex = 9;
-            btnReturn.Text = "Mark as Returned";
-            btnReturn.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(390, 20);
-            label5.Name = "label5";
-            label5.Size = new Size(340, 21);
-            label5.TabIndex = 11;
-            label5.Text = "Filter options Already set in Item Collection";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(227, 131);
-            label6.Name = "label6";
-            label6.Size = new Size(154, 21);
-            label6.TabIndex = 12;
-            label6.Text = "List returns records";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(22, 15);
+            label3.Name = "label3";
+            label3.Size = new Size(122, 21);
+            label3.TabIndex = 2;
+            label3.Text = "Process Return";
             // 
             // Returns
             // 
@@ -432,9 +432,9 @@
             panel1.PerformLayout();
             panelListReturns.ResumeLayout(false);
             panelListReturns.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvListReturns).EndInit();
             panelProcessReturn.ResumeLayout(false);
             panelProcessReturn.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvListReturns).EndInit();
             ResumeLayout(false);
         }
 
@@ -454,7 +454,7 @@
         private ComboBox comboBoxFilterConditions;
         private ComboBox comboBoxFilterStatus;
         private TextBox txtSearch;
-        private Button btmApply;
+        private Button btnApply;
         private Button btnClear;
         private Panel panelListReturns;
         private DataGridView dgvListReturns;

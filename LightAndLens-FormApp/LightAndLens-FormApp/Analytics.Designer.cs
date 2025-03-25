@@ -36,14 +36,14 @@
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
-            dateTimePickerFrom = new DateTimePicker();
-            label4 = new Label();
-            dateTimePickerTo = new DateTimePicker();
-            btnClear = new Button();
             btnApply = new Button();
+            btnClear = new Button();
+            dateTimePickerTo = new DateTimePicker();
+            label4 = new Label();
+            dateTimePickerFrom = new DateTimePicker();
             panel4 = new Panel();
-            label7 = new Label();
             lblMostRentedCat = new Label();
+            lblTxtMostRented = new Label();
             pictureBox3 = new PictureBox();
             panel9 = new Panel();
             lblMostActiveCust = new Label();
@@ -58,8 +58,8 @@
             label16 = new Label();
             pictureBox5 = new PictureBox();
             panel3 = new Panel();
-            label5 = new Label();
             dgvMonthlyRental = new DataGridView();
+            label5 = new Label();
             panel7 = new Panel();
             dgvRentalsByCat = new DataGridView();
             label6 = new Label();
@@ -197,32 +197,19 @@
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 4;
             // 
-            // dateTimePickerFrom
+            // btnApply
             // 
-            dateTimePickerFrom.CalendarFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerFrom.Location = new Point(13, 18);
-            dateTimePickerFrom.Name = "dateTimePickerFrom";
-            dateTimePickerFrom.Size = new Size(195, 23);
-            dateTimePickerFrom.TabIndex = 6;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(214, 21);
-            label4.Name = "label4";
-            label4.Size = new Size(26, 17);
-            label4.TabIndex = 7;
-            label4.Text = "TO";
-            // 
-            // dateTimePickerTo
-            // 
-            dateTimePickerTo.CalendarFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerTo.Location = new Point(245, 18);
-            dateTimePickerTo.Name = "dateTimePickerTo";
-            dateTimePickerTo.Size = new Size(195, 23);
-            dateTimePickerTo.TabIndex = 8;
+            btnApply.BackColor = SystemColors.MenuHighlight;
+            btnApply.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
+            btnApply.FlatStyle = FlatStyle.Flat;
+            btnApply.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnApply.ForeColor = Color.White;
+            btnApply.Location = new Point(456, 14);
+            btnApply.Name = "btnApply";
+            btnApply.Size = new Size(105, 30);
+            btnApply.TabIndex = 11;
+            btnApply.Text = "Apply Filter";
+            btnApply.UseVisualStyleBackColor = false;
             // 
             // btnClear
             // 
@@ -239,52 +226,65 @@
             btnClear.TextAlign = ContentAlignment.MiddleRight;
             btnClear.UseVisualStyleBackColor = false;
             // 
-            // btnApply
+            // dateTimePickerTo
             // 
-            btnApply.BackColor = SystemColors.MenuHighlight;
-            btnApply.FlatAppearance.BorderColor = Color.FromArgb(31, 41, 55);
-            btnApply.FlatStyle = FlatStyle.Flat;
-            btnApply.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnApply.ForeColor = Color.White;
-            btnApply.Location = new Point(456, 14);
-            btnApply.Name = "btnApply";
-            btnApply.Size = new Size(105, 30);
-            btnApply.TabIndex = 11;
-            btnApply.Text = "Apply Filter";
-            btnApply.UseVisualStyleBackColor = false;
+            dateTimePickerTo.CalendarFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerTo.Location = new Point(245, 18);
+            dateTimePickerTo.Name = "dateTimePickerTo";
+            dateTimePickerTo.Size = new Size(195, 23);
+            dateTimePickerTo.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(214, 21);
+            label4.Name = "label4";
+            label4.Size = new Size(26, 17);
+            label4.TabIndex = 7;
+            label4.Text = "TO";
+            // 
+            // dateTimePickerFrom
+            // 
+            dateTimePickerFrom.CalendarFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerFrom.Location = new Point(13, 18);
+            dateTimePickerFrom.Name = "dateTimePickerFrom";
+            dateTimePickerFrom.Size = new Size(195, 23);
+            dateTimePickerFrom.TabIndex = 6;
             // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(31, 41, 55);
-            panel4.Controls.Add(label7);
             panel4.Controls.Add(lblMostRentedCat);
+            panel4.Controls.Add(lblTxtMostRented);
             panel4.Controls.Add(pictureBox3);
             panel4.Location = new Point(1070, 72);
             panel4.Name = "panel4";
             panel4.Size = new Size(226, 101);
             panel4.TabIndex = 20;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.LightGray;
-            label7.Location = new Point(15, 37);
-            label7.Name = "label7";
-            label7.Size = new Size(56, 32);
-            label7.TabIndex = 4;
-            label7.Text = "300";
-            // 
             // lblMostRentedCat
             // 
             lblMostRentedCat.AutoSize = true;
-            lblMostRentedCat.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMostRentedCat.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblMostRentedCat.ForeColor = Color.LightGray;
-            lblMostRentedCat.Location = new Point(6, 11);
+            lblMostRentedCat.Location = new Point(15, 37);
             lblMostRentedCat.Name = "lblMostRentedCat";
-            lblMostRentedCat.Size = new Size(106, 21);
-            lblMostRentedCat.TabIndex = 3;
-            lblMostRentedCat.Text = "Most Rented";
+            lblMostRentedCat.Size = new Size(56, 32);
+            lblMostRentedCat.TabIndex = 4;
+            lblMostRentedCat.Text = "300";
+            // 
+            // lblTxtMostRented
+            // 
+            lblTxtMostRented.AutoSize = true;
+            lblTxtMostRented.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTxtMostRented.ForeColor = Color.LightGray;
+            lblTxtMostRented.Location = new Point(6, 11);
+            lblTxtMostRented.Name = "lblTxtMostRented";
+            lblTxtMostRented.Size = new Size(106, 21);
+            lblTxtMostRented.TabIndex = 3;
+            lblTxtMostRented.Text = "Most Rented";
             // 
             // pictureBox3
             // 
@@ -431,6 +431,15 @@
             panel3.Size = new Size(486, 263);
             panel3.TabIndex = 25;
             // 
+            // dgvMonthlyRental
+            // 
+            dgvMonthlyRental.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMonthlyRental.Location = new Point(17, 49);
+            dgvMonthlyRental.Name = "dgvMonthlyRental";
+            dgvMonthlyRental.RowTemplate.Height = 25;
+            dgvMonthlyRental.Size = new Size(452, 196);
+            dgvMonthlyRental.TabIndex = 5;
+            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -441,15 +450,6 @@
             label5.Size = new Size(135, 21);
             label5.TabIndex = 4;
             label5.Text = "Monthly Rentals";
-            // 
-            // dgvMonthlyRental
-            // 
-            dgvMonthlyRental.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMonthlyRental.Location = new Point(17, 49);
-            dgvMonthlyRental.Name = "dgvMonthlyRental";
-            dgvMonthlyRental.RowTemplate.Height = 25;
-            dgvMonthlyRental.Size = new Size(452, 196);
-            dgvMonthlyRental.TabIndex = 5;
             // 
             // panel7
             // 
@@ -608,8 +608,8 @@
         private Button btnClear;
         private Button btnApply;
         private Panel panel4;
-        private Label label7;
         private Label lblMostRentedCat;
+        private Label lblTxtMostRented;
         private PictureBox pictureBox3;
         private Panel panel9;
         private Label lblMostActiveCust;
