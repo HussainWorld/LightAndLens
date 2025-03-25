@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             sidePanel = new Panel();
+            settingsBtn = new Button();
+            panel2 = new Panel();
+            label10 = new Label();
+            analyticsBtn = new Button();
+            returnsBtn = new Button();
+            rentalRequestsBtn = new Button();
             EquipmentBtn = new Button();
             dashboardBtn = new Button();
             logotxt = new Label();
@@ -77,11 +83,14 @@
             label1 = new Label();
             progressBar1 = new ProgressBar();
             equipmentInventoryTxt = new Label();
-            settingsBtn = new Button();
-            analyticsBtn = new Button();
-            returnsBtn = new Button();
-            rentalRequestsBtn = new Button();
+            panel1 = new Panel();
+            label11 = new Label();
+            panel3 = new Panel();
+            label12 = new Label();
+            panel4 = new Panel();
+            label13 = new Label();
             sidePanel.SuspendLayout();
+            panel2.SuspendLayout();
             topHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             totalEquipmentPanel.SuspendLayout();
@@ -97,12 +106,16 @@
             recentActivitiesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecentActivities).BeginInit();
             equipmentInventoryPanel.SuspendLayout();
+            panel1.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(31, 41, 55);
             sidePanel.Controls.Add(settingsBtn);
+            sidePanel.Controls.Add(panel2);
             sidePanel.Controls.Add(analyticsBtn);
             sidePanel.Controls.Add(returnsBtn);
             sidePanel.Controls.Add(rentalRequestsBtn);
@@ -115,6 +128,82 @@
             sidePanel.Padding = new Padding(10);
             sidePanel.Size = new Size(230, 825);
             sidePanel.TabIndex = 0;
+            // 
+            // settingsBtn
+            // 
+            settingsBtn.BackColor = Color.Transparent;
+            settingsBtn.FlatStyle = FlatStyle.Flat;
+            settingsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            settingsBtn.ForeColor = Color.LightGray;
+            settingsBtn.Location = new Point(10, 385);
+            settingsBtn.Name = "settingsBtn";
+            settingsBtn.Size = new Size(211, 44);
+            settingsBtn.TabIndex = 10;
+            settingsBtn.Text = "Settings";
+            settingsBtn.UseVisualStyleBackColor = false;
+            settingsBtn.Click += settingsBtn_Click;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Red;
+            panel2.Controls.Add(label10);
+            panel2.Location = new Point(230, 94);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(41, 60);
+            panel2.TabIndex = 15;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(7, 17);
+            label10.Name = "label10";
+            label10.Size = new Size(28, 21);
+            label10.TabIndex = 0;
+            label10.Text = "41";
+            label10.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // analyticsBtn
+            // 
+            analyticsBtn.BackColor = Color.Transparent;
+            analyticsBtn.FlatStyle = FlatStyle.Flat;
+            analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            analyticsBtn.ForeColor = Color.LightGray;
+            analyticsBtn.Location = new Point(10, 325);
+            analyticsBtn.Name = "analyticsBtn";
+            analyticsBtn.Size = new Size(211, 44);
+            analyticsBtn.TabIndex = 9;
+            analyticsBtn.Text = "Analytics";
+            analyticsBtn.UseVisualStyleBackColor = false;
+            analyticsBtn.Click += analyticsBtn_Click;
+            // 
+            // returnsBtn
+            // 
+            returnsBtn.BackColor = Color.Transparent;
+            returnsBtn.FlatStyle = FlatStyle.Flat;
+            returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            returnsBtn.ForeColor = Color.LightGray;
+            returnsBtn.Location = new Point(10, 265);
+            returnsBtn.Name = "returnsBtn";
+            returnsBtn.Size = new Size(211, 44);
+            returnsBtn.TabIndex = 8;
+            returnsBtn.Text = "Returns";
+            returnsBtn.UseVisualStyleBackColor = false;
+            returnsBtn.Click += returnsBtn_Click;
+            // 
+            // rentalRequestsBtn
+            // 
+            rentalRequestsBtn.BackColor = Color.Transparent;
+            rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
+            rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            rentalRequestsBtn.ForeColor = Color.LightGray;
+            rentalRequestsBtn.Location = new Point(10, 205);
+            rentalRequestsBtn.Name = "rentalRequestsBtn";
+            rentalRequestsBtn.Size = new Size(211, 44);
+            rentalRequestsBtn.TabIndex = 7;
+            rentalRequestsBtn.Text = "Rental Requests";
+            rentalRequestsBtn.UseVisualStyleBackColor = false;
+            rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
             // EquipmentBtn
             // 
@@ -364,7 +453,7 @@
             underMaintenancePanel.Controls.Add(underMaintenanceTxt);
             underMaintenancePanel.Location = new Point(1111, 85);
             underMaintenancePanel.Name = "underMaintenancePanel";
-            underMaintenancePanel.Size = new Size(200, 80);
+            underMaintenancePanel.Size = new Size(197, 80);
             underMaintenancePanel.TabIndex = 5;
             // 
             // underMaintenancePic
@@ -403,7 +492,7 @@
             newRentalBtn.BackColor = Color.FromArgb(117, 147, 199);
             newRentalBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             newRentalBtn.ForeColor = Color.White;
-            newRentalBtn.Location = new Point(272, 178);
+            newRentalBtn.Location = new Point(270, 178);
             newRentalBtn.Name = "newRentalBtn";
             newRentalBtn.Size = new Size(256, 42);
             newRentalBtn.TabIndex = 6;
@@ -415,7 +504,7 @@
             processReturnBtn.BackColor = Color.FromArgb(154, 183, 155);
             processReturnBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             processReturnBtn.ForeColor = Color.White;
-            processReturnBtn.Location = new Point(534, 178);
+            processReturnBtn.Location = new Point(531, 178);
             processReturnBtn.Name = "processReturnBtn";
             processReturnBtn.Size = new Size(256, 42);
             processReturnBtn.TabIndex = 10;
@@ -427,7 +516,7 @@
             generateReportBtn.BackColor = Color.FromArgb(140, 118, 183);
             generateReportBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             generateReportBtn.ForeColor = Color.White;
-            generateReportBtn.Location = new Point(796, 178);
+            generateReportBtn.Location = new Point(793, 178);
             generateReportBtn.Name = "generateReportBtn";
             generateReportBtn.Size = new Size(256, 42);
             generateReportBtn.TabIndex = 11;
@@ -439,9 +528,9 @@
             maintenanceBtn.BackColor = Color.FromArgb(190, 112, 72);
             maintenanceBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             maintenanceBtn.ForeColor = Color.White;
-            maintenanceBtn.Location = new Point(1058, 178);
+            maintenanceBtn.Location = new Point(1055, 178);
             maintenanceBtn.Name = "maintenanceBtn";
-            maintenanceBtn.Size = new Size(256, 42);
+            maintenanceBtn.Size = new Size(255, 42);
             maintenanceBtn.TabIndex = 12;
             maintenanceBtn.Text = "Maintenance";
             maintenanceBtn.UseVisualStyleBackColor = false;
@@ -452,7 +541,7 @@
             recentActivitiesPanel.Controls.Add(recentActivitiesTxt);
             recentActivitiesPanel.Controls.Add(label4);
             recentActivitiesPanel.Controls.Add(dataGridViewRecentActivities);
-            recentActivitiesPanel.Location = new Point(271, 234);
+            recentActivitiesPanel.Location = new Point(271, 230);
             recentActivitiesPanel.Name = "recentActivitiesPanel";
             recentActivitiesPanel.Size = new Size(701, 296);
             recentActivitiesPanel.TabIndex = 13;
@@ -505,9 +594,9 @@
             equipmentInventoryPanel.Controls.Add(label1);
             equipmentInventoryPanel.Controls.Add(progressBar1);
             equipmentInventoryPanel.Controls.Add(equipmentInventoryTxt);
-            equipmentInventoryPanel.Location = new Point(988, 234);
+            equipmentInventoryPanel.Location = new Point(988, 230);
             equipmentInventoryPanel.Name = "equipmentInventoryPanel";
-            equipmentInventoryPanel.Size = new Size(323, 296);
+            equipmentInventoryPanel.Size = new Size(320, 296);
             equipmentInventoryPanel.TabIndex = 14;
             // 
             // label9
@@ -641,61 +730,63 @@
             equipmentInventoryTxt.TabIndex = 7;
             equipmentInventoryTxt.Text = "Equipment Inventory";
             // 
-            // settingsBtn
+            // panel1
             // 
-            settingsBtn.BackColor = Color.Transparent;
-            settingsBtn.FlatStyle = FlatStyle.Flat;
-            settingsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            settingsBtn.ForeColor = Color.LightGray;
-            settingsBtn.Location = new Point(10, 385);
-            settingsBtn.Name = "settingsBtn";
-            settingsBtn.Size = new Size(211, 44);
-            settingsBtn.TabIndex = 10;
-            settingsBtn.Text = "Settings";
-            settingsBtn.UseVisualStyleBackColor = false;
-            settingsBtn.Click += this.settingsBtn_Click_1;
+            panel1.BackColor = Color.Red;
+            panel1.Controls.Add(label11);
+            panel1.Location = new Point(372, 644);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(41, 60);
+            panel1.TabIndex = 5;
             // 
-            // analyticsBtn
+            // label11
             // 
-            analyticsBtn.BackColor = Color.Transparent;
-            analyticsBtn.FlatStyle = FlatStyle.Flat;
-            analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            analyticsBtn.ForeColor = Color.LightGray;
-            analyticsBtn.Location = new Point(10, 325);
-            analyticsBtn.Name = "analyticsBtn";
-            analyticsBtn.Size = new Size(211, 44);
-            analyticsBtn.TabIndex = 9;
-            analyticsBtn.Text = "Analytics";
-            analyticsBtn.UseVisualStyleBackColor = false;
-            analyticsBtn.Click += this.analyticsBtn_Click;
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.Location = new Point(3, 20);
+            label11.Name = "label11";
+            label11.Size = new Size(37, 17);
+            label11.TabIndex = 0;
+            label11.Text = "41px";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // returnsBtn
+            // panel3
             // 
-            returnsBtn.BackColor = Color.Transparent;
-            returnsBtn.FlatStyle = FlatStyle.Flat;
-            returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            returnsBtn.ForeColor = Color.LightGray;
-            returnsBtn.Location = new Point(10, 265);
-            returnsBtn.Name = "returnsBtn";
-            returnsBtn.Size = new Size(211, 44);
-            returnsBtn.TabIndex = 8;
-            returnsBtn.Text = "Returns";
-            returnsBtn.UseVisualStyleBackColor = false;
-            returnsBtn.Click += this.returnsBtn_Click;
+            panel3.BackColor = Color.Red;
+            panel3.Controls.Add(label12);
+            panel3.Location = new Point(424, 671);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(100, 10);
+            panel3.TabIndex = 6;
             // 
-            // rentalRequestsBtn
+            // label12
             // 
-            rentalRequestsBtn.BackColor = Color.Transparent;
-            rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
-            rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            rentalRequestsBtn.ForeColor = Color.LightGray;
-            rentalRequestsBtn.Location = new Point(10, 205);
-            rentalRequestsBtn.Name = "rentalRequestsBtn";
-            rentalRequestsBtn.Size = new Size(211, 44);
-            rentalRequestsBtn.TabIndex = 7;
-            rentalRequestsBtn.Text = "Rental Requests";
-            rentalRequestsBtn.UseVisualStyleBackColor = false;
-            rentalRequestsBtn.Click += this.rentalRequestsBtn_Click;
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 6.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(31, -2);
+            label12.Name = "label12";
+            label12.Size = new Size(26, 12);
+            label12.TabIndex = 0;
+            label12.Text = "10px";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Red;
+            panel4.Controls.Add(label13);
+            panel4.Location = new Point(537, 631);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(15, 97);
+            panel4.TabIndex = 7;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(-2, 40);
+            label13.Name = "label13";
+            label13.Size = new Size(19, 13);
+            label13.TabIndex = 0;
+            label13.Text = "15";
             // 
             // Dashboard
             // 
@@ -703,6 +794,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 23, 42);
             ClientSize = new Size(1350, 825);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel1);
             Controls.Add(equipmentInventoryPanel);
             Controls.Add(recentActivitiesPanel);
             Controls.Add(maintenanceBtn);
@@ -723,6 +817,8 @@
             Load += Form1_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -746,6 +842,12 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecentActivities).EndInit();
             equipmentInventoryPanel.ResumeLayout(false);
             equipmentInventoryPanel.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -805,5 +907,13 @@
         private Button analyticsBtn;
         private Button returnsBtn;
         private Button rentalRequestsBtn;
+        private Panel panel2;
+        private Label label10;
+        private Panel panel1;
+        private Label label11;
+        private Panel panel3;
+        private Label label12;
+        private Panel panel4;
+        private Label label13;
     }
 }
