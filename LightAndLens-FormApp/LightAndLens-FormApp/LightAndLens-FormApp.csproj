@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LightAndLensCL\LightAndLensCL.csproj" />
+  </ItemGroup>
+
 </Project>
