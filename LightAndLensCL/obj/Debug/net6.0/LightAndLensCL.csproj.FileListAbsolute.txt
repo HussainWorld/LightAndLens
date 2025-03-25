@@ -1,0 +1,14 @@
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\bin\Debug\net6.0\LightAndLensCL.deps.json
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\bin\Debug\net6.0\LightAndLensCL.runtimeconfig.json
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\bin\Debug\net6.0\LightAndLensCL.dll
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\bin\Debug\net6.0\LightAndLensCL.pdb
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.csproj.AssemblyReference.cache
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.AssemblyInfoInputs.cache
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.AssemblyInfo.cs
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.csproj.CoreCompileInputs.cache
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.dll
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\refint\LightAndLensCL.dll
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.pdb
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\LightAndLensCL.genruntimeconfig.cache
+C:\Users\6alal\source\repos\LightAndLensCL\LightAndLensCL\obj\Debug\net6.0\ref\LightAndLensCL.dll
