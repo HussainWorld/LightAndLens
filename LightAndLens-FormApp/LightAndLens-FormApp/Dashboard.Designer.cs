@@ -529,6 +529,7 @@
             recentActivitiesPanel.Name = "recentActivitiesPanel";
             recentActivitiesPanel.Size = new Size(701, 296);
             recentActivitiesPanel.TabIndex = 13;
+            recentActivitiesPanel.Paint += recentActivitiesPanel_Paint;
             // 
             // recentActivitiesTxt
             // 

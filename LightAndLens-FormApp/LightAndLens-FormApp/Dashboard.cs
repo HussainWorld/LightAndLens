@@ -18,14 +18,14 @@ namespace AP_Project_Testing2._0
         }
 
         private void EquipmentBtn_Click(object sender, EventArgs e)
-        { 
-        
+        {
+
         }
 
 
         private void settingsBtn_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void rentalRequestsBtn_Click(object sender, EventArgs e)
@@ -43,7 +43,9 @@ namespace AP_Project_Testing2._0
 
         }
 
+        private void recentActivitiesPanel_Paint(object sender, PaintEventArgs e)
+        {
 
-
+        }
     }
 }
