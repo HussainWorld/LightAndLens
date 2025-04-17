@@ -17,6 +17,7 @@ namespace LightAndLensCL.Models
         [Unicode(false)]
         public string ImagePath { get; set; } = null!;
         public bool? IsMain { get; set; }
+        public byte[]? ImageData { get; set; }
 
         [ForeignKey("EquipmentId")]
         [InverseProperty("EquipmentImages")]

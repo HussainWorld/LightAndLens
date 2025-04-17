@@ -41,51 +41,51 @@
             dateTimePickerTo = new DateTimePicker();
             label4 = new Label();
             dateTimePickerFrom = new DateTimePicker();
-            panel4 = new Panel();
+            mostRentedPanel = new Panel();
             lblMostRentedCat = new Label();
             lblTxtMostRented = new Label();
-            pictureBox3 = new PictureBox();
+            mostRentedPic = new PictureBox();
             panel9 = new Panel();
             lblMostActiveCust = new Label();
             label14 = new Label();
-            pictureBox4 = new PictureBox();
-            panel1 = new Panel();
+            mostActiveCustPic = new PictureBox();
+            totalRentalPanel = new Panel();
             lblTotalRental = new Label();
             label3 = new Label();
-            pictureBox1 = new PictureBox();
+            totalRentalPic = new PictureBox();
             panel10 = new Panel();
             lblAverageRentalDuration = new Label();
             label16 = new Label();
-            pictureBox5 = new PictureBox();
-            panel3 = new Panel();
+            AverageRentalDurationPic = new PictureBox();
+            monthlyRentalsPanel = new Panel();
             dgvMonthlyRental = new DataGridView();
             label5 = new Label();
-            panel7 = new Panel();
+            rentalByCategoryPanel = new Panel();
             dgvRentalsByCat = new DataGridView();
             label6 = new Label();
-            panel8 = new Panel();
+            lateReturnPanel = new Panel();
             dgvLateReturnByCat = new DataGridView();
             label9 = new Label();
-            panel11 = new Panel();
+            mostRentedEQPanel = new Panel();
             dgvMostRentedEq = new DataGridView();
             label10 = new Label();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            mostRentedPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mostRentedPic).BeginInit();
             panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mostActiveCustPic).BeginInit();
+            totalRentalPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)totalRentalPic).BeginInit();
             panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AverageRentalDurationPic).BeginInit();
+            monthlyRentalsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMonthlyRental).BeginInit();
-            panel7.SuspendLayout();
+            rentalByCategoryPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentalsByCat).BeginInit();
-            panel8.SuspendLayout();
+            lateReturnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvLateReturnByCat).BeginInit();
-            panel11.SuspendLayout();
+            mostRentedEQPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMostRentedEq).BeginInit();
             SuspendLayout();
             // 
@@ -253,16 +253,16 @@
             dateTimePickerFrom.Size = new Size(195, 23);
             dateTimePickerFrom.TabIndex = 6;
             // 
-            // panel4
+            // mostRentedPanel
             // 
-            panel4.BackColor = Color.FromArgb(31, 41, 55);
-            panel4.Controls.Add(lblMostRentedCat);
-            panel4.Controls.Add(lblTxtMostRented);
-            panel4.Controls.Add(pictureBox3);
-            panel4.Location = new Point(1070, 72);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(226, 101);
-            panel4.TabIndex = 20;
+            mostRentedPanel.BackColor = Color.FromArgb(31, 41, 55);
+            mostRentedPanel.Controls.Add(lblMostRentedCat);
+            mostRentedPanel.Controls.Add(lblTxtMostRented);
+            mostRentedPanel.Controls.Add(mostRentedPic);
+            mostRentedPanel.Location = new Point(1070, 72);
+            mostRentedPanel.Name = "mostRentedPanel";
+            mostRentedPanel.Size = new Size(226, 101);
+            mostRentedPanel.TabIndex = 20;
             // 
             // lblMostRentedCat
             // 
@@ -286,21 +286,21 @@
             lblTxtMostRented.TabIndex = 3;
             lblTxtMostRented.Text = "Most Rented";
             // 
-            // pictureBox3
+            // mostRentedPic
             // 
-            pictureBox3.BackColor = Color.DimGray;
-            pictureBox3.Location = new Point(153, 25);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(32, 29);
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
+            mostRentedPic.BackColor = Color.DimGray;
+            mostRentedPic.Location = new Point(153, 25);
+            mostRentedPic.Name = "mostRentedPic";
+            mostRentedPic.Size = new Size(32, 29);
+            mostRentedPic.TabIndex = 2;
+            mostRentedPic.TabStop = false;
             // 
             // panel9
             // 
             panel9.BackColor = Color.FromArgb(31, 41, 55);
             panel9.Controls.Add(lblMostActiveCust);
             panel9.Controls.Add(label14);
-            panel9.Controls.Add(pictureBox4);
+            panel9.Controls.Add(mostActiveCustPic);
             panel9.Location = new Point(809, 72);
             panel9.Name = "panel9";
             panel9.Size = new Size(226, 101);
@@ -328,25 +328,25 @@
             label14.TabIndex = 3;
             label14.Text = "Most Active Customer";
             // 
-            // pictureBox4
+            // mostActiveCustPic
             // 
-            pictureBox4.BackColor = Color.DimGray;
-            pictureBox4.Location = new Point(168, 37);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(32, 29);
-            pictureBox4.TabIndex = 2;
-            pictureBox4.TabStop = false;
+            mostActiveCustPic.BackColor = Color.DimGray;
+            mostActiveCustPic.Location = new Point(168, 37);
+            mostActiveCustPic.Name = "mostActiveCustPic";
+            mostActiveCustPic.Size = new Size(32, 29);
+            mostActiveCustPic.TabIndex = 2;
+            mostActiveCustPic.TabStop = false;
             // 
-            // panel1
+            // totalRentalPanel
             // 
-            panel1.BackColor = Color.FromArgb(31, 41, 55);
-            panel1.Controls.Add(lblTotalRental);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(285, 72);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(226, 101);
-            panel1.TabIndex = 24;
+            totalRentalPanel.BackColor = Color.FromArgb(31, 41, 55);
+            totalRentalPanel.Controls.Add(lblTotalRental);
+            totalRentalPanel.Controls.Add(label3);
+            totalRentalPanel.Controls.Add(totalRentalPic);
+            totalRentalPanel.Location = new Point(285, 72);
+            totalRentalPanel.Name = "totalRentalPanel";
+            totalRentalPanel.Size = new Size(226, 101);
+            totalRentalPanel.TabIndex = 24;
             // 
             // lblTotalRental
             // 
@@ -370,21 +370,21 @@
             label3.TabIndex = 3;
             label3.Text = "Total Rentals";
             // 
-            // pictureBox1
+            // totalRentalPic
             // 
-            pictureBox1.BackColor = Color.DimGray;
-            pictureBox1.Location = new Point(153, 25);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(32, 29);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            totalRentalPic.BackColor = Color.DimGray;
+            totalRentalPic.Location = new Point(153, 25);
+            totalRentalPic.Name = "totalRentalPic";
+            totalRentalPic.Size = new Size(32, 29);
+            totalRentalPic.TabIndex = 2;
+            totalRentalPic.TabStop = false;
             // 
             // panel10
             // 
             panel10.BackColor = Color.FromArgb(31, 41, 55);
             panel10.Controls.Add(lblAverageRentalDuration);
             panel10.Controls.Add(label16);
-            panel10.Controls.Add(pictureBox5);
+            panel10.Controls.Add(AverageRentalDurationPic);
             panel10.Location = new Point(545, 72);
             panel10.Name = "panel10";
             panel10.Size = new Size(226, 101);
@@ -412,24 +412,24 @@
             label16.TabIndex = 3;
             label16.Text = "Average Rental Duration";
             // 
-            // pictureBox5
+            // AverageRentalDurationPic
             // 
-            pictureBox5.BackColor = Color.DimGray;
-            pictureBox5.Location = new Point(153, 34);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(32, 29);
-            pictureBox5.TabIndex = 2;
-            pictureBox5.TabStop = false;
+            AverageRentalDurationPic.BackColor = Color.DimGray;
+            AverageRentalDurationPic.Location = new Point(153, 34);
+            AverageRentalDurationPic.Name = "AverageRentalDurationPic";
+            AverageRentalDurationPic.Size = new Size(32, 29);
+            AverageRentalDurationPic.TabIndex = 2;
+            AverageRentalDurationPic.TabStop = false;
             // 
-            // panel3
+            // monthlyRentalsPanel
             // 
-            panel3.BackColor = Color.FromArgb(31, 41, 55);
-            panel3.Controls.Add(dgvMonthlyRental);
-            panel3.Controls.Add(label5);
-            panel3.Location = new Point(285, 203);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(486, 263);
-            panel3.TabIndex = 25;
+            monthlyRentalsPanel.BackColor = Color.FromArgb(31, 41, 55);
+            monthlyRentalsPanel.Controls.Add(dgvMonthlyRental);
+            monthlyRentalsPanel.Controls.Add(label5);
+            monthlyRentalsPanel.Location = new Point(285, 203);
+            monthlyRentalsPanel.Name = "monthlyRentalsPanel";
+            monthlyRentalsPanel.Size = new Size(486, 263);
+            monthlyRentalsPanel.TabIndex = 25;
             // 
             // dgvMonthlyRental
             // 
@@ -451,15 +451,15 @@
             label5.TabIndex = 4;
             label5.Text = "Monthly Rentals";
             // 
-            // panel7
+            // rentalByCategoryPanel
             // 
-            panel7.BackColor = Color.FromArgb(31, 41, 55);
-            panel7.Controls.Add(dgvRentalsByCat);
-            panel7.Controls.Add(label6);
-            panel7.Location = new Point(810, 203);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(486, 263);
-            panel7.TabIndex = 26;
+            rentalByCategoryPanel.BackColor = Color.FromArgb(31, 41, 55);
+            rentalByCategoryPanel.Controls.Add(dgvRentalsByCat);
+            rentalByCategoryPanel.Controls.Add(label6);
+            rentalByCategoryPanel.Location = new Point(810, 203);
+            rentalByCategoryPanel.Name = "rentalByCategoryPanel";
+            rentalByCategoryPanel.Size = new Size(486, 263);
+            rentalByCategoryPanel.TabIndex = 26;
             // 
             // dgvRentalsByCat
             // 
@@ -481,15 +481,15 @@
             label6.TabIndex = 4;
             label6.Text = "Rentals by Category";
             // 
-            // panel8
+            // lateReturnPanel
             // 
-            panel8.BackColor = Color.FromArgb(31, 41, 55);
-            panel8.Controls.Add(dgvLateReturnByCat);
-            panel8.Controls.Add(label9);
-            panel8.Location = new Point(285, 498);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(486, 263);
-            panel8.TabIndex = 26;
+            lateReturnPanel.BackColor = Color.FromArgb(31, 41, 55);
+            lateReturnPanel.Controls.Add(dgvLateReturnByCat);
+            lateReturnPanel.Controls.Add(label9);
+            lateReturnPanel.Location = new Point(285, 498);
+            lateReturnPanel.Name = "lateReturnPanel";
+            lateReturnPanel.Size = new Size(486, 263);
+            lateReturnPanel.TabIndex = 26;
             // 
             // dgvLateReturnByCat
             // 
@@ -511,15 +511,15 @@
             label9.TabIndex = 4;
             label9.Text = "Late Returns by Category";
             // 
-            // panel11
+            // mostRentedEQPanel
             // 
-            panel11.BackColor = Color.FromArgb(31, 41, 55);
-            panel11.Controls.Add(dgvMostRentedEq);
-            panel11.Controls.Add(label10);
-            panel11.Location = new Point(810, 498);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(486, 263);
-            panel11.TabIndex = 26;
+            mostRentedEQPanel.BackColor = Color.FromArgb(31, 41, 55);
+            mostRentedEQPanel.Controls.Add(dgvMostRentedEq);
+            mostRentedEQPanel.Controls.Add(label10);
+            mostRentedEQPanel.Location = new Point(810, 498);
+            mostRentedEQPanel.Name = "mostRentedEQPanel";
+            mostRentedEQPanel.Size = new Size(486, 263);
+            mostRentedEQPanel.TabIndex = 26;
             // 
             // dgvMostRentedEq
             // 
@@ -547,14 +547,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 23, 42);
             ClientSize = new Size(1350, 825);
-            Controls.Add(panel11);
-            Controls.Add(panel8);
-            Controls.Add(panel7);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
+            Controls.Add(mostRentedEQPanel);
+            Controls.Add(lateReturnPanel);
+            Controls.Add(rentalByCategoryPanel);
+            Controls.Add(monthlyRentalsPanel);
+            Controls.Add(totalRentalPanel);
             Controls.Add(panel10);
             Controls.Add(panel9);
-            Controls.Add(panel4);
+            Controls.Add(mostRentedPanel);
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -565,29 +565,29 @@
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            mostRentedPanel.ResumeLayout(false);
+            mostRentedPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)mostRentedPic).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mostActiveCustPic).EndInit();
+            totalRentalPanel.ResumeLayout(false);
+            totalRentalPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)totalRentalPic).EndInit();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)AverageRentalDurationPic).EndInit();
+            monthlyRentalsPanel.ResumeLayout(false);
+            monthlyRentalsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMonthlyRental).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
+            rentalByCategoryPanel.ResumeLayout(false);
+            rentalByCategoryPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentalsByCat).EndInit();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
+            lateReturnPanel.ResumeLayout(false);
+            lateReturnPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvLateReturnByCat).EndInit();
-            panel11.ResumeLayout(false);
-            panel11.PerformLayout();
+            mostRentedEQPanel.ResumeLayout(false);
+            mostRentedEQPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMostRentedEq).EndInit();
             ResumeLayout(false);
         }
@@ -607,32 +607,32 @@
         private Label label4;
         private Button btnClear;
         private Button btnApply;
-        private Panel panel4;
+        private Panel mostRentedPanel;
         private Label lblMostRentedCat;
         private Label lblTxtMostRented;
-        private PictureBox pictureBox3;
+        private PictureBox mostRentedPic;
         private Panel panel9;
         private Label lblMostActiveCust;
         private Label label14;
-        private PictureBox pictureBox4;
-        private Panel panel1;
+        private PictureBox mostActiveCustPic;
+        private Panel totalRentalPanel;
         private Label lblTotalRental;
         private Label label3;
-        private PictureBox pictureBox1;
+        private PictureBox totalRentalPic;
         private Panel panel10;
         private Label lblAverageRentalDuration;
         private Label label16;
-        private PictureBox pictureBox5;
-        private Panel panel3;
+        private PictureBox AverageRentalDurationPic;
+        private Panel monthlyRentalsPanel;
         private DataGridView dgvMonthlyRental;
         private Label label5;
-        private Panel panel7;
+        private Panel rentalByCategoryPanel;
         private DataGridView dgvRentalsByCat;
         private Label label6;
-        private Panel panel8;
+        private Panel lateReturnPanel;
         private DataGridView dgvLateReturnByCat;
         private Label label9;
-        private Panel panel11;
+        private Panel mostRentedEQPanel;
         private DataGridView dgvMostRentedEq;
         private Label label10;
     }
