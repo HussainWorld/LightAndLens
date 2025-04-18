@@ -1,4 +1,4 @@
-﻿namespace AP_Project_Testing2._0
+﻿namespace LightAndLens_FormApp
 {
     partial class Dashboard
     {
