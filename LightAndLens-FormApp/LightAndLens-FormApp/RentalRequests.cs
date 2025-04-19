@@ -52,5 +52,10 @@ namespace LightAndLens_FormApp
         {
 
         }
+
+        private void RentalRequests_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

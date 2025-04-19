@@ -423,6 +423,7 @@
             Name = "Returns";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Returns";
+            FormClosing += Returns_FormClosing;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);

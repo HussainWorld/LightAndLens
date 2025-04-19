@@ -504,6 +504,7 @@
             Name = "RentalRequests";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RentalRequests";
+            FormClosing += RentalRequests_FormClosing;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

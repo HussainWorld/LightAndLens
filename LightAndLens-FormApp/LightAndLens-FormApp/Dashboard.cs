@@ -10,6 +10,7 @@ namespace LightAndLens_FormApp
         public Dashboard()
         {
             InitializeComponent();
+            HighlightActiveButton(dashboardBtn);
             _context = new LightAndLensDBContext();
         }
 
@@ -108,6 +109,18 @@ namespace LightAndLens_FormApp
             dataGridViewRecentActivities.DataSource = null;
         }
 
+        private void HighlightActiveButton(Button activeButton)
+        {
+            // Reset all to default color
+            dashboardBtn.BackColor = Color.FromArgb(26, 32, 40);
+            EquipmentBtn.BackColor = Color.FromArgb(26, 32, 40);
+            rentalRequestsBtn.BackColor = Color.FromArgb(26, 32, 40);
+            returnsBtn.BackColor = Color.FromArgb(26, 32, 40);
+            analyticsBtn.BackColor = Color.FromArgb(26, 32, 40);
+
+            // Set active color
+            activeButton.BackColor = Color.FromArgb(41, 128, 185); 
+        }
 
 
 
@@ -118,7 +131,9 @@ namespace LightAndLens_FormApp
 
         private void EquipmentBtn_Click(object sender, EventArgs e)
         {
-
+            var equipmentForm = new Equipment(); 
+            equipmentForm.Show();
+            this.Hide(); 
         }
 
 
@@ -129,17 +144,23 @@ namespace LightAndLens_FormApp
 
         private void rentalRequestsBtn_Click(object sender, EventArgs e)
         {
-
+            var requestsForm = new RentalRequests(); 
+            requestsForm.Show();
+            this.Hide();
         }
 
         private void returnsBtn_Click(object sender, EventArgs e)
         {
-
+            var returnsForm = new Returns(); 
+            returnsForm.Show();
+            this.Hide();
         }
 
         private void analyticsBtn_Click(object sender, EventArgs e)
         {
-
+            var analyticsForm = new Analytics(); // Replace with your actual Analytics form
+            analyticsForm.Show();
+            this.Hide();
         }
 
         private void recentActivitiesPanel_Paint(object sender, PaintEventArgs e)

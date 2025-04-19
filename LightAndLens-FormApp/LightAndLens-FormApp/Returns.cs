@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace LightAndLens_FormApp
 {
-    public partial class Returns: Form
+    public partial class Returns : Form
     {
         public Returns()
         {
             InitializeComponent();
+        }
+
+        private void Returns_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
