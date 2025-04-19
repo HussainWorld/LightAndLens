@@ -71,32 +71,83 @@ namespace LightAndLens_FormApp
 
         private void LoadInventoryProgress()
         {
-            var totalQty = _context.Equipment.Sum(e => e.Quantity);
+            /* 
+             * var totalQty = _context.Equipment.Sum(e => e.Quantity);
 
-            var cam = _context.Equipment
+             var cam = _context.Equipment
+                 .Where(e => e.Category.CategoryName == "Camera")
+                 .Sum(e => e.Quantity);
+             var lenses = _context.Equipment
+                 .Where(e => e.Category.CategoryName == "Lenses")
+                 .Sum(e => e.Quantity);
+             var lights = _context.Equipment
+                 .Where(e => e.Category.CategoryName == "Lights")
+                 .Sum(e => e.Quantity);
+             var accs = _context.Equipment
+                 .Where(e => e.Category.CategoryName == "Accessories")
+                 .Sum(e => e.Quantity);
+
+             cameraProgressBar.Value = totalQty == 0 ? 0 : (int)((cam / (double)totalQty) * 100);
+             cameraPercentageLabel.Text = $"{cameraProgressBar.Value}%";
+
+             lensesProgressBar.Value = totalQty == 0 ? 0 : (int)((lenses / (double)totalQty) * 100);
+             lensesPercentageLabel.Text = $"{lensesProgressBar.Value}%";
+
+             lightsProgressBar.Value = totalQty == 0 ? 0 : (int)((lights / (double)totalQty) * 100);
+             lightsPercentageLabel.Text = $"{lightsProgressBar.Value}%";
+
+             accessoriesProgressBar.Value = totalQty == 0 ? 0 : (int)((accs / (double)totalQty) * 100);
+             accessoriesPercentageLabel.Text = $"{accessoriesProgressBar.Value}%";
+            */
+
+            // -- CAMERA --
+            var totalCams = _context.Equipment
                 .Where(e => e.Category.CategoryName == "Camera")
                 .Sum(e => e.Quantity);
-            var lenses = _context.Equipment
+
+            var availableCams = _context.Equipment
+                .Where(e => e.Category.CategoryName == "Camera" && e.Availability.AvailabilityStatusName == "Available")
+                .Sum(e => e.Quantity);
+
+            cameraProgressBar.Value = totalCams == 0 ? 0 : (int)((availableCams / (double)totalCams) * 100);
+            cameraPercentageLabel.Text = $"{cameraProgressBar.Value}%";
+
+            // -- LENSES --
+            var totalLenses = _context.Equipment
                 .Where(e => e.Category.CategoryName == "Lenses")
                 .Sum(e => e.Quantity);
-            var lights = _context.Equipment
+
+            var availableLenses = _context.Equipment
+                .Where(e => e.Category.CategoryName == "Lenses" && e.Availability.AvailabilityStatusName == "Available")
+                .Sum(e => e.Quantity);
+
+            lensesProgressBar.Value = totalLenses == 0 ? 0 : (int)((availableLenses / (double)totalLenses) * 100);
+            lensesPercentageLabel.Text = $"{lensesProgressBar.Value}%";
+
+            // -- LIGHTS --
+            var totalLights = _context.Equipment
                 .Where(e => e.Category.CategoryName == "Lights")
                 .Sum(e => e.Quantity);
-            var accs = _context.Equipment
+
+            var availableLights = _context.Equipment
+                .Where(e => e.Category.CategoryName == "Lights" && e.Availability.AvailabilityStatusName == "Available")
+                .Sum(e => e.Quantity);
+
+            lightsProgressBar.Value = totalLights == 0 ? 0 : (int)((availableLights / (double)totalLights) * 100);
+            lightsPercentageLabel.Text = $"{lightsProgressBar.Value}%";
+
+            // -- ACCESSORIES --
+            var totalAccs = _context.Equipment
                 .Where(e => e.Category.CategoryName == "Accessories")
                 .Sum(e => e.Quantity);
 
-            cameraProgressBar.Value = totalQty == 0 ? 0 : (int)((cam / (double)totalQty) * 100);
-            cameraPercentageLabel.Text = $"{cameraProgressBar.Value}%";
+            var availableAccs = _context.Equipment
+                .Where(e => e.Category.CategoryName == "Accessories" && e.Availability.AvailabilityStatusName == "Available")
+                .Sum(e => e.Quantity);
 
-            lensesProgressBar.Value = totalQty == 0 ? 0 : (int)((lenses / (double)totalQty) * 100);
-            lensesPercentageLabel.Text = $"{lensesProgressBar.Value}%";
-
-            lightsProgressBar.Value = totalQty == 0 ? 0 : (int)((lights / (double)totalQty) * 100);
-            lightsPercentageLabel.Text = $"{lightsProgressBar.Value}%";
-
-            accessoriesProgressBar.Value = totalQty == 0 ? 0 : (int)((accs / (double)totalQty) * 100);
+            accessoriesProgressBar.Value = totalAccs == 0 ? 0 : (int)((availableAccs / (double)totalAccs) * 100);
             accessoriesPercentageLabel.Text = $"{accessoriesProgressBar.Value}%";
+
         }
 
         private void ClearDashboardStats()
