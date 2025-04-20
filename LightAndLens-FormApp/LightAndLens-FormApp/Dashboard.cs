@@ -47,7 +47,7 @@ namespace LightAndLens_FormApp
                     .ToString();
 
                 // Recent Activity (dummy display for now)
-                var recent = _context.RentalTransactions
+                /*var recent = _context.RentalTransactions
                     .OrderByDescending(r => r.StartDate)
                     .Take(5)
                     .Select(r => new
@@ -59,6 +59,9 @@ namespace LightAndLens_FormApp
                     }).ToList();
 
                 dataGridViewRecentActivities.DataSource = recent;
+                */
+
+                
 
                 // Inventory Breakdown
                 LoadInventoryProgress();
@@ -71,42 +74,15 @@ namespace LightAndLens_FormApp
 
         private void LoadInventoryProgress()
         {
-            /* 
-             * var totalQty = _context.Equipment.Sum(e => e.Quantity);
 
-             var cam = _context.Equipment
-                 .Where(e => e.Category.CategoryName == "Camera")
-                 .Sum(e => e.Quantity);
-             var lenses = _context.Equipment
-                 .Where(e => e.Category.CategoryName == "Lenses")
-                 .Sum(e => e.Quantity);
-             var lights = _context.Equipment
-                 .Where(e => e.Category.CategoryName == "Lights")
-                 .Sum(e => e.Quantity);
-             var accs = _context.Equipment
-                 .Where(e => e.Category.CategoryName == "Accessories")
-                 .Sum(e => e.Quantity);
-
-             cameraProgressBar.Value = totalQty == 0 ? 0 : (int)((cam / (double)totalQty) * 100);
-             cameraPercentageLabel.Text = $"{cameraProgressBar.Value}%";
-
-             lensesProgressBar.Value = totalQty == 0 ? 0 : (int)((lenses / (double)totalQty) * 100);
-             lensesPercentageLabel.Text = $"{lensesProgressBar.Value}%";
-
-             lightsProgressBar.Value = totalQty == 0 ? 0 : (int)((lights / (double)totalQty) * 100);
-             lightsPercentageLabel.Text = $"{lightsProgressBar.Value}%";
-
-             accessoriesProgressBar.Value = totalQty == 0 ? 0 : (int)((accs / (double)totalQty) * 100);
-             accessoriesPercentageLabel.Text = $"{accessoriesProgressBar.Value}%";
-            */
 
             // -- CAMERA --
             var totalCams = _context.Equipment
-                .Where(e => e.Category.CategoryName == "Camera")
+                .Where(e => e.Category.CategoryName == "Cameras")
                 .Sum(e => e.Quantity);
 
             var availableCams = _context.Equipment
-                .Where(e => e.Category.CategoryName == "Camera" && e.Availability.AvailabilityStatusName == "Available")
+                .Where(e => e.Category.CategoryName == "Cameras" && e.Availability.AvailabilityStatusName == "Available")
                 .Sum(e => e.Quantity);
 
             cameraProgressBar.Value = totalCams == 0 ? 0 : (int)((availableCams / (double)totalCams) * 100);
@@ -157,7 +133,7 @@ namespace LightAndLens_FormApp
             pendingRequestsNum.Text = "0";
             overdueReturnsNum.Text = "0";
             underMaintenanceNum.Text = "0";
-            dataGridViewRecentActivities.DataSource = null;
+            //dataGridViewRecentActivities.DataSource = null;
         }
 
         private void HighlightActiveButton(Button activeButton)
@@ -170,7 +146,7 @@ namespace LightAndLens_FormApp
             analyticsBtn.BackColor = Color.FromArgb(26, 32, 40);
 
             // Set active color
-            activeButton.BackColor = Color.FromArgb(41, 128, 185); 
+            activeButton.BackColor = Color.FromArgb(41, 128, 185);
         }
 
 
@@ -182,9 +158,9 @@ namespace LightAndLens_FormApp
 
         private void EquipmentBtn_Click(object sender, EventArgs e)
         {
-            var equipmentForm = new Equipment(); 
+            var equipmentForm = new Equipment();
             equipmentForm.Show();
-            this.Hide(); 
+            this.Hide();
         }
 
 
@@ -195,14 +171,14 @@ namespace LightAndLens_FormApp
 
         private void rentalRequestsBtn_Click(object sender, EventArgs e)
         {
-            var requestsForm = new RentalRequests(); 
+            var requestsForm = new RentalRequests();
             requestsForm.Show();
             this.Hide();
         }
 
         private void returnsBtn_Click(object sender, EventArgs e)
         {
-            var returnsForm = new Returns(); 
+            var returnsForm = new Returns();
             returnsForm.Show();
             this.Hide();
         }
@@ -215,6 +191,11 @@ namespace LightAndLens_FormApp
         }
 
         private void recentActivitiesPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
