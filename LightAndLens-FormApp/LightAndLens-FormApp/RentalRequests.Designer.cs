@@ -252,11 +252,11 @@
             cmbStatusFilter.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             cmbStatusFilter.ForeColor = Color.LightGray;
             cmbStatusFilter.FormattingEnabled = true;
-            cmbStatusFilter.Items.AddRange(new object[] { "All Status", "Approved", "Pending ", "Rejected" });
             cmbStatusFilter.Location = new Point(287, 17);
             cmbStatusFilter.Name = "cmbStatusFilter";
             cmbStatusFilter.Size = new Size(118, 25);
             cmbStatusFilter.TabIndex = 3;
+            cmbStatusFilter.SelectedIndexChanged += cmbStatusFilter_SelectedIndexChanged_1;
             // 
             // txtSearchCustOrEq
             // 
@@ -268,7 +268,6 @@
             txtSearchCustOrEq.Name = "txtSearchCustOrEq";
             txtSearchCustOrEq.Size = new Size(253, 25);
             txtSearchCustOrEq.TabIndex = 2;
-            txtSearchCustOrEq.Text = "Search by customer or equipment ";
             txtSearchCustOrEq.TextAlign = HorizontalAlignment.Right;
             // 
             // btnSearch
@@ -285,6 +284,7 @@
             btnSearch.Text = "Search";
             btnSearch.TextAlign = ContentAlignment.MiddleRight;
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnClear
             // 
@@ -300,6 +300,7 @@
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // label4
             // 
@@ -411,9 +412,9 @@
             lblRentPeriod.ForeColor = Color.White;
             lblRentPeriod.Location = new Point(11, 158);
             lblRentPeriod.Name = "lblRentPeriod";
-            lblRentPeriod.Size = new Size(171, 17);
+            lblRentPeriod.Size = new Size(91, 17);
             lblRentPeriod.TabIndex = 9;
-            lblRentPeriod.Text = "Jan 15, 2025 - Jan 18, 2025";
+            lblRentPeriod.Text = "Rental Period";
             // 
             // lblEqName
             // 
@@ -422,9 +423,9 @@
             lblEqName.ForeColor = Color.White;
             lblEqName.Location = new Point(11, 98);
             lblEqName.Name = "lblEqName";
-            lblEqName.Size = new Size(94, 17);
+            lblEqName.Size = new Size(115, 17);
             lblEqName.TabIndex = 5;
-            lblEqName.Text = "Canon EOS R5";
+            lblEqName.Text = "Equipment Name";
             // 
             // label8
             // 
@@ -504,6 +505,7 @@
             Name = "RentalRequests";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RentalRequests";
+            Load += RentalRequests_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
