@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Equipment));
             sidePanel = new Panel();
             analyticsBtn = new Button();
@@ -38,6 +38,7 @@
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
+            label2 = new Label();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
             panel1 = new Panel();
@@ -73,7 +74,6 @@
             equipmentDetailsTxt = new Label();
             label3 = new Label();
             pictureBoxEquipment = new PictureBox();
-            label2 = new Label();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -189,6 +189,17 @@
             topHeaderPanel.Padding = new Padding(10);
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(392, 29);
+            label2.Name = "label2";
+            label2.Size = new Size(340, 21);
+            label2.TabIndex = 10;
+            label2.Text = "Filter options Already set in Item Collection";
             // 
             // pictureBox1
             // 
@@ -362,14 +373,14 @@
             // 
             // dgvListEquipment
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(32, 41, 56);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(209, 213, 219);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(59, 130, 246);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvListEquipment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(32, 41, 56);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(209, 213, 219);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(59, 130, 246);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvListEquipment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvListEquipment.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListEquipment.Location = new Point(271, 203);
             dgvListEquipment.Name = "dgvListEquipment";
@@ -619,17 +630,6 @@
             pictureBoxEquipment.TabIndex = 0;
             pictureBoxEquipment.TabStop = false;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(392, 29);
-            label2.Name = "label2";
-            label2.Size = new Size(340, 21);
-            label2.TabIndex = 10;
-            label2.Text = "Filter options Already set in Item Collection";
-            // 
             // Equipment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -650,6 +650,7 @@
             Name = "Equipment";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Equipment";
+            FormClosing += Equipment_FormClosing;
             Load += Equipment_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();

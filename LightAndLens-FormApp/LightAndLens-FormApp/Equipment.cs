@@ -21,5 +21,10 @@ namespace LightAndLens_FormApp
         {
 
         }
+
+        private void Equipment_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

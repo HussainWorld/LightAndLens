@@ -1,4 +1,4 @@
-﻿namespace AP_Project_Testing2._0
+﻿namespace LightAndLens_FormApp
 {
     partial class Dashboard
     {
@@ -64,10 +64,6 @@
             processReturnBtn = new Button();
             generateReportBtn = new Button();
             maintenanceBtn = new Button();
-            recentActivitiesPanel = new Panel();
-            recentActivitiesTxt = new Label();
-            label4 = new Label();
-            dataGridViewRecentActivities = new DataGridView();
             equipmentInventoryPanel = new Panel();
             accessoriesPercentageLabel = new Label();
             lightsPercentageLabel = new Label();
@@ -82,12 +78,14 @@
             label1 = new Label();
             cameraProgressBar = new ProgressBar();
             equipmentInventoryTxt = new Label();
-            panel1 = new Panel();
-            label11 = new Label();
-            panel3 = new Panel();
-            label12 = new Label();
-            panel4 = new Panel();
-            label13 = new Label();
+            tabRecentActivities = new TabControl();
+            tabRequests = new TabPage();
+            tabRentals = new TabPage();
+            tabReturns = new TabPage();
+            dataGridViewRequests = new DataGridView();
+            recentActivitiesTxt = new Label();
+            dataGridViewRentals = new DataGridView();
+            dataGridViewReturns = new DataGridView();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             topHeaderPanel.SuspendLayout();
@@ -102,12 +100,14 @@
             ((System.ComponentModel.ISupportInitialize)overdueReturnsPic).BeginInit();
             underMaintenancePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)underMaintenancePic).BeginInit();
-            recentActivitiesPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewRecentActivities).BeginInit();
             equipmentInventoryPanel.SuspendLayout();
-            panel1.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
+            tabRecentActivities.SuspendLayout();
+            tabRequests.SuspendLayout();
+            tabRentals.SuspendLayout();
+            tabReturns.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRequests).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -519,50 +519,6 @@
             maintenanceBtn.Text = "Maintenance";
             maintenanceBtn.UseVisualStyleBackColor = false;
             // 
-            // recentActivitiesPanel
-            // 
-            recentActivitiesPanel.BackColor = Color.FromArgb(31, 41, 55);
-            recentActivitiesPanel.Controls.Add(recentActivitiesTxt);
-            recentActivitiesPanel.Controls.Add(label4);
-            recentActivitiesPanel.Controls.Add(dataGridViewRecentActivities);
-            recentActivitiesPanel.Location = new Point(271, 230);
-            recentActivitiesPanel.Name = "recentActivitiesPanel";
-            recentActivitiesPanel.Size = new Size(701, 296);
-            recentActivitiesPanel.TabIndex = 13;
-            recentActivitiesPanel.Paint += recentActivitiesPanel_Paint;
-            // 
-            // recentActivitiesTxt
-            // 
-            recentActivitiesTxt.AutoSize = true;
-            recentActivitiesTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            recentActivitiesTxt.ForeColor = Color.LightGray;
-            recentActivitiesTxt.Location = new Point(29, 17);
-            recentActivitiesTxt.Name = "recentActivitiesTxt";
-            recentActivitiesTxt.Size = new Size(137, 21);
-            recentActivitiesTxt.TabIndex = 6;
-            recentActivitiesTxt.Text = "Recent Activities";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.ControlDark;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(52, 128);
-            label4.Name = "label4";
-            label4.Size = new Size(371, 17);
-            label4.TabIndex = 5;
-            label4.Text = "Populate the list using Items.Add(), including timestamps.";
-            // 
-            // dataGridViewRecentActivities
-            // 
-            dataGridViewRecentActivities.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRecentActivities.Location = new Point(29, 55);
-            dataGridViewRecentActivities.Name = "dataGridViewRecentActivities";
-            dataGridViewRecentActivities.RowTemplate.Height = 25;
-            dataGridViewRecentActivities.Size = new Size(642, 217);
-            dataGridViewRecentActivities.TabIndex = 4;
-            // 
             // equipmentInventoryPanel
             // 
             equipmentInventoryPanel.BackColor = Color.FromArgb(31, 41, 55);
@@ -579,7 +535,7 @@
             equipmentInventoryPanel.Controls.Add(label1);
             equipmentInventoryPanel.Controls.Add(cameraProgressBar);
             equipmentInventoryPanel.Controls.Add(equipmentInventoryTxt);
-            equipmentInventoryPanel.Location = new Point(988, 230);
+            equipmentInventoryPanel.Location = new Point(988, 302);
             equipmentInventoryPanel.Name = "equipmentInventoryPanel";
             equipmentInventoryPanel.Size = new Size(320, 296);
             equipmentInventoryPanel.TabIndex = 14;
@@ -715,63 +671,87 @@
             equipmentInventoryTxt.TabIndex = 7;
             equipmentInventoryTxt.Text = "Equipment Inventory";
             // 
-            // panel1
+            // tabRecentActivities
             // 
-            panel1.BackColor = Color.Red;
-            panel1.Controls.Add(label11);
-            panel1.Location = new Point(372, 644);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(41, 60);
-            panel1.TabIndex = 5;
+            tabRecentActivities.Controls.Add(tabRequests);
+            tabRecentActivities.Controls.Add(tabRentals);
+            tabRecentActivities.Controls.Add(tabReturns);
+            tabRecentActivities.Location = new Point(271, 275);
+            tabRecentActivities.Name = "tabRecentActivities";
+            tabRecentActivities.SelectedIndex = 0;
+            tabRecentActivities.Size = new Size(697, 323);
+            tabRecentActivities.TabIndex = 18;
             // 
-            // label11
+            // tabRequests
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(3, 20);
-            label11.Name = "label11";
-            label11.Size = new Size(37, 17);
-            label11.TabIndex = 0;
-            label11.Text = "41px";
-            label11.TextAlign = ContentAlignment.MiddleCenter;
+            tabRequests.BackColor = Color.FromArgb(31, 41, 55);
+            tabRequests.Controls.Add(dataGridViewRequests);
+            tabRequests.Location = new Point(4, 24);
+            tabRequests.Name = "tabRequests";
+            tabRequests.Padding = new Padding(3);
+            tabRequests.Size = new Size(689, 295);
+            tabRequests.TabIndex = 0;
+            tabRequests.Text = "Requests";
             // 
-            // panel3
+            // tabRentals
             // 
-            panel3.BackColor = Color.Red;
-            panel3.Controls.Add(label12);
-            panel3.Location = new Point(424, 671);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(100, 10);
-            panel3.TabIndex = 6;
+            tabRentals.BackColor = Color.FromArgb(31, 41, 55);
+            tabRentals.Controls.Add(dataGridViewRentals);
+            tabRentals.Location = new Point(4, 24);
+            tabRentals.Name = "tabRentals";
+            tabRentals.Padding = new Padding(3);
+            tabRentals.Size = new Size(689, 295);
+            tabRentals.TabIndex = 1;
+            tabRentals.Text = "Rentals";
             // 
-            // label12
+            // tabReturns
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 6.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(31, -2);
-            label12.Name = "label12";
-            label12.Size = new Size(26, 12);
-            label12.TabIndex = 0;
-            label12.Text = "10px";
+            tabReturns.BackColor = Color.FromArgb(31, 41, 55);
+            tabReturns.Controls.Add(dataGridViewReturns);
+            tabReturns.Location = new Point(4, 24);
+            tabReturns.Name = "tabReturns";
+            tabReturns.Padding = new Padding(3);
+            tabReturns.Size = new Size(689, 295);
+            tabReturns.TabIndex = 2;
+            tabReturns.Text = "Returns";
             // 
-            // panel4
+            // dataGridViewRequests
             // 
-            panel4.BackColor = Color.Red;
-            panel4.Controls.Add(label13);
-            panel4.Location = new Point(537, 631);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(15, 97);
-            panel4.TabIndex = 7;
+            dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRequests.Location = new Point(85, 26);
+            dataGridViewRequests.Name = "dataGridViewRequests";
+            dataGridViewRequests.RowTemplate.Height = 25;
+            dataGridViewRequests.Size = new Size(516, 228);
+            dataGridViewRequests.TabIndex = 4;
             // 
-            // label13
+            // recentActivitiesTxt
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(-2, 40);
-            label13.Name = "label13";
-            label13.Size = new Size(19, 13);
-            label13.TabIndex = 0;
-            label13.Text = "15";
+            recentActivitiesTxt.AutoSize = true;
+            recentActivitiesTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            recentActivitiesTxt.ForeColor = Color.LightGray;
+            recentActivitiesTxt.Location = new Point(668, 251);
+            recentActivitiesTxt.Name = "recentActivitiesTxt";
+            recentActivitiesTxt.Size = new Size(137, 21);
+            recentActivitiesTxt.TabIndex = 6;
+            recentActivitiesTxt.Text = "Recent Activities";
+            // 
+            // dataGridViewRentals
+            // 
+            dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRentals.Location = new Point(67, 26);
+            dataGridViewRentals.Name = "dataGridViewRentals";
+            dataGridViewRentals.RowTemplate.Height = 25;
+            dataGridViewRentals.Size = new Size(572, 234);
+            dataGridViewRentals.TabIndex = 19;
+            // 
+            // dataGridViewReturns
+            // 
+            dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewReturns.Location = new Point(52, 26);
+            dataGridViewReturns.Name = "dataGridViewReturns";
+            dataGridViewReturns.RowTemplate.Height = 25;
+            dataGridViewReturns.Size = new Size(573, 240);
+            dataGridViewReturns.TabIndex = 19;
             // 
             // Dashboard
             // 
@@ -779,11 +759,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(15, 23, 42);
             ClientSize = new Size(1350, 825);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
+            Controls.Add(recentActivitiesTxt);
+            Controls.Add(tabRecentActivities);
             Controls.Add(equipmentInventoryPanel);
-            Controls.Add(recentActivitiesPanel);
             Controls.Add(maintenanceBtn);
             Controls.Add(generateReportBtn);
             Controls.Add(processReturnBtn);
@@ -822,18 +800,17 @@
             underMaintenancePanel.ResumeLayout(false);
             underMaintenancePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)underMaintenancePic).EndInit();
-            recentActivitiesPanel.ResumeLayout(false);
-            recentActivitiesPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewRecentActivities).EndInit();
             equipmentInventoryPanel.ResumeLayout(false);
             equipmentInventoryPanel.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            tabRecentActivities.ResumeLayout(false);
+            tabRequests.ResumeLayout(false);
+            tabRentals.ResumeLayout(false);
+            tabReturns.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRequests).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
 
@@ -870,11 +847,7 @@
         private Button processReturnBtn;
         private Button generateReportBtn;
         private Button maintenanceBtn;
-        private Panel recentActivitiesPanel;
-        private Label label4;
-        private DataGridView dataGridViewRecentActivities;
         private Panel equipmentInventoryPanel;
-        private Label recentActivitiesTxt;
         private ProgressBar cameraProgressBar;
         private Label equipmentInventoryTxt;
         private Label label1;
@@ -893,11 +866,13 @@
         private Button rentalRequestsBtn;
         private Panel panel2;
         private Label label10;
-        private Panel panel1;
-        private Label label11;
-        private Panel panel3;
-        private Label label12;
-        private Panel panel4;
-        private Label label13;
+        private TabControl tabRecentActivities;
+        private TabPage tabRequests;
+        private TabPage tabRentals;
+        private TabPage tabReturns;
+        private DataGridView dataGridViewRequests;
+        private DataGridView dataGridViewRentals;
+        private DataGridView dataGridViewReturns;
+        private Label recentActivitiesTxt;
     }
 }

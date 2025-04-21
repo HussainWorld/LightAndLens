@@ -561,6 +561,8 @@
             Name = "Analytics";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Analytics";
+            FormClosing += Analytics_FormClosing;
+            Load += Analytics_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);

@@ -1,4 +1,4 @@
-﻿namespace LightAndLens_FormApp
+namespace LightAndLens_FormApp
 {
     partial class RentalRequests
     {
@@ -505,7 +505,11 @@
             Name = "RentalRequests";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RentalRequests";
+
+            FormClosing += RentalRequests_FormClosing;
+
             Load += RentalRequests_Load;
+
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
