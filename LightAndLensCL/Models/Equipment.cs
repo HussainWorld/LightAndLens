@@ -11,7 +11,9 @@ namespace LightAndLensCL.Models
         public Equipment()
         {
             EquipmentImages = new HashSet<EquipmentImage>();
+            Feedbacks = new HashSet<Feedback>();
             RentalItems = new HashSet<RentalItem>();
+            RentalRequests = new HashSet<RentalRequest>();
         }
 
         [Key]
@@ -27,13 +29,27 @@ namespace LightAndLensCL.Models
         [Column(TypeName = "decimal(10, 2)")]
         public decimal RentalPricePerDay { get; set; }
         public int Quantity { get; set; }
+        [Column("ConditionID")]
+        public int ConditionId { get; set; }
+        [Column("AvailabilityID")]
+        public int? AvailabilityId { get; set; }
 
+        [ForeignKey("AvailabilityId")]
+        [InverseProperty("Equipment")]
+        public virtual AvailabilityStatus? Availability { get; set; }
         [ForeignKey("CategoryId")]
         [InverseProperty("Equipment")]
         public virtual Category Category { get; set; } = null!;
+        [ForeignKey("ConditionId")]
+        [InverseProperty("Equipment")]
+        public virtual ConditionStatus Condition { get; set; } = null!;
         [InverseProperty("Equipment")]
         public virtual ICollection<EquipmentImage> EquipmentImages { get; set; }
         [InverseProperty("Equipment")]
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
+        [InverseProperty("Equipment")]
         public virtual ICollection<RentalItem> RentalItems { get; set; }
+        [InverseProperty("Equipment")]
+        public virtual ICollection<RentalRequest> RentalRequests { get; set; }
     }
 }
