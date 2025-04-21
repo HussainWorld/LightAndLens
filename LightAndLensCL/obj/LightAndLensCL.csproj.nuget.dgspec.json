@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\A11\\Documents\\GitHub\\LightAndLens\\LightAndLensCL\\LightAndLensCL.csproj": {}
+    "C:\\Users\\6alal\\Downloads\\LightAndLens-main\\LightAndLens-main\\LightAndLens-FormApp\\LightAndLensCL\\LightAndLensCL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\A11\\Documents\\GitHub\\LightAndLens\\LightAndLensCL\\LightAndLensCL.csproj": {
+    "C:\\Users\\6alal\\Downloads\\LightAndLens-main\\LightAndLens-main\\LightAndLens-FormApp\\LightAndLensCL\\LightAndLensCL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\A11\\Documents\\GitHub\\LightAndLens\\LightAndLensCL\\LightAndLensCL.csproj",
+        "projectUniqueName": "C:\\Users\\6alal\\Downloads\\LightAndLens-main\\LightAndLens-main\\LightAndLens-FormApp\\LightAndLensCL\\LightAndLensCL.csproj",
         "projectName": "LightAndLensCL",
-        "projectPath": "C:\\Users\\A11\\Documents\\GitHub\\LightAndLens\\LightAndLensCL\\LightAndLensCL.csproj",
-        "packagesPath": "C:\\Users\\A11\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\A11\\Documents\\GitHub\\LightAndLens\\LightAndLensCL\\obj\\",
+        "projectPath": "C:\\Users\\6alal\\Downloads\\LightAndLens-main\\LightAndLens-main\\LightAndLens-FormApp\\LightAndLensCL\\LightAndLensCL.csproj",
+        "packagesPath": "C:\\Users\\6alal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\6alal\\Downloads\\LightAndLens-main\\LightAndLens-main\\LightAndLens-FormApp\\LightAndLensCL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\A11\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\6alal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
