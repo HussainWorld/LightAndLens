@@ -80,12 +80,12 @@
             equipmentInventoryTxt = new Label();
             tabRecentActivities = new TabControl();
             tabRequests = new TabPage();
-            tabRentals = new TabPage();
-            tabReturns = new TabPage();
             dataGridViewRequests = new DataGridView();
-            recentActivitiesTxt = new Label();
+            tabRentals = new TabPage();
             dataGridViewRentals = new DataGridView();
+            tabReturns = new TabPage();
             dataGridViewReturns = new DataGridView();
+            recentActivitiesTxt = new Label();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             topHeaderPanel.SuspendLayout();
@@ -103,10 +103,10 @@
             equipmentInventoryPanel.SuspendLayout();
             tabRecentActivities.SuspendLayout();
             tabRequests.SuspendLayout();
-            tabRentals.SuspendLayout();
-            tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRequests).BeginInit();
+            tabRentals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
+            tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
             SuspendLayout();
             // 
@@ -678,8 +678,9 @@
             tabRecentActivities.Controls.Add(tabReturns);
             tabRecentActivities.Location = new Point(271, 275);
             tabRecentActivities.Name = "tabRecentActivities";
+            tabRecentActivities.Padding = new Point(20, 3);
             tabRecentActivities.SelectedIndex = 0;
-            tabRecentActivities.Size = new Size(697, 323);
+            tabRecentActivities.Size = new Size(711, 323);
             tabRecentActivities.TabIndex = 18;
             // 
             // tabRequests
@@ -689,9 +690,18 @@
             tabRequests.Location = new Point(4, 24);
             tabRequests.Name = "tabRequests";
             tabRequests.Padding = new Padding(3);
-            tabRequests.Size = new Size(689, 295);
+            tabRequests.Size = new Size(703, 295);
             tabRequests.TabIndex = 0;
             tabRequests.Text = "Requests";
+            // 
+            // dataGridViewRequests
+            // 
+            dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRequests.Location = new Point(6, 6);
+            dataGridViewRequests.Name = "dataGridViewRequests";
+            dataGridViewRequests.RowTemplate.Height = 25;
+            dataGridViewRequests.Size = new Size(691, 283);
+            dataGridViewRequests.TabIndex = 4;
             // 
             // tabRentals
             // 
@@ -700,9 +710,18 @@
             tabRentals.Location = new Point(4, 24);
             tabRentals.Name = "tabRentals";
             tabRentals.Padding = new Padding(3);
-            tabRentals.Size = new Size(689, 295);
+            tabRentals.Size = new Size(703, 295);
             tabRentals.TabIndex = 1;
             tabRentals.Text = "Rentals";
+            // 
+            // dataGridViewRentals
+            // 
+            dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRentals.Location = new Point(6, 6);
+            dataGridViewRentals.Name = "dataGridViewRentals";
+            dataGridViewRentals.RowTemplate.Height = 25;
+            dataGridViewRentals.Size = new Size(691, 283);
+            dataGridViewRentals.TabIndex = 19;
             // 
             // tabReturns
             // 
@@ -711,18 +730,18 @@
             tabReturns.Location = new Point(4, 24);
             tabReturns.Name = "tabReturns";
             tabReturns.Padding = new Padding(3);
-            tabReturns.Size = new Size(689, 295);
+            tabReturns.Size = new Size(703, 295);
             tabReturns.TabIndex = 2;
             tabReturns.Text = "Returns";
             // 
-            // dataGridViewRequests
+            // dataGridViewReturns
             // 
-            dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRequests.Location = new Point(85, 26);
-            dataGridViewRequests.Name = "dataGridViewRequests";
-            dataGridViewRequests.RowTemplate.Height = 25;
-            dataGridViewRequests.Size = new Size(516, 228);
-            dataGridViewRequests.TabIndex = 4;
+            dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewReturns.Location = new Point(6, 6);
+            dataGridViewReturns.Name = "dataGridViewReturns";
+            dataGridViewReturns.RowTemplate.Height = 25;
+            dataGridViewReturns.Size = new Size(691, 283);
+            dataGridViewReturns.TabIndex = 19;
             // 
             // recentActivitiesTxt
             // 
@@ -734,24 +753,6 @@
             recentActivitiesTxt.Size = new Size(137, 21);
             recentActivitiesTxt.TabIndex = 6;
             recentActivitiesTxt.Text = "Recent Activities";
-            // 
-            // dataGridViewRentals
-            // 
-            dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRentals.Location = new Point(67, 26);
-            dataGridViewRentals.Name = "dataGridViewRentals";
-            dataGridViewRentals.RowTemplate.Height = 25;
-            dataGridViewRentals.Size = new Size(572, 234);
-            dataGridViewRentals.TabIndex = 19;
-            // 
-            // dataGridViewReturns
-            // 
-            dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewReturns.Location = new Point(52, 26);
-            dataGridViewReturns.Name = "dataGridViewReturns";
-            dataGridViewReturns.RowTemplate.Height = 25;
-            dataGridViewReturns.Size = new Size(573, 240);
-            dataGridViewReturns.TabIndex = 19;
             // 
             // Dashboard
             // 
@@ -804,10 +805,10 @@
             equipmentInventoryPanel.PerformLayout();
             tabRecentActivities.ResumeLayout(false);
             tabRequests.ResumeLayout(false);
-            tabRentals.ResumeLayout(false);
-            tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRequests).EndInit();
+            tabRentals.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
+            tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -867,12 +868,12 @@
         private Panel panel2;
         private Label label10;
         private TabControl tabRecentActivities;
-        private TabPage tabRequests;
         private TabPage tabRentals;
         private TabPage tabReturns;
         private DataGridView dataGridViewRequests;
         private DataGridView dataGridViewRentals;
         private DataGridView dataGridViewReturns;
         private Label recentActivitiesTxt;
+        private TabPage tabRequests;
     }
 }

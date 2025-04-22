@@ -17,7 +17,83 @@ namespace LightAndLens_FormApp
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadDashboardStats();
+            tabRecentActivities.SelectedIndexChanged += tabRecentActivities_SelectedIndexChanged;
+            LoadRentalRequestsView();
+
+
         }
+
+        private void tabRecentActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabRecentActivities.SelectedTab == tabRequests)
+                LoadRentalRequestsView();
+            else if (tabRecentActivities.SelectedTab == tabRentals)
+                LoadActiveRentalsView();
+            else if (tabRecentActivities.SelectedTab == tabReturns)
+                LoadReturnsView();
+        }
+
+        private void LoadRentalRequestsView()
+        {
+            var requests = (from r in _context.RentalRequests
+                            join u in _context.Users on r.UserId equals u.UserId
+                            join e in _context.Equipment on r.EquipmentId equals e.EquipmentId
+                            join s in _context.RequestStatuses on r.RequestStatusId equals s.RequestStatusId
+                            select new
+                            {
+                                ID = r.RequestId,
+                                EquipmentName = e.EquipmentName,
+                                RentedBy = u.FullName,
+                                StartDate = r.RequestStartDate,
+                                EndDate = r.RequestEndDate,
+                                Status = s.StatusName
+                            }).ToList();
+
+            dataGridViewRequests.DataSource = requests;
+        }
+
+        private void LoadActiveRentalsView()
+        {
+            var rentals = (from t in _context.RentalTransactions
+                           join r in _context.RentalRequests on t.RequestId equals r.RequestId
+                           join u in _context.Users on r.UserId equals u.UserId
+                           join e in _context.Equipment on r.EquipmentId equals e.EquipmentId
+                           where t.Status != "Returned"
+                           select new
+                           {
+                               ID = t.RentalId,
+                               EquipmentName = e.EquipmentName,
+                               RentedBy = u.FullName,
+                               StartDate = t.StartDate,
+                               EndDate = t.EndDate,
+                               Status = t.Status
+                           }).ToList();
+
+            dataGridViewRentals.DataSource = rentals;
+        }
+
+        private void LoadReturnsView()
+        {
+            var returns = (from ret in _context.ReturnRecords
+                           join t in _context.RentalTransactions on ret.RentalId equals t.RentalId
+                           join r in _context.RentalRequests on t.RequestId equals r.RequestId
+                           join u in _context.Users on r.UserId equals u.UserId
+                           join e in _context.Equipment on r.EquipmentId equals e.EquipmentId
+                           select new
+                           {
+                               ID = ret.ReturnId,
+                               EquipmentName = e.EquipmentName,
+                               RentedBy = u.FullName,
+                               ReturnDate = ret.ReturnDate,
+                               Condition = ret.ConditionStatus,
+                               Notes = ret.Notes
+                           }).ToList();
+
+            dataGridViewReturns.DataSource = returns;
+        }
+
+
+
 
         private void LoadDashboardStats()
         {
