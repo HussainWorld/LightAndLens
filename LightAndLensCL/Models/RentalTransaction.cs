@@ -30,7 +30,12 @@ namespace LightAndLensCL.Models
         [StringLength(50)]
         [Unicode(false)]
         public string Status { get; set; } = null!;
+        [Column("RequestID")]
+        public int RequestId { get; set; }
 
+        [ForeignKey("RequestId")]
+        [InverseProperty("RentalTransactions")]
+        public virtual RentalRequest Request { get; set; } = null!;
         [ForeignKey("UserId")]
         [InverseProperty("RentalTransactions")]
         public virtual User User { get; set; } = null!;
