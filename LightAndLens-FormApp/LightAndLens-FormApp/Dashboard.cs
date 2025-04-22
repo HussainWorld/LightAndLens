@@ -158,7 +158,7 @@ namespace LightAndLens_FormApp
 
         private void EquipmentBtn_Click(object sender, EventArgs e)
         {
-            var equipmentForm = new Equipment();
+            var equipmentForm = new EquipmentForm();
             equipmentForm.Show();
             this.Hide();
         }
