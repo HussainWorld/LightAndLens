@@ -38,7 +38,6 @@
             btnCancel = new Button();
             btnAddUser = new Button();
             txtPhone = new TextBox();
-            label1 = new Label();
             lblFullNameError = new Label();
             lblEmailError = new Label();
             lblPhoneError = new Label();
@@ -150,14 +149,6 @@
             txtPhone.Size = new Size(177, 23);
             txtPhone.TabIndex = 20;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(261, 77);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 15);
-            label1.TabIndex = 21;
-            // 
             // lblFullNameError
             // 
             lblFullNameError.AutoSize = true;
@@ -204,7 +195,6 @@
             Controls.Add(lblPhoneError);
             Controls.Add(lblEmailError);
             Controls.Add(lblFullNameError);
-            Controls.Add(label1);
             Controls.Add(txtPhone);
             Controls.Add(btnCancel);
             Controls.Add(btnAddUser);
@@ -233,7 +223,6 @@
         private Button btnCancel;
         private Button btnAddUser;
         private TextBox txtPhone;
-        private Label label1;
         private Label lblFullNameError;
         private Label lblEmailError;
         private Label lblPhoneError;
