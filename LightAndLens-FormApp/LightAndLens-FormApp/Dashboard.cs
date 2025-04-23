@@ -137,7 +137,7 @@ namespace LightAndLens_FormApp
                 dataGridViewRecentActivities.DataSource = recent;
                 */
 
-                
+
 
                 // Inventory Breakdown
                 LoadInventoryProgress();
@@ -274,6 +274,12 @@ namespace LightAndLens_FormApp
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void newRentalBtn_Click(object sender, EventArgs e)
+        {
+            var addUserForm = new AddUser();
+            addUserForm.ShowDialog();
         }
     }
 }

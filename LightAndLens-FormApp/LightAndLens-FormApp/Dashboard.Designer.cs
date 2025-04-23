@@ -60,7 +60,7 @@
             underMaintenancePic = new PictureBox();
             underMaintenanceNum = new Label();
             underMaintenanceTxt = new Label();
-            newRentalBtn = new Button();
+            addNewUserBtn = new Button();
             processReturnBtn = new Button();
             generateReportBtn = new Button();
             maintenanceBtn = new Button();
@@ -471,17 +471,18 @@
             underMaintenanceTxt.TabIndex = 3;
             underMaintenanceTxt.Text = "Under Maintenance";
             // 
-            // newRentalBtn
+            // addNewUserBtn
             // 
-            newRentalBtn.BackColor = Color.FromArgb(117, 147, 199);
-            newRentalBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            newRentalBtn.ForeColor = Color.White;
-            newRentalBtn.Location = new Point(270, 178);
-            newRentalBtn.Name = "newRentalBtn";
-            newRentalBtn.Size = new Size(256, 42);
-            newRentalBtn.TabIndex = 6;
-            newRentalBtn.Text = "New Rental";
-            newRentalBtn.UseVisualStyleBackColor = false;
+            addNewUserBtn.BackColor = Color.FromArgb(117, 147, 199);
+            addNewUserBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            addNewUserBtn.ForeColor = Color.White;
+            addNewUserBtn.Location = new Point(270, 178);
+            addNewUserBtn.Name = "addNewUserBtn";
+            addNewUserBtn.Size = new Size(256, 42);
+            addNewUserBtn.TabIndex = 6;
+            addNewUserBtn.Text = "Add New User";
+            addNewUserBtn.UseVisualStyleBackColor = false;
+            addNewUserBtn.Click += newRentalBtn_Click;
             // 
             // processReturnBtn
             // 
@@ -766,7 +767,7 @@
             Controls.Add(maintenanceBtn);
             Controls.Add(generateReportBtn);
             Controls.Add(processReturnBtn);
-            Controls.Add(newRentalBtn);
+            Controls.Add(addNewUserBtn);
             Controls.Add(underMaintenancePanel);
             Controls.Add(overdueReturnsPanel);
             Controls.Add(pendingRequestsPanel);
@@ -844,7 +845,7 @@
         private Label underMaintenanceNum;
         private Label underMaintenanceTxt;
         private PictureBox underMaintenancePic;
-        private Button newRentalBtn;
+        private Button addNewUserBtn;
         private Button processReturnBtn;
         private Button generateReportBtn;
         private Button maintenanceBtn;
