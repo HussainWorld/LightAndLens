@@ -62,7 +62,7 @@
             underMaintenanceTxt = new Label();
             addNewUserBtn = new Button();
             processReturnBtn = new Button();
-            generateReportBtn = new Button();
+            btnQuickReturn = new Button();
             maintenanceBtn = new Button();
             equipmentInventoryPanel = new Panel();
             accessoriesPercentageLabel = new Label();
@@ -496,17 +496,17 @@
             processReturnBtn.Text = "Process Return";
             processReturnBtn.UseVisualStyleBackColor = false;
             // 
-            // generateReportBtn
+            // btnQuickReturn
             // 
-            generateReportBtn.BackColor = Color.FromArgb(140, 118, 183);
-            generateReportBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            generateReportBtn.ForeColor = Color.White;
-            generateReportBtn.Location = new Point(793, 178);
-            generateReportBtn.Name = "generateReportBtn";
-            generateReportBtn.Size = new Size(256, 42);
-            generateReportBtn.TabIndex = 11;
-            generateReportBtn.Text = "Generate Report";
-            generateReportBtn.UseVisualStyleBackColor = false;
+            btnQuickReturn.BackColor = Color.FromArgb(140, 118, 183);
+            btnQuickReturn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnQuickReturn.ForeColor = Color.White;
+            btnQuickReturn.Location = new Point(793, 178);
+            btnQuickReturn.Name = "btnQuickReturn";
+            btnQuickReturn.Size = new Size(256, 42);
+            btnQuickReturn.TabIndex = 11;
+            btnQuickReturn.Text = "Quick Return";
+            btnQuickReturn.UseVisualStyleBackColor = false;
             // 
             // maintenanceBtn
             // 
@@ -765,7 +765,7 @@
             Controls.Add(tabRecentActivities);
             Controls.Add(equipmentInventoryPanel);
             Controls.Add(maintenanceBtn);
-            Controls.Add(generateReportBtn);
+            Controls.Add(btnQuickReturn);
             Controls.Add(processReturnBtn);
             Controls.Add(addNewUserBtn);
             Controls.Add(underMaintenancePanel);
@@ -847,7 +847,7 @@
         private PictureBox underMaintenancePic;
         private Button addNewUserBtn;
         private Button processReturnBtn;
-        private Button generateReportBtn;
+        private Button btnQuickReturn;
         private Button maintenanceBtn;
         private Panel equipmentInventoryPanel;
         private ProgressBar cameraProgressBar;
