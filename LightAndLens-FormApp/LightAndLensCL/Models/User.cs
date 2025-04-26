@@ -26,12 +26,19 @@ namespace LightAndLensCL.Models
         [StringLength(200)]
         [Unicode(false)]
         public string Email { get; set; } = null!;
+
+        [Column("IdentityUserId")]
+        [StringLength(500)]  
+        public string IdentityUserId { get; set; }
+
         public int? PhoneNumber { get; set; }
         [Column("RoleID")]
         public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]
         [InverseProperty("Users")]
+
+
         public virtual Role Role { get; set; } = null!;
         [InverseProperty("User")]
         public virtual ICollection<Feedback> Feedbacks { get; set; }
