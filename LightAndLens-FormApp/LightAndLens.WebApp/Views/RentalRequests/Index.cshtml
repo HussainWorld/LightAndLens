@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LightAndLensCL.Models.RentalRequest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestSetDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestSetDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipment.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestStatus.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RequestId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
