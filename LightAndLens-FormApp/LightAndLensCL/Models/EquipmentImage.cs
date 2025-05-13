@@ -10,6 +10,7 @@ namespace LightAndLensCL.Models
     {
         [Key]
         [Column("ImageID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ImageId { get; set; }
         [Column("EquipmentID")]
         public int EquipmentId { get; set; }

@@ -71,7 +71,7 @@ namespace LightAndLensCL.Models
 
             modelBuilder.Entity<EquipmentImage>(entity =>
             {
-                entity.Property(e => e.ImageId).ValueGeneratedNever();
+                
 
                 entity.HasOne(d => d.Equipment)
                     .WithMany(p => p.EquipmentImages)

@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightAndLens.WebApp", "LightAndLens.WebApp\LightAndLens.WebApp.csproj", "{CC558ED4-32AC-4169-BE74-0F8D7BFBB67D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedImages", "SharedImages", "{CE8CF743-8880-42BE-BA25-3F0FCDD402F0}"
+	ProjectSection(SolutionItems) = preProject
+		SharedImages\equipment_3004_f7837d96-46a9-4a93-b2ae-7aae9d4a34b7.ee7886a1edadebb5617039a832aef144.webp = SharedImages\equipment_3004_f7837d96-46a9-4a93-b2ae-7aae9d4a34b7.ee7886a1edadebb5617039a832aef144.webp
+		SharedImages\equipment_3005_sel85f14gm2.jpg = SharedImages\equipment_3005_sel85f14gm2.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

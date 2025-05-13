@@ -1,0 +1,33 @@
+﻿@model IEnumerable<LightAndLensCL.Models.Equipment>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.EquipmentName</td>
+        <td>@item.Description</td>
+        <td>@item.RentalPricePerDay</td>
+        <td>@item.Quantity</td>
+        <td>@item.Availability?.AvailabilityStatusName</td>
+        <td>@item.Category?.CategoryName</td>
+        <td>@item.Condition?.ConditionName</td>
+        <td>
+        @{
+            var mainImage = item.EquipmentImages?.FirstOrDefault(i => i.IsMain == true);
+            if (mainImage != null)
+            {
+                    <img src="@Url.Content($"~/SharedImages/{mainImage.ImagePath}")" width="100" height="100" alt="Equipment Image" />
+
+            }
+            else
+            {
+                <span>No image</span>
+            }
+        }
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.EquipmentId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.EquipmentId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.EquipmentId">Delete</a>
+        </td>
+    </tr>
+}

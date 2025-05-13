@@ -1,71 +1,107 @@
 ﻿@model IEnumerable<LightAndLensCL.Models.Equipment>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Equipment List";
 }
 
-<h1>Index</h1>
+<h2>Equipment</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Create New Equipment</a>
 </p>
-<table class="table">
+
+<form method="get" asp-action="Index">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <input type="text" name="searchString" id="searchBox" value="@Context.Request.Query["searchString"]" class="form-control" placeholder="Search by name..." />
+        </div>
+        <div class="col-md-3">
+            <select name="categoryId" id="ddlCategory" class="form-select">
+                <option value="">All Categories</option>
+                @foreach (var item in (SelectList)ViewBag.Categories)
+                {
+                    <option value="@item.Value" selected="@(item.Value == Context.Request.Query["categoryId"] ? "selected" : null)">
+                        @item.Text
+                    </option>   
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="availabilityId" id="ddlAvailability" class="form-select">
+                <option value="">All Availability</option>
+                @foreach (var item in (SelectList)ViewBag.Statuses)
+                {
+                    <option value="@item.Value" selected="@(item.Value == Context.Request.Query["availabilityId"] ? "selected" : null)">
+                        @item.Text
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="conditionId" id="ddlCondition" class="form-select">
+                <option value="">All Conditions</option>
+                @foreach (var item in (SelectList)ViewBag.Conditions)
+                {
+                    <option value="@item.Value" selected="@(item.Value == Context.Request.Query["conditionId"] ? "selected" : null)">
+                        @item.Text
+                    </option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <a asp-action="Index" class="btn btn-secondary">Clear</a>
+    </div>
+</form>
+
+<script>
+    const searchBox = document.getElementById('searchBox');
+    const ddlCategory = document.getElementById('ddlCategory');
+    const ddlAvailability = document.getElementById('ddlAvailability');
+    const ddlCondition = document.getElementById('ddlCondition');
+
+    function fetchFilteredData() {
+        const query = searchBox.value;
+        const categoryId = ddlCategory.value;
+        const availabilityId = ddlAvailability.value;
+        const conditionId = ddlCondition.value;
+
+        const url = `/Equipment/Search?searchString=${encodeURIComponent(query)}&categoryId=${categoryId}&availabilityId=${availabilityId}&conditionId=${conditionId}`;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('equipment-table-body').innerHTML = html;
+            })
+            .catch(error => console.error('Error during live search:', error));
+    }
+
+    searchBox.addEventListener('keyup', fetchFilteredData);
+    ddlCategory.addEventListener('change', fetchFilteredData);
+    ddlAvailability.addEventListener('change', fetchFilteredData);
+    ddlCondition.addEventListener('change', fetchFilteredData);
+</script>
+
+
+
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EquipmentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentalPricePerDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Availability)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Condition)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.First().EquipmentName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th>@Html.DisplayNameFor(model => model.First().RentalPricePerDay)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Quantity)</th>
+            
+                
+            <th>Availability</th>
+            <th>Category</th>
+            <th>Condition</th>
+            <th>Image</th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EquipmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentalPricePerDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Availability.AvailabilityStatusName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Condition.ConditionName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EquipmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EquipmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EquipmentId">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="equipment-table-body">
+        @await Html.PartialAsync("_EquipmentListPartial", Model)
     </tbody>
+
 </table>
