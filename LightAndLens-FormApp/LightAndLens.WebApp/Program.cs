@@ -13,10 +13,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<LightAndLensDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+    sql => sql.EnableRetryOnFailure()
+    ));
 
 builder.Services.AddDbContext<IdentityDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnection"),
+    sql => sql.EnableRetryOnFailure()
+    ));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {

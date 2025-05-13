@@ -1,0 +1,46 @@
+﻿@model UserCreateViewModel
+@{
+    ViewData["Title"] = "Add New User";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="RoleId" class="form-label">Role</label>
+        <select asp-for="RoleId" asp-items="Model.Roles" class="form-select">
+            <option value="">-- Select Role --</option>
+        </select>
+        <span asp-validation-for="RoleId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add User</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
