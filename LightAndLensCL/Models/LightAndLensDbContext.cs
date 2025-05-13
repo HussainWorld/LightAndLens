@@ -5,27 +5,33 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace LightAndLensCL.Models
 {
-    public partial class LightAndLensDbContext : DbContext
+    public partial class LightAndLensDBContext : DbContext
     {
-        public LightAndLensDbContext()
+        public LightAndLensDBContext()
         {
         }
 
-        public LightAndLensDbContext(DbContextOptions<LightAndLensDbContext> options)
+        public LightAndLensDBContext(DbContextOptions<LightAndLensDBContext> options)
             : base(options)
         {
         }
 
+        public virtual DbSet<AvailabilityStatus> AvailabilityStatuses { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
+        public virtual DbSet<ConditionStatus> ConditionStatuses { get; set; } = null!;
         public virtual DbSet<Equipment> Equipment { get; set; } = null!;
         public virtual DbSet<EquipmentImage> EquipmentImages { get; set; } = null!;
+        public virtual DbSet<Feedback> Feedbacks { get; set; } = null!;
         public virtual DbSet<Log> Logs { get; set; } = null!;
         public virtual DbSet<Notification> Notifications { get; set; } = null!;
         public virtual DbSet<RentalItem> RentalItems { get; set; } = null!;
+        public virtual DbSet<RentalRequest> RentalRequests { get; set; } = null!;
         public virtual DbSet<RentalTransaction> RentalTransactions { get; set; } = null!;
+        public virtual DbSet<RequestStatus> RequestStatuses { get; set; } = null!;
         public virtual DbSet<ReturnRecord> ReturnRecords { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserDocument> UserDocuments { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,13 +44,29 @@ namespace LightAndLensCL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AvailabilityStatus>(entity =>
+            {
+                entity.Property(e => e.AvailabilityId).ValueGeneratedNever();
+            });
+
             modelBuilder.Entity<Equipment>(entity =>
             {
+                entity.HasOne(d => d.Availability)
+                    .WithMany(p => p.Equipment)
+                    .HasForeignKey(d => d.AvailabilityId)
+                    .HasConstraintName("FK_AvailabilityID_AvailabilityStatuses_Equipment");
+
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Equipment)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CategoryID_Categories_Equipment");
+
+                entity.HasOne(d => d.Condition)
+                    .WithMany(p => p.Equipment)
+                    .HasForeignKey(d => d.ConditionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ConditionID_ConditionStatuses_Equipment");
             });
 
             modelBuilder.Entity<EquipmentImage>(entity =>
@@ -56,6 +78,23 @@ namespace LightAndLensCL.Models
                     .HasForeignKey(d => d.EquipmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EquipmentID_Equipment_EquipmentImages");
+            });
+
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.Property(e => e.FeedbackId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Equipment)
+                    .WithMany(p => p.Feedbacks)
+                    .HasForeignKey(d => d.EquipmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Feedback_Equipment");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Feedbacks)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserID_Users_Feedback");
             });
 
             modelBuilder.Entity<Notification>(entity =>
@@ -82,8 +121,35 @@ namespace LightAndLensCL.Models
                     .HasConstraintName("FK_RentalID_RentalTransactions_RentalItems");
             });
 
+            modelBuilder.Entity<RentalRequest>(entity =>
+            {
+                entity.HasOne(d => d.Equipment)
+                    .WithMany(p => p.RentalRequests)
+                    .HasForeignKey(d => d.EquipmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RentalRequests_Equipment");
+
+                entity.HasOne(d => d.RequestStatus)
+                    .WithMany(p => p.RentalRequests)
+                    .HasForeignKey(d => d.RequestStatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RentalRequests_RequestStatuses");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.RentalRequests)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RentalRequests_Users");
+            });
+
             modelBuilder.Entity<RentalTransaction>(entity =>
             {
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.RentalTransactions)
+                    .HasForeignKey(d => d.RequestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RequestID_RentalRequests_RentalTransactions");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.RentalTransactions)
                     .HasForeignKey(d => d.UserId)
