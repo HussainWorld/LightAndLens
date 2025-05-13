@@ -5,6 +5,7 @@
 
 <h2>Dashboard</h2>
 
+<!--KPI cards-->
 <div class="row">
     <div class="col-md-4">
         <div class="card text-white bg-primary mb-3">
@@ -52,10 +53,154 @@
     </div>
 </div>
 
+<!--Add User Button-->
 <div class="mt-4 mb-3">
     <!-- replace the asp-controller and asp-action with the actual routes -->
     <a asp-controller="Users" asp-action="Create" class="btn btn-primary me-2">
         <i class="bi bi-person-plus"></i> Add New User
     </a>
+</div>
+
+
+
+<!--Progress Bars-->
+<h3 class="mt-4">Inventory Availability</h3>
+
+@foreach (var item in Model.CategoryStatuses)
+{
+    <div class="mb-3">
+        <div class="d-flex justify-content-between">
+            <strong>@item.CategoryName</strong>
+            <small>@item.Available / @item.Total Available</small>
+        </div>
+        <div class="progress">
+            <div class="progress-bar @item.BarColor" role="progressbar"
+                 style="width: @item.PercentageAvailable%"
+                 aria-valuenow="@item.PercentageAvailable"
+                 aria-valuemin="0" aria-valuemax="100">
+                @item.PercentageAvailable%
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+<!--Recent Activity Tables-->
+<h3 class="mt-4">Recent Activity</h3>
+
+<ul class="nav nav-tabs mt-3" id="activityTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests"
+                type="button" role="tab" aria-controls="requests" aria-selected="true">
+            Requests
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="rentals-tab" data-bs-toggle="tab" data-bs-target="#rentals"
+                type="button" role="tab" aria-controls="rentals" aria-selected="false">
+            Rentals
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="returns-tab" data-bs-toggle="tab" data-bs-target="#returns"
+                type="button" role="tab" aria-controls="returns" aria-selected="false">
+            Returns
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content p-3 border border-top-0" id="activityTabsContent">
+
+    <!-- Requests Tab -->
+    <div class="tab-pane fade show active" id="requests" role="tabpanel" aria-labelledby="requests-tab">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipment</th>
+                    <th>Rented By</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var req in Model.RecentRequests)
+                {
+                    <tr>
+                        <td>@req.RequestId</td>
+                        <td>@req.EquipmentName</td>
+                        <td>@req.RentedBy</td>
+                        <td>@req.StartDate.ToShortDateString()</td>
+                        <td>@req.EndDate.ToShortDateString()</td>
+                        <td>@req.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Rentals Tab -->
+    <div class="tab-pane fade" id="rentals" role="tabpanel" aria-labelledby="rentals-tab">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipment</th>
+                    <th>Rented By</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rental in Model.RecentRentals)
+                {
+                    <tr>
+                        <td>@rental.RentalId</td>
+                        <td>@rental.EquipmentName</td>
+                        <td>@rental.RentedBy</td>
+                        <td>@rental.StartDate.ToShortDateString()</td>
+                        <td>@rental.EndDate.ToShortDateString()</td>
+                        <td>@rental.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Returns Tab -->
+    <div class="tab-pane fade" id="returns" role="tabpanel" aria-labelledby="returns-tab">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipment</th>
+                    <th>Rented By</th>
+                    <th>Return Date</th>
+                    <th>Condition</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ret in Model.RecentReturns)
+                {
+                    <tr>
+                        <td>@ret.ReturnId</td>
+                        <td>@ret.EquipmentName</td>
+                        <td>@ret.RentedBy</td>
+                        <td>@ret.ReturnDate.ToShortDateString()</td>
+                        <td>@ret.Condition</td>
+                        <td>@ret.Notes</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
