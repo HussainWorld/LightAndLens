@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using LightAndLens.WebApp.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "..", "SharedImages")),
+    RequestPath = "/SharedImages"
+});
 
 app.UseRouting();
 

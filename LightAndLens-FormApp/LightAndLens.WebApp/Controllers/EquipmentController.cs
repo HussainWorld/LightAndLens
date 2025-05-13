@@ -6,24 +6,65 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+
 
 namespace LightAndLens.WebApp.Controllers
 {
     public class EquipmentController : Controller
     {
         private readonly LightAndLensDBContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EquipmentController(LightAndLensDBContext context)
+
+        public EquipmentController(LightAndLensDBContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Equipments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int? categoryId, int? availabilityId, int? conditionId)
         {
-            var lightAndLensDBContext = _context.Equipment.Include(e => e.Availability).Include(e => e.Category).Include(e => e.Condition);
-            return View(await lightAndLensDBContext.ToListAsync());
+            var query = _context.Equipment
+                .Include(e => e.Availability)
+                .Include(e => e.Category)
+                .Include(e => e.Condition)
+                .Include(e => e.EquipmentImages)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                query = query.Where(e => e.EquipmentName.Contains(searchString));
+            }
+
+            if (categoryId.HasValue)
+            {
+                query = query.Where(e => e.CategoryId == categoryId);
+            }
+
+            if (availabilityId.HasValue)
+            {
+                query = query.Where(e => e.AvailabilityId == availabilityId);
+            }
+
+            if (conditionId.HasValue)
+            {
+                query = query.Where(e => e.ConditionId == conditionId);
+            }
+
+            var equipmentList = await query.ToListAsync();
+
+            // Pass dropdowns to view
+            ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+            ViewBag.Statuses = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName");
+            ViewBag.Conditions = new SelectList(_context.ConditionStatuses, "ConditionId", "ConditionName");
+
+            return View(equipmentList);
         }
+
 
         // GET: Equipments/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -37,6 +78,7 @@ namespace LightAndLens.WebApp.Controllers
                 .Include(e => e.Availability)
                 .Include(e => e.Category)
                 .Include(e => e.Condition)
+                .Include(e => e.EquipmentImages)
                 .FirstOrDefaultAsync(m => m.EquipmentId == id);
             if (equipment == null)
             {
@@ -50,7 +92,7 @@ namespace LightAndLens.WebApp.Controllers
         public IActionResult Create()
         {
             ViewData["AvailabilityId"] = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName");
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["ConditionId"] = new SelectList(_context.ConditionStatuses, "ConditionId", "ConditionName");
             return View();
         }
@@ -60,19 +102,47 @@ namespace LightAndLens.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipmentId,EquipmentName,Description,CategoryId,RentalPricePerDay,Quantity,ConditionId,AvailabilityId")] Equipment equipment)
+        public async Task<IActionResult> Create([Bind("EquipmentId,EquipmentName,Description,CategoryId,RentalPricePerDay,Quantity,ConditionId,AvailabilityId")] Equipment equipment, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(equipment);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Save first to get EquipmentId
+
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    var sharedImagePath = Path.Combine("..", "SharedImages");
+                    var fileName = $"equipment_{equipment.EquipmentId}_{Path.GetFileName(imageFile.FileName)}";
+                    var filePath = Path.Combine(sharedImagePath, fileName);
+
+                    Directory.CreateDirectory(sharedImagePath); // Ensure folder exists
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+
+                    var equipmentImage = new EquipmentImage
+                    {
+                        EquipmentId = equipment.EquipmentId,
+                        ImagePath = fileName,
+                        IsMain = true
+                    };
+
+                    _context.EquipmentImages.Add(equipmentImage);
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["AvailabilityId"] = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName", equipment.AvailabilityId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", equipment.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", equipment.CategoryId);
             ViewData["ConditionId"] = new SelectList(_context.ConditionStatuses, "ConditionId", "ConditionName", equipment.ConditionId);
             return View(equipment);
         }
+
+
 
         // GET: Equipments/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -88,7 +158,7 @@ namespace LightAndLens.WebApp.Controllers
                 return NotFound();
             }
             ViewData["AvailabilityId"] = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName", equipment.AvailabilityId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", equipment.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", equipment.CategoryId);
             ViewData["ConditionId"] = new SelectList(_context.ConditionStatuses, "ConditionId", "ConditionName", equipment.ConditionId);
             return View(equipment);
         }
@@ -98,6 +168,7 @@ namespace LightAndLens.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, [Bind("EquipmentId,EquipmentName,Description,CategoryId,RentalPricePerDay,Quantity,ConditionId,AvailabilityId")] Equipment equipment)
         {
             if (id != equipment.EquipmentId)
@@ -111,6 +182,7 @@ namespace LightAndLens.WebApp.Controllers
                 {
                     _context.Update(equipment);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,13 +195,27 @@ namespace LightAndLens.WebApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
+
+            
+            foreach (var state in ModelState)
+            {
+                foreach (var error in state.Value.Errors)
+                {
+                    Console.WriteLine($" Field: {state.Key}, Error: {error.ErrorMessage}");
+                }
+            }
+
+            // Refill dropdowns for the view if validation fails
             ViewData["AvailabilityId"] = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName", equipment.AvailabilityId);
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", equipment.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", equipment.CategoryId);
             ViewData["ConditionId"] = new SelectList(_context.ConditionStatuses, "ConditionId", "ConditionName", equipment.ConditionId);
+
             return View(equipment);
         }
+
+
+
 
         // GET: Equipments/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -166,14 +252,46 @@ namespace LightAndLens.WebApp.Controllers
             {
                 _context.Equipment.Remove(equipment);
             }
-            
+
+            if (equipment.EquipmentImages != null)
+                _context.EquipmentImages.RemoveRange(equipment.EquipmentImages);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Search(string searchString, int? categoryId, int? availabilityId, int? conditionId)
+        {
+            var query = _context.Equipment
+                .Include(e => e.Category)
+                .Include(e => e.Condition)
+                .Include(e => e.Availability)
+                .Include(e => e.EquipmentImages)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+                query = query.Where(e => e.EquipmentName.Contains(searchString));
+
+            if (categoryId.HasValue)
+                query = query.Where(e => e.CategoryId == categoryId);
+
+            if (availabilityId.HasValue)
+                query = query.Where(e => e.AvailabilityId == availabilityId);
+
+            if (conditionId.HasValue)
+                query = query.Where(e => e.ConditionId == conditionId);
+
+            var filtered = query.ToList();
+            return PartialView("_EquipmentListPartial", filtered);
+        }
+
+
 
         private bool EquipmentExists(int id)
         {
           return (_context.Equipment?.Any(e => e.EquipmentId == id)).GetValueOrDefault();
         }
+
     }
 }

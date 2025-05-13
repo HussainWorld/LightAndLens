@@ -39,10 +39,10 @@ namespace LightAndLensCL.Models
         public virtual AvailabilityStatus? Availability { get; set; }
         [ForeignKey("CategoryId")]
         [InverseProperty("Equipment")]
-        public virtual Category Category { get; set; } = null!;
+        public virtual Category? Category { get; set; } = null!;
         [ForeignKey("ConditionId")]
         [InverseProperty("Equipment")]
-        public virtual ConditionStatus Condition { get; set; } = null!;
+        public virtual ConditionStatus? Condition { get; set; } = null!;
         [InverseProperty("Equipment")]
         public virtual ICollection<EquipmentImage> EquipmentImages { get; set; }
         [InverseProperty("Equipment")]

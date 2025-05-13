@@ -70,15 +70,36 @@ namespace LightAndLens_FormApp
                     txtCondition.Text = selectedEquipment.Condition?.ConditionName ?? "N/A";
                     txtQuantity.Text = selectedEquipment.Quantity.ToString();
 
-                    var mainImage = selectedEquipment.EquipmentImages.FirstOrDefault();
-                    if (mainImage != null && File.Exists(mainImage.ImagePath))
+                    var mainImage = selectedEquipment.EquipmentImages.FirstOrDefault(i => i.IsMain == true);
+                    if (mainImage != null)
                     {
-                        pictureBoxEquipment.Image = Image.FromFile(mainImage.ImagePath);
+                        var sharedImagePath = Path.Combine(@"..\..\..\..\SharedImages", mainImage.ImagePath);
+                        if (File.Exists(sharedImagePath))
+                        {
+                            try
+                            {
+                                using (var tempImage = Image.FromFile(sharedImagePath))
+                                {
+                                    pictureBoxEquipment.Image = new Bitmap(tempImage);
+                                }
+                            }
+                            catch (OutOfMemoryException)
+                            {
+                                MessageBox.Show("The image file exists but it is not a valid image format.", "Invalid Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                pictureBoxEquipment.Image = null;
+                            }
+                        }
+                        else
+                        {
+                            pictureBoxEquipment.Image = null;
+                        }
                     }
                     else
                     {
                         pictureBoxEquipment.Image = null;
                     }
+
+
                 }
             }
         }
