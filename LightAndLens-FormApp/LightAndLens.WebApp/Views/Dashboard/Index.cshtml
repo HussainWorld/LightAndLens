@@ -234,15 +234,89 @@
 
     <!-- Analytics Tab -->
     <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
-        <h4 class="mb-3">Analytics Dashboard</h4>
-        <p>This section will show charts and advanced reports like:</p>
-        <ul>
-            <li>Requests per status</li>
-            <li>Equipment usage by category</li>
-            <li>Monthly rental trends</li>
-            <li>Top rented items</li>
-        </ul>
+        <h4 class="mb-4">Analytics Dashboard</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h6>Rental Requests by Status</h6>
+                <div id="requestsChart" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h6>Equipment Count by Category</h6>
+                <div id="equipmentChart" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h6>Rental Trends by Day</h6>
+                <div id="rentalTrendChart" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h6>Top 5 Rented Equipment</h6>
+                <div id="topRentedChart" style="height: 300px;"></div>
+            </div>
+        </div>
+
+        @section Scripts {
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Donut Chart for Rental Requests
+                    var options = {
+                        chart: { type: 'donut', height: 300 },
+                        series: [@Model.RequestsPending, @Model.RequestsApproved, @Model.RequestsRejected],
+                        labels: ['Pending', 'Approved', 'Rejected'],
+                        colors: ['#ffc107', '#28a745', '#dc3545']
+                    };
+                    new ApexCharts(document.querySelector("#requestsChart"), options).render();
+
+                    // Bar Chart for Equipment per Category
+                    var options2 = {
+                        chart: { type: 'bar', height: 300 },
+                        series: [{
+                            name: 'Items',
+                            data: @Html.Raw(Json.Serialize(Model.CategoryCounts))
+                        }],
+                        xaxis: {
+                            categories: @Html.Raw(Json.Serialize(Model.CategoryNames))
+                        },
+                        colors: ['#007bff']
+                    };
+                    new ApexCharts(document.querySelector("#equipmentChart"), options2).render();
+
+                    // Line Chart for Rentals by Day
+                    var options3 = {
+                        chart: { type: 'line', height: 300 },
+                        series: [{
+                            name: 'Rentals',
+                            data: @Html.Raw(Json.Serialize(Model.RentalCounts))
+                        }],
+                        xaxis: {
+                            categories: @Html.Raw(Json.Serialize(Model.RentalDates)),
+                            title: { text: 'Date' }
+                        },
+                        colors: ['#17a2b8']
+                    };
+                    new ApexCharts(document.querySelector("#rentalTrendChart"), options3).render();
+
+                    // Bar Chart for Top Rented Equipment
+                    var options4 = {
+                        chart: { type: 'bar', height: 300 },
+                        series: [{
+                            name: 'Rentals',
+                            data: @Html.Raw(Json.Serialize(Model.TopRentedCounts))
+                        }],
+                        xaxis: {
+                            categories: @Html.Raw("[" + string.Join(",", Model.TopRentedEquipmentNames) + "]"),
+                            title: { text: 'Equipment' }
+                        },
+                        colors: ['#6f42c1']
+                    };
+                    new ApexCharts(document.querySelector("#topRentedChart"), options4).render();
+                });
+            </script>
+        }
     </div>
+
+
+
 
     <!-- Maintenance Tab -->
     <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">

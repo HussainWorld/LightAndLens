@@ -138,6 +138,60 @@ namespace LightAndLens.WebApp.Controllers
             })
             .ToListAsync();
 
+            // Get counts of requests by status
+            // Note: Assuming RequestStatusId 13 = Pending, 14 = Approved, 15 = Rejected
+            //Status ID's Will be changed to the default 1,2,3 later
+            var requestsPending = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 13);
+            var requestsApproved = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 14);
+            var requestsRejected = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 15);
+
+
+            // Get category names and counts for JS chart
+            var categoryData = await _context.Categories
+            .Select(c => new
+            {
+                Name = c.CategoryName,
+                Count = _context.Equipment.Count(e => e.CategoryId == c.CategoryId)
+            })
+            .ToListAsync();
+
+                    var categoryNames = categoryData.Select(c => $"'{c.Name}'").ToList(); // for JS
+                    var categoryCounts = categoryData.Select(c => c.Count).ToList();
+
+
+            // Get rental trends for the last 30 days
+            var rentalTrends = await _context.RentalTransactions
+            .GroupBy(rt => rt.StartDate.Date)
+            .OrderBy(g => g.Key)
+            .Select(g => new
+            {
+                Date = g.Key.ToString("yyyy-MM-dd"),
+                Count = g.Count()
+            })
+            .ToListAsync();
+
+                    var rentalDates = rentalTrends.Select(d => $"'{d.Date}'").ToList();
+                    var rentalCounts = rentalTrends.Select(d => d.Count).ToList();
+
+
+            // Get top 5 rented equipment
+            var topRented = await _context.RentalTransactions
+            .Include(rt => rt.Request)
+                .ThenInclude(r => r.Equipment)
+            .GroupBy(rt => rt.Request.Equipment.EquipmentName)
+            .Select(g => new
+            {
+                Name = g.Key,
+                Count = g.Count()
+            })
+            .OrderByDescending(x => x.Count)
+            .Take(5) // Top 5
+            .ToListAsync();
+
+                    var topNames = topRented.Select(t => $"'{t.Name}'").ToList();
+                    var topCounts = topRented.Select(t => t.Count).ToList();
+
+
 
             // Get total equipment, active rentals, pending requests, overdue returns, and under maintenance counts
             var vm = new DashboardViewModel
@@ -153,7 +207,19 @@ namespace LightAndLens.WebApp.Controllers
                 RecentRentals = recentRentals,
                 RecentReturns = recentReturns,
                 CategoryStatuses = categoryStats,
-                MaintenanceItems = maintenanceItems
+                MaintenanceItems = maintenanceItems,
+                RequestsPending = requestsPending,
+                RequestsApproved = requestsApproved,
+                RequestsRejected = requestsRejected,
+                CategoryNames = categoryNames,
+                CategoryCounts = categoryCounts,
+                RentalDates = rentalDates,
+                RentalCounts = rentalCounts,
+                TopRentedEquipmentNames = topNames,
+                TopRentedCounts = topCounts,
+
+
+
             };
 
              
