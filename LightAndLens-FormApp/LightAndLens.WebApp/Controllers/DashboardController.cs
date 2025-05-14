@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
 using LightAndLens.WebApp.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LightAndLens.WebApp.Controllers
 {
@@ -15,6 +16,29 @@ namespace LightAndLens.WebApp.Controllers
         {
             _context = context;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateMaintenanceAvailability(DashboardViewModel model)
+        {
+            if (model.MaintenanceItems != null)
+            {
+                foreach (var item in model.MaintenanceItems)
+                {
+                    var equipment = await _context.Equipment.FindAsync(item.EquipmentId);
+                    if (equipment != null)
+                    {
+                        equipment.AvailabilityId = item.SelectedAvailabilityId;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                TempData["Success"] = "Availability statuses updated successfully.";
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
 
         public async Task<IActionResult> Index()
         {
@@ -101,7 +125,16 @@ namespace LightAndLens.WebApp.Controllers
                 EquipmentName = e.EquipmentName,
                 CategoryName = e.Category.CategoryName,
                 AvailabilityStatus = e.Availability.AvailabilityStatusName,
-                ConditionStatus = "Needs Maintenance" // Hardcoded for consistency
+                ConditionStatus = "Needs Maintenance", // Hardcoded for consistency
+                SelectedAvailabilityId = (int)e.AvailabilityId,
+                AvailabilityOptions = _context.AvailabilityStatuses
+
+                .Where(a => a.AvailabilityId == 1 || a.AvailabilityId == 3)
+                .Select(a => new SelectListItem
+                {
+                    Text = a.AvailabilityStatusName,
+                    Value = a.AvailabilityId.ToString()
+                }).ToList()
             })
             .ToListAsync();
 
@@ -111,9 +144,9 @@ namespace LightAndLens.WebApp.Controllers
             {
                 TotalEquipment = await _context.Equipment.SumAsync(e => e.Quantity),
                 ActiveRentals = await _context.RentalTransactions.CountAsync(r => r.Status == "Ongoing"),
-                PendingRequests = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 1),
+                PendingRequests = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 13),
                 OverdueReturns = await _context.RentalTransactions.CountAsync(r => r.Status == "Ongoing" && r.EndDate < DateTime.Now),
-                UnderMaintenance = await _context.Equipment.CountAsync(e => e.ConditionId == 3),
+                UnderMaintenance = await _context.Equipment.CountAsync(e => e.AvailabilityId == 3),
                 
                 
                 RecentRequests = recentRequests,
