@@ -3,48 +3,76 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<h2>Dashboard</h2>
 
-<!--KPI cards-->
-<div class="row">
-    <div class="col-md-4">
-        <div class="card text-white bg-primary mb-3">
+<h2 class="mb-3">Dashboard</h2>
+<ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview"
+                type="button" role="tab" aria-controls="overview" aria-selected="true">
+            Overview
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics"
+                type="button" role="tab" aria-controls="analytics" aria-selected="false">
+            Analytics
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="maintenance-tab" data-bs-toggle="tab" data-bs-target="#maintenance"
+                type="button" role="tab" aria-controls="maintenance" aria-selected="false">
+            Maintenance
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content mt-4" id="dashboardTabContent">
+
+    <!-- Overview Tab -->
+    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+@* ﻿@model LightAndLens.WebApp.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+} *@
+
+
+
+<!-- KPI Cards Row -->
+        <div class="row justify-content-center text-center mb-4">
+    <div class="col-lg-2 col-md-4 mb-3">
+        <div class="card text-white bg-warning">
             <div class="card-header">Total Equipment</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.TotalEquipment</h4>
             </div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card text-white bg-success mb-3">
+    <div class="col-lg-2 col-md-4 mb-3">
+        <div class="card text-white bg-primary">
             <div class="card-header">Active Rentals</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.ActiveRentals</h4>
             </div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card text-white bg-warning mb-3">
+    <div class="col-lg-2 col-md-4 mb-3">
+        <div class="card text-white bg-success">
             <div class="card-header">Pending Requests</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.PendingRequests</h4>
             </div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card text-white bg-danger mb-3">
+    <div class="col-lg-2 col-md-4 mb-3">
+        <div class="card text-white bg-danger">
             <div class="card-header">Overdue Returns</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.OverdueReturns</h4>
             </div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card text-white bg-dark mb-3">
+    <div class="col-lg-2 col-md-4 mb-3">
+        <div class="card text-white bg-warning">
             <div class="card-header">Under Maintenance</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.UnderMaintenance</h4>
@@ -53,154 +81,288 @@
     </div>
 </div>
 
-<!--Add User Button-->
-<div class="mt-4 mb-3">
-    <!-- replace the asp-controller and asp-action with the actual routes -->
-    <a asp-controller="Users" asp-action="Create" class="btn btn-primary me-2">
-        <i class="bi bi-person-plus"></i> Add New User
-    </a>
-</div>
+<!-- Tabs and Progress Bars -->
+<div class="row">
+    <!-- Recent Activity Tabs -->
+    <div class="col-lg-8">
+        <h3 class="mt-4">Recent Activity</h3>
 
+        <ul class="nav nav-tabs mt-3" id="activityTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests"
+                        type="button" role="tab" aria-controls="requests" aria-selected="true">
+                    Requests
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="rentals-tab" data-bs-toggle="tab" data-bs-target="#rentals"
+                        type="button" role="tab" aria-controls="rentals" aria-selected="false">
+                    Rentals
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="returns-tab" data-bs-toggle="tab" data-bs-target="#returns"
+                        type="button" role="tab" aria-controls="returns" aria-selected="false">
+                    Returns
+                </button>
+            </li>
+        </ul>
 
+        <div class="tab-content p-3 border border-top-0" id="activityTabsContent">
+            <div class="tab-pane fade show active" id="requests" role="tabpanel" aria-labelledby="requests-tab">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipment</th>
+                            <th>Rented By</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var req in Model.RecentRequests)
+                        {
+                            <tr>
+                                <td>@req.RequestId</td>
+                                <td>@req.EquipmentName</td>
+                                <td>@req.RentedBy</td>
+                                <td>@req.StartDate.ToShortDateString()</td>
+                                <td>@req.EndDate.ToShortDateString()</td>
+                                <td>@req.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
-<!--Progress Bars-->
-<h3 class="mt-4">Inventory Availability</h3>
+            <div class="tab-pane fade" id="rentals" role="tabpanel" aria-labelledby="rentals-tab">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipment</th>
+                            <th>Rented By</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var rental in Model.RecentRentals)
+                        {
+                            <tr>
+                                <td>@rental.RentalId</td>
+                                <td>@rental.EquipmentName</td>
+                                <td>@rental.RentedBy</td>
+                                <td>@rental.StartDate.ToShortDateString()</td>
+                                <td>@rental.EndDate.ToShortDateString()</td>
+                                <td>@rental.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
-@foreach (var item in Model.CategoryStatuses)
-{
-    <div class="mb-3">
-        <div class="d-flex justify-content-between">
-            <strong>@item.CategoryName</strong>
-            <small>@item.Available / @item.Total Available</small>
-        </div>
-        <div class="progress">
-            <div class="progress-bar @item.BarColor" role="progressbar"
-                 style="width: @item.PercentageAvailable%"
-                 aria-valuenow="@item.PercentageAvailable"
-                 aria-valuemin="0" aria-valuemax="100">
-                @item.PercentageAvailable%
+            <div class="tab-pane fade" id="returns" role="tabpanel" aria-labelledby="returns-tab">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipment</th>
+                            <th>Rented By</th>
+                            <th>Return Date</th>
+                            <th>Condition</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var ret in Model.RecentReturns)
+                        {
+                            <tr>
+                                <td>@ret.ReturnId</td>
+                                <td>@ret.EquipmentName</td>
+                                <td>@ret.RentedBy</td>
+                                <td>@ret.ReturnDate.ToShortDateString()</td>
+                                <td>@ret.Condition</td>
+                                <td>@ret.Notes</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-}
+
+    <!-- Inventory Progress Bars -->
+            <div class="col-lg-4 d-flex flex-column">
+                <div class="card p-3 rounded-4 shadow-sm h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Inventory Availability</h5>
+
+                <!-- Add User buton left out for now -->
+                @* <a asp-controller="Users" asp-action="Create" class="btn btn-sm btn-primary">
+                    <i class="bi bi-person-plus"></i> Add New User
+                </a> *@
 
 
-
-
-
-
-
-<!--Recent Activity Tables-->
-<h3 class="mt-4">Recent Activity</h3>
-
-<ul class="nav nav-tabs mt-3" id="activityTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests"
-                type="button" role="tab" aria-controls="requests" aria-selected="true">
-            Requests
-        </button>
-    </li>
-    <li class="nav-item" role="presentation">
-        <button class="nav-link" id="rentals-tab" data-bs-toggle="tab" data-bs-target="#rentals"
-                type="button" role="tab" aria-controls="rentals" aria-selected="false">
-            Rentals
-        </button>
-    </li>
-    <li class="nav-item" role="presentation">
-        <button class="nav-link" id="returns-tab" data-bs-toggle="tab" data-bs-target="#returns"
-                type="button" role="tab" aria-controls="returns" aria-selected="false">
-            Returns
-        </button>
-    </li>
-</ul>
-
-<div class="tab-content p-3 border border-top-0" id="activityTabsContent">
-
-    <!-- Requests Tab -->
-    <div class="tab-pane fade show active" id="requests" role="tabpanel" aria-labelledby="requests-tab">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Equipment</th>
-                    <th>Rented By</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var req in Model.RecentRequests)
-                {
-                    <tr>
-                        <td>@req.RequestId</td>
-                        <td>@req.EquipmentName</td>
-                        <td>@req.RentedBy</td>
-                        <td>@req.StartDate.ToShortDateString()</td>
-                        <td>@req.EndDate.ToShortDateString()</td>
-                        <td>@req.Status</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Rentals Tab -->
-    <div class="tab-pane fade" id="rentals" role="tabpanel" aria-labelledby="rentals-tab">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Equipment</th>
-                    <th>Rented By</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var rental in Model.RecentRentals)
-                {
-                    <tr>
-                        <td>@rental.RentalId</td>
-                        <td>@rental.EquipmentName</td>
-                        <td>@rental.RentedBy</td>
-                        <td>@rental.StartDate.ToShortDateString()</td>
-                        <td>@rental.EndDate.ToShortDateString()</td>
-                        <td>@rental.Status</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Returns Tab -->
-    <div class="tab-pane fade" id="returns" role="tabpanel" aria-labelledby="returns-tab">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Equipment</th>
-                    <th>Rented By</th>
-                    <th>Return Date</th>
-                    <th>Condition</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var ret in Model.RecentReturns)
-                {
-                    <tr>
-                        <td>@ret.ReturnId</td>
-                        <td>@ret.EquipmentName</td>
-                        <td>@ret.RentedBy</td>
-                        <td>@ret.ReturnDate.ToShortDateString()</td>
-                        <td>@ret.Condition</td>
-                        <td>@ret.Notes</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            </div>
+            @foreach (var item in Model.CategoryStatuses)
+            {
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <strong>@item.CategoryName</strong>
+                        <small>@item.Available / @item.Total Available</small>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar @item.BarColor" role="progressbar"
+                             style="width: @item.PercentageAvailable%"
+                             aria-valuenow="@item.PercentageAvailable"
+                             aria-valuemin="0" aria-valuemax="100">
+                            @item.PercentageAvailable%
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
 
+
+    </div>
+
+    <!-- Analytics Tab -->
+    <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
+        <h4 class="mb-4">Analytics Dashboard</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h6>Rental Requests by Status</h6>
+                <div id="requestsChart" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h6>Equipment Count by Category</h6>
+                <div id="equipmentChart" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h6>Rental Trends by Day</h6>
+                <div id="rentalTrendChart" style="height: 300px;"></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h6>Top 5 Rented Equipment</h6>
+                <div id="topRentedChart" style="height: 300px;"></div>
+            </div>
+        </div>
+
+        @section Scripts {
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Donut Chart for Rental Requests
+                    var options = {
+                        chart: { type: 'donut', height: 300 },
+                        series: [@Model.RequestsPending, @Model.RequestsApproved, @Model.RequestsRejected],
+                        labels: ['Pending', 'Approved', 'Rejected'],
+                        colors: ['#ffc107', '#28a745', '#dc3545']
+                    };
+                    new ApexCharts(document.querySelector("#requestsChart"), options).render();
+
+                    // Bar Chart for Equipment per Category
+                    var options2 = {
+                        chart: { type: 'bar', height: 300 },
+                        series: [{
+                            name: 'Items',
+                            data: @Html.Raw(Json.Serialize(Model.CategoryCounts))
+                        }],
+                        xaxis: {
+                            categories: @Html.Raw(Json.Serialize(Model.CategoryNames))
+                        },
+                        colors: ['#007bff']
+                    };
+                    new ApexCharts(document.querySelector("#equipmentChart"), options2).render();
+
+                    // Line Chart for Rentals by Day
+                    var options3 = {
+                        chart: { type: 'line', height: 300 },
+                        series: [{
+                            name: 'Rentals',
+                            data: @Html.Raw(Json.Serialize(Model.RentalCounts))
+                        }],
+                        xaxis: {
+                            categories: @Html.Raw(Json.Serialize(Model.RentalDates)),
+                            title: { text: 'Date' }
+                        },
+                        colors: ['#17a2b8']
+                    };
+                    new ApexCharts(document.querySelector("#rentalTrendChart"), options3).render();
+
+                    // Bar Chart for Top Rented Equipment
+                    var options4 = {
+                        chart: { type: 'bar', height: 300 },
+                        series: [{
+                            name: 'Rentals',
+                            data: @Html.Raw(Json.Serialize(Model.TopRentedCounts))
+                        }],
+                        xaxis: {
+                            categories: @Html.Raw("[" + string.Join(",", Model.TopRentedEquipmentNames) + "]"),
+                            title: { text: 'Equipment' }
+                        },
+                        colors: ['#6f42c1']
+                    };
+                    new ApexCharts(document.querySelector("#topRentedChart"), options4).render();
+                });
+            </script>
+        }
+    </div>
+
+
+
+
+    <!-- Maintenance Tab -->
+    <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+        <h4 class="mb-3">Equipment Under Maintenance</h4>
+
+        @if (Model.MaintenanceItems.Any())
+        {
+            <form asp-action="UpdateMaintenanceAvailability" method="post">
+                <table class="table table-striped table-sm mt-3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipment</th>
+                            <th>Category</th>
+                            <th>Condition</th>
+                            <th>Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.MaintenanceItems.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model.MaintenanceItems[i].EquipmentId
+                                    <input type="hidden" asp-for="MaintenanceItems[@i].EquipmentId" />
+                                </td>
+                                <td>@Model.MaintenanceItems[i].EquipmentName</td>
+                                <td>@Model.MaintenanceItems[i].CategoryName</td>
+                                <td>@Model.MaintenanceItems[i].ConditionStatus</td>
+                                <td>
+                                    <select asp-for="MaintenanceItems[@i].SelectedAvailabilityId"
+                                            asp-items="Model.MaintenanceItems[@i].AvailabilityOptions"
+                                            class="form-select form-select-sm">
+                                    </select>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-success mt-2">Apply Changes</button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-info mt-3">No equipment is currently under maintenance.</div>
+        }
+    </div>
+
+</div>
