@@ -11,6 +11,8 @@
         public List<RecentRentalViewModel> RecentRentals { get; set; }
         public List<RecentReturnViewModel> RecentReturns { get; set; }
         public List<CategoryAvailabilityViewModel> CategoryStatuses { get; set; }
+        public List<MaintenanceEquipmentViewModel> MaintenanceItems { get; set; }
+
 
 
     }
