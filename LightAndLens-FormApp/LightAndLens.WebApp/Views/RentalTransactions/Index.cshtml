@@ -9,7 +9,7 @@
     <!-- Status Filter -->
     <div class="col-md-3">
         <label>Status</label>
-        <select name="status" class="form-select">
+        <select id="status" name="status" class="form-select">
             <option value="">All</option>
             <option value="Ongoing">Ongoing</option>
             <option value="Overdue">Overdue</option>
@@ -19,13 +19,13 @@
     <!-- Start Date -->
     <div class="col-md-3">
         <label>Start Date From</label>
-        <input type="date" name="startDate" class="form-control" />
+        <input id="startDate" type="date" name="startDate" class="form-control" />
     </div>
 
     <!-- End Date -->
     <div class="col-md-3">
         <label>End Date To</label>
-        <input type="date" name="endDate" class="form-control" />
+        <input id="endDate" type="date" name="endDate" class="form-control" />
     </div>
 
     <!-- Filter Button -->
@@ -40,7 +40,7 @@
 </form>
 
 <div class="mb-3">
-    <input type="text" class="form-control" id="searchBox" placeholder="Search equipment or customer..." />
+    <input type="text" id="searchBox" class="form-control" placeholder="Search equipment or customer..." />
 </div>
 
 <table class="table table-bordered table-striped">
@@ -54,61 +54,44 @@
             <th>Fee ($)</th>
             <th>Deposit ($)</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var rental in Model)
-        {
-            <tr>
-                <td>@rental.RentalId</td>
-                <td>@rental.EquipmentName</td>
-                <td>@rental.CustomerName</td>
-                <td>@rental.StartDate.ToShortDateString()</td>
-                <td>@rental.EndDate.ToShortDateString()</td>
-                <td>@rental.RentalFee.ToString("F2")</td>
-                <td>@rental.DepositPaid.ToString("F2")</td>
-                <td>
-                    <span class="badge bg-@(rental.Status == "Overdue" ? "danger" : "success")">
-                        @rental.Status
-                    </span>
-                </td>
-            </tr>
-        }
+    <tbody id="transactions-table-body">
+        @await Html.PartialAsync("_RentalTransactionPartial", Model)
     </tbody>
 </table>
 
-@* @section Scripts {
-    <script>
-        document.getElementById("searchBox").addEventListener("keyup", function () {
-            const keyword = this.value.toLowerCase();
-            document.querySelectorAll("table tbody tr").forEach(function (row) {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(keyword) ? "" : "none";
-            });
-        });
-    </script>
-} *@
-
 @section Scripts {
     <script>
-        // Live search logic (keep this)
-        document.getElementById("searchBox").addEventListener("keyup", function () {
-            const keyword = this.value.toLowerCase();
-            document.querySelectorAll("table tbody tr").forEach(function (row) {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(keyword) ? "" : "none";
-            });
-        });
+        const statusFilter = document.getElementById('status');
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        const searchBox = document.getElementById('searchBox');
 
-        // Instant form submission on filter change
-        ['status', 'startDate', 'endDate'].forEach(id => {
-            const input = document.querySelector(`[name='${id}']`);
-            if (input) {
-                input.addEventListener('change', () => {
-                    document.getElementById('filterForm').submit();
-                });
-            }
-        });
+        function fetchFilteredTransactions() {
+            const status = statusFilter.value;
+            const start = startDate.value;
+            const end = endDate.value;
+            const search = searchBox.value;
+
+            const url = `/RentalTransactions/Search?status=${encodeURIComponent(status)}&startDate=${start}&endDate=${end}&search=${encodeURIComponent(search)}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('transactions-table-body').innerHTML = html;
+                })
+                .catch(error => console.error('Live filter error:', error));
+        }
+
+        // Live search on typing
+        searchBox.addEventListener('keyup', fetchFilteredTransactions);
+
+        // Instant filtering on dropdowns/date changes
+        statusFilter.addEventListener('change', fetchFilteredTransactions);
+        startDate.addEventListener('change', fetchFilteredTransactions);
+        endDate.addEventListener('change', fetchFilteredTransactions);
     </script>
 }
 
