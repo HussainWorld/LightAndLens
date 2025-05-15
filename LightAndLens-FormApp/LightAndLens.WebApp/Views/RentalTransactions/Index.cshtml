@@ -1,71 +1,114 @@
-﻿@model IEnumerable<LightAndLensCL.Models.RentalTransaction>
-
+﻿@model List<LightAndLens.WebApp.Models.RentalTransactionViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rental Transactions";
 }
 
-<h1>Index</h1>
+<h2>Rental Transactions</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<form method="get" class="row g-3 mb-4" id="filterForm">
+    <!-- Status Filter -->
+    <div class="col-md-3">
+        <label>Status</label>
+        <select name="status" class="form-select">
+            <option value="">All</option>
+            <option value="Ongoing">Ongoing</option>
+            <option value="Overdue">Overdue</option>
+        </select>
+    </div>
+
+    <!-- Start Date -->
+    <div class="col-md-3">
+        <label>Start Date From</label>
+        <input type="date" name="startDate" class="form-control" />
+    </div>
+
+    <!-- End Date -->
+    <div class="col-md-3">
+        <label>End Date To</label>
+        <input type="date" name="endDate" class="form-control" />
+    </div>
+
+    <!-- Filter Button -->
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+
+    <!-- Clear Filters -->
+    <div class="col-md-1 d-flex align-items-end">
+        <a href="@Url.Action("Index", "RentalTransactions")" class="btn btn-secondary w-100">Clear</a>
+    </div>
+</form>
+
+<div class="mb-3">
+    <input type="text" class="form-control" id="searchBox" placeholder="Search equipment or customer..." />
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentalFee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DepositPaid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Request)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
+            <th>ID</th>
+            <th>Equipment</th>
+            <th>Customer</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Fee ($)</th>
+            <th>Deposit ($)</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentalFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepositPaid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Request.RequestId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RentalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RentalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RentalId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var rental in Model)
+        {
+            <tr>
+                <td>@rental.RentalId</td>
+                <td>@rental.EquipmentName</td>
+                <td>@rental.CustomerName</td>
+                <td>@rental.StartDate.ToShortDateString()</td>
+                <td>@rental.EndDate.ToShortDateString()</td>
+                <td>@rental.RentalFee.ToString("F2")</td>
+                <td>@rental.DepositPaid.ToString("F2")</td>
+                <td>
+                    <span class="badge bg-@(rental.Status == "Overdue" ? "danger" : "success")">
+                        @rental.Status
+                    </span>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@* @section Scripts {
+    <script>
+        document.getElementById("searchBox").addEventListener("keyup", function () {
+            const keyword = this.value.toLowerCase();
+            document.querySelectorAll("table tbody tr").forEach(function (row) {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(keyword) ? "" : "none";
+            });
+        });
+    </script>
+} *@
+
+@section Scripts {
+    <script>
+        // Live search logic (keep this)
+        document.getElementById("searchBox").addEventListener("keyup", function () {
+            const keyword = this.value.toLowerCase();
+            document.querySelectorAll("table tbody tr").forEach(function (row) {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(keyword) ? "" : "none";
+            });
+        });
+
+        // Instant form submission on filter change
+        ['status', 'startDate', 'endDate'].forEach(id => {
+            const input = document.querySelector(`[name='${id}']`);
+            if (input) {
+                input.addEventListener('change', () => {
+                    document.getElementById('filterForm').submit();
+                });
+            }
+        });
+    </script>
+}
+

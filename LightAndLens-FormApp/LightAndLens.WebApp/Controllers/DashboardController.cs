@@ -48,7 +48,7 @@ namespace LightAndLens.WebApp.Controllers
                 .Include(r => r.User)
                 .Include(r => r.RequestStatus)
                 .OrderByDescending(r => r.RequestSetDate)
-                .Take(10)
+                .Take(5)
                 .Select(r => new RecentRequestViewModel
                 {
                     RequestId = r.RequestId,
@@ -66,7 +66,7 @@ namespace LightAndLens.WebApp.Controllers
                 .Include(t => t.Request)
                     .ThenInclude(r => r.Equipment)
                 .OrderByDescending(t => t.StartDate)
-                .Take(10)
+                .Take(5)
                 .Select(t => new RecentRentalViewModel
                 {
                     RentalId = t.RentalId,
@@ -86,7 +86,7 @@ namespace LightAndLens.WebApp.Controllers
                     .ThenInclude(tr => tr.Request)
                         .ThenInclude(r => r.User)
                 .OrderByDescending(r => r.ReturnDate)
-                .Take(10)
+                .Take(5)
                 .Select(r => new RecentReturnViewModel
                 {
                     ReturnId = r.ReturnId,
@@ -141,9 +141,9 @@ namespace LightAndLens.WebApp.Controllers
             // Get counts of requests by status
             // Note: Assuming RequestStatusId 13 = Pending, 14 = Approved, 15 = Rejected
             //Status ID's Will be changed to the default 1,2,3 later
-            var requestsPending = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 13);
-            var requestsApproved = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 14);
-            var requestsRejected = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 15);
+            var requestsPending = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 2);
+            var requestsApproved = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 1);
+            var requestsRejected = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 3);
 
 
             // Get category names and counts for JS chart
@@ -198,7 +198,7 @@ namespace LightAndLens.WebApp.Controllers
             {
                 TotalEquipment = await _context.Equipment.SumAsync(e => e.Quantity),
                 ActiveRentals = await _context.RentalTransactions.CountAsync(r => r.Status == "Ongoing"),
-                PendingRequests = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 13),
+                PendingRequests = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 2),
                 OverdueReturns = await _context.RentalTransactions.CountAsync(r => r.Status == "Ongoing" && r.EndDate < DateTime.Now),
                 UnderMaintenance = await _context.Equipment.CountAsync(e => e.AvailabilityId == 3),
                 
