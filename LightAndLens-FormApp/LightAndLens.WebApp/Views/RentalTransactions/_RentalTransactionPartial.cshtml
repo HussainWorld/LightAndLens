@@ -10,13 +10,11 @@
         <td>@rental.EndDate.ToShortDateString()</td>
         <td>@rental.RentalFee.ToString("F2")</td>
         <td>@rental.DepositPaid.ToString("F2")</td>
-        <td>
+        <td class="text-center">
             <span class="badge bg-@(rental.Status == "Overdue" ? "danger" : "success")">
                 @rental.Status
             </span>
         </td>
-        <td>
-            <a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@rental.RentalId">Details</a>
-        </td>
+        
     </tr>
 }
