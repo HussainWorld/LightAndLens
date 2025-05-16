@@ -105,6 +105,102 @@ namespace LightAndLens.WebApp.Controllers
             return PartialView("_RentalTransactionPartial", filtered);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var rental = await _context.RentalTransactions
+                .Include(r => r.Request)
+                    .ThenInclude(r => r.Equipment)
+                .Include(r => r.User)
+                .FirstOrDefaultAsync(m => m.RentalId == id);
+
+            if (rental == null)
+                return NotFound();
+
+            return View(rental); // View expects RentalTransaction model
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var rentalTransaction = await _context.RentalTransactions.FindAsync(id);
+            if (rentalTransaction == null)
+                return NotFound();
+
+            ViewData["RequestId"] = new SelectList(_context.RentalRequests, "RequestId", "RequestId", rentalTransaction.RequestId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "FullName", rentalTransaction.UserId);
+            return View(rentalTransaction);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("RentalId,UserId,StartDate,EndDate,RentalFee,DepositPaid,Status,RequestId")] RentalTransaction rentalTransaction)
+        {
+            if (id != rentalTransaction.RentalId)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(rentalTransaction);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.RentalTransactions.Any(e => e.RentalId == rentalTransaction.RentalId))
+                        return NotFound();
+                    else
+                        throw;
+                }
+            }
+
+            ViewData["RequestId"] = new SelectList(_context.RentalRequests, "RequestId", "RequestId", rentalTransaction.RequestId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "FullName", rentalTransaction.UserId);
+            return View(rentalTransaction);
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var rental = await _context.RentalTransactions
+                .Include(r => r.Request)
+                .Include(r => r.User)
+                .FirstOrDefaultAsync(m => m.RentalId == id);
+
+            if (rental == null)
+                return NotFound();
+
+            return View(rental);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var rentalTransaction = await _context.RentalTransactions.FindAsync(id);
+            if (rentalTransaction != null)
+            {
+                _context.RentalTransactions.Remove(rentalTransaction);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
+
+
 
 
 

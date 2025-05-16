@@ -9,6 +9,8 @@ using LightAndLensCL.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using LightAndLens.WebApp.Services;
+using System.Security.Claims;
 
 
 namespace LightAndLens.WebApp.Controllers
@@ -17,12 +19,13 @@ namespace LightAndLens.WebApp.Controllers
     {
         private readonly LightAndLensDBContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly LogHelper _logHelper;
 
-
-        public EquipmentController(LightAndLensDBContext context, IWebHostEnvironment webHostEnvironment)
+        public EquipmentController(LightAndLensDBContext context, IWebHostEnvironment webHostEnvironment, Services.LogHelper logHelper)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            _logHelper = logHelper;
         }
 
         // GET: Equipments
@@ -56,11 +59,21 @@ namespace LightAndLens.WebApp.Controllers
             }
 
             var equipmentList = await query.ToListAsync();
+            
 
             // Pass dropdowns to view
             ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewBag.Statuses = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName");
             ViewBag.Conditions = new SelectList(_context.ConditionStatuses, "ConditionId", "ConditionName");
+
+            // Log the action
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, "Viewed Equipment List");
+            }
 
             return View(equipmentList);
         }
@@ -83,6 +96,13 @@ namespace LightAndLens.WebApp.Controllers
             if (equipment == null)
             {
                 return NotFound();
+            }
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, $"Viewed Equipment: {equipment.EquipmentName}");
             }
 
             return View(equipment);
@@ -132,7 +152,14 @@ namespace LightAndLens.WebApp.Controllers
                     _context.EquipmentImages.Add(equipmentImage);
                     await _context.SaveChangesAsync();
                 }
+                // Log the action
+                var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
 
+                if (user != null)
+                {
+                    await _logHelper.LogActionAsync(user.UserId, $"Created New Equipment: {equipment.EquipmentName}");
+                }
                 return RedirectToAction(nameof(Index));
             }
 
@@ -182,6 +209,15 @@ namespace LightAndLens.WebApp.Controllers
                 {
                     _context.Update(equipment);
                     await _context.SaveChangesAsync();
+                    // Log the action
+                    var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+                    if (user != null)
+                    {
+                        await _logHelper.LogActionAsync(user.UserId, $"Edited Equipment: {equipment.EquipmentName}");
+                    }
+                    // Redirect to Index after successful edit
                     return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
@@ -257,6 +293,14 @@ namespace LightAndLens.WebApp.Controllers
                 _context.EquipmentImages.RemoveRange(equipment.EquipmentImages);
 
             await _context.SaveChangesAsync();
+            // Log the action
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, $"Deleted Equipment: {equipment.EquipmentName}");
+            }
             return RedirectToAction(nameof(Index));
         }
 
