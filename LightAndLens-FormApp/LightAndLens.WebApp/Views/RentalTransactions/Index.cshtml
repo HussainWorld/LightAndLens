@@ -1,71 +1,97 @@
-﻿@model IEnumerable<LightAndLensCL.Models.RentalTransaction>
-
+﻿@model List<LightAndLens.WebApp.Models.RentalTransactionViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rental Transactions";
 }
 
-<h1>Index</h1>
+<h2>Rental Transactions</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<form method="get" class="row g-3 mb-4" id="filterForm">
+    <!-- Status Filter -->
+    <div class="col-md-3">
+        <label>Status</label>
+        <select id="status" name="status" class="form-select">
+            <option value="">All</option>
+            <option value="Ongoing">Ongoing</option>
+            <option value="Overdue">Overdue</option>
+        </select>
+    </div>
+
+    <!-- Start Date -->
+    <div class="col-md-3">
+        <label>Start Date From</label>
+        <input id="startDate" type="date" name="startDate" class="form-control" />
+    </div>
+
+    <!-- End Date -->
+    <div class="col-md-3">
+        <label>End Date To</label>
+        <input id="endDate" type="date" name="endDate" class="form-control" />
+    </div>
+
+    <!-- Filter Button -->
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+
+    <!-- Clear Filters -->
+    <div class="col-md-1 d-flex align-items-end">
+        <a href="@Url.Action("Index", "RentalTransactions")" class="btn btn-secondary w-100">Clear</a>
+    </div>
+</form>
+
+<div class="mb-3">
+    <input type="text" id="searchBox" class="form-control" placeholder="Search equipment or customer..." />
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentalFee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DepositPaid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Request)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
+            <th>ID</th>
+            <th>Equipment</th>
+            <th>Customer</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Fee ($)</th>
+            <th>Deposit ($)</th>
+            <th>Status</th>
+            
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentalFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepositPaid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Request.RequestId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RentalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RentalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RentalId">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="transactions-table-body">
+        @await Html.PartialAsync("_RentalTransactionPartial", Model)
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        const statusFilter = document.getElementById('status');
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        const searchBox = document.getElementById('searchBox');
+
+        function fetchFilteredTransactions() {
+            const status = statusFilter.value;
+            const start = startDate.value;
+            const end = endDate.value;
+            const search = searchBox.value;
+
+            const url = `/RentalTransactions/Search?status=${encodeURIComponent(status)}&startDate=${start}&endDate=${end}&search=${encodeURIComponent(search)}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('transactions-table-body').innerHTML = html;
+                })
+                .catch(error => console.error('Live filter error:', error));
+        }
+
+        // Live search on typing
+        searchBox.addEventListener('keyup', fetchFilteredTransactions);
+
+        // Instant filtering on dropdowns/date changes
+        statusFilter.addEventListener('change', fetchFilteredTransactions);
+        startDate.addEventListener('change', fetchFilteredTransactions);
+        endDate.addEventListener('change', fetchFilteredTransactions);
+    </script>
+}
+

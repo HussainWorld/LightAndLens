@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
+using LightAndLens.WebApp.Models;
 
 namespace LightAndLens.WebApp.Controllers
 {
@@ -18,160 +19,99 @@ namespace LightAndLens.WebApp.Controllers
             _context = context;
         }
 
-        // GET: RentalTransactions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string status, DateTime? startDate, DateTime? endDate, string search)
         {
-            var lightAndLensDBContext = _context.RentalTransactions.Include(r => r.Request).Include(r => r.User);
-            return View(await lightAndLensDBContext.ToListAsync());
+            var query = _context.RentalTransactions
+                .Include(rt => rt.Request).ThenInclude(r => r.Equipment)
+                .Include(rt => rt.User)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                if (status == "Ongoing")
+                    query = query.Where(rt => rt.EndDate >= DateTime.Now);
+                else if (status == "Overdue")
+                    query = query.Where(rt => rt.EndDate < DateTime.Now);
+            }
+
+            if (startDate.HasValue)
+                query = query.Where(rt => rt.StartDate >= startDate.Value);
+
+            if (endDate.HasValue)
+                query = query.Where(rt => rt.EndDate <= endDate.Value);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(rt =>
+                    rt.User.FullName.Contains(search) ||
+                    rt.Request.Equipment.EquipmentName.Contains(search));
+            }
+
+            var result = await query.Select(rt => new RentalTransactionViewModel
+            {
+                RentalId = rt.RentalId,
+                EquipmentName = rt.Request.Equipment.EquipmentName,
+                CustomerName = rt.User.FullName,
+                StartDate = rt.StartDate,
+                EndDate = rt.EndDate,
+                RentalFee = rt.RentalFee,
+                DepositPaid = (decimal)rt.DepositPaid,
+                Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing"
+            }).ToListAsync();
+
+            return View(result);
         }
 
-        // GET: RentalTransactions/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Search(string status, DateTime? startDate, DateTime? endDate, string search)
         {
-            if (id == null || _context.RentalTransactions == null)
+            var query = _context.RentalTransactions
+                .Include(rt => rt.Request).ThenInclude(r => r.Equipment)
+                .Include(rt => rt.User)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(status))
             {
-                return NotFound();
+                if (status == "Ongoing")
+                    query = query.Where(rt => rt.EndDate >= DateTime.Now);
+                else if (status == "Overdue")
+                    query = query.Where(rt => rt.EndDate < DateTime.Now);
             }
 
-            var rentalTransaction = await _context.RentalTransactions
-                .Include(r => r.Request)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.RentalId == id);
-            if (rentalTransaction == null)
+            if (startDate.HasValue)
+                query = query.Where(rt => rt.StartDate >= startDate.Value);
+
+            if (endDate.HasValue)
+                query = query.Where(rt => rt.EndDate <= endDate.Value);
+
+            if (!string.IsNullOrEmpty(search))
             {
-                return NotFound();
+                query = query.Where(rt =>
+                    rt.User.FullName.Contains(search) ||
+                    rt.Request.Equipment.EquipmentName.Contains(search));
             }
 
-            return View(rentalTransaction);
+            var filtered = await query.Select(rt => new RentalTransactionViewModel
+            {
+                RentalId = rt.RentalId,
+                EquipmentName = rt.Request.Equipment.EquipmentName,
+                CustomerName = rt.User.FullName,
+                StartDate = rt.StartDate,
+                EndDate = rt.EndDate,
+                RentalFee = rt.RentalFee,
+                DepositPaid = (decimal)rt.DepositPaid,
+                Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing"
+            }).ToListAsync();
+
+            return PartialView("_RentalTransactionPartial", filtered);
         }
 
-        // GET: RentalTransactions/Create
-        public IActionResult Create()
-        {
-            ViewData["RequestId"] = new SelectList(_context.RentalRequests, "RequestId", "RequestId");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
-            return View();
-        }
-
-        
-        
 
 
-        // POST: RentalTransactions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RentalId,UserId,StartDate,EndDate,RentalFee,DepositPaid,Status,RequestId")] RentalTransaction rentalTransaction)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(rentalTransaction);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["RequestId"] = new SelectList(_context.RentalRequests, "RequestId", "RequestId", rentalTransaction.RequestId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email", rentalTransaction.UserId);
-            return View(rentalTransaction);
-        }
 
-        // GET: RentalTransactions/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.RentalTransactions == null)
-            {
-                return NotFound();
-            }
 
-            var rentalTransaction = await _context.RentalTransactions.FindAsync(id);
-            if (rentalTransaction == null)
-            {
-                return NotFound();
-            }
-            ViewData["RequestId"] = new SelectList(_context.RentalRequests, "RequestId", "RequestId", rentalTransaction.RequestId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email", rentalTransaction.UserId);
-            return View(rentalTransaction);
-        }
 
-        // POST: RentalTransactions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RentalId,UserId,StartDate,EndDate,RentalFee,DepositPaid,Status,RequestId")] RentalTransaction rentalTransaction)
-        {
-            if (id != rentalTransaction.RentalId)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(rentalTransaction);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RentalTransactionExists(rentalTransaction.RentalId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["RequestId"] = new SelectList(_context.RentalRequests, "RequestId", "RequestId", rentalTransaction.RequestId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email", rentalTransaction.UserId);
-            return View(rentalTransaction);
-        }
 
-        // GET: RentalTransactions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.RentalTransactions == null)
-            {
-                return NotFound();
-            }
-
-            var rentalTransaction = await _context.RentalTransactions
-                .Include(r => r.Request)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.RentalId == id);
-            if (rentalTransaction == null)
-            {
-                return NotFound();
-            }
-
-            return View(rentalTransaction);
-        }
-
-        // POST: RentalTransactions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.RentalTransactions == null)
-            {
-                return Problem("Entity set 'LightAndLensDBContext.RentalTransactions'  is null.");
-            }
-            var rentalTransaction = await _context.RentalTransactions.FindAsync(id);
-            if (rentalTransaction != null)
-            {
-                _context.RentalTransactions.Remove(rentalTransaction);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool RentalTransactionExists(int id)
-        {
-          return (_context.RentalTransactions?.Any(e => e.RentalId == id)).GetValueOrDefault();
-        }
     }
+
 }

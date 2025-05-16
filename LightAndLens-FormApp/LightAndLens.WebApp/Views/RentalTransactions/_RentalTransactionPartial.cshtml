@@ -1,0 +1,20 @@
+﻿@model List<LightAndLens.WebApp.Models.RentalTransactionViewModel>
+
+@foreach (var rental in Model)
+{
+    <tr>
+        <td>@rental.RentalId</td>
+        <td>@rental.EquipmentName</td>
+        <td>@rental.CustomerName</td>
+        <td>@rental.StartDate.ToShortDateString()</td>
+        <td>@rental.EndDate.ToShortDateString()</td>
+        <td>@rental.RentalFee.ToString("F2")</td>
+        <td>@rental.DepositPaid.ToString("F2")</td>
+        <td class="text-center">
+            <span class="badge bg-@(rental.Status == "Overdue" ? "danger" : "success")">
+                @rental.Status
+            </span>
+        </td>
+        
+    </tr>
+}
