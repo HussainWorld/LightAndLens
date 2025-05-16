@@ -29,7 +29,7 @@ namespace LightAndLensCL.Models
 
         [Column("IdentityUserId")]
         [StringLength(500)]  
-        public string IdentityUserId { get; set; }
+        public string? IdentityUserId { get; set; }
 
         public int? PhoneNumber { get; set; }
         [Column("RoleID")]

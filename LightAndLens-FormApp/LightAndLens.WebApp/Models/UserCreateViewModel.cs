@@ -5,8 +5,7 @@ namespace LightAndLens.WebApp.Models
 {
     public class UserCreateViewModel
     {
-        [Required(ErrorMessage = "Full name is required.")]
-        [RegularExpression(@"^(\w+\s+\w+.*)$", ErrorMessage = "Please enter first and last name.")]
+
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
@@ -16,6 +15,11 @@ namespace LightAndLens.WebApp.Models
         [Required(ErrorMessage = "Phone number is required.")]
         [RegularExpression(@"^\d{8,15}$", ErrorMessage = "Phone must be numbers only.")]
         public string Phone { get; set; }
+
+        [Required(ErrorMessage = "Password is required.")]
+        [DataType(DataType.Password)]
+        [MinLength(6, ErrorMessage = "Password must be at least 6 characters.")]
+        public string Password { get; set; }
 
         [Required(ErrorMessage = "Please select a role.")]
         public string RoleId { get; set; }
