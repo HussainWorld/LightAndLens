@@ -81,6 +81,12 @@ namespace LightAndLens.WebApp.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; }
+
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -103,6 +109,7 @@ namespace LightAndLens.WebApp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
         }
 
 
@@ -126,27 +133,26 @@ namespace LightAndLens.WebApp.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    if (result.Succeeded)
+                    _logger.LogInformation("User created a new account with password.");
+
+                    // ✅ Assign ASP.NET Identity role
+                    await _userManager.AddToRoleAsync(user, "Customer");
+
+                    // ✅ Insert into business Users table
+                    var appUser = new User
                     {
-                        _logger.LogInformation("User created a new account with password.");
+                        FullName = Input.FullName,
+                        Email = Input.Email,
+                        PhoneNumber = int.TryParse(Input.PhoneNumber, out var phone) ? phone : null,
+                        RoleId = 3, 
+                        IdentityUserId = user.Id
+                    };
 
+                    _lightAndLensDbContext.Users.Add(appUser);
+                    await _lightAndLensDbContext.SaveChangesAsync();
 
-                        var appUser = new User
-                        {
-                            FullName = Input.Email, // (optional to improve later with a real FullName field)
-                            Email = Input.Email,
-                            PhoneNumber = null,
-                            RoleId = 2, // (2 = Customer, adjust if needed)
-                            IdentityUserId = user.Id
-                        };
-
-                        _lightAndLensDbContext.Users.Add(appUser);
-                        await _lightAndLensDbContext.SaveChangesAsync();
-
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
-                    }
-
-
+                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    {
                         var userId = await _userManager.GetUserIdAsync(user);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -159,18 +165,15 @@ namespace LightAndLens.WebApp.Areas.Identity.Pages.Account
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-
-                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                        {
-                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                        }
-                        else
-                        {
-                            await _signInManager.SignInAsync(user, isPersistent: false);
-                            return LocalRedirect(returnUrl);
-                        }
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
-                    foreach (var error in result.Errors)
+                    else
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
+                }
+                foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
@@ -194,6 +197,8 @@ namespace LightAndLens.WebApp.Areas.Identity.Pages.Account
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+
+
 
         private IUserEmailStore<ApplicationUser> GetEmailStore()
         {

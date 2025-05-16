@@ -4,6 +4,7 @@ using LightAndLens.WebApp.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireNonAlphanumeric = false;
     options.SignIn.RequireConfirmedAccount = false; // No email confirmation required
+    options.Lockout.AllowedForNewUsers = false;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(0);
+    options.Lockout.MaxFailedAccessAttempts = 10;
 })
 .AddEntityFrameworkStores<IdentityDBContext>()
 .AddDefaultTokenProviders();
@@ -35,6 +39,7 @@ builder.Services.AddTransient<IEmailSender, LightAndLens.WebApp.Services.DummyEm
 
 
 var app = builder.Build();
+await SeedRolesAsync(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -63,4 +68,23 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+
+
+static async Task SeedRolesAsync(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roles = { "Admin", "Staff", "Customer" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
+
+
 app.Run();
