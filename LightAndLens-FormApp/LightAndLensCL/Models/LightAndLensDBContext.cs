@@ -44,6 +44,9 @@ namespace LightAndLensCL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+             
+
             modelBuilder.Entity<AvailabilityStatus>(entity =>
             {
                 entity.Property(e => e.AvailabilityId).ValueGeneratedNever();
@@ -176,6 +179,13 @@ namespace LightAndLensCL.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RoleID_Roles_Users");
             });
+
+            modelBuilder.Entity<Log>()
+            .HasOne(l => l.User)
+            .WithMany()
+            .HasForeignKey(l => l.UserId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_UserID_Users_Logs");
 
             OnModelCreatingPartial(modelBuilder);
         }
