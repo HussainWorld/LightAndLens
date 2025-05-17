@@ -17,6 +17,7 @@ namespace LightAndLens_FormApp
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadDashboardStats();
+            LoadRentalRequestsView();
         }
 
         private void LoadDashboardStats()
@@ -41,27 +42,12 @@ namespace LightAndLens_FormApp
                     .Count(r => r.EndDate < DateTime.Today && r.Status != "Returned")
                     .ToString();
 
+
                 // Under Maintenance
                 underMaintenanceNum.Text = _context.Equipment
-                    .Count(e => e.Condition.ConditionName == "Maintenance")
+                    .Count(e => e.Availability.AvailabilityStatusName == "Under Maintenance")
                     .ToString();
 
-                // Recent Activity (dummy display for now)
-                /*var recent = _context.RentalTransactions
-                    .OrderByDescending(r => r.StartDate)
-                    .Take(5)
-                    .Select(r => new
-                    {
-                        r.RentalId,
-                        r.StartDate,
-                        r.EndDate,
-                        r.Status
-                    }).ToList();
-
-                dataGridViewRecentActivities.DataSource = recent;
-                */
-
-                
 
                 // Inventory Breakdown
                 LoadInventoryProgress();
@@ -71,6 +57,15 @@ namespace LightAndLens_FormApp
                 MessageBox.Show($"Error loading dashboard: {ex.Message}");
             }
         }
+
+
+        public void RefreshKPI()
+        {
+            // Example logic
+            int maintenanceCount = _context.Equipment.Count(e => e.AvailabilityId == 3);
+            underMaintenanceNum.Text = maintenanceCount.ToString();
+        }
+
 
         private void LoadInventoryProgress()
         {
@@ -124,7 +119,92 @@ namespace LightAndLens_FormApp
             accessoriesProgressBar.Value = totalAccs == 0 ? 0 : (int)((availableAccs / (double)totalAccs) * 100);
             accessoriesPercentageLabel.Text = $"{accessoriesProgressBar.Value}%";
 
+
+            // -- Stabilizers --
+            var totalStab = _context.Equipment
+                .Where(e => e.Category.CategoryName == "Stabilizers")
+                .Sum(e => e.Quantity);
+
+            var availableStab = _context.Equipment
+                .Where(e => e.Category.CategoryName == "Stabilizers" && e.Availability.AvailabilityStatusName == "Available")
+                .Sum(e => e.Quantity);
+
+            stabilizersProgressBar.Value = totalStab == 0 ? 0 : (int)((availableStab / (double)totalStab) * 100);
+            stabilizersPercentageLabel.Text = $"{stabilizersProgressBar.Value}%";
+
         }
+
+
+        private void tabRecentActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabRecentActivities.SelectedTab == tabRequests)
+                LoadRentalRequestsView();
+            else if (tabRecentActivities.SelectedTab == tabRentals)
+                LoadActiveRentalsView();
+            else if (tabRecentActivities.SelectedTab == tabReturns)
+                LoadReturnsView();
+        }
+        private void LoadRentalRequestsView()
+        {
+            var requests = (from r in _context.RentalRequests
+                            join u in _context.Users on r.UserId equals u.UserId
+                            join e in _context.Equipment on r.EquipmentId equals e.EquipmentId
+                            join s in _context.RequestStatuses on r.RequestStatusId equals s.RequestStatusId
+                            select new
+                            {
+                                ID = r.RequestId,
+                                EquipmentName = e.EquipmentName,
+                                RentedBy = u.FullName,
+                                StartDate = r.RequestStartDate,
+                                EndDate = r.RequestEndDate,
+                                Status = s.StatusName
+                            }).ToList();
+
+            dataGridViewRequests.DataSource = requests;
+        }
+
+        private void LoadActiveRentalsView()
+        {
+            var rentals = (from t in _context.RentalTransactions
+                           join r in _context.RentalRequests on t.RequestId equals r.RequestId
+                           join u in _context.Users on r.UserId equals u.UserId
+                           join e in _context.Equipment on r.EquipmentId equals e.EquipmentId
+                           where t.Status != "Returned"
+                           select new
+                           {
+                               ID = t.RentalId,
+                               EquipmentName = e.EquipmentName,
+                               RentedBy = u.FullName,
+                               StartDate = t.StartDate,
+                               EndDate = t.EndDate,
+                               Status = t.Status
+                           }).ToList();
+
+            dataGridViewRentals.DataSource = rentals;
+        }
+
+        private void LoadReturnsView()
+        {
+            var returns = (from ret in _context.ReturnRecords
+                           join t in _context.RentalTransactions on ret.RentalId equals t.RentalId
+                           join r in _context.RentalRequests on t.RequestId equals r.RequestId
+                           join u in _context.Users on r.UserId equals u.UserId
+                           join e in _context.Equipment on r.EquipmentId equals e.EquipmentId
+                           select new
+                           {
+                               ID = ret.ReturnId,
+                               EquipmentName = e.EquipmentName,
+                               RentedBy = u.FullName,
+                               ReturnDate = ret.ReturnDate,
+                               Condition = ret.ConditionStatus,
+                               Notes = ret.Notes
+                           }).ToList();
+
+            dataGridViewReturns.DataSource = returns;
+        }
+
+
+
 
         private void ClearDashboardStats()
         {
@@ -144,7 +224,7 @@ namespace LightAndLens_FormApp
             rentalRequestsBtn.BackColor = Color.FromArgb(26, 32, 40);
             returnsBtn.BackColor = Color.FromArgb(26, 32, 40);
             analyticsBtn.BackColor = Color.FromArgb(26, 32, 40);
-
+            rentalTransactionsBtn.BackColor = Color.FromArgb(26, 32, 40);
             // Set active color
             activeButton.BackColor = Color.FromArgb(41, 128, 185);
         }
@@ -185,7 +265,7 @@ namespace LightAndLens_FormApp
 
         private void analyticsBtn_Click(object sender, EventArgs e)
         {
-            var analyticsForm = new Analytics(); // Replace with your actual Analytics form
+            var analyticsForm = new Analytics();
             analyticsForm.Show();
             this.Hide();
         }
@@ -198,6 +278,25 @@ namespace LightAndLens_FormApp
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var RentalTransactionsForm = new RentalTransactions();
+            RentalTransactionsForm.Show();
+            this.Hide();
+        }
+
+        private void maintenanceBtn_Click(object sender, EventArgs e)
+        {
+            var maintenanceForm = new Maintenance(this);
+            maintenanceForm.ShowDialog();
+        }
+
+        private void LogsBtn_Click(object sender, EventArgs e)
+        {
+            var logsForm = new Logs();
+            logsForm.ShowDialog();
         }
     }
 }

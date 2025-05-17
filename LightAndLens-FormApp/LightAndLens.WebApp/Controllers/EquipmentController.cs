@@ -97,6 +97,8 @@ namespace LightAndLens.WebApp.Controllers
             {
                 return NotFound();
             }
+
+            // Log the action
             var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             sidePanel = new Panel();
+            rentalTransactionsBtn = new Button();
             panel2 = new Panel();
             label10 = new Label();
             analyticsBtn = new Button();
@@ -62,9 +63,12 @@
             underMaintenanceTxt = new Label();
             newRentalBtn = new Button();
             processReturnBtn = new Button();
-            generateReportBtn = new Button();
+            LogsBtn = new Button();
             maintenanceBtn = new Button();
             equipmentInventoryPanel = new Panel();
+            stabilizersPercentageLabel = new Label();
+            label6 = new Label();
+            stabilizersProgressBar = new ProgressBar();
             accessoriesPercentageLabel = new Label();
             lightsPercentageLabel = new Label();
             lensesPercentageLabel = new Label();
@@ -80,12 +84,12 @@
             equipmentInventoryTxt = new Label();
             tabRecentActivities = new TabControl();
             tabRequests = new TabPage();
-            tabRentals = new TabPage();
-            tabReturns = new TabPage();
             dataGridViewRequests = new DataGridView();
-            recentActivitiesTxt = new Label();
+            tabRentals = new TabPage();
             dataGridViewRentals = new DataGridView();
+            tabReturns = new TabPage();
             dataGridViewReturns = new DataGridView();
+            recentActivitiesTxt = new Label();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             topHeaderPanel.SuspendLayout();
@@ -103,16 +107,17 @@
             equipmentInventoryPanel.SuspendLayout();
             tabRecentActivities.SuspendLayout();
             tabRequests.SuspendLayout();
-            tabRentals.SuspendLayout();
-            tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRequests).BeginInit();
+            tabRentals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
+            tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(31, 41, 55);
+            sidePanel.Controls.Add(rentalTransactionsBtn);
             sidePanel.Controls.Add(panel2);
             sidePanel.Controls.Add(analyticsBtn);
             sidePanel.Controls.Add(returnsBtn);
@@ -126,6 +131,20 @@
             sidePanel.Padding = new Padding(10);
             sidePanel.Size = new Size(230, 825);
             sidePanel.TabIndex = 0;
+            // 
+            // rentalTransactionsBtn
+            // 
+            rentalTransactionsBtn.BackColor = Color.Transparent;
+            rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
+            rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            rentalTransactionsBtn.ForeColor = Color.LightGray;
+            rentalTransactionsBtn.Location = new Point(10, 267);
+            rentalTransactionsBtn.Name = "rentalTransactionsBtn";
+            rentalTransactionsBtn.Size = new Size(211, 44);
+            rentalTransactionsBtn.TabIndex = 17;
+            rentalTransactionsBtn.Text = "Rental Transactions";
+            rentalTransactionsBtn.UseVisualStyleBackColor = false;
+            rentalTransactionsBtn.Click += button1_Click_1;
             // 
             // panel2
             // 
@@ -153,7 +172,7 @@
             analyticsBtn.FlatStyle = FlatStyle.Flat;
             analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             analyticsBtn.ForeColor = Color.LightGray;
-            analyticsBtn.Location = new Point(10, 325);
+            analyticsBtn.Location = new Point(10, 389);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
             analyticsBtn.TabIndex = 9;
@@ -167,7 +186,7 @@
             returnsBtn.FlatStyle = FlatStyle.Flat;
             returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             returnsBtn.ForeColor = Color.LightGray;
-            returnsBtn.Location = new Point(10, 265);
+            returnsBtn.Location = new Point(10, 329);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
             returnsBtn.TabIndex = 8;
@@ -474,7 +493,7 @@
             // newRentalBtn
             // 
             newRentalBtn.BackColor = Color.FromArgb(117, 147, 199);
-            newRentalBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            newRentalBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             newRentalBtn.ForeColor = Color.White;
             newRentalBtn.Location = new Point(270, 178);
             newRentalBtn.Name = "newRentalBtn";
@@ -486,7 +505,7 @@
             // processReturnBtn
             // 
             processReturnBtn.BackColor = Color.FromArgb(154, 183, 155);
-            processReturnBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            processReturnBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             processReturnBtn.ForeColor = Color.White;
             processReturnBtn.Location = new Point(531, 178);
             processReturnBtn.Name = "processReturnBtn";
@@ -495,33 +514,38 @@
             processReturnBtn.Text = "Process Return";
             processReturnBtn.UseVisualStyleBackColor = false;
             // 
-            // generateReportBtn
+            // LogsBtn
             // 
-            generateReportBtn.BackColor = Color.FromArgb(140, 118, 183);
-            generateReportBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            generateReportBtn.ForeColor = Color.White;
-            generateReportBtn.Location = new Point(793, 178);
-            generateReportBtn.Name = "generateReportBtn";
-            generateReportBtn.Size = new Size(256, 42);
-            generateReportBtn.TabIndex = 11;
-            generateReportBtn.Text = "Generate Report";
-            generateReportBtn.UseVisualStyleBackColor = false;
+            LogsBtn.BackColor = Color.FromArgb(140, 118, 183);
+            LogsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            LogsBtn.ForeColor = Color.White;
+            LogsBtn.Location = new Point(1055, 178);
+            LogsBtn.Name = "LogsBtn";
+            LogsBtn.Size = new Size(256, 42);
+            LogsBtn.TabIndex = 11;
+            LogsBtn.Text = "View Logs";
+            LogsBtn.UseVisualStyleBackColor = false;
+            LogsBtn.Click += LogsBtn_Click;
             // 
             // maintenanceBtn
             // 
             maintenanceBtn.BackColor = Color.FromArgb(190, 112, 72);
-            maintenanceBtn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            maintenanceBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             maintenanceBtn.ForeColor = Color.White;
-            maintenanceBtn.Location = new Point(1055, 178);
+            maintenanceBtn.Location = new Point(794, 178);
             maintenanceBtn.Name = "maintenanceBtn";
             maintenanceBtn.Size = new Size(255, 42);
             maintenanceBtn.TabIndex = 12;
             maintenanceBtn.Text = "Maintenance";
             maintenanceBtn.UseVisualStyleBackColor = false;
+            maintenanceBtn.Click += maintenanceBtn_Click;
             // 
             // equipmentInventoryPanel
             // 
             equipmentInventoryPanel.BackColor = Color.FromArgb(31, 41, 55);
+            equipmentInventoryPanel.Controls.Add(stabilizersPercentageLabel);
+            equipmentInventoryPanel.Controls.Add(label6);
+            equipmentInventoryPanel.Controls.Add(stabilizersProgressBar);
             equipmentInventoryPanel.Controls.Add(accessoriesPercentageLabel);
             equipmentInventoryPanel.Controls.Add(lightsPercentageLabel);
             equipmentInventoryPanel.Controls.Add(lensesPercentageLabel);
@@ -535,17 +559,47 @@
             equipmentInventoryPanel.Controls.Add(label1);
             equipmentInventoryPanel.Controls.Add(cameraProgressBar);
             equipmentInventoryPanel.Controls.Add(equipmentInventoryTxt);
-            equipmentInventoryPanel.Location = new Point(988, 302);
+            equipmentInventoryPanel.Location = new Point(964, 300);
             equipmentInventoryPanel.Name = "equipmentInventoryPanel";
-            equipmentInventoryPanel.Size = new Size(320, 296);
+            equipmentInventoryPanel.Size = new Size(344, 296);
             equipmentInventoryPanel.TabIndex = 14;
+            // 
+            // stabilizersPercentageLabel
+            // 
+            stabilizersPercentageLabel.AutoSize = true;
+            stabilizersPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            stabilizersPercentageLabel.ForeColor = Color.LightGray;
+            stabilizersPercentageLabel.Location = new Point(282, 231);
+            stabilizersPercentageLabel.Name = "stabilizersPercentageLabel";
+            stabilizersPercentageLabel.Size = new Size(42, 21);
+            stabilizersPercentageLabel.TabIndex = 22;
+            stabilizersPercentageLabel.Text = "71%";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.LightGray;
+            label6.Location = new Point(4, 232);
+            label6.Name = "label6";
+            label6.Size = new Size(89, 21);
+            label6.TabIndex = 21;
+            label6.Text = "Stabilizers";
+            // 
+            // stabilizersProgressBar
+            // 
+            stabilizersProgressBar.BackColor = Color.FromArgb(55, 65, 81);
+            stabilizersProgressBar.Location = new Point(110, 235);
+            stabilizersProgressBar.Name = "stabilizersProgressBar";
+            stabilizersProgressBar.Size = new Size(149, 17);
+            stabilizersProgressBar.TabIndex = 20;
             // 
             // accessoriesPercentageLabel
             // 
             accessoriesPercentageLabel.AutoSize = true;
             accessoriesPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             accessoriesPercentageLabel.ForeColor = Color.LightGray;
-            accessoriesPercentageLabel.Location = new Point(267, 226);
+            accessoriesPercentageLabel.Location = new Point(282, 192);
             accessoriesPercentageLabel.Name = "accessoriesPercentageLabel";
             accessoriesPercentageLabel.Size = new Size(42, 21);
             accessoriesPercentageLabel.TabIndex = 19;
@@ -556,7 +610,7 @@
             lightsPercentageLabel.AutoSize = true;
             lightsPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lightsPercentageLabel.ForeColor = Color.LightGray;
-            lightsPercentageLabel.Location = new Point(267, 175);
+            lightsPercentageLabel.Location = new Point(282, 149);
             lightsPercentageLabel.Name = "lightsPercentageLabel";
             lightsPercentageLabel.Size = new Size(42, 21);
             lightsPercentageLabel.TabIndex = 18;
@@ -567,7 +621,7 @@
             lensesPercentageLabel.AutoSize = true;
             lensesPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lensesPercentageLabel.ForeColor = Color.LightGray;
-            lensesPercentageLabel.Location = new Point(267, 124);
+            lensesPercentageLabel.Location = new Point(282, 106);
             lensesPercentageLabel.Name = "lensesPercentageLabel";
             lensesPercentageLabel.Size = new Size(42, 21);
             lensesPercentageLabel.TabIndex = 17;
@@ -578,7 +632,7 @@
             cameraPercentageLabel.AutoSize = true;
             cameraPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             cameraPercentageLabel.ForeColor = Color.LightGray;
-            cameraPercentageLabel.Location = new Point(267, 73);
+            cameraPercentageLabel.Location = new Point(282, 65);
             cameraPercentageLabel.Name = "cameraPercentageLabel";
             cameraPercentageLabel.Size = new Size(42, 21);
             cameraPercentageLabel.TabIndex = 16;
@@ -589,7 +643,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.LightGray;
-            label5.Location = new Point(10, 227);
+            label5.Location = new Point(4, 193);
             label5.Name = "label5";
             label5.Size = new Size(97, 21);
             label5.TabIndex = 15;
@@ -598,7 +652,7 @@
             // accessoriesProgressBar
             // 
             accessoriesProgressBar.BackColor = Color.FromArgb(55, 65, 81);
-            accessoriesProgressBar.Location = new Point(107, 230);
+            accessoriesProgressBar.Location = new Point(110, 196);
             accessoriesProgressBar.Name = "accessoriesProgressBar";
             accessoriesProgressBar.Size = new Size(149, 17);
             accessoriesProgressBar.TabIndex = 14;
@@ -608,7 +662,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.LightGray;
-            label3.Location = new Point(10, 176);
+            label3.Location = new Point(6, 150);
             label3.Name = "label3";
             label3.Size = new Size(56, 21);
             label3.TabIndex = 13;
@@ -617,7 +671,7 @@
             // lightsProgressBar
             // 
             lightsProgressBar.BackColor = Color.FromArgb(55, 65, 81);
-            lightsProgressBar.Location = new Point(107, 179);
+            lightsProgressBar.Location = new Point(110, 153);
             lightsProgressBar.Name = "lightsProgressBar";
             lightsProgressBar.Size = new Size(149, 17);
             lightsProgressBar.TabIndex = 12;
@@ -627,7 +681,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.LightGray;
-            label2.Location = new Point(10, 125);
+            label2.Location = new Point(6, 107);
             label2.Name = "label2";
             label2.Size = new Size(60, 21);
             label2.TabIndex = 11;
@@ -636,7 +690,7 @@
             // lensesProgressBar
             // 
             lensesProgressBar.BackColor = Color.FromArgb(55, 65, 81);
-            lensesProgressBar.Location = new Point(107, 128);
+            lensesProgressBar.Location = new Point(110, 110);
             lensesProgressBar.Name = "lensesProgressBar";
             lensesProgressBar.Size = new Size(149, 17);
             lensesProgressBar.TabIndex = 10;
@@ -646,7 +700,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.LightGray;
-            label1.Location = new Point(10, 73);
+            label1.Location = new Point(6, 65);
             label1.Name = "label1";
             label1.Size = new Size(75, 21);
             label1.TabIndex = 9;
@@ -655,7 +709,7 @@
             // cameraProgressBar
             // 
             cameraProgressBar.BackColor = Color.FromArgb(55, 65, 81);
-            cameraProgressBar.Location = new Point(107, 77);
+            cameraProgressBar.Location = new Point(110, 69);
             cameraProgressBar.Name = "cameraProgressBar";
             cameraProgressBar.Size = new Size(149, 17);
             cameraProgressBar.TabIndex = 8;
@@ -665,7 +719,7 @@
             equipmentInventoryTxt.AutoSize = true;
             equipmentInventoryTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             equipmentInventoryTxt.ForeColor = Color.LightGray;
-            equipmentInventoryTxt.Location = new Point(21, 17);
+            equipmentInventoryTxt.Location = new Point(9, 9);
             equipmentInventoryTxt.Name = "equipmentInventoryTxt";
             equipmentInventoryTxt.Size = new Size(173, 21);
             equipmentInventoryTxt.TabIndex = 7;
@@ -679,8 +733,9 @@
             tabRecentActivities.Location = new Point(271, 275);
             tabRecentActivities.Name = "tabRecentActivities";
             tabRecentActivities.SelectedIndex = 0;
-            tabRecentActivities.Size = new Size(697, 323);
+            tabRecentActivities.Size = new Size(671, 323);
             tabRecentActivities.TabIndex = 18;
+            tabRecentActivities.SelectedIndexChanged += tabRecentActivities_SelectedIndexChanged;
             // 
             // tabRequests
             // 
@@ -689,9 +744,18 @@
             tabRequests.Location = new Point(4, 24);
             tabRequests.Name = "tabRequests";
             tabRequests.Padding = new Padding(3);
-            tabRequests.Size = new Size(689, 295);
+            tabRequests.Size = new Size(663, 295);
             tabRequests.TabIndex = 0;
             tabRequests.Text = "Requests";
+            // 
+            // dataGridViewRequests
+            // 
+            dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRequests.Location = new Point(3, 3);
+            dataGridViewRequests.Name = "dataGridViewRequests";
+            dataGridViewRequests.RowTemplate.Height = 25;
+            dataGridViewRequests.Size = new Size(654, 289);
+            dataGridViewRequests.TabIndex = 4;
             // 
             // tabRentals
             // 
@@ -700,9 +764,18 @@
             tabRentals.Location = new Point(4, 24);
             tabRentals.Name = "tabRentals";
             tabRentals.Padding = new Padding(3);
-            tabRentals.Size = new Size(689, 295);
+            tabRentals.Size = new Size(663, 295);
             tabRentals.TabIndex = 1;
             tabRentals.Text = "Rentals";
+            // 
+            // dataGridViewRentals
+            // 
+            dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRentals.Location = new Point(6, 6);
+            dataGridViewRentals.Name = "dataGridViewRentals";
+            dataGridViewRentals.RowTemplate.Height = 25;
+            dataGridViewRentals.Size = new Size(651, 283);
+            dataGridViewRentals.TabIndex = 19;
             // 
             // tabReturns
             // 
@@ -711,47 +784,29 @@
             tabReturns.Location = new Point(4, 24);
             tabReturns.Name = "tabReturns";
             tabReturns.Padding = new Padding(3);
-            tabReturns.Size = new Size(689, 295);
+            tabReturns.Size = new Size(663, 295);
             tabReturns.TabIndex = 2;
             tabReturns.Text = "Returns";
             // 
-            // dataGridViewRequests
+            // dataGridViewReturns
             // 
-            dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRequests.Location = new Point(85, 26);
-            dataGridViewRequests.Name = "dataGridViewRequests";
-            dataGridViewRequests.RowTemplate.Height = 25;
-            dataGridViewRequests.Size = new Size(516, 228);
-            dataGridViewRequests.TabIndex = 4;
+            dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewReturns.Location = new Point(6, 3);
+            dataGridViewReturns.Name = "dataGridViewReturns";
+            dataGridViewReturns.RowTemplate.Height = 25;
+            dataGridViewReturns.Size = new Size(651, 289);
+            dataGridViewReturns.TabIndex = 19;
             // 
             // recentActivitiesTxt
             // 
             recentActivitiesTxt.AutoSize = true;
             recentActivitiesTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             recentActivitiesTxt.ForeColor = Color.LightGray;
-            recentActivitiesTxt.Location = new Point(668, 251);
+            recentActivitiesTxt.Location = new Point(284, 247);
             recentActivitiesTxt.Name = "recentActivitiesTxt";
             recentActivitiesTxt.Size = new Size(137, 21);
             recentActivitiesTxt.TabIndex = 6;
             recentActivitiesTxt.Text = "Recent Activities";
-            // 
-            // dataGridViewRentals
-            // 
-            dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRentals.Location = new Point(67, 26);
-            dataGridViewRentals.Name = "dataGridViewRentals";
-            dataGridViewRentals.RowTemplate.Height = 25;
-            dataGridViewRentals.Size = new Size(572, 234);
-            dataGridViewRentals.TabIndex = 19;
-            // 
-            // dataGridViewReturns
-            // 
-            dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewReturns.Location = new Point(52, 26);
-            dataGridViewReturns.Name = "dataGridViewReturns";
-            dataGridViewReturns.RowTemplate.Height = 25;
-            dataGridViewReturns.Size = new Size(573, 240);
-            dataGridViewReturns.TabIndex = 19;
             // 
             // Dashboard
             // 
@@ -763,7 +818,7 @@
             Controls.Add(tabRecentActivities);
             Controls.Add(equipmentInventoryPanel);
             Controls.Add(maintenanceBtn);
-            Controls.Add(generateReportBtn);
+            Controls.Add(LogsBtn);
             Controls.Add(processReturnBtn);
             Controls.Add(newRentalBtn);
             Controls.Add(underMaintenancePanel);
@@ -804,10 +859,10 @@
             equipmentInventoryPanel.PerformLayout();
             tabRecentActivities.ResumeLayout(false);
             tabRequests.ResumeLayout(false);
-            tabRentals.ResumeLayout(false);
-            tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRequests).EndInit();
+            tabRentals.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
+            tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -845,7 +900,7 @@
         private PictureBox underMaintenancePic;
         private Button newRentalBtn;
         private Button processReturnBtn;
-        private Button generateReportBtn;
+        private Button LogsBtn;
         private Button maintenanceBtn;
         private Panel equipmentInventoryPanel;
         private ProgressBar cameraProgressBar;
@@ -874,5 +929,9 @@
         private DataGridView dataGridViewRentals;
         private DataGridView dataGridViewReturns;
         private Label recentActivitiesTxt;
+        private Label stabilizersPercentageLabel;
+        private Label label6;
+        private ProgressBar stabilizersProgressBar;
+        private Button rentalTransactionsBtn;
     }
 }
