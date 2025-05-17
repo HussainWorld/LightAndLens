@@ -108,32 +108,124 @@ namespace LightAndLens.WebApp.Controllers
 
 
         // Customer action - show only requests for logged-in user
-
-
-    public IActionResult CustomerView()
-    {
-        string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
-
-        if (user == null)
+        public IActionResult CustomerView(int? status)
         {
-            return Unauthorized(); // user not found in your DB
+            string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+            if (user == null)
+                return Unauthorized();
+
+            int userId = user.UserId;
+
+            var query = _context.RentalRequests
+                .Where(r => r.UserId == userId)
+                .Include(r => r.Equipment)
+                .Include(r => r.RequestStatus)
+                .AsQueryable();
+
+            // Apply status filter if specified
+            if (status.HasValue)
+            {
+                query = query.Where(r => r.RequestStatusId == status.Value);
+            }
+
+            var filteredRequests = query.ToList();
+
+            var availableEquipment = _context.Equipment
+                .Where(e => e.Quantity > 0)
+                .ToList();
+
+            var viewModel = new CustomerViewModel
+            {
+                PendingRequests = filteredRequests,
+                AvailableEquipment = availableEquipment,
+                Status = status
+            };
+
+            return View(viewModel);
         }
 
-        int userId = user.UserId;
 
-        var pendingRequests = _context.RentalRequests
-            .Where(r => r.UserId == userId && r.RequestStatusId == 2) // show only pending requests
-            .Include(r => r.Equipment)
-            .Include(r => r.RequestStatus)
-            .ToList();
 
-        return View(pendingRequests);
+
+        public IActionResult CreateRentalRequest()
+        {
+            var availableEquipment = _context.Equipment.ToList(); // Get available equipment from the database
+            ViewData["AvailableEquipment"] = availableEquipment; // Pass equipment list to the view
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateRentalRequest(string EquipmentID, DateTime RequestStartDate, DateTime RequestEndDate)
+        {
+            string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+
+            if (user == null)
+            {
+                return Unauthorized(); // user not found in your DB
+            }
+
+            int userId = user.UserId;
+
+            // Convert EquipmentID from string to int
+            if (int.TryParse(EquipmentID, out int equipmentId))
+            {
+                var rentalRequest = new RentalRequest
+                {
+                    UserId = userId,
+                    EquipmentId = equipmentId, // Use the converted int here
+                    RequestStartDate = RequestStartDate,
+                    RequestEndDate = RequestEndDate,
+                    RequestStatusId = 1, // Set this according to your logic
+                    RequestSetDate = DateTime.Now
+                };
+
+                _context.RentalRequests.Add(rentalRequest);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index"); // Redirect to a list of rental requests or some other page
+            }
+            else
+            {
+                // Handle the case when the conversion fails (e.g., show an error message)
+                ModelState.AddModelError("EquipmentID", "Invalid equipment selection.");
+                return View(); // Return to the form view
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(int EquipmentId, DateTime RequestStartDate, DateTime RequestEndDate)
+        {
+            string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+            if (user == null)
+                return Unauthorized();
+
+            int userId = user.UserId;
+
+            var newRequest = new RentalRequest
+            {
+                UserId = userId,
+                EquipmentId = EquipmentId,
+                RequestStartDate = RequestStartDate,
+                RequestEndDate = RequestEndDate,
+                RequestStatusId = 2,  // by default the status of the request will be pending 
+                RequestSetDate = DateTime.Now
+            };
+
+            _context.RentalRequests.Add(newRequest);
+            _context.SaveChanges();
+
+            // Redirect back to CustomerView so that pending requests reload with the new request included
+            return RedirectToAction("CustomerView");
+        }
+
+
+
+
+
     }
-
-
-
-
-}
 }
