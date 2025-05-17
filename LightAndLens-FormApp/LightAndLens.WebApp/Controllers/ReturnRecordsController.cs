@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
+using System.Security.Claims;
 
 namespace LightAndLens.WebApp.Controllers
 {
@@ -18,12 +19,103 @@ namespace LightAndLens.WebApp.Controllers
             _context = context;
         }
 
-        // GET: ReturnRecords
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string condition, DateTime? startDate, DateTime? endDate, string search)
         {
-            var lightAndLensDBContext = _context.ReturnRecords.Include(r => r.Rental);
-            return View(await lightAndLensDBContext.ToListAsync());
+            // Identify logged-in user
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            var query = _context.ReturnRecords
+                .Include(r => r.Rental)
+                    .ThenInclude(t => t.User)
+                .Include(r => r.Rental)
+                    .ThenInclude(t => t.Request)
+                        .ThenInclude(req => req.Equipment)
+                .AsQueryable();
+
+            // If Customer, limit to their returns
+            if (User.IsInRole("Customer") && currentUser != null)
+            {
+                query = query.Where(r => r.Rental.UserId == currentUser.UserId);
+            }
+
+            // Filter: Condition Status
+            if (!string.IsNullOrEmpty(condition))
+            {
+                query = query.Where(r => r.ConditionStatus == condition);
+            }
+            
+            // Filter: Return Date range
+            if (startDate.HasValue)
+                query = query.Where(r => r.ReturnDate >= startDate.Value);
+
+            if (endDate.HasValue)
+                query = query.Where(r => r.ReturnDate <= endDate.Value);
+
+            // Filter: Renter Full Name
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(r => r.Rental.User.FullName.Contains(search));
+            }
+
+            // Optional: project to ViewModel later, for now return the full model
+            var results = await query.ToListAsync();
+
+            return View(results);
         }
+
+
+        // GET: ReturnRecords/Search
+        [HttpGet]
+        public async Task<IActionResult> Search(string condition, DateTime? startDate, DateTime? endDate, string search)
+        {
+            // Get current logged-in user
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            // Base query with includes
+            var query = _context.ReturnRecords
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.User)
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.Request)
+                        .ThenInclude(req => req.Equipment)
+                .AsQueryable();
+
+            // Restrict to current user if customer
+            if (User.IsInRole("Customer") && currentUser != null)
+            {
+                query = query.Where(r => r.Rental.UserId == currentUser.UserId);
+            }
+
+            // Filter by condition
+            if (!string.IsNullOrEmpty(condition))
+            {
+                query = query.Where(r => r.ConditionStatus == condition);
+            }
+
+            // Filter by return date range
+            if (startDate.HasValue)
+                query = query.Where(r => r.ReturnDate >= startDate.Value);
+
+            if (endDate.HasValue)
+                query = query.Where(r => r.ReturnDate <= endDate.Value);
+
+            // Filter by renter name
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(r => r.Rental.User.FullName.Contains(search));
+            }
+
+            var filteredResults = await query.ToListAsync();
+
+            return PartialView("_ReturnPartial", filteredResults);
+        }
+
+
+
+
 
         // GET: ReturnRecords/Details/5
         public async Task<IActionResult> Details(int? id)
