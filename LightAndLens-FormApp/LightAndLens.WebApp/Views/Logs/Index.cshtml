@@ -1,0 +1,27 @@
+﻿@model IEnumerable<LightAndLensCL.Models.Log>
+
+@{
+    ViewData["Title"] = "Audit Logs";
+}
+
+<h2>Audit Trail</h2>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>User</th>
+            <th>Action</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>@(log.User?.FullName ?? "Unknown")</td>
+                <td>@log.Action</td>
+                <td>@log.Timestamp.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

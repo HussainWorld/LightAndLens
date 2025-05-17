@@ -4,17 +4,22 @@ using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
 using LightAndLens.WebApp.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using LightAndLens.WebApp.Services;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using System.Security.Claims;
 
 namespace LightAndLens.WebApp.Controllers
 {
-    //[Authorize(Roles = "Admin,Manager")]
+    [Authorize(Roles = "Admin,Staff")]
     public class DashboardController : Controller
     {
         private readonly LightAndLensDBContext _context;
-
-        public DashboardController(LightAndLensDBContext context)
+        private readonly Services.LogHelper _logHelper;
+        public DashboardController(LightAndLensDBContext context, Services.LogHelper logHelper)
         {
             _context = context;
+            _logHelper = logHelper;
         }
 
         [HttpPost]
@@ -42,6 +47,17 @@ namespace LightAndLens.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+
+            //// Log the action
+            
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, "Accessed Dashboard");
+            }
+
             // Get recent requests
             var recentRequests = await _context.RentalRequests
                 .Include(r => r.Equipment)
@@ -139,8 +155,6 @@ namespace LightAndLens.WebApp.Controllers
             .ToListAsync();
 
             // Get counts of requests by status
-            // Note: Assuming RequestStatusId 13 = Pending, 14 = Approved, 15 = Rejected
-            //Status ID's Will be changed to the default 1,2,3 later
             var requestsPending = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 2);
             var requestsApproved = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 1);
             var requestsRejected = await _context.RentalRequests.CountAsync(r => r.RequestStatusId == 3);

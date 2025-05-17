@@ -17,5 +17,6 @@ namespace LightAndLensCL.Models
         public string Action { get; set; } = null!;
         [Column(TypeName = "datetime")]
         public DateTime Timestamp { get; set; }
+        public User? User { get; set; }
     }
 }
