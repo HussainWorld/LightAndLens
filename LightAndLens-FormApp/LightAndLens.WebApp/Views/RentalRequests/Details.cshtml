@@ -1,54 +1,74 @@
-﻿@model LightAndLensCL.Models.RentalRequest
+﻿@model LightAndLens.WebApp.Models.RentalRequestViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Rental Request Details";
 }
 
-<h1>Details</h1>
+<h1>Rental Request Details</h1>
 
 <div>
-    <h4>RentalRequest</h4>
+    <h4>Rental Request</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RequestStartDate)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.RequestStartDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RequestStartDate)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(m => m.RequestStartDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RequestEndDate)
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.RequestEndDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RequestEndDate)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(m => m.RequestEndDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RequestSetDate)
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.RequestSetDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RequestSetDate)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(m => m.RequestSetDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Equipment)
+
+        <dt class="col-sm-2">
+            Equipment
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Equipment.Description)
+        <dd class="col-sm-10">
+            @Model.EquipmentName
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RequestStatus)
+
+        <dt class="col-sm-2">
+            Equipment Image
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RequestStatus.StatusName)
+
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.EquipmentImagePath))
+            {
+                <img src="@Url.Content(Model.EquipmentImagePath)" alt="@Model.EquipmentName" style="max-width:300px; max-height:300px;" />
+            }
+            else
+            {
+                <p>No image available.</p>
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
+
+        <dt class="col-sm-2">
+            Status
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Email)
+        <dd class="col-sm-10">
+            @Model.StatusName
+        </dd>
+
+        <dt class="col-sm-2">
+            User Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UserEmail
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.RequestId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="CustomerView">Back to List</a>
 </div>

@@ -224,6 +224,46 @@ namespace LightAndLens.WebApp.Controllers
         }
 
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+                return BadRequest();
+
+            var rentalRequest = _context.RentalRequests
+                .Include(r => r.Equipment)
+                .Include(r => r.RequestStatus)
+                .Include(r => r.User)
+                .FirstOrDefault(r => r.RequestId == id);
+
+            if (rentalRequest == null)
+                return NotFound();
+
+            // Fetch the image path related to the equipment
+            var equipmentImage = _context.EquipmentImages
+                .Where(img => img.EquipmentId == rentalRequest.EquipmentId)
+                .Select(img => img.ImagePath)
+                .FirstOrDefault();
+
+            var vm = new RentalRequestViewModel
+            {
+                RequestId = rentalRequest.RequestId,
+                EquipmentId = rentalRequest.EquipmentId,
+                RequestStartDate = rentalRequest.RequestStartDate,
+                RequestEndDate = rentalRequest.RequestEndDate,
+                RequestSetDate = rentalRequest.RequestSetDate,
+                EquipmentName = rentalRequest.Equipment?.EquipmentName,
+                StatusName = rentalRequest.RequestStatus?.StatusName,
+                UserEmail = rentalRequest.User?.Email,
+                EquipmentImagePath = equipmentImage // can be null if not found
+            };
+
+            return View(vm);
+        }
+
+
+
+
+
 
 
 
