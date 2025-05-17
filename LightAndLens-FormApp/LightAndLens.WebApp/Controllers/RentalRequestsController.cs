@@ -261,6 +261,48 @@ namespace LightAndLens.WebApp.Controllers
         }
 
 
+        // GET: RentalRequests/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var rentalRequest = await _context.RentalRequests
+                .Include(r => r.Equipment)
+                .Include(r => r.RequestStatus)
+                .Include(r => r.User)
+                .FirstOrDefaultAsync(m => m.RequestId == id);
+
+            if (rentalRequest == null)
+            {
+                return NotFound();
+            }
+
+            return View(rentalRequest);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var rentalRequest = await _context.RentalRequests.FindAsync(id);
+            if (rentalRequest != null)
+            {
+                _context.RentalRequests.Remove(rentalRequest);
+                await _context.SaveChangesAsync();
+
+                TempData["StatusMessage"] = "Your rental request was successfully cancelled.";
+            }
+            else
+            {
+                TempData["StatusMessage"] = "Rental request not found.";
+            }
+            return RedirectToAction(nameof(CustomerView)); // Or your appropriate action
+        }
+
+
 
 
 

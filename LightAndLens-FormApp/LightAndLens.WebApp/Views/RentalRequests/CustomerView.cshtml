@@ -6,6 +6,15 @@
 
 <h2>My Rental Requests</h2>
 
+
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["StatusMessage"]
+    </div>
+}
+
+
 <!-- Tab Navigation -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
@@ -63,12 +72,63 @@
                                 <td>@request.RequestStatus.StatusName</td>
                                 <td>@request.RequestSetDate.ToShortDateString()</td>
                                 <td>
-                                    <a asp-action="Details" asp-route-id="@request.RequestId">Details</a>
+                                    <a asp-action="Details" asp-route-id="@request.RequestId">Details</a> |
+                                    @if (request.RequestStatusId == 2)
+                                    {
+                                        <!-- Cancel button triggers modal -->
+                                        <button type="button"
+                                                class="btn btn-danger btn-sm btn-cancel"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteModal"
+                                                data-request-id="@request.RequestId">
+                                            Cancel
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-danger btn-sm" disabled>Cancel</button>
+                                    }
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
+
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="deleteForm" method="post" asp-action="Delete">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" id="deleteRequestId" value="" />
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Cancellation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to cancel this rental request?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                @section Scripts {
+                    <script>
+                        // When a cancel button is clicked, set the request id in the modal form
+                        document.querySelectorAll('.btn-cancel').forEach(button => {
+                            button.addEventListener('click', event => {
+                                const requestId = button.getAttribute('data-request-id');
+                                document.getElementById('deleteRequestId').value = requestId;
+                            });
+                        });
+                    </script>
+            }
+
             </div>
         }
     </div>
