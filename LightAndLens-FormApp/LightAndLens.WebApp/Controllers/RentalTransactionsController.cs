@@ -7,25 +7,82 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
 using LightAndLens.WebApp.Models;
+using System.Security.Claims;
+using LightAndLens.WebApp.Services;
 
 namespace LightAndLens.WebApp.Controllers
 {
     public class RentalTransactionsController : Controller
     {
         private readonly LightAndLensDBContext _context;
-
-        public RentalTransactionsController(LightAndLensDBContext context)
+        private readonly LogHelper _logHelper;
+        public RentalTransactionsController(LightAndLensDBContext context, LogHelper logHelper)
         {
             _context = context;
+            _logHelper = logHelper;
         }
 
+        //public async Task<IActionResult> Index(string status, DateTime? startDate, DateTime? endDate, string search)
+        //{
+        //    var query = _context.RentalTransactions
+        //        .Include(rt => rt.Request).ThenInclude(r => r.Equipment)
+        //        .Include(rt => rt.User)
+        //        .AsQueryable();
+
+        //    if (!string.IsNullOrEmpty(status))
+        //    {
+        //        if (status == "Ongoing")
+        //            query = query.Where(rt => rt.EndDate >= DateTime.Now);
+        //        else if (status == "Overdue")
+        //            query = query.Where(rt => rt.EndDate < DateTime.Now);
+        //    }
+
+        //    if (startDate.HasValue)
+        //        query = query.Where(rt => rt.StartDate >= startDate.Value);
+
+        //    if (endDate.HasValue)
+        //        query = query.Where(rt => rt.EndDate <= endDate.Value);
+
+        //    if (!string.IsNullOrEmpty(search))
+        //    {
+        //        query = query.Where(rt =>
+        //            rt.User.FullName.Contains(search) ||
+        //            rt.Request.Equipment.EquipmentName.Contains(search));
+        //    }
+
+        //    var result = await query.Select(rt => new RentalTransactionViewModel
+        //    {
+        //        RentalId = rt.RentalId,
+        //        EquipmentName = rt.Request.Equipment.EquipmentName,
+        //        CustomerName = rt.User.FullName,
+        //        StartDate = rt.StartDate,
+        //        EndDate = rt.EndDate,
+        //        RentalFee = rt.RentalFee,
+        //        DepositPaid = (decimal)rt.DepositPaid,
+        //        Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing"
+        //    }).ToListAsync();
+
+        //    return View(result);
+        //}
         public async Task<IActionResult> Index(string status, DateTime? startDate, DateTime? endDate, string search)
         {
+            // Get logged-in user from Identity
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            // Base query with includes
             var query = _context.RentalTransactions
                 .Include(rt => rt.Request).ThenInclude(r => r.Equipment)
                 .Include(rt => rt.User)
                 .AsQueryable();
 
+            // Role-based filtering
+            if (User.IsInRole("Customer") && currentUser != null)
+            {
+                query = query.Where(rt => rt.UserId == currentUser.UserId);
+            }
+
+            // Status filter
             if (!string.IsNullOrEmpty(status))
             {
                 if (status == "Ongoing")
@@ -34,12 +91,14 @@ namespace LightAndLens.WebApp.Controllers
                     query = query.Where(rt => rt.EndDate < DateTime.Now);
             }
 
+            // Date range filters
             if (startDate.HasValue)
                 query = query.Where(rt => rt.StartDate >= startDate.Value);
 
             if (endDate.HasValue)
                 query = query.Where(rt => rt.EndDate <= endDate.Value);
 
+            // Search filter
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(rt =>
@@ -47,6 +106,7 @@ namespace LightAndLens.WebApp.Controllers
                     rt.Request.Equipment.EquipmentName.Contains(search));
             }
 
+            // Projection to ViewModel
             var result = await query.Select(rt => new RentalTransactionViewModel
             {
                 RentalId = rt.RentalId,
@@ -59,8 +119,16 @@ namespace LightAndLens.WebApp.Controllers
                 Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing"
             }).ToListAsync();
 
+            // Logging access
+            if (currentUser != null)
+            {
+                string actionLabel = User.IsInRole("Customer") ? "Viewed My Rental Orders" : "Viewed All Rental Transactions";
+                await _logHelper.LogActionAsync(currentUser.UserId, actionLabel);
+            }
+
             return View(result);
         }
+
 
         public async Task<IActionResult> Search(string status, DateTime? startDate, DateTime? endDate, string search)
         {
@@ -118,6 +186,14 @@ namespace LightAndLens.WebApp.Controllers
 
             if (rental == null)
                 return NotFound();
+            // Log the action
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, $"Viewed Rental Details: Rental #{rental.RentalId}");
+            }
 
             return View(rental); // View expects RentalTransaction model
         }

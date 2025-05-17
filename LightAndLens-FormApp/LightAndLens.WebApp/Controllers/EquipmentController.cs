@@ -21,7 +21,7 @@ namespace LightAndLens.WebApp.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly LogHelper _logHelper;
 
-        public EquipmentController(LightAndLensDBContext context, IWebHostEnvironment webHostEnvironment, Services.LogHelper logHelper)
+        public EquipmentController(LightAndLensDBContext context, IWebHostEnvironment webHostEnvironment, LogHelper logHelper)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
