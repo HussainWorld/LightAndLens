@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
+using System.Security.Claims;
+using LightAndLens.WebApp.Models;
+using Microsoft.AspNetCore.Authorization; // for AdminViewModel
+
+
 
 namespace LightAndLens.WebApp.Controllers
 {
@@ -18,162 +23,117 @@ namespace LightAndLens.WebApp.Controllers
             _context = context;
         }
 
-        // GET: RentalRequests
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var lightAndLensDBContext = _context.RentalRequests.Include(r => r.Equipment).Include(r => r.RequestStatus).Include(r => r.User);
-            return View(await lightAndLensDBContext.ToListAsync());
+            if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+            {
+                // Redirect admins and staff to their management view
+                return RedirectToAction("AdminView");
+            }
+            else
+            {
+                // Redirect customers to their own requests view
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                return RedirectToAction("CustomerView", new { userId = userId });
+            }
         }
 
-        // GET: RentalRequests/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.RentalRequests == null)
-            {
-                return NotFound();
-            }
 
-            var rentalRequest = await _context.RentalRequests
+
+        // Admin action - show all rental requests with filtering etc.
+        [Authorize(Roles = "Admin,Staff")]  // restrict access
+        public IActionResult AdminView(string search, int? status)
+        {
+            var query = _context.RentalRequests
+                .Include(r => r.User)
                 .Include(r => r.Equipment)
                 .Include(r => r.RequestStatus)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.RequestId == id);
-            if (rentalRequest == null)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
             {
-                return NotFound();
+                query = query.Where(r =>
+                    r.User.Email.Contains(search) ||
+                    r.Equipment.EquipmentName.Contains(search) ||
+                    r.User.FullName.Contains(search));
             }
 
-            return View(rentalRequest);
+            if (status.HasValue)
+            {
+                query = query.Where(r => r.RequestStatusId == status.Value);
+            }
+
+            var model = new AdminViewModel
+            {
+                RentalRequests = query.ToList(),
+                Search = search,
+                Status = status
+            };
+
+            return View(model);
         }
 
-        // GET: RentalRequests/Create
-        public IActionResult Create()
-        {
-            ViewData["EquipmentId"] = new SelectList(_context.Equipment, "EquipmentId", "Description");
-            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
-            return View();
-        }
-
-        // POST: RentalRequests/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequestId,UserId,EquipmentId,RequestStartDate,RequestEndDate,RequestStatusId,RequestSetDate")] RentalRequest rentalRequest)
+        [Authorize(Roles = "Admin,Staff")]
+        public IActionResult UpdateRequestStatus(int id, int status)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(rentalRequest);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EquipmentId"] = new SelectList(_context.Equipment, "EquipmentId", "Description", rentalRequest.EquipmentId);
-            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName", rentalRequest.RequestStatusId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email", rentalRequest.UserId);
-            return View(rentalRequest);
-        }
-
-        // GET: RentalRequests/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.RentalRequests == null)
+            var request = _context.RentalRequests.Find(id);
+            if (request == null)
             {
                 return NotFound();
             }
 
-            var rentalRequest = await _context.RentalRequests.FindAsync(id);
-            if (rentalRequest == null)
-            {
-                return NotFound();
-            }
-            ViewData["EquipmentId"] = new SelectList(_context.Equipment, "EquipmentId", "Description", rentalRequest.EquipmentId);
-            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName", rentalRequest.RequestStatusId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email", rentalRequest.UserId);
-            return View(rentalRequest);
+            request.RequestStatusId = status;
+            _context.SaveChanges();
+
+            // Set a TempData message to display after redirect
+            TempData["StatusMessage"] = status == 2 ? "Request approved successfully." : "Request rejected successfully.";
+
+            return RedirectToAction("AdminView");
         }
 
-        // POST: RentalRequests/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequestId,UserId,EquipmentId,RequestStartDate,RequestEndDate,RequestStatusId,RequestSetDate")] RentalRequest rentalRequest)
+
+
+
+
+        [HttpGet]
+        public IActionResult RentItem()
         {
-            if (id != rentalRequest.RequestId)
-            {
-                return NotFound();
-            }
+            var availableEquipment = _context.Equipment
+                .Where(e => e.AvailabilityId == 1) // available items only
+                .ToList();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(rentalRequest);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RentalRequestExists(rentalRequest.RequestId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EquipmentId"] = new SelectList(_context.Equipment, "EquipmentId", "Description", rentalRequest.EquipmentId);
-            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName", rentalRequest.RequestStatusId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email", rentalRequest.UserId);
-            return View(rentalRequest);
+            return View(availableEquipment); // or use a ViewModel if needed
         }
 
-        // GET: RentalRequests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        // Customer action - show only requests for logged-in user
+
+
+    public IActionResult CustomerView()
+    {
+        string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+
+        if (user == null)
         {
-            if (id == null || _context.RentalRequests == null)
-            {
-                return NotFound();
-            }
-
-            var rentalRequest = await _context.RentalRequests
-                .Include(r => r.Equipment)
-                .Include(r => r.RequestStatus)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.RequestId == id);
-            if (rentalRequest == null)
-            {
-                return NotFound();
-            }
-
-            return View(rentalRequest);
+            return Unauthorized(); // user not found in your DB
         }
 
-        // POST: RentalRequests/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.RentalRequests == null)
-            {
-                return Problem("Entity set 'LightAndLensDBContext.RentalRequests'  is null.");
-            }
-            var rentalRequest = await _context.RentalRequests.FindAsync(id);
-            if (rentalRequest != null)
-            {
-                _context.RentalRequests.Remove(rentalRequest);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        int userId = user.UserId;
 
-        private bool RentalRequestExists(int id)
-        {
-          return (_context.RentalRequests?.Any(e => e.RequestId == id)).GetValueOrDefault();
-        }
+        var pendingRequests = _context.RentalRequests
+            .Where(r => r.UserId == userId && r.RequestStatusId == 2) // show only pending requests
+            .Include(r => r.Equipment)
+            .Include(r => r.RequestStatus)
+            .ToList();
+
+        return View(pendingRequests);
     }
+
+
+
+
+}
 }

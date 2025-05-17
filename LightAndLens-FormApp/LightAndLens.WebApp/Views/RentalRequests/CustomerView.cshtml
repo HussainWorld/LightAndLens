@@ -1,0 +1,63 @@
+﻿@model IEnumerable<LightAndLensCL.Models.RentalRequest>
+
+@{
+    ViewData["Title"] = "My Rental Requests";
+}
+
+<h2>My Rental Requests</h2>
+
+<!-- Tab Navigation -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="rentalRequestsTab" data-bs-toggle="tab" href="#rentalRequests" role="tab" aria-controls="rentalRequests" aria-selected="true">My Rental Requests</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="newRentalRequestTab" data-bs-toggle="tab" href="#newRentalRequest" role="tab" aria-controls="newRentalRequest" aria-selected="false">Create New Rental Request</a>
+    </li>
+</ul>
+
+<!-- Tab Content -->
+<div class="tab-content" id="myTabContent">
+    <!-- My Rental Requests Tab -->
+    <div class="tab-pane fade show active" id="rentalRequests" role="tabpanel" aria-labelledby="rentalRequestsTab">
+        @if (!Model.Any())
+        {
+            <p>You have no rental requests currently.</p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Equipment</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Requested On</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var request in Model)
+                    {
+                        <tr>
+                            <td>@request.Equipment.Description</td>
+                            <td>@request.RequestStartDate.ToShortDateString()</td>
+                            <td>@request.RequestEndDate.ToShortDateString()</td>
+                            <td>@request.RequestStatus.StatusName</td>
+                            <td>@request.RequestSetDate.ToShortDateString()</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@request.RequestId">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+
+    <!-- Create New Rental Request Tab -->
+    <div class="tab-pane fade" id="newRentalRequest" role="tabpanel" aria-labelledby="newRentalRequestTab">
+
+    </div>
+</div>
