@@ -1,0 +1,161 @@
+﻿@model LightAndLens.WebApp.Models.CustomerViewModel
+
+@{
+    ViewData["Title"] = "My Rental Requests";
+}
+
+<h2>My Rental Requests</h2>
+
+
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["StatusMessage"]
+    </div>
+}
+
+
+<!-- Tab Navigation -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="rentalRequestsTab" data-bs-toggle="tab" href="#rentalRequests" role="tab" aria-controls="rentalRequests" aria-selected="true">My Rental Requests</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="newRentalRequestTab" data-bs-toggle="tab" href="#newRentalRequest" role="tab" aria-controls="newRentalRequest" aria-selected="false">Create New Rental Request</a>
+    </li>
+</ul>
+
+<!-- Tab Content -->
+<div class="tab-content" id="myTabContent">
+    <!-- My Rental Requests Tab -->
+    <div class="tab-pane fade show active" id="rentalRequests" role="tabpanel" aria-labelledby="rentalRequestsTab">
+
+        <!-- Filter Form -->
+        <form method="get" class="mb-3" style="padding-top: 20px;">
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+            {
+            new SelectListItem { Text = "All", Value = "", Selected = !Model.Status.HasValue },
+            new SelectListItem { Text = "Approved", Value = "1", Selected = Model.Status == 1 },
+            new SelectListItem { Text = "Pending", Value = "2", Selected = Model.Status == 2 },
+            new SelectListItem { Text = "Rejected", Value = "3", Selected = Model.Status == 3 }
+            }, new { @class = "form-control mb-2" })
+
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a href="@Url.Action("CustomerView", "RentalRequests")" class="btn btn-secondary ms-2">Clear Filter</a>
+        </form>
+
+        @if (!Model.PendingRequests.Any())
+        {
+            <p>You have no rental requests currently.</p>
+        }
+        else
+        {
+            <div style="max-height: 600px; overflow-y: auto;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Equipment</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Requested On</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in Model.PendingRequests)
+                        {
+                            <tr>
+                                <td>@request.Equipment.EquipmentName</td>
+                                <td>@request.RequestStartDate.ToShortDateString()</td>
+                                <td>@request.RequestEndDate.ToShortDateString()</td>
+                                <td>@request.RequestStatus.StatusName</td>
+                                <td>@request.RequestSetDate.ToShortDateString()</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@request.RequestId">Details</a> |
+                                    @if (request.RequestStatusId == 2)
+                                    {
+                                        <!-- Cancel button triggers modal -->
+                                        <button type="button"
+                                                class="btn btn-danger btn-sm btn-cancel"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteModal"
+                                                data-request-id="@request.RequestId">
+                                            Cancel
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-danger btn-sm" disabled>Cancel</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="deleteForm" method="post" asp-action="Delete">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" id="deleteRequestId" value="" />
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Cancellation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to cancel this rental request?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                @section Scripts {
+                    <script>
+                        // When a cancel button is clicked, set the request id in the modal form
+                        document.querySelectorAll('.btn-cancel').forEach(button => {
+                            button.addEventListener('click', event => {
+                                const requestId = button.getAttribute('data-request-id');
+                                document.getElementById('deleteRequestId').value = requestId;
+                            });
+                        });
+                    </script>
+            }
+
+            </div>
+        }
+    </div>
+
+    <!-- Create New Rental Request Tab -->
+    <div class="tab-pane fade" id="newRentalRequest" role="tabpanel" aria-labelledby="newRentalRequestTab">
+        <h3>Create New Rental Request</h3>
+        <form asp-controller="RentalRequests" asp-action="Create" method="post">
+            <div class="mb-3">
+                <label for="EquipmentId" class="form-label">Select Equipment</label>
+                <select id="EquipmentId" name="EquipmentId" class="form-control" required>
+                    <option value="">-- Select Equipment --</option>
+                    @foreach (var equipment in Model.AvailableEquipment)
+                    {
+                        <option value="@equipment.EquipmentId">@equipment.EquipmentName</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="RequestStartDate" class="form-label">Start Date</label>
+                <input type="date" id="RequestStartDate" name="RequestStartDate" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label for="RequestEndDate" class="form-label">End Date</label>
+                <input type="date" id="RequestEndDate" name="RequestEndDate" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+    </div>
+</div>
