@@ -1,53 +1,128 @@
-﻿@model IEnumerable<LightAndLensCL.Models.ReturnRecord>
-
+﻿
+@model IEnumerable<LightAndLensCL.Models.ReturnRecord>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Return Records";
 }
 
-<h1>Index</h1>
+<h2>Return Records</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ReturnDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ConditionStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rental)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConditionStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rental.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ReturnId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReturnId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReturnId">Delete</a>
-            </td>
-        </tr>
+<ul class="nav nav-tabs mb-4" id="returnTabs" role="tablist">
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab">Review</button>
+        </li>
+    }
+    <li class="nav-item" role="presentation">
+        <button class="nav-link @(User.IsInRole("Customer") ? "active" : "")" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab">History</button>
+    </li>
+</ul>
+
+<div class="tab-content" id="returnTabsContent">
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        <div class="tab-pane fade show active" id="review" role="tabpanel">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Return ID</th>
+                        <th>Equipment</th>
+                        <th>Returned By</th>
+                        <th>Return Date</th>
+                        <th>Condition</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(r => string.IsNullOrEmpty(r.ConditionStatus)))
+                    {
+                        <tr>
+                            <td>@item.ReturnId</td>
+                            <td>@(item.Rental?.Request?.Equipment?.EquipmentName ?? "N/A")</td>
+                            <td>@(item.Rental?.User?.FullName ?? "N/A")</td>
+                            <td>@item.ReturnDate.ToShortDateString()</td>
+                            <td><em>Not Reviewed</em></td>
+                            <td>@item.Notes</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ReturnId">Review</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <div class="tab-pane fade @(User.IsInRole("Customer") ? "show active" : "")" id="history" role="tabpanel">
+        <form method="get" class="row g-3 mb-4" id="filterForm">
+            <div class="col-md-3">
+                <label>Condition</label>
+                <select id="condition" name="condition" class="form-select">
+                    <option value="">All</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Slight Wear">Slight Wear</option>
+                    <option value="Requires Maintenance">Requires Maintenance</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label>Return Date From</label>
+                <input id="startDate" type="date" name="startDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label>Return Date To</label>
+                <input id="endDate" type="date" name="endDate" class="form-control" />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <input id="searchBox" type="text" class="form-control" placeholder="Search by customer..." />
+            </div>
+        </form>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Return ID</th>
+                    <th>Equipment</th>
+                    <th>Returned By</th>
+                    <th>Return Date</th>
+                    <th>Condition</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="returns-table-body">
+                @await Html.PartialAsync("_ReturnPartial", Model.Where(r => !string.IsNullOrEmpty(r.ConditionStatus)))
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const conditionFilter = document.getElementById('condition');
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        const searchBox = document.getElementById('searchBox');
+
+        function fetchFilteredReturns() {
+            const condition = conditionFilter.value;
+            const start = startDate.value;
+            const end = endDate.value;
+            const search = searchBox.value;
+
+            const url = `/ReturnRecords/Search?condition=${encodeURIComponent(condition)}&startDate=${start}&endDate=${end}&search=${encodeURIComponent(search)}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('returns-table-body').innerHTML = html;
+                })
+                .catch(error => console.error('Error during live filter:', error));
+        }
+
+        conditionFilter.addEventListener('change', fetchFilteredReturns);
+        startDate.addEventListener('change', fetchFilteredReturns);
+        endDate.addEventListener('change', fetchFilteredReturns);
+        searchBox.addEventListener('keyup', fetchFilteredReturns);
+    </script>
 }
-    </tbody>
-</table>

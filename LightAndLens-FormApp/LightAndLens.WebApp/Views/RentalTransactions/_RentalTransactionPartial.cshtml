@@ -20,7 +20,32 @@
             <a asp-action="Details" asp-route-id="@rental.RentalId" class="btn btn-sm btn-outline-info">Details</a>
             @* <a asp-action="Edit" asp-route-id="@rental.RentalId" class="btn btn-sm btn-outline-primary ms-1">Edit</a>
             <a asp-action="Delete" asp-route-id="@rental.RentalId" class="btn btn-sm btn-outline-danger ms-1">Delete</a> *@
+        </td>}
+        <td>
+            @if (!rental.ReturnExists)
+            {
+                if (User.IsInRole("Customer"))
+                {
+                    <form method="post" asp-action="SubmitForReturn" asp-route-id="@rental.RentalId">
+                        <button class="btn btn-warning btn-sm" type="submit">Submit for Return</button>
+                    </form>
+                }
+                else if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+                {
+                    <form method="post" asp-action="MarkForReturn" asp-route-id="@rental.RentalId">
+                        <button class="btn btn-primary btn-sm" type="submit">Mark for Return</button>
+                    </form>
+                }
+            }
+            else
+            {
+                <span class="text-muted">Return already submitted</span>
+            }
         </td>
         }
+
+        
+
     </tr>
 }
+

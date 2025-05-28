@@ -9,6 +9,7 @@ using LightAndLensCL.Models;
 using LightAndLens.WebApp.Models;
 using System.Security.Claims;
 using LightAndLens.WebApp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LightAndLens.WebApp.Controllers
 {
@@ -22,48 +23,7 @@ namespace LightAndLens.WebApp.Controllers
             _logHelper = logHelper;
         }
 
-        //public async Task<IActionResult> Index(string status, DateTime? startDate, DateTime? endDate, string search)
-        //{
-        //    var query = _context.RentalTransactions
-        //        .Include(rt => rt.Request).ThenInclude(r => r.Equipment)
-        //        .Include(rt => rt.User)
-        //        .AsQueryable();
-
-        //    if (!string.IsNullOrEmpty(status))
-        //    {
-        //        if (status == "Ongoing")
-        //            query = query.Where(rt => rt.EndDate >= DateTime.Now);
-        //        else if (status == "Overdue")
-        //            query = query.Where(rt => rt.EndDate < DateTime.Now);
-        //    }
-
-        //    if (startDate.HasValue)
-        //        query = query.Where(rt => rt.StartDate >= startDate.Value);
-
-        //    if (endDate.HasValue)
-        //        query = query.Where(rt => rt.EndDate <= endDate.Value);
-
-        //    if (!string.IsNullOrEmpty(search))
-        //    {
-        //        query = query.Where(rt =>
-        //            rt.User.FullName.Contains(search) ||
-        //            rt.Request.Equipment.EquipmentName.Contains(search));
-        //    }
-
-        //    var result = await query.Select(rt => new RentalTransactionViewModel
-        //    {
-        //        RentalId = rt.RentalId,
-        //        EquipmentName = rt.Request.Equipment.EquipmentName,
-        //        CustomerName = rt.User.FullName,
-        //        StartDate = rt.StartDate,
-        //        EndDate = rt.EndDate,
-        //        RentalFee = rt.RentalFee,
-        //        DepositPaid = (decimal)rt.DepositPaid,
-        //        Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing"
-        //    }).ToListAsync();
-
-        //    return View(result);
-        //}
+        
         public async Task<IActionResult> Index(string status, DateTime? startDate, DateTime? endDate, string search)
         {
             // Get logged-in user from Identity
@@ -106,6 +66,16 @@ namespace LightAndLens.WebApp.Controllers
                     rt.Request.Equipment.EquipmentName.Contains(search));
             }
 
+
+            // Preload all RentalIDs from the current query
+            var rentalIds = await query.Select(rt => rt.RentalId).ToListAsync();
+
+            // Get RentalIDs that already have a return record
+            var returnIds = await _context.ReturnRecords
+                .Where(r => rentalIds.Contains(r.RentalId))
+                .Select(r => r.RentalId)
+                .ToListAsync();
+
             // Projection to ViewModel
             var result = await query.Select(rt => new RentalTransactionViewModel
             {
@@ -116,7 +86,8 @@ namespace LightAndLens.WebApp.Controllers
                 EndDate = rt.EndDate,
                 RentalFee = rt.RentalFee,
                 DepositPaid = (decimal)rt.DepositPaid,
-                Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing"
+                Status = rt.EndDate < DateTime.Now ? "Overdue" : "Ongoing",
+                ReturnExists = returnIds.Contains(rt.RentalId)
             }).ToListAsync();
 
             // Logging access
@@ -271,6 +242,59 @@ namespace LightAndLens.WebApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> SubmitForReturn(int id)
+        {
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            var transaction = await _context.RentalTransactions.FindAsync(id);
+            if (transaction == null || transaction.UserId != user?.UserId)
+                return NotFound();
+
+            // Add a return record with minimal data for now (to be completed by staff later)
+            var returnRecord = new ReturnRecord
+            {
+                RentalId = transaction.RentalId,
+                ReturnDate = DateTime.Now,
+                ConditionStatus = "Pending",
+                Notes = "Submitted by user"
+            };
+
+            _context.ReturnRecords.Add(returnRecord);
+            await _context.SaveChangesAsync();
+
+            await _logHelper.LogActionAsync(user.UserId, $"Submitted return for Rental #{transaction.RentalId}");
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,Staff")]
+        public async Task<IActionResult> MarkForReturn(int id)
+        {
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            var transaction = await _context.RentalTransactions.FindAsync(id);
+            if (transaction == null)
+                return NotFound();
+
+            var returnRecord = new ReturnRecord
+            {
+                RentalId = transaction.RentalId,
+                ReturnDate = DateTime.Now,
+                ConditionStatus = "Pending",
+                Notes = "Marked for return by staff"
+            };
+
+            _context.ReturnRecords.Add(returnRecord);
+            await _context.SaveChangesAsync();
+
+            await _logHelper.LogActionAsync(user.UserId, $"Marked return for Rental #{transaction.RentalId}");
+            return RedirectToAction("Index");
+        }
+
 
 
 

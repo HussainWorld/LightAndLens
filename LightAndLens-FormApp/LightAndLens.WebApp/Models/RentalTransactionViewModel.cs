@@ -10,5 +10,7 @@
         public decimal RentalFee { get; set; }
         public decimal DepositPaid { get; set; }
         public string Status { get; set; } // "Ongoing" or "Overdue"
+        public bool ReturnExists { get; set; }
+
     }
 }

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<LightAndLensCL.Models.ReturnRecord>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.ReturnId</td>
+        <td>@(item.Rental?.Request?.Equipment?.EquipmentName ?? "N/A")</td>
+        <td>@(item.Rental?.User?.FullName ?? "N/A")</td>
+        <td>@item.ReturnDate.ToShortDateString()</td>
+        <td>@item.ConditionStatus</td>
+        <td>@item.Notes</td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ReturnId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ReturnId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ReturnId">Delete</a>
+        </td>
+    </tr>
+}
