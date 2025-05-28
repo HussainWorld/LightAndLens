@@ -1,52 +1,101 @@
-﻿@model IEnumerable<LightAndLensCL.Models.ReturnRecord>
+﻿
+@model IEnumerable<LightAndLensCL.Models.ReturnRecord>
 @{
     ViewData["Title"] = "Return Records";
 }
 
 <h2>Return Records</h2>
 
-<form method="get" class="row g-3 mb-4" id="filterForm">
-    <div class="col-md-3">
-        <label>Condition</label>
-        <select id="condition" name="condition" class="form-select">
-            <option value="">All</option>
-            <option value="Excellent">Excellent</option>
-            <option value="Slight Wear">Slight Wear</option>
-            <option value="Requires Maintenance">Requires Maintenance</option>
-        </select>
-    </div>
+<ul class="nav nav-tabs mb-4" id="returnTabs" role="tablist">
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab">Review</button>
+        </li>
+    }
+    <li class="nav-item" role="presentation">
+        <button class="nav-link @(User.IsInRole("Customer") ? "active" : "")" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab">History</button>
+    </li>
+</ul>
 
-    <div class="col-md-3">
-        <label>Return Date From</label>
-        <input id="startDate" type="date" name="startDate" class="form-control" />
-    </div>
+<div class="tab-content" id="returnTabsContent">
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        <div class="tab-pane fade show active" id="review" role="tabpanel">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Return ID</th>
+                        <th>Equipment</th>
+                        <th>Returned By</th>
+                        <th>Return Date</th>
+                        <th>Condition</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(r => string.IsNullOrEmpty(r.ConditionStatus)))
+                    {
+                        <tr>
+                            <td>@item.ReturnId</td>
+                            <td>@(item.Rental?.Request?.Equipment?.EquipmentName ?? "N/A")</td>
+                            <td>@(item.Rental?.User?.FullName ?? "N/A")</td>
+                            <td>@item.ReturnDate.ToShortDateString()</td>
+                            <td><em>Not Reviewed</em></td>
+                            <td>@item.Notes</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ReturnId">Review</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 
-    <div class="col-md-3">
-        <label>Return Date To</label>
-        <input id="endDate" type="date" name="endDate" class="form-control" />
-    </div>
+    <div class="tab-pane fade @(User.IsInRole("Customer") ? "show active" : "")" id="history" role="tabpanel">
+        <form method="get" class="row g-3 mb-4" id="filterForm">
+            <div class="col-md-3">
+                <label>Condition</label>
+                <select id="condition" name="condition" class="form-select">
+                    <option value="">All</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Slight Wear">Slight Wear</option>
+                    <option value="Requires Maintenance">Requires Maintenance</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label>Return Date From</label>
+                <input id="startDate" type="date" name="startDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label>Return Date To</label>
+                <input id="endDate" type="date" name="endDate" class="form-control" />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <input id="searchBox" type="text" class="form-control" placeholder="Search by customer..." />
+            </div>
+        </form>
 
-    <div class="col-md-3 d-flex align-items-end">
-        <input id="searchBox" type="text" class="form-control" placeholder="Search by customer..." />
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Return ID</th>
+                    <th>Equipment</th>
+                    <th>Returned By</th>
+                    <th>Return Date</th>
+                    <th>Condition</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="returns-table-body">
+                @await Html.PartialAsync("_ReturnPartial", Model.Where(r => !string.IsNullOrEmpty(r.ConditionStatus)))
+            </tbody>
+        </table>
     </div>
-</form>
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Return ID</th>
-            <th>Equipment</th>
-            <th>Returned By</th>
-            <th>Return Date</th>
-            <th>Condition</th>
-            <th>Notes</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody id="returns-table-body">
-        @await Html.PartialAsync("_ReturnPartial", Model)
-    </tbody>
-</table>
+</div>
 
 @section Scripts {
     <script>
@@ -77,8 +126,3 @@
         searchBox.addEventListener('keyup', fetchFilteredReturns);
     </script>
 }
-
-
-
-
-

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LightAndLensCL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dce08d862a531a7493026ed39963c2949947e49e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7f8c134c4eee5818ad4061279e0281c6863840b")]
 [assembly: System.Reflection.AssemblyProductAttribute("LightAndLensCL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LightAndLensCL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

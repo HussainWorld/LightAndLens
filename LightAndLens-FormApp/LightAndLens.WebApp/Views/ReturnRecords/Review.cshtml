@@ -1,0 +1,123 @@
+﻿@model LightAndLens.WebApp.Models.ReturnRecordViewModel
+@{
+    ViewData["Title"] = "Returns Overview";
+}
+
+<h2>Returns Overview</h2>
+
+<ul class="nav nav-tabs mt-3" id="returnTabs" role="tablist">
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending"
+                    type="button" role="tab" aria-controls="pending" aria-selected="true">
+                Pending Returns
+            </button>
+        </li>
+    }
+    <li class="nav-item" role="presentation">
+        <button class="nav-link @(User.IsInRole("Customer") ? "active" : "")" id="history-tab" data-bs-toggle="tab" data-bs-target="#history"
+                type="button" role="tab" aria-controls="history" aria-selected="false">
+            Return History
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content pt-3" id="returnTabsContent">
+
+    @* PENDING RETURNS TAB (Admin/Staff only) *@
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+            @if (Model.PendingReturns.Any())
+            {
+                <form method="post" asp-action="FinalizeReturn">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th>Equipment</th>
+                                <th>Rented By</th>
+                                <th>Return Date</th>
+                                <th>Condition</th>
+                                <th>Availability</th>
+                                <th>Notes</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PendingReturns)
+                            {
+                                <tr>
+                                    <td>@item.EquipmentName</td>
+                                    <td>@item.RentedBy</td>
+                                    <td>@item.ReturnDate.ToShortDateString()</td>
+                                    <td>
+                                        <select name="SelectedConditionId" class="form-select">
+                                            @foreach (var option in item.ConditionOptions)
+                                            {
+                                                <option value="@option.Value">@option.Text</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="SelectedAvailabilityId" class="form-select">
+                                            @foreach (var option in item.AvailabilityOptions)
+                                            {
+                                                <option value="@option.Value">@option.Text</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input name="Notes" class="form-control" />
+                                        <input type="hidden" name="ReturnId" value="@item.ReturnId" />
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-sm btn-success">Apply</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            }
+            else
+            {
+                <div class="alert alert-info">No pending returns found.</div>
+            }
+        </div>
+    }
+
+    @* RETURN HISTORY TAB *@
+    <div class="tab-pane fade @(User.IsInRole("Customer") ? "show active" : "")" id="history" role="tabpanel" aria-labelledby="history-tab">
+        @if (Model.HistoryReturns.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Equipment</th>
+                        <th>Rented By</th>
+                        <th>Return Date</th>
+                        <th>Condition</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.HistoryReturns)
+                    {
+                        <tr>
+                            <td>@item.EquipmentName</td>
+                            <td>@item.RentedBy</td>
+                            <td>@item.ReturnDate.ToShortDateString()</td>
+                            <td>@item.ConditionStatus</td>
+                            <td>@item.Notes</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">No return history found.</div>
+        }
+    </div>
+</div>

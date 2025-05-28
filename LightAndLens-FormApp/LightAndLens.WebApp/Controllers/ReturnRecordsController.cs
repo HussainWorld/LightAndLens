@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
 using System.Security.Claims;
+using LightAndLens.WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using LightAndLens.WebApp.Services;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace LightAndLens.WebApp.Controllers
 {
     public class ReturnRecordsController : Controller
     {
         private readonly LightAndLensDBContext _context;
-
-        public ReturnRecordsController(LightAndLensDBContext context)
+        private readonly LogHelper _logHelper;
+        public ReturnRecordsController(LightAndLensDBContext context, LogHelper logHelper)
         {
             _context = context;
+            _logHelper = logHelper;
         }
 
 
@@ -64,6 +69,125 @@ namespace LightAndLens.WebApp.Controllers
 
             return View(results);
         }
+
+
+        public async Task<IActionResult> Review()
+        {
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            var allReturns = _context.ReturnRecords
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.User)
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.Request)
+                        .ThenInclude(req => req.Equipment)
+                .AsQueryable();
+
+            // Restrict for customer
+            if (User.IsInRole("Customer") && currentUser != null)
+            {
+                allReturns = allReturns.Where(r => r.Rental.UserId == currentUser.UserId);
+            }
+
+            // Dropdowns
+            var availabilityOptions = await _context.AvailabilityStatuses
+                .Select(a => new SelectListItem { Value = a.AvailabilityId.ToString(), Text = a.AvailabilityStatusName })
+                .ToListAsync();
+
+            var conditionOptions = await _context.ConditionStatuses
+                .Select(c => new SelectListItem { Value = c.ConditionId.ToString(), Text = c.ConditionName })
+                .ToListAsync();
+
+            // PENDING = "Pending" status
+            var pending = await allReturns
+                .Where(r => r.ConditionStatus == "Pending")
+                .Select(r => new ReturnRecordViewModel
+                {
+                    ReturnId = r.ReturnId,
+                    RentalId = r.RentalId,
+                    EquipmentName = r.Rental.Request.Equipment.EquipmentName,
+                    RentedBy = r.Rental.User.FullName,
+                    ReturnDate = r.ReturnDate,
+                    ConditionStatus = r.ConditionStatus,
+                    Notes = r.Notes,
+                    ConditionOptions = conditionOptions,
+                    AvailabilityOptions = availabilityOptions
+                }).ToListAsync();
+
+            // HISTORY = everything else
+            var history = await allReturns
+                .Where(r => r.ConditionStatus != "Pending")
+                .Select(r => new ReturnRecordViewModel
+                {
+                    ReturnId = r.ReturnId,
+                    RentalId = r.RentalId,
+                    EquipmentName = r.Rental.Request.Equipment.EquipmentName,
+                    RentedBy = r.Rental.User.FullName,
+                    ReturnDate = r.ReturnDate,
+                    ConditionStatus = r.ConditionStatus,
+                    Notes = r.Notes
+                }).ToListAsync();
+
+            var vm = new ReturnRecordViewModel
+            {
+                PendingReturns = pending,
+                HistoryReturns = history
+            };
+
+            return View("Review", vm);
+        }
+
+
+
+        // GET: ReturnRecords/Finalize/5
+        [HttpPost]
+        [Authorize(Roles = "Admin,Staff")]
+        public async Task<IActionResult> FinalizeReturn(int ReturnId, int SelectedConditionId, int SelectedAvailabilityId, string Notes)
+        {
+            var returnRecord = await _context.ReturnRecords
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.Request)
+                .ThenInclude(req => req.Equipment)
+                .FirstOrDefaultAsync(r => r.ReturnId == ReturnId);
+
+            if (returnRecord == null || returnRecord.Rental?.Request?.Equipment == null)
+                return NotFound();
+
+            // Update return record
+            var conditionStatus = await _context.ConditionStatuses
+                .FirstOrDefaultAsync(c => c.ConditionId == SelectedConditionId);
+
+            if (conditionStatus != null)
+            {
+                returnRecord.ConditionStatus = conditionStatus.ConditionName;
+            }
+
+            returnRecord.Notes = Notes ?? "No notes";
+            returnRecord.ReturnDate = DateTime.Now;
+
+            // Update equipment availability and condition
+            var equipment = returnRecord.Rental.Request.Equipment;
+            equipment.AvailabilityId = SelectedAvailabilityId;
+            equipment.ConditionId = SelectedConditionId;
+
+            await _context.SaveChangesAsync();
+
+            // Get current staff user for logging
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, $"Processed return #{ReturnId} and updated equipment #{equipment.EquipmentId}");
+            }
+
+            TempData["Success"] = "Return finalized successfully.";
+            return RedirectToAction("Review");
+        }
+
+
+
 
 
         // GET: ReturnRecords/Search
