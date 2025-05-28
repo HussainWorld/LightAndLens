@@ -1,0 +1,66 @@
+﻿@model LightAndLens.WebApp.Models.AdminViewModel
+
+<h2>Manage Rental Requests</h2>
+
+
+@if (TempData["StatusMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["StatusMessage"]
+    </div>
+}
+
+
+<form method="get" class="mb-3">
+    <input type="text" name="search" placeholder="Search..." value="@Model.Search" class="form-control mb-2" />
+
+
+    @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+    {
+    new SelectListItem { Text = "All", Value = "", Selected = !Model.Status.HasValue },
+    new SelectListItem { Text = "Approved", Value = "1", Selected = Model.Status == 1 },
+    new SelectListItem { Text = "Pending", Value = "2", Selected = Model.Status == 2 },
+    new SelectListItem { Text = "Rejected", Value = "3", Selected = Model.Status == 3 }
+    }, new { @class = "form-control mb-2" })
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+    <a href="@Url.Action("AdminView", "RentalRequests")" class="btn btn-secondary ms-2">Clear Filter</a>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>User Email</th>
+            <th>User Name</th>
+            <th>Equipment</th>
+            <th>Status</th>
+            <th>Request Dates</th>
+            <th>Requested On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.RentalRequests)
+        {
+            <tr>
+                <td>@request.RequestId</td>
+                <td>@request.User.Email</td>
+                <td>@request.User.FullName</td>
+                <td>@request.Equipment.EquipmentName</td>
+                <td>@request.RequestStatus.StatusName</td>
+                <td>@request.RequestStartDate.ToShortDateString() - @request.RequestEndDate.ToShortDateString()</td>
+                <td>@request.RequestSetDate.ToShortDateString()</td>
+                <td>
+                    <form asp-action="UpdateRequestStatus" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@request.RequestId" />
+                        @* apprve value in the data base is 1 *@
+                        <button name="status" value="1" class="btn btn-success btn-sm">Approve</button>
+                        @* reject value in the data base is 3 *@
+                        <button name="status" value="3" class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
