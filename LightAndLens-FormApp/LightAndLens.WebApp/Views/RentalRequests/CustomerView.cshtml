@@ -72,22 +72,23 @@
                                 <td>@request.RequestStatus.StatusName</td>
                                 <td>@request.RequestSetDate.ToShortDateString()</td>
                                 <td>
-                                    <a asp-action="Details" asp-route-id="@request.RequestId">Details</a> |
+                                    <a asp-action="Details" asp-route-id="@request.RequestId">Details</a>
                                     @if (request.RequestStatusId == 2)
                                     {
+                                        <span> | </span>
                                         <!-- Cancel button triggers modal -->
                                         <button type="button"
                                                 class="btn btn-danger btn-sm btn-cancel"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmDeleteModal"
                                                 data-request-id="@request.RequestId">
-                                            Cancel
+                                                Cancel
                                         </button>
                                     }
-                                    else
-                                    {
-                                        <button class="btn btn-danger btn-sm" disabled>Cancel</button>
-                                    }
+                                    @* else *@
+                                    @* { *@
+                                    @*     <button class="btn btn-danger btn-sm" disabled>Cancel</button> *@
+                                    @* } *@
                                 </td>
                             </tr>
                         }

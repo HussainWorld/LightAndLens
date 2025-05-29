@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LightAndLensCL.Models;
 using System.Security.Claims;
 using LightAndLens.WebApp.Models;
-using Microsoft.AspNetCore.Authorization; // for AdminViewModel
+using Microsoft.AspNetCore.Authorization;
 
 
 
