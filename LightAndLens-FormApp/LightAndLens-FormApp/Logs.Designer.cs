@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             dgvLogs = new DataGridView();
             logslbl = new Label();
@@ -37,7 +38,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(31, 41, 55);
+            panel1.BackColor = Color.FromArgb(23, 38, 80);
             panel1.Controls.Add(dgvLogs);
             panel1.Location = new Point(12, 72);
             panel1.Name = "panel1";
@@ -46,7 +47,16 @@
             // 
             // dgvLogs
             // 
+            dgvLogs.BackgroundColor = Color.White;
             dgvLogs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvLogs.DefaultCellStyle = dataGridViewCellStyle3;
             dgvLogs.Location = new Point(12, 14);
             dgvLogs.Name = "dgvLogs";
             dgvLogs.RowTemplate.Height = 25;
@@ -57,7 +67,7 @@
             // 
             logslbl.AutoSize = true;
             logslbl.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            logslbl.ForeColor = Color.LightGray;
+            logslbl.ForeColor = Color.White;
             logslbl.Location = new Point(223, 9);
             logslbl.Name = "logslbl";
             logslbl.Size = new Size(103, 50);
@@ -69,7 +79,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(15, 23, 42);
+            BackColor = Color.FromArgb(18, 28, 58);
             ClientSize = new Size(551, 843);
             Controls.Add(logslbl);
             Controls.Add(panel1);

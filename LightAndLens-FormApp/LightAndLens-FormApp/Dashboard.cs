@@ -1,6 +1,7 @@
 using LightAndLensCL.Models;
 using Microsoft.EntityFrameworkCore;
-
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace LightAndLens_FormApp
 {
@@ -12,12 +13,14 @@ namespace LightAndLens_FormApp
             InitializeComponent();
             HighlightActiveButton(dashboardBtn);
             _context = new LightAndLensDBContext();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadDashboardStats();
             LoadRentalRequestsView();
+            
         }
 
         private void LoadDashboardStats()
@@ -58,6 +61,7 @@ namespace LightAndLens_FormApp
             }
         }
 
+      
 
         public void RefreshKPI()
         {
@@ -219,16 +223,16 @@ namespace LightAndLens_FormApp
         private void HighlightActiveButton(Button activeButton)
         {
             // Reset all to default color
-            dashboardBtn.BackColor = Color.FromArgb(26, 32, 40);
-            EquipmentBtn.BackColor = Color.FromArgb(26, 32, 40);
-            rentalRequestsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            returnsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            analyticsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            rentalTransactionsBtn.BackColor = Color.FromArgb(26, 32, 40);
+            dashboardBtn.BackColor = Color.FromArgb(32, 46, 82);
+            EquipmentBtn.BackColor = Color.FromArgb(32, 46, 82);
+            rentalRequestsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            returnsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            analyticsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            rentalTransactionsBtn.BackColor = Color.FromArgb(32, 46, 82);
             // Set active color
-            activeButton.BackColor = Color.FromArgb(41, 128, 185);
+            activeButton.BackColor = Color.FromArgb(17, 80, 203);
         }
-
+        
 
 
         private void dashboardBtn_Click(object sender, EventArgs e)
@@ -243,11 +247,6 @@ namespace LightAndLens_FormApp
             this.Hide();
         }
 
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void rentalRequestsBtn_Click(object sender, EventArgs e)
         {
