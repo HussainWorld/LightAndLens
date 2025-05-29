@@ -376,38 +376,9 @@ namespace LightAndLens_FormApp
         }
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void EquipmentBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rentalRequestsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void returnsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void analyticsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
+            var DashboardForm = new Dashboard();
+            DashboardForm.Show();
+            this.Hide();
         }
 
         private void RentalRequests_FormClosing(object sender, FormClosingEventArgs e)
@@ -418,6 +389,39 @@ namespace LightAndLens_FormApp
         private void recentActivitiesTxt_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void rentalTransactionsBtn_Click(object sender, EventArgs e)
+        {
+            var RentalTransactionsForm = new RentalTransactions();
+            RentalTransactionsForm.Show();
+            this.Hide();
+        }
+
+        private void RentalRequests_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void returnsBtn_Click_1(object sender, EventArgs e)
+        {
+            var returnsForm = new Returns();
+            returnsForm.Show();
+            this.Hide();
+        }
+
+        private void EquipmentBtn_Click_1(object sender, EventArgs e)
+        {
+            var equipmentForm = new EquipmentForm();
+            equipmentForm.Show();
+            this.Hide();
+        }
+
+        private void analyticsBtn_Click_1(object sender, EventArgs e)
+        {
+            var analyticsForm = new Analytics();
+            analyticsForm.Show();
+            this.Hide();
         }
     }
 }

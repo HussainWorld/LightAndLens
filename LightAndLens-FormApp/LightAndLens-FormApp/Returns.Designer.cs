@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             analyticsBtn = new Button();
@@ -90,6 +90,7 @@
             rentalTransactionsBtn.TabIndex = 7;
             rentalTransactionsBtn.Text = "Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
+            rentalTransactionsBtn.Click += rentalTransactionsBtn_Click;
             // 
             // analyticsBtn
             // 
@@ -103,6 +104,7 @@
             analyticsBtn.TabIndex = 5;
             analyticsBtn.Text = "Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
+            analyticsBtn.Click += analyticsBtn_Click;
             // 
             // returnsBtn
             // 
@@ -129,6 +131,7 @@
             rentalRequestsBtn.TabIndex = 3;
             rentalRequestsBtn.Text = "Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
+            rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
             // EquipmentBtn
             // 
@@ -142,6 +145,7 @@
             EquipmentBtn.TabIndex = 2;
             EquipmentBtn.Text = "Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
+            EquipmentBtn.Click += EquipmentBtn_Click;
             // 
             // dashboardBtn
             // 
@@ -155,6 +159,7 @@
             dashboardBtn.TabIndex = 1;
             dashboardBtn.Text = "Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
+            dashboardBtn.Click += dashboardBtn_Click;
             // 
             // logotxt
             // 
@@ -273,14 +278,14 @@
             // dgvListReturns
             // 
             dgvListReturns.BackgroundColor = Color.White;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListReturns.Dock = DockStyle.Fill;
             dgvListReturns.Location = new Point(0, 0);

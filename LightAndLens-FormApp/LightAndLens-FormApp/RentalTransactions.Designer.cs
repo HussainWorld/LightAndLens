@@ -204,6 +204,7 @@
             analyticsBtn.TabIndex = 5;
             analyticsBtn.Text = "Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
+            analyticsBtn.Click += analyticsBtn_Click;
             // 
             // returnsBtn
             // 
@@ -217,6 +218,7 @@
             returnsBtn.TabIndex = 4;
             returnsBtn.Text = "Returns";
             returnsBtn.UseVisualStyleBackColor = false;
+            returnsBtn.Click += returnsBtn_Click;
             // 
             // rentalRequestsBtn
             // 
@@ -230,6 +232,7 @@
             rentalRequestsBtn.TabIndex = 3;
             rentalRequestsBtn.Text = "Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
+            rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
             // EquipmentBtn
             // 
@@ -243,6 +246,7 @@
             EquipmentBtn.TabIndex = 2;
             EquipmentBtn.Text = "Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
+            EquipmentBtn.Click += EquipmentBtn_Click;
             // 
             // dashboardBtn
             // 
@@ -256,6 +260,7 @@
             dashboardBtn.TabIndex = 1;
             dashboardBtn.Text = "Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
+            dashboardBtn.Click += dashboardBtn_Click;
             // 
             // logotxt
             // 
@@ -301,6 +306,7 @@
             Controls.Add(sidePanel);
             Name = "RentalTransactions";
             Text = "Rental Transactions";
+            FormClosing += RentalTransactions_FormClosing;
             Load += RentalTransactions_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

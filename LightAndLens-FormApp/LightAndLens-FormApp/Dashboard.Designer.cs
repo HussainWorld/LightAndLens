@@ -91,6 +91,10 @@
             tabReturns = new TabPage();
             dataGridViewReturns = new DataGridView();
             recentActivitiesTxt = new Label();
+            pictureBox6 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox8 = new PictureBox();
+            pictureBox9 = new PictureBox();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             totalEquipmentPanel.SuspendLayout();
@@ -111,6 +115,10 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
             tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -249,8 +257,8 @@
             // 
             // topHeaderPanel
             // 
+            topHeaderPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
-            topHeaderPanel.Dock = DockStyle.Top;
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
             topHeaderPanel.Padding = new Padding(10);
@@ -259,6 +267,8 @@
             // 
             // totalEquipmentPanel
             // 
+            totalEquipmentPanel.Anchor = AnchorStyles.Top;
+            totalEquipmentPanel.AutoSize = true;
             totalEquipmentPanel.BackColor = Color.FromArgb(23, 38, 80);
             totalEquipmentPanel.Controls.Add(pictureBox1);
             totalEquipmentPanel.Controls.Add(totalEquipmentNum);
@@ -300,6 +310,8 @@
             // 
             // activeRentalsPanel
             // 
+            activeRentalsPanel.Anchor = AnchorStyles.Top;
+            activeRentalsPanel.AutoSize = true;
             activeRentalsPanel.BackColor = Color.FromArgb(23, 38, 80);
             activeRentalsPanel.Controls.Add(pictureBox2);
             activeRentalsPanel.Controls.Add(activeRentalsNum);
@@ -341,6 +353,8 @@
             // 
             // pendingRequestsPanel
             // 
+            pendingRequestsPanel.Anchor = AnchorStyles.Top;
+            pendingRequestsPanel.AutoSize = true;
             pendingRequestsPanel.BackColor = Color.FromArgb(23, 38, 80);
             pendingRequestsPanel.Controls.Add(pictureBox3);
             pendingRequestsPanel.Controls.Add(pendingRequestsNum);
@@ -382,6 +396,8 @@
             // 
             // overdueReturnsPanel
             // 
+            overdueReturnsPanel.Anchor = AnchorStyles.Top;
+            overdueReturnsPanel.AutoSize = true;
             overdueReturnsPanel.BackColor = Color.FromArgb(23, 38, 80);
             overdueReturnsPanel.Controls.Add(pictureBox4);
             overdueReturnsPanel.Controls.Add(overdueReturnsNum);
@@ -396,6 +412,7 @@
             pictureBox4.Location = new Point(147, 27);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(43, 43);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 20;
             pictureBox4.TabStop = false;
             // 
@@ -423,6 +440,8 @@
             // 
             // underMaintenancePanel
             // 
+            underMaintenancePanel.Anchor = AnchorStyles.Top;
+            underMaintenancePanel.AutoSize = true;
             underMaintenancePanel.BackColor = Color.FromArgb(23, 38, 80);
             underMaintenancePanel.Controls.Add(pictureBox5);
             underMaintenancePanel.Controls.Add(underMaintenanceNum);
@@ -464,6 +483,7 @@
             // 
             // newRentalBtn
             // 
+            newRentalBtn.Anchor = AnchorStyles.Top;
             newRentalBtn.BackColor = Color.FromArgb(18, 80, 198);
             newRentalBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             newRentalBtn.ForeColor = Color.White;
@@ -476,6 +496,7 @@
             // 
             // processReturnBtn
             // 
+            processReturnBtn.Anchor = AnchorStyles.Top;
             processReturnBtn.BackColor = Color.FromArgb(107, 175, 109);
             processReturnBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             processReturnBtn.ForeColor = Color.White;
@@ -488,6 +509,7 @@
             // 
             // LogsBtn
             // 
+            LogsBtn.Anchor = AnchorStyles.Top;
             LogsBtn.BackColor = Color.FromArgb(133, 93, 212);
             LogsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             LogsBtn.ForeColor = Color.White;
@@ -501,6 +523,7 @@
             // 
             // maintenanceBtn
             // 
+            maintenanceBtn.Anchor = AnchorStyles.Top;
             maintenanceBtn.BackColor = Color.FromArgb(223, 121, 68);
             maintenanceBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             maintenanceBtn.ForeColor = Color.White;
@@ -514,6 +537,7 @@
             // 
             // equipmentInventoryPanel
             // 
+            equipmentInventoryPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             equipmentInventoryPanel.BackColor = Color.FromArgb(23, 38, 80);
             equipmentInventoryPanel.Controls.Add(stabilizersPercentageLabel);
             equipmentInventoryPanel.Controls.Add(label6);
@@ -722,6 +746,7 @@
             // 
             // dataGridViewRequests
             // 
+            dataGridViewRequests.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dataGridViewRequests.BackgroundColor = Color.White;
             dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -732,7 +757,6 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewRequests.Dock = DockStyle.Fill;
             dataGridViewRequests.Location = new Point(3, 3);
             dataGridViewRequests.Name = "dataGridViewRequests";
             dataGridViewRequests.RowTemplate.Height = 25;
@@ -810,12 +834,53 @@
             recentActivitiesTxt.TabIndex = 6;
             recentActivitiesTxt.Text = "Recent Activities";
             // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.FromArgb(133, 93, 212);
+            pictureBox6.Location = new Point(1088, 187);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(25, 25);
+            pictureBox6.TabIndex = 21;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = Color.FromArgb(223, 121, 68);
+            pictureBox7.Location = new Point(818, 187);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(25, 25);
+            pictureBox7.TabIndex = 22;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackColor = Color.FromArgb(107, 175, 109);
+            pictureBox8.Location = new Point(555, 187);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(25, 25);
+            pictureBox8.TabIndex = 23;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.BackColor = Color.FromArgb(18, 80, 198);
+            pictureBox9.Location = new Point(300, 187);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(25, 25);
+            pictureBox9.TabIndex = 24;
+            pictureBox9.TabStop = false;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = Color.FromArgb(18, 28, 58);
             ClientSize = new Size(1350, 825);
+            Controls.Add(pictureBox9);
+            Controls.Add(pictureBox8);
+            Controls.Add(pictureBox7);
+            Controls.Add(pictureBox6);
             Controls.Add(recentActivitiesTxt);
             Controls.Add(tabRecentActivities);
             Controls.Add(equipmentInventoryPanel);
@@ -863,6 +928,10 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
             tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -930,5 +999,9 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox8;
+        private PictureBox pictureBox9;
     }
 }

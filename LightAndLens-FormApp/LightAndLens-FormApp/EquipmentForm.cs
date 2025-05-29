@@ -370,6 +370,52 @@ namespace LightAndLens_FormApp
         {
             Application.Exit();
         }
+
+        private void dashboardBtn_Click(object sender, EventArgs e)
+        {
+            var DashboardForm = new Dashboard();
+            DashboardForm.Show();
+            this.Hide();
+
+        }
+
+        private void EquipmentBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rentalRequestsBtn_Click(object sender, EventArgs e)
+        {
+            var requestsForm = new RentalRequests();
+            requestsForm.Show();
+            this.Hide();
+        }
+
+        private void rentalTransactionsBtn_Click(object sender, EventArgs e)
+        {
+            var RentalTransactionsForm = new RentalTransactions();
+            RentalTransactionsForm.Show();
+            this.Hide();
+        }
+
+        private void returnsBtn_Click(object sender, EventArgs e)
+        {
+            var returnsForm = new Returns();
+            returnsForm.Show();
+            this.Hide();
+        }
+
+        private void analyticsBtn_Click(object sender, EventArgs e)
+        {
+            var analyticsForm = new Analytics();
+            analyticsForm.Show();
+            this.Hide();
+        }
+
+        private void EquipmentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
 

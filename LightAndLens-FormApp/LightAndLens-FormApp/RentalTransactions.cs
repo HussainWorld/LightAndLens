@@ -129,5 +129,46 @@ namespace LightAndLens_FormApp
             // Set active color
             activeButton.BackColor = Color.FromArgb(17, 80, 203);
         }
+
+        private void dashboardBtn_Click(object sender, EventArgs e)
+        {
+            var DashboardForm = new Dashboard();
+            DashboardForm.Show();
+            this.Hide();
+
+        }
+
+        private void EquipmentBtn_Click(object sender, EventArgs e)
+        {
+            var equipmentForm = new EquipmentForm();
+            equipmentForm.Show();
+            this.Hide();
+        }
+
+        private void rentalRequestsBtn_Click(object sender, EventArgs e)
+        {
+            var requestsForm = new RentalRequests();
+            requestsForm.Show();
+            this.Hide();
+        }
+
+        private void returnsBtn_Click(object sender, EventArgs e)
+        {
+            var returnsForm = new Returns();
+            returnsForm.Show();
+            this.Hide();
+        }
+
+        private void analyticsBtn_Click(object sender, EventArgs e)
+        {
+            var analyticsForm = new Analytics();
+            analyticsForm.Show();
+            this.Hide();
+        }
+
+        private void RentalTransactions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

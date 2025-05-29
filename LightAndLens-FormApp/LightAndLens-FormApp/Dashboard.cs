@@ -13,6 +13,7 @@ namespace LightAndLens_FormApp
             InitializeComponent();
             HighlightActiveButton(dashboardBtn);
             _context = new LightAndLensDBContext();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -231,7 +232,7 @@ namespace LightAndLens_FormApp
             // Set active color
             activeButton.BackColor = Color.FromArgb(17, 80, 203);
         }
-
+        
 
 
         private void dashboardBtn_Click(object sender, EventArgs e)
@@ -246,11 +247,6 @@ namespace LightAndLens_FormApp
             this.Hide();
         }
 
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void rentalRequestsBtn_Click(object sender, EventArgs e)
         {

@@ -99,6 +99,7 @@ namespace LightAndLens_FormApp
             rentalTransactionsBtn.TabIndex = 19;
             rentalTransactionsBtn.Text = "Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
+            rentalTransactionsBtn.Click += rentalTransactionsBtn_Click;
             // 
             // analyticsBtn
             // 
@@ -112,6 +113,7 @@ namespace LightAndLens_FormApp
             analyticsBtn.TabIndex = 5;
             analyticsBtn.Text = "Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
+            analyticsBtn.Click += analyticsBtn_Click_1;
             // 
             // returnsBtn
             // 
@@ -125,6 +127,7 @@ namespace LightAndLens_FormApp
             returnsBtn.TabIndex = 4;
             returnsBtn.Text = "Returns";
             returnsBtn.UseVisualStyleBackColor = false;
+            returnsBtn.Click += returnsBtn_Click_1;
             // 
             // rentalRequestsBtn
             // 
@@ -151,6 +154,7 @@ namespace LightAndLens_FormApp
             EquipmentBtn.TabIndex = 2;
             EquipmentBtn.Text = "Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
+            EquipmentBtn.Click += EquipmentBtn_Click_1;
             // 
             // dashboardBtn
             // 
@@ -427,9 +431,11 @@ namespace LightAndLens_FormApp
             // 
             // pictureBoxCust
             // 
+            pictureBoxCust.Image = Properties.Resources.image_removebg_preview;
             pictureBoxCust.Location = new Point(11, 11);
             pictureBoxCust.Name = "pictureBoxCust";
             pictureBoxCust.Size = new Size(42, 38);
+            pictureBoxCust.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxCust.TabIndex = 1;
             pictureBoxCust.TabStop = false;
             // 
@@ -485,6 +491,7 @@ namespace LightAndLens_FormApp
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rental Requests";
             FormClosing += RentalRequests_FormClosing;
+            FormClosed += RentalRequests_FormClosed;
             Load += RentalRequests_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
