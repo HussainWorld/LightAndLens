@@ -22,6 +22,7 @@ namespace LightAndLens_FormApp
             InitializeComponent();
             LightAndLensDBContext = new LightAndLensDBContext();
             LoadFilters();
+            HighlightActiveButton(EquipmentBtn);
 
         }
 
@@ -350,6 +351,19 @@ namespace LightAndLens_FormApp
             {
                 MessageBox.Show("Please select an equipment row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void HighlightActiveButton(Button activeButton)
+        {
+            // Reset all to default color
+            dashboardBtn.BackColor = Color.FromArgb(32, 46, 82);
+            EquipmentBtn.BackColor = Color.FromArgb(32, 46, 82);
+            rentalRequestsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            returnsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            analyticsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            rentalTransactionsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            // Set active color
+            activeButton.BackColor = Color.FromArgb(17, 80, 203);
         }
 
         private void EquipmentForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -34,6 +34,8 @@ namespace LightAndLens_FormApp
             btnApprove.Click += btnApprove_Click;
             btnReject.Click += btnReject_Click;
 
+            HighlightActiveButton(rentalRequestsBtn);
+
         }
 
 
@@ -78,7 +80,8 @@ namespace LightAndLens_FormApp
             clearFilters();
         }
 
-        private void FilterRequestsGridview(){
+        private void FilterRequestsGridview()
+        {
 
             try
             {
@@ -343,6 +346,19 @@ namespace LightAndLens_FormApp
             }
         }
 
+        private void HighlightActiveButton(Button activeButton)
+        {
+            // Reset all to default color
+            dashboardBtn.BackColor = Color.FromArgb(32, 46, 82);
+            EquipmentBtn.BackColor = Color.FromArgb(32, 46, 82);
+            rentalRequestsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            returnsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            analyticsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            rentalTransactionsBtn.BackColor = Color.FromArgb(32, 46, 82);
+            // Set active color
+            activeButton.BackColor = Color.FromArgb(17, 80, 203);
+        }
+
 
         private void txtSearchCustOrEq_TextChanged(object sender, EventArgs e)
         {
@@ -397,6 +413,11 @@ namespace LightAndLens_FormApp
         private void RentalRequests_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void recentActivitiesTxt_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
