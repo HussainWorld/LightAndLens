@@ -63,13 +63,17 @@
             label4 = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             sidePanel.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListEquipment).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxEquipment).BeginInit();
             panel2.SuspendLayout();
             panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -95,11 +99,13 @@
             rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
             rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalTransactionsBtn.ForeColor = Color.White;
+            rentalTransactionsBtn.Image = Properties.Resources.Orders;
+            rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalTransactionsBtn.Location = new Point(10, 265);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
             rentalTransactionsBtn.Size = new Size(211, 44);
             rentalTransactionsBtn.TabIndex = 18;
-            rentalTransactionsBtn.Text = "Transactions";
+            rentalTransactionsBtn.Text = "  Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
             rentalTransactionsBtn.Click += rentalTransactionsBtn_Click;
             // 
@@ -109,11 +115,13 @@
             analyticsBtn.FlatStyle = FlatStyle.Flat;
             analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             analyticsBtn.ForeColor = Color.White;
+            analyticsBtn.Image = Properties.Resources.Analytics;
+            analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             analyticsBtn.Location = new Point(10, 385);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
             analyticsBtn.TabIndex = 5;
-            analyticsBtn.Text = "Analytics";
+            analyticsBtn.Text = "  Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
             analyticsBtn.Click += analyticsBtn_Click;
             // 
@@ -123,11 +131,13 @@
             returnsBtn.FlatStyle = FlatStyle.Flat;
             returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             returnsBtn.ForeColor = Color.White;
+            returnsBtn.Image = Properties.Resources.Return__2_;
+            returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             returnsBtn.Location = new Point(10, 325);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
             returnsBtn.TabIndex = 4;
-            returnsBtn.Text = "Returns";
+            returnsBtn.Text = "  Returns";
             returnsBtn.UseVisualStyleBackColor = false;
             returnsBtn.Click += returnsBtn_Click;
             // 
@@ -137,11 +147,13 @@
             rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
             rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalRequestsBtn.ForeColor = Color.White;
+            rentalRequestsBtn.Image = Properties.Resources.Request;
+            rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalRequestsBtn.Location = new Point(10, 205);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
             rentalRequestsBtn.Size = new Size(211, 44);
             rentalRequestsBtn.TabIndex = 3;
-            rentalRequestsBtn.Text = "Requests";
+            rentalRequestsBtn.Text = "  Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
             rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
@@ -151,11 +163,13 @@
             EquipmentBtn.FlatStyle = FlatStyle.Flat;
             EquipmentBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             EquipmentBtn.ForeColor = Color.White;
+            EquipmentBtn.Image = Properties.Resources.Equipment2;
+            EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             EquipmentBtn.Location = new Point(10, 145);
             EquipmentBtn.Name = "EquipmentBtn";
             EquipmentBtn.Size = new Size(211, 44);
             EquipmentBtn.TabIndex = 2;
-            EquipmentBtn.Text = "Equipment";
+            EquipmentBtn.Text = "  Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
             EquipmentBtn.Click += EquipmentBtn_Click;
             // 
@@ -165,11 +179,13 @@
             dashboardBtn.FlatStyle = FlatStyle.Flat;
             dashboardBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dashboardBtn.ForeColor = Color.White;
+            dashboardBtn.Image = Properties.Resources.Dashboard;
+            dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
             dashboardBtn.Location = new Point(10, 85);
             dashboardBtn.Name = "dashboardBtn";
             dashboardBtn.Size = new Size(211, 44);
             dashboardBtn.TabIndex = 1;
-            dashboardBtn.Text = "Dashboard";
+            dashboardBtn.Text = "  Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
             dashboardBtn.Click += dashboardBtn_Click;
             // 
@@ -188,6 +204,8 @@
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
@@ -267,8 +285,11 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
+            btnSearch.Image = Properties.Resources.Filter;
+            btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
             btnSearch.Location = new Point(811, 14);
             btnSearch.Name = "btnSearch";
+            btnSearch.Padding = new Padding(2, 0, 0, 0);
             btnSearch.Size = new Size(105, 30);
             btnSearch.TabIndex = 1;
             btnSearch.Text = "Apply  ";
@@ -283,6 +304,8 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClear.ForeColor = Color.White;
+            btnClear.Image = Properties.Resources.FilterOff;
+            btnClear.ImageAlign = ContentAlignment.MiddleLeft;
             btnClear.Location = new Point(932, 14);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(85, 30);
@@ -297,8 +320,11 @@
             btnAddEquipment.BackColor = Color.SeaGreen;
             btnAddEquipment.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddEquipment.ForeColor = Color.White;
+            btnAddEquipment.Image = Properties.Resources.Add2;
+            btnAddEquipment.ImageAlign = ContentAlignment.MiddleLeft;
             btnAddEquipment.Location = new Point(830, 157);
             btnAddEquipment.Name = "btnAddEquipment";
+            btnAddEquipment.Padding = new Padding(12, 0, 0, 0);
             btnAddEquipment.Size = new Size(180, 34);
             btnAddEquipment.TabIndex = 12;
             btnAddEquipment.Text = "Add Equipment       ";
@@ -311,8 +337,11 @@
             btnEditEquipment.BackColor = Color.FromArgb(133, 93, 212);
             btnEditEquipment.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnEditEquipment.ForeColor = Color.White;
+            btnEditEquipment.Image = Properties.Resources.Edit;
+            btnEditEquipment.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditEquipment.Location = new Point(1025, 157);
             btnEditEquipment.Name = "btnEditEquipment";
+            btnEditEquipment.Padding = new Padding(2, 0, 0, 0);
             btnEditEquipment.Size = new Size(77, 34);
             btnEditEquipment.TabIndex = 13;
             btnEditEquipment.Text = "Edit   ";
@@ -325,8 +354,11 @@
             btnDelete.BackColor = Color.FromArgb(200, 47, 46);
             btnDelete.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnDelete.ForeColor = Color.White;
+            btnDelete.Image = Properties.Resources.Delete;
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
             btnDelete.Location = new Point(1118, 157);
             btnDelete.Name = "btnDelete";
+            btnDelete.Padding = new Padding(1, 0, 0, 0);
             btnDelete.Size = new Size(87, 34);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Delete  ";
@@ -339,6 +371,8 @@
             btnRefreshEquipment.BackColor = Color.Gray;
             btnRefreshEquipment.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnRefreshEquipment.ForeColor = Color.White;
+            btnRefreshEquipment.Image = Properties.Resources.Refresh;
+            btnRefreshEquipment.ImageAlign = ContentAlignment.MiddleLeft;
             btnRefreshEquipment.Location = new Point(1221, 157);
             btnRefreshEquipment.Name = "btnRefreshEquipment";
             btnRefreshEquipment.Size = new Size(87, 34);
@@ -515,6 +549,27 @@
             panel5.Size = new Size(271, 572);
             panel5.TabIndex = 30;
             // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 24;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 25;
+            pictureBoxAvatar.TabStop = false;
+            // 
             // EquipmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -539,6 +594,8 @@
             Load += Equipment_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListEquipment).EndInit();
@@ -548,6 +605,7 @@
             panel2.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -587,5 +645,7 @@
         private Panel panel2;
         private Panel panel4;
         private Panel panel5;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

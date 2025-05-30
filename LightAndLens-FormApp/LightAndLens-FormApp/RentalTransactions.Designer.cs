@@ -47,10 +47,14 @@
             logotxt = new Label();
             panel2 = new Panel();
             rentalTransactionsdgv = new DataGridView();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             panel1.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)rentalTransactionsdgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -116,11 +120,13 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
+            btnSearch.Image = Properties.Resources.Filter;
+            btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
             btnSearch.Location = new Point(847, 14);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(85, 30);
             btnSearch.TabIndex = 1;
-            btnSearch.Text = "Search";
+            btnSearch.Text = "Apply";
             btnSearch.TextAlign = ContentAlignment.MiddleRight;
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
@@ -132,9 +138,11 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClear.ForeColor = Color.White;
+            btnClear.Image = Properties.Resources.FilterOff;
+            btnClear.ImageAlign = ContentAlignment.MiddleLeft;
             btnClear.Location = new Point(944, 14);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(76, 30);
+            btnClear.Size = new Size(80, 30);
             btnClear.TabIndex = 0;
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
@@ -155,6 +163,8 @@
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
@@ -185,6 +195,8 @@
             rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
             rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalTransactionsBtn.ForeColor = Color.White;
+            rentalTransactionsBtn.Image = Properties.Resources.Orders;
+            rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalTransactionsBtn.Location = new Point(10, 265);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
             rentalTransactionsBtn.Size = new Size(211, 44);
@@ -198,6 +210,8 @@
             analyticsBtn.FlatStyle = FlatStyle.Flat;
             analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             analyticsBtn.ForeColor = Color.White;
+            analyticsBtn.Image = Properties.Resources.Analytics;
+            analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             analyticsBtn.Location = new Point(10, 385);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
@@ -212,6 +226,8 @@
             returnsBtn.FlatStyle = FlatStyle.Flat;
             returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             returnsBtn.ForeColor = Color.White;
+            returnsBtn.Image = Properties.Resources.Return__2_;
+            returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             returnsBtn.Location = new Point(10, 325);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
@@ -226,6 +242,8 @@
             rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
             rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalRequestsBtn.ForeColor = Color.White;
+            rentalRequestsBtn.Image = Properties.Resources.Request;
+            rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalRequestsBtn.Location = new Point(10, 205);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
             rentalRequestsBtn.Size = new Size(211, 44);
@@ -240,6 +258,8 @@
             EquipmentBtn.FlatStyle = FlatStyle.Flat;
             EquipmentBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             EquipmentBtn.ForeColor = Color.White;
+            EquipmentBtn.Image = Properties.Resources.Equipment2;
+            EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             EquipmentBtn.Location = new Point(10, 145);
             EquipmentBtn.Name = "EquipmentBtn";
             EquipmentBtn.Size = new Size(211, 44);
@@ -254,6 +274,8 @@
             dashboardBtn.FlatStyle = FlatStyle.Flat;
             dashboardBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dashboardBtn.ForeColor = Color.White;
+            dashboardBtn.Image = Properties.Resources.Dashboard;
+            dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
             dashboardBtn.Location = new Point(10, 85);
             dashboardBtn.Name = "dashboardBtn";
             dashboardBtn.Size = new Size(211, 44);
@@ -294,6 +316,27 @@
             rentalTransactionsdgv.Size = new Size(1037, 514);
             rentalTransactionsdgv.TabIndex = 0;
             // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 24;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 25;
+            pictureBoxAvatar.TabStop = false;
+            // 
             // RentalTransactions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,15 +348,19 @@
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
             Name = "RentalTransactions";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Rental Transactions";
             FormClosing += RentalTransactions_FormClosing;
             Load += RentalTransactions_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)rentalTransactionsdgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -338,5 +385,7 @@
         private Panel panel2;
         private DataGridView rentalTransactionsdgv;
         private Button rentalTransactionsBtn;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

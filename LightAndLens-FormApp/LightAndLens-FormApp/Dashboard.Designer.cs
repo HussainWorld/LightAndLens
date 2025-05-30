@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             panel2 = new Panel();
@@ -91,12 +91,11 @@
             tabReturns = new TabPage();
             dataGridViewReturns = new DataGridView();
             recentActivitiesTxt = new Label();
-            pictureBox6 = new PictureBox();
-            pictureBox7 = new PictureBox();
-            pictureBox8 = new PictureBox();
-            pictureBox9 = new PictureBox();
+            pictureBoxAvatar = new PictureBox();
+            labelUserName = new Label();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             totalEquipmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             activeRentalsPanel.SuspendLayout();
@@ -115,10 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
             tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -141,15 +137,18 @@
             // 
             // rentalTransactionsBtn
             // 
-            rentalTransactionsBtn.BackColor = Color.Transparent;
+            rentalTransactionsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            rentalTransactionsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
-            rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            rentalTransactionsBtn.ForeColor = Color.White;
+            rentalTransactionsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            rentalTransactionsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            rentalTransactionsBtn.Image = Properties.Resources.Orders;
+            rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalTransactionsBtn.Location = new Point(10, 267);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
             rentalTransactionsBtn.Size = new Size(211, 44);
             rentalTransactionsBtn.TabIndex = 17;
-            rentalTransactionsBtn.Text = "Transactions";
+            rentalTransactionsBtn.Text = "  Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
             rentalTransactionsBtn.Click += button1_Click_1;
             // 
@@ -175,82 +174,97 @@
             // 
             // analyticsBtn
             // 
-            analyticsBtn.BackColor = Color.Transparent;
+            analyticsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            analyticsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             analyticsBtn.FlatStyle = FlatStyle.Flat;
-            analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            analyticsBtn.ForeColor = Color.White;
+            analyticsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            analyticsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            analyticsBtn.Image = Properties.Resources.Analytics;
+            analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             analyticsBtn.Location = new Point(10, 389);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
             analyticsBtn.TabIndex = 9;
-            analyticsBtn.Text = "Analytics";
+            analyticsBtn.Text = "  Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
             analyticsBtn.Click += analyticsBtn_Click;
             // 
             // returnsBtn
             // 
-            returnsBtn.BackColor = Color.Transparent;
+            returnsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            returnsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             returnsBtn.FlatStyle = FlatStyle.Flat;
-            returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            returnsBtn.ForeColor = Color.White;
+            returnsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            returnsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            returnsBtn.Image = Properties.Resources.Return__2_;
+            returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             returnsBtn.Location = new Point(10, 329);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
             returnsBtn.TabIndex = 8;
-            returnsBtn.Text = "Returns";
+            returnsBtn.Text = "  Returns";
             returnsBtn.UseVisualStyleBackColor = false;
             returnsBtn.Click += returnsBtn_Click;
             // 
             // rentalRequestsBtn
             // 
-            rentalRequestsBtn.BackColor = Color.Transparent;
+            rentalRequestsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            rentalRequestsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
-            rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            rentalRequestsBtn.ForeColor = Color.White;
+            rentalRequestsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            rentalRequestsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            rentalRequestsBtn.Image = Properties.Resources.Request;
+            rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalRequestsBtn.Location = new Point(10, 205);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
             rentalRequestsBtn.Size = new Size(211, 44);
             rentalRequestsBtn.TabIndex = 7;
-            rentalRequestsBtn.Text = "Requests";
+            rentalRequestsBtn.Text = "  Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
             rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
             // EquipmentBtn
             // 
-            EquipmentBtn.BackColor = Color.Transparent;
+            EquipmentBtn.BackColor = Color.FromArgb(22, 34, 68);
+            EquipmentBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             EquipmentBtn.FlatStyle = FlatStyle.Flat;
-            EquipmentBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            EquipmentBtn.ForeColor = Color.White;
+            EquipmentBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            EquipmentBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            EquipmentBtn.Image = Properties.Resources.Equipment2;
+            EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             EquipmentBtn.Location = new Point(10, 145);
             EquipmentBtn.Name = "EquipmentBtn";
             EquipmentBtn.Size = new Size(211, 44);
             EquipmentBtn.TabIndex = 2;
-            EquipmentBtn.Text = "Equipment";
+            EquipmentBtn.Text = "  Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
             EquipmentBtn.Click += EquipmentBtn_Click;
             // 
             // dashboardBtn
             // 
-            dashboardBtn.BackColor = Color.Transparent;
+            dashboardBtn.BackColor = Color.FromArgb(28, 44, 91);
+            dashboardBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             dashboardBtn.FlatStyle = FlatStyle.Flat;
-            dashboardBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dashboardBtn.ForeColor = Color.White;
+            dashboardBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dashboardBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            dashboardBtn.Image = Properties.Resources.Dashboard;
+            dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
             dashboardBtn.Location = new Point(10, 85);
             dashboardBtn.Name = "dashboardBtn";
             dashboardBtn.Size = new Size(211, 44);
             dashboardBtn.TabIndex = 1;
-            dashboardBtn.Text = "Dashboard";
+            dashboardBtn.Text = "  Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
             dashboardBtn.Click += dashboardBtn_Click;
             // 
             // logotxt
             // 
             logotxt.AutoSize = true;
-            logotxt.Font = new Font("Vivaldi", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            logotxt.Font = new Font("Vivaldi", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             logotxt.ForeColor = Color.White;
-            logotxt.Location = new Point(9, 10);
+            logotxt.Location = new Point(8, 14);
             logotxt.Name = "logotxt";
-            logotxt.Size = new Size(189, 29);
+            logotxt.Size = new Size(214, 32);
             logotxt.TabIndex = 0;
             logotxt.Text = "Lights And Lenses";
             logotxt.TextAlign = ContentAlignment.MiddleCenter;
@@ -259,6 +273,8 @@
             // 
             topHeaderPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
             topHeaderPanel.Padding = new Padding(10);
@@ -280,9 +296,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(146, 28);
+            pictureBox1.Image = Properties.Resources.Camera;
+            pictureBox1.Location = new Point(137, 28);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(43, 43);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 19;
             pictureBox1.TabStop = false;
             // 
@@ -323,9 +341,11 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.Image = Properties.Resources.Active;
             pictureBox2.Location = new Point(145, 28);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(43, 43);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 20;
             pictureBox2.TabStop = false;
             // 
@@ -366,9 +386,11 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.Image = Properties.Resources.Clock;
             pictureBox3.Location = new Point(145, 27);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(43, 43);
+            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox3.TabIndex = 21;
             pictureBox3.TabStop = false;
             // 
@@ -409,6 +431,7 @@
             // 
             // pictureBox4
             // 
+            pictureBox4.Image = Properties.Resources.Overdue;
             pictureBox4.Location = new Point(147, 27);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(43, 43);
@@ -453,9 +476,11 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Location = new Point(142, 28);
+            pictureBox5.Image = Properties.Resources.Maintenance2;
+            pictureBox5.Location = new Point(124, 28);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(43, 43);
+            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox5.TabIndex = 20;
             pictureBox5.TabStop = false;
             // 
@@ -487,11 +512,15 @@
             newRentalBtn.BackColor = Color.FromArgb(18, 80, 198);
             newRentalBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             newRentalBtn.ForeColor = Color.White;
+            newRentalBtn.Image = Properties.Resources.NewRental;
+            newRentalBtn.ImageAlign = ContentAlignment.MiddleLeft;
             newRentalBtn.Location = new Point(270, 178);
             newRentalBtn.Name = "newRentalBtn";
+            newRentalBtn.Padding = new Padding(20, 0, 0, 0);
             newRentalBtn.Size = new Size(256, 42);
             newRentalBtn.TabIndex = 6;
-            newRentalBtn.Text = "New Rental";
+            newRentalBtn.Text = "            New Rental";
+            newRentalBtn.TextAlign = ContentAlignment.MiddleLeft;
             newRentalBtn.UseVisualStyleBackColor = false;
             // 
             // processReturnBtn
@@ -500,11 +529,15 @@
             processReturnBtn.BackColor = Color.FromArgb(107, 175, 109);
             processReturnBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             processReturnBtn.ForeColor = Color.White;
+            processReturnBtn.Image = Properties.Resources.Return;
+            processReturnBtn.ImageAlign = ContentAlignment.MiddleLeft;
             processReturnBtn.Location = new Point(531, 178);
             processReturnBtn.Name = "processReturnBtn";
+            processReturnBtn.Padding = new Padding(20, 0, 0, 0);
             processReturnBtn.Size = new Size(256, 42);
             processReturnBtn.TabIndex = 10;
-            processReturnBtn.Text = "Process Return";
+            processReturnBtn.Text = "          Process Return";
+            processReturnBtn.TextAlign = ContentAlignment.MiddleLeft;
             processReturnBtn.UseVisualStyleBackColor = false;
             // 
             // LogsBtn
@@ -513,11 +546,15 @@
             LogsBtn.BackColor = Color.FromArgb(133, 93, 212);
             LogsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             LogsBtn.ForeColor = Color.White;
+            LogsBtn.Image = Properties.Resources.Logs;
+            LogsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             LogsBtn.Location = new Point(1055, 178);
             LogsBtn.Name = "LogsBtn";
+            LogsBtn.Padding = new Padding(20, 0, 0, 0);
             LogsBtn.Size = new Size(256, 42);
             LogsBtn.TabIndex = 11;
-            LogsBtn.Text = "View Logs";
+            LogsBtn.Text = "               View Logs";
+            LogsBtn.TextAlign = ContentAlignment.MiddleLeft;
             LogsBtn.UseVisualStyleBackColor = false;
             LogsBtn.Click += LogsBtn_Click;
             // 
@@ -527,11 +564,15 @@
             maintenanceBtn.BackColor = Color.FromArgb(223, 121, 68);
             maintenanceBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             maintenanceBtn.ForeColor = Color.White;
+            maintenanceBtn.Image = Properties.Resources.Maintenance;
+            maintenanceBtn.ImageAlign = ContentAlignment.MiddleLeft;
             maintenanceBtn.Location = new Point(794, 178);
             maintenanceBtn.Name = "maintenanceBtn";
+            maintenanceBtn.Padding = new Padding(20, 0, 0, 0);
             maintenanceBtn.Size = new Size(255, 42);
             maintenanceBtn.TabIndex = 12;
-            maintenanceBtn.Text = "Maintenance";
+            maintenanceBtn.Text = "            Maintenance";
+            maintenanceBtn.TextAlign = ContentAlignment.MiddleLeft;
             maintenanceBtn.UseVisualStyleBackColor = false;
             maintenanceBtn.Click += maintenanceBtn_Click;
             // 
@@ -749,14 +790,14 @@
             dataGridViewRequests.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dataGridViewRequests.BackgroundColor = Color.White;
             dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewRequests.Location = new Point(3, 3);
             dataGridViewRequests.Name = "dataGridViewRequests";
             dataGridViewRequests.RowTemplate.Height = 25;
@@ -778,14 +819,14 @@
             // 
             dataGridViewRentals.BackgroundColor = Color.White;
             dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle11;
             dataGridViewRentals.Dock = DockStyle.Fill;
             dataGridViewRentals.Location = new Point(3, 3);
             dataGridViewRentals.Name = "dataGridViewRentals";
@@ -808,14 +849,14 @@
             // 
             dataGridViewReturns.BackgroundColor = Color.White;
             dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewReturns.Dock = DockStyle.Fill;
             dataGridViewReturns.Location = new Point(3, 3);
             dataGridViewReturns.Name = "dataGridViewReturns";
@@ -834,41 +875,26 @@
             recentActivitiesTxt.TabIndex = 6;
             recentActivitiesTxt.Text = "Recent Activities";
             // 
-            // pictureBox6
+            // pictureBoxAvatar
             // 
-            pictureBox6.BackColor = Color.FromArgb(133, 93, 212);
-            pictureBox6.Location = new Point(1088, 187);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(25, 25);
-            pictureBox6.TabIndex = 21;
-            pictureBox6.TabStop = false;
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 21;
+            pictureBoxAvatar.TabStop = false;
             // 
-            // pictureBox7
+            // labelUserName
             // 
-            pictureBox7.BackColor = Color.FromArgb(223, 121, 68);
-            pictureBox7.Location = new Point(818, 187);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(25, 25);
-            pictureBox7.TabIndex = 22;
-            pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.BackColor = Color.FromArgb(107, 175, 109);
-            pictureBox8.Location = new Point(555, 187);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(25, 25);
-            pictureBox8.TabIndex = 23;
-            pictureBox8.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.BackColor = Color.FromArgb(18, 80, 198);
-            pictureBox9.Location = new Point(300, 187);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(25, 25);
-            pictureBox9.TabIndex = 24;
-            pictureBox9.TabStop = false;
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 21;
+            labelUserName.Text = "User Name";
             // 
             // Dashboard
             // 
@@ -877,10 +903,6 @@
             AutoSize = true;
             BackColor = Color.FromArgb(18, 28, 58);
             ClientSize = new Size(1350, 825);
-            Controls.Add(pictureBox9);
-            Controls.Add(pictureBox8);
-            Controls.Add(pictureBox7);
-            Controls.Add(pictureBox6);
             Controls.Add(recentActivitiesTxt);
             Controls.Add(tabRecentActivities);
             Controls.Add(equipmentInventoryPanel);
@@ -898,12 +920,14 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Dashboard";
+            Text = " ";
             Load += Form1_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             totalEquipmentPanel.ResumeLayout(false);
             totalEquipmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -928,10 +952,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
             tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -999,9 +1020,12 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox7;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox9;
+        private PictureBox pictureBox13;
+        private PictureBox pictureBox14;
+        private PictureBox pictureBox15;
+        private PictureBox pictureBox12;
+        private PictureBox pictureBox11;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }
