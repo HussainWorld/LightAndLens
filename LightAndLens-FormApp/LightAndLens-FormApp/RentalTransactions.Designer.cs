@@ -47,10 +47,14 @@
             logotxt = new Label();
             panel2 = new Panel();
             rentalTransactionsdgv = new DataGridView();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             panel1.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)rentalTransactionsdgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -159,6 +163,8 @@
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
@@ -310,6 +316,27 @@
             rentalTransactionsdgv.Size = new Size(1037, 514);
             rentalTransactionsdgv.TabIndex = 0;
             // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 24;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 25;
+            pictureBoxAvatar.TabStop = false;
+            // 
             // RentalTransactions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -327,10 +354,13 @@
             Load += RentalTransactions_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)rentalTransactionsdgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -355,5 +385,7 @@
         private Panel panel2;
         private DataGridView rentalTransactionsdgv;
         private Button rentalTransactionsBtn;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

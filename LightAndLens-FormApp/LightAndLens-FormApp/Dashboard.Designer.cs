@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             panel2 = new Panel();
@@ -91,8 +91,11 @@
             tabReturns = new TabPage();
             dataGridViewReturns = new DataGridView();
             recentActivitiesTxt = new Label();
+            pictureBoxAvatar = new PictureBox();
+            labelUserName = new Label();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             totalEquipmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             activeRentalsPanel.SuspendLayout();
@@ -111,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
             tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -269,6 +273,8 @@
             // 
             topHeaderPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
             topHeaderPanel.Padding = new Padding(10);
@@ -784,14 +790,14 @@
             dataGridViewRequests.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dataGridViewRequests.BackgroundColor = Color.White;
             dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewRequests.Location = new Point(3, 3);
             dataGridViewRequests.Name = "dataGridViewRequests";
             dataGridViewRequests.RowTemplate.Height = 25;
@@ -813,14 +819,14 @@
             // 
             dataGridViewRentals.BackgroundColor = Color.White;
             dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle11;
             dataGridViewRentals.Dock = DockStyle.Fill;
             dataGridViewRentals.Location = new Point(3, 3);
             dataGridViewRentals.Name = "dataGridViewRentals";
@@ -843,14 +849,14 @@
             // 
             dataGridViewReturns.BackgroundColor = Color.White;
             dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewReturns.Dock = DockStyle.Fill;
             dataGridViewReturns.Location = new Point(3, 3);
             dataGridViewReturns.Name = "dataGridViewReturns";
@@ -868,6 +874,27 @@
             recentActivitiesTxt.Size = new Size(175, 30);
             recentActivitiesTxt.TabIndex = 6;
             recentActivitiesTxt.Text = "Recent Activities";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 21;
+            pictureBoxAvatar.TabStop = false;
+            // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 21;
+            labelUserName.Text = "User Name";
             // 
             // Dashboard
             // 
@@ -893,12 +920,14 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Dashboard";
+            Text = " ";
             Load += Form1_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             totalEquipmentPanel.ResumeLayout(false);
             totalEquipmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -923,6 +952,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
             tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -995,5 +1025,7 @@
         private PictureBox pictureBox15;
         private PictureBox pictureBox12;
         private PictureBox pictureBox11;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             analyticsBtn = new Button();
@@ -54,11 +54,15 @@
             comboBoxSelectCondition = new ComboBox();
             label2 = new Label();
             label3 = new Label();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             sidePanel.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             panel1.SuspendLayout();
             panelListReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).BeginInit();
             panelProcessReturn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -188,6 +192,8 @@
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
@@ -294,14 +300,14 @@
             // dgvListReturns
             // 
             dgvListReturns.BackgroundColor = Color.White;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListReturns.Dock = DockStyle.Fill;
             dgvListReturns.Location = new Point(0, 0);
@@ -403,6 +409,27 @@
             label3.TabIndex = 2;
             label3.Text = "Process Return";
             // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 26;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 27;
+            pictureBoxAvatar.TabStop = false;
+            // 
             // Returns
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -421,12 +448,15 @@
             FormClosing += Returns_FormClosing;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panelListReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).EndInit();
             panelProcessReturn.ResumeLayout(false);
             panelProcessReturn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -457,5 +487,7 @@
         private CheckBox checkBoxLate;
         private Button btnReturn;
         private Button rentalTransactionsBtn;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

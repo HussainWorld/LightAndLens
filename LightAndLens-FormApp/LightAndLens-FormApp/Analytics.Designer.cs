@@ -71,6 +71,8 @@
             rentalRequestsBtn = new Button();
             EquipmentBtn = new Button();
             dashboardBtn = new Button();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             topHeaderPanel.SuspendLayout();
             mostRentedPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mostRentedPic).BeginInit();
@@ -89,12 +91,15 @@
             mostRentedEQPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMostRentedEq).BeginInit();
             sidePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
             topHeaderPanel.Controls.Add(btnApply);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Controls.Add(btnClear);
             topHeaderPanel.Controls.Add(dateTimePickerTo);
             topHeaderPanel.Controls.Add(label4);
@@ -586,6 +591,27 @@
             dashboardBtn.UseVisualStyleBackColor = false;
             dashboardBtn.Click += dashboardBtn_Click;
             // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 28;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 29;
+            pictureBoxAvatar.TabStop = false;
+            // 
             // Analytics
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -636,6 +662,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvMostRentedEq).EndInit();
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
@@ -683,5 +710,7 @@
         private Button EquipmentBtn;
         private Button dashboardBtn;
         private DataGridViewCellStyle dataGridViewCellStyle1;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

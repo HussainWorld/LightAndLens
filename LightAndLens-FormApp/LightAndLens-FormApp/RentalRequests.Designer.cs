@@ -61,13 +61,17 @@ namespace LightAndLens_FormApp
             lblCustName = new Label();
             label3 = new Label();
             recentActivitiesTxt = new Label();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             sidePanel.SuspendLayout();
+            topHeaderPanel.SuspendLayout();
             panel1.SuspendLayout();
             rentalRequestsPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentalRequests).BeginInit();
             requestDetailsPnl.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCust).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -197,6 +201,8 @@ namespace LightAndLens_FormApp
             // topHeaderPanel
             // 
             topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
@@ -493,6 +499,27 @@ namespace LightAndLens_FormApp
             recentActivitiesTxt.Text = "Rental Requests";
             recentActivitiesTxt.Click += recentActivitiesTxt_Click;
             // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 22;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 23;
+            pictureBoxAvatar.TabStop = false;
+            // 
             // RentalRequests
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -515,6 +542,8 @@ namespace LightAndLens_FormApp
             Load += RentalRequests_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
+            topHeaderPanel.ResumeLayout(false);
+            topHeaderPanel.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             rentalRequestsPnl.ResumeLayout(false);
@@ -523,6 +552,7 @@ namespace LightAndLens_FormApp
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCust).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -562,5 +592,7 @@ namespace LightAndLens_FormApp
         private Button btnApprove;
         private Label recentActivitiesTxt;
         private Button rentalTransactionsBtn;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }
