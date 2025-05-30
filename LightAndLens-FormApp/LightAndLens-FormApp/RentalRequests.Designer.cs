@@ -268,11 +268,14 @@ namespace LightAndLens_FormApp
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(853, 14);
+            btnSearch.Image = Properties.Resources.Filter;
+            btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSearch.Location = new Point(849, 14);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(85, 30);
+            btnSearch.Padding = new Padding(0, 0, 1, 0);
+            btnSearch.Size = new Size(89, 32);
             btnSearch.TabIndex = 1;
-            btnSearch.Text = "Search";
+            btnSearch.Text = "Apply";
             btnSearch.TextAlign = ContentAlignment.MiddleRight;
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
@@ -284,9 +287,11 @@ namespace LightAndLens_FormApp
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClear.ForeColor = Color.White;
+            btnClear.Image = Properties.Resources.FilterOff;
+            btnClear.ImageAlign = ContentAlignment.MiddleLeft;
             btnClear.Location = new Point(944, 14);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(76, 30);
+            btnClear.Size = new Size(80, 32);
             btnClear.TabIndex = 0;
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
@@ -338,10 +343,11 @@ namespace LightAndLens_FormApp
             // btnReject
             // 
             btnReject.BackColor = Color.FromArgb(200, 47, 46);
-            btnReject.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReject.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnReject.ForeColor = Color.White;
             btnReject.Location = new Point(47, 331);
             btnReject.Name = "btnReject";
+            btnReject.Padding = new Padding(0, 0, 0, 2);
             btnReject.Size = new Size(256, 39);
             btnReject.TabIndex = 8;
             btnReject.Text = "Reject Request";
@@ -350,10 +356,12 @@ namespace LightAndLens_FormApp
             // btnApprove
             // 
             btnApprove.BackColor = Color.SeaGreen;
-            btnApprove.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnApprove.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnApprove.ForeColor = Color.White;
+            btnApprove.ImageAlign = ContentAlignment.MiddleRight;
             btnApprove.Location = new Point(47, 285);
             btnApprove.Name = "btnApprove";
+            btnApprove.Padding = new Padding(0, 0, 0, 2);
             btnApprove.Size = new Size(256, 39);
             btnApprove.TabIndex = 7;
             btnApprove.Text = "Approve Request";

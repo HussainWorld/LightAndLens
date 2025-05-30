@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             analyticsBtn = new Button();
@@ -203,7 +203,7 @@
             panel1.Controls.Add(txtSearch);
             panel1.Controls.Add(btnApply);
             panel1.Controls.Add(btnClear);
-            panel1.Location = new Point(270, 74);
+            panel1.Location = new Point(271, 85);
             panel1.Name = "panel1";
             panel1.Size = new Size(1037, 60);
             panel1.TabIndex = 5;
@@ -255,9 +255,11 @@
             btnApply.FlatStyle = FlatStyle.Flat;
             btnApply.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnApply.ForeColor = Color.White;
-            btnApply.Location = new Point(811, 14);
+            btnApply.Image = Properties.Resources.Filter;
+            btnApply.ImageAlign = ContentAlignment.MiddleLeft;
+            btnApply.Location = new Point(818, 14);
             btnApply.Name = "btnApply";
-            btnApply.Size = new Size(105, 30);
+            btnApply.Size = new Size(98, 32);
             btnApply.TabIndex = 1;
             btnApply.Text = "Apply";
             btnApply.TextAlign = ContentAlignment.MiddleRight;
@@ -270,9 +272,11 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClear.ForeColor = Color.White;
+            btnClear.Image = Properties.Resources.FilterOff;
+            btnClear.ImageAlign = ContentAlignment.MiddleLeft;
             btnClear.Location = new Point(932, 14);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(85, 30);
+            btnClear.Size = new Size(85, 32);
             btnClear.TabIndex = 0;
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
@@ -282,7 +286,7 @@
             // 
             panelListReturns.BackColor = Color.FromArgb(23, 38, 80);
             panelListReturns.Controls.Add(dgvListReturns);
-            panelListReturns.Location = new Point(270, 161);
+            panelListReturns.Location = new Point(270, 195);
             panelListReturns.Name = "panelListReturns";
             panelListReturns.Size = new Size(698, 375);
             panelListReturns.TabIndex = 15;
@@ -290,14 +294,14 @@
             // dgvListReturns
             // 
             dgvListReturns.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListReturns.Dock = DockStyle.Fill;
             dgvListReturns.Location = new Point(0, 0);
@@ -316,7 +320,7 @@
             panelProcessReturn.Controls.Add(comboBoxSelectCondition);
             panelProcessReturn.Controls.Add(label2);
             panelProcessReturn.Controls.Add(label3);
-            panelProcessReturn.Location = new Point(988, 161);
+            panelProcessReturn.Location = new Point(988, 195);
             panelProcessReturn.Name = "panelProcessReturn";
             panelProcessReturn.Size = new Size(319, 375);
             panelProcessReturn.TabIndex = 16;
@@ -324,7 +328,7 @@
             // btnReturn
             // 
             btnReturn.BackColor = Color.SeaGreen;
-            btnReturn.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReturn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnReturn.ForeColor = Color.White;
             btnReturn.Location = new Point(22, 310);
             btnReturn.Name = "btnReturn";

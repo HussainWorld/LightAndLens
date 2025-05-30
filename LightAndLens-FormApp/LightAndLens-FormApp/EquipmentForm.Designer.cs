@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             analyticsBtn = new Button();
@@ -279,8 +279,11 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
+            btnSearch.Image = Properties.Resources.Filter;
+            btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
             btnSearch.Location = new Point(811, 14);
             btnSearch.Name = "btnSearch";
+            btnSearch.Padding = new Padding(2, 0, 0, 0);
             btnSearch.Size = new Size(105, 30);
             btnSearch.TabIndex = 1;
             btnSearch.Text = "Apply  ";
@@ -295,6 +298,8 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClear.ForeColor = Color.White;
+            btnClear.Image = Properties.Resources.FilterOff;
+            btnClear.ImageAlign = ContentAlignment.MiddleLeft;
             btnClear.Location = new Point(932, 14);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(85, 30);
@@ -309,8 +314,11 @@
             btnAddEquipment.BackColor = Color.SeaGreen;
             btnAddEquipment.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddEquipment.ForeColor = Color.White;
+            btnAddEquipment.Image = Properties.Resources.Add2;
+            btnAddEquipment.ImageAlign = ContentAlignment.MiddleLeft;
             btnAddEquipment.Location = new Point(830, 157);
             btnAddEquipment.Name = "btnAddEquipment";
+            btnAddEquipment.Padding = new Padding(12, 0, 0, 0);
             btnAddEquipment.Size = new Size(180, 34);
             btnAddEquipment.TabIndex = 12;
             btnAddEquipment.Text = "Add Equipment       ";
@@ -323,8 +331,11 @@
             btnEditEquipment.BackColor = Color.FromArgb(133, 93, 212);
             btnEditEquipment.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnEditEquipment.ForeColor = Color.White;
+            btnEditEquipment.Image = Properties.Resources.Edit;
+            btnEditEquipment.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditEquipment.Location = new Point(1025, 157);
             btnEditEquipment.Name = "btnEditEquipment";
+            btnEditEquipment.Padding = new Padding(2, 0, 0, 0);
             btnEditEquipment.Size = new Size(77, 34);
             btnEditEquipment.TabIndex = 13;
             btnEditEquipment.Text = "Edit   ";
@@ -337,8 +348,11 @@
             btnDelete.BackColor = Color.FromArgb(200, 47, 46);
             btnDelete.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnDelete.ForeColor = Color.White;
+            btnDelete.Image = Properties.Resources.Delete;
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
             btnDelete.Location = new Point(1118, 157);
             btnDelete.Name = "btnDelete";
+            btnDelete.Padding = new Padding(1, 0, 0, 0);
             btnDelete.Size = new Size(87, 34);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Delete  ";
@@ -351,6 +365,8 @@
             btnRefreshEquipment.BackColor = Color.Gray;
             btnRefreshEquipment.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnRefreshEquipment.ForeColor = Color.White;
+            btnRefreshEquipment.Image = Properties.Resources.Refresh;
+            btnRefreshEquipment.ImageAlign = ContentAlignment.MiddleLeft;
             btnRefreshEquipment.Location = new Point(1221, 157);
             btnRefreshEquipment.Name = "btnRefreshEquipment";
             btnRefreshEquipment.Size = new Size(87, 34);
@@ -363,14 +379,14 @@
             // dgvListEquipment
             // 
             dgvListEquipment.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(209, 213, 219);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvListEquipment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(209, 213, 219);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvListEquipment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvListEquipment.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListEquipment.Dock = DockStyle.Fill;
             dgvListEquipment.Location = new Point(0, 0);

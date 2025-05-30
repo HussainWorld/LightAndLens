@@ -116,11 +116,13 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
+            btnSearch.Image = Properties.Resources.Filter;
+            btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
             btnSearch.Location = new Point(847, 14);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(85, 30);
             btnSearch.TabIndex = 1;
-            btnSearch.Text = "Search";
+            btnSearch.Text = "Apply";
             btnSearch.TextAlign = ContentAlignment.MiddleRight;
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
@@ -132,9 +134,11 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClear.ForeColor = Color.White;
+            btnClear.Image = Properties.Resources.FilterOff;
+            btnClear.ImageAlign = ContentAlignment.MiddleLeft;
             btnClear.Location = new Point(944, 14);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(76, 30);
+            btnClear.Size = new Size(80, 30);
             btnClear.TabIndex = 0;
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
