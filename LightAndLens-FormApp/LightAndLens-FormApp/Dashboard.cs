@@ -11,16 +11,15 @@ namespace LightAndLens_FormApp
         public Dashboard()
         {
             InitializeComponent();
-            HighlightActiveButton(dashboardBtn);
             _context = new LightAndLensDBContext();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadDashboardStats();
             LoadRentalRequestsView();
-            
+
         }
 
         private void LoadDashboardStats()
@@ -61,7 +60,7 @@ namespace LightAndLens_FormApp
             }
         }
 
-      
+
 
         public void RefreshKPI()
         {
@@ -220,18 +219,6 @@ namespace LightAndLens_FormApp
             //dataGridViewRecentActivities.DataSource = null;
         }
 
-        private void HighlightActiveButton(Button activeButton)
-        {
-            // Reset all to default color
-            dashboardBtn.BackColor = Color.FromArgb(32, 46, 82);
-            EquipmentBtn.BackColor = Color.FromArgb(32, 46, 82);
-            rentalRequestsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            returnsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            analyticsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            rentalTransactionsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            // Set active color
-            activeButton.BackColor = Color.FromArgb(17, 80, 203);
-        }
         
 
 
@@ -296,6 +283,11 @@ namespace LightAndLens_FormApp
         {
             var logsForm = new Logs();
             logsForm.ShowDialog();
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
