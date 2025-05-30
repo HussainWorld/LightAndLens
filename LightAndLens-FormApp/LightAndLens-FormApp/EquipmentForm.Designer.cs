@@ -95,11 +95,13 @@
             rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
             rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalTransactionsBtn.ForeColor = Color.White;
+            rentalTransactionsBtn.Image = Properties.Resources.Orders;
+            rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalTransactionsBtn.Location = new Point(10, 265);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
             rentalTransactionsBtn.Size = new Size(211, 44);
             rentalTransactionsBtn.TabIndex = 18;
-            rentalTransactionsBtn.Text = "Transactions";
+            rentalTransactionsBtn.Text = "  Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
             rentalTransactionsBtn.Click += rentalTransactionsBtn_Click;
             // 
@@ -109,11 +111,13 @@
             analyticsBtn.FlatStyle = FlatStyle.Flat;
             analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             analyticsBtn.ForeColor = Color.White;
+            analyticsBtn.Image = Properties.Resources.Analytics;
+            analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             analyticsBtn.Location = new Point(10, 385);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
             analyticsBtn.TabIndex = 5;
-            analyticsBtn.Text = "Analytics";
+            analyticsBtn.Text = "  Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
             analyticsBtn.Click += analyticsBtn_Click;
             // 
@@ -123,11 +127,13 @@
             returnsBtn.FlatStyle = FlatStyle.Flat;
             returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             returnsBtn.ForeColor = Color.White;
+            returnsBtn.Image = Properties.Resources.Return__2_;
+            returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             returnsBtn.Location = new Point(10, 325);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
             returnsBtn.TabIndex = 4;
-            returnsBtn.Text = "Returns";
+            returnsBtn.Text = "  Returns";
             returnsBtn.UseVisualStyleBackColor = false;
             returnsBtn.Click += returnsBtn_Click;
             // 
@@ -137,11 +143,13 @@
             rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
             rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalRequestsBtn.ForeColor = Color.White;
+            rentalRequestsBtn.Image = Properties.Resources.Request;
+            rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalRequestsBtn.Location = new Point(10, 205);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
             rentalRequestsBtn.Size = new Size(211, 44);
             rentalRequestsBtn.TabIndex = 3;
-            rentalRequestsBtn.Text = "Requests";
+            rentalRequestsBtn.Text = "  Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
             rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
@@ -151,11 +159,13 @@
             EquipmentBtn.FlatStyle = FlatStyle.Flat;
             EquipmentBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             EquipmentBtn.ForeColor = Color.White;
+            EquipmentBtn.Image = Properties.Resources.Equipment2;
+            EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             EquipmentBtn.Location = new Point(10, 145);
             EquipmentBtn.Name = "EquipmentBtn";
             EquipmentBtn.Size = new Size(211, 44);
             EquipmentBtn.TabIndex = 2;
-            EquipmentBtn.Text = "Equipment";
+            EquipmentBtn.Text = "  Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
             EquipmentBtn.Click += EquipmentBtn_Click;
             // 
@@ -165,11 +175,13 @@
             dashboardBtn.FlatStyle = FlatStyle.Flat;
             dashboardBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dashboardBtn.ForeColor = Color.White;
+            dashboardBtn.Image = Properties.Resources.Dashboard;
+            dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
             dashboardBtn.Location = new Point(10, 85);
             dashboardBtn.Name = "dashboardBtn";
             dashboardBtn.Size = new Size(211, 44);
             dashboardBtn.TabIndex = 1;
-            dashboardBtn.Text = "Dashboard";
+            dashboardBtn.Text = "  Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
             dashboardBtn.Click += dashboardBtn_Click;
             // 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             topHeaderPanel = new Panel();
             btnApply = new Button();
             btnClear = new Button();
@@ -343,14 +343,14 @@
             // dgvMonthlyRental
             // 
             dgvMonthlyRental.BackgroundColor = Color.White;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvMonthlyRental.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvMonthlyRental.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMonthlyRental.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMonthlyRental.Location = new Point(17, 49);
             dgvMonthlyRental.Name = "dgvMonthlyRental";
@@ -382,7 +382,6 @@
             // dgvRentalsByCat
             // 
             dgvRentalsByCat.BackgroundColor = Color.White;
-            dgvRentalsByCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvRentalsByCat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRentalsByCat.Location = new Point(17, 49);
             dgvRentalsByCat.Name = "dgvRentalsByCat";
@@ -414,7 +413,6 @@
             // dgvLateReturnByCat
             // 
             dgvLateReturnByCat.BackgroundColor = Color.White;
-            dgvLateReturnByCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvLateReturnByCat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvLateReturnByCat.Location = new Point(17, 49);
             dgvLateReturnByCat.Name = "dgvLateReturnByCat";
@@ -446,7 +444,6 @@
             // dgvMostRentedEq
             // 
             dgvMostRentedEq.BackgroundColor = Color.White;
-            dgvMostRentedEq.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMostRentedEq.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMostRentedEq.Location = new Point(17, 49);
             dgvMostRentedEq.Name = "dgvMostRentedEq";
@@ -500,6 +497,8 @@
             rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
             rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalTransactionsBtn.ForeColor = Color.White;
+            rentalTransactionsBtn.Image = Properties.Resources.Orders;
+            rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalTransactionsBtn.Location = new Point(9, 254);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
             rentalTransactionsBtn.Size = new Size(211, 44);
@@ -514,6 +513,8 @@
             analyticsBtn.FlatStyle = FlatStyle.Flat;
             analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             analyticsBtn.ForeColor = Color.White;
+            analyticsBtn.Image = Properties.Resources.Analytics;
+            analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             analyticsBtn.Location = new Point(9, 376);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
@@ -527,6 +528,8 @@
             returnsBtn.FlatStyle = FlatStyle.Flat;
             returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             returnsBtn.ForeColor = Color.White;
+            returnsBtn.Image = Properties.Resources.Return__2_;
+            returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             returnsBtn.Location = new Point(9, 316);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
@@ -541,6 +544,8 @@
             rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
             rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             rentalRequestsBtn.ForeColor = Color.White;
+            rentalRequestsBtn.Image = Properties.Resources.Request;
+            rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalRequestsBtn.Location = new Point(9, 192);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
             rentalRequestsBtn.Size = new Size(211, 44);
@@ -555,6 +560,8 @@
             EquipmentBtn.FlatStyle = FlatStyle.Flat;
             EquipmentBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             EquipmentBtn.ForeColor = Color.White;
+            EquipmentBtn.Image = Properties.Resources.Equipment2;
+            EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             EquipmentBtn.Location = new Point(9, 132);
             EquipmentBtn.Name = "EquipmentBtn";
             EquipmentBtn.Size = new Size(211, 44);
@@ -569,6 +576,8 @@
             dashboardBtn.FlatStyle = FlatStyle.Flat;
             dashboardBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dashboardBtn.ForeColor = Color.White;
+            dashboardBtn.Image = Properties.Resources.Dashboard;
+            dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
             dashboardBtn.Location = new Point(9, 72);
             dashboardBtn.Name = "dashboardBtn";
             dashboardBtn.Size = new Size(211, 44);

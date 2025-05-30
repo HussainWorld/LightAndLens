@@ -25,15 +25,36 @@ namespace LightAndLens_FormApp
 
         private void HighlightActiveButton(Button activeButton)
         {
-            // Reset all to default color
-            dashboardBtn.BackColor = Color.FromArgb(32, 46, 82);
-            EquipmentBtn.BackColor = Color.FromArgb(32, 46, 82);
-            rentalRequestsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            returnsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            analyticsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            rentalTransactionsBtn.BackColor = Color.FromArgb(32, 46, 82);
-            // Set active color
-            activeButton.BackColor = Color.FromArgb(17, 80, 203);
+            // Put all buttons in a list for easy iteration
+            var buttons = new List<Button> {
+            dashboardBtn,
+            EquipmentBtn,
+            rentalRequestsBtn,
+            returnsBtn,
+            analyticsBtn,
+            rentalTransactionsBtn
+    };
+
+            Color defaultBackColor = Color.FromArgb(22, 34, 68);
+            Color defaultForeColor = Color.FromArgb(233, 239, 255);
+            Color defaultBorderColor = Color.FromArgb(41, 58, 107);
+            float fontSize = 15.75F;
+
+            // Reset all buttons to default
+            foreach (var btn in buttons)
+            {
+                btn.BackColor = defaultBackColor;
+                btn.ForeColor = defaultForeColor;
+                btn.FlatAppearance.BorderColor = defaultBorderColor;
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
+
+            }
+
+            // Set the active button style
+            activeButton.BackColor = Color.FromArgb(28, 44, 91);
+            activeButton.ForeColor = Color.White;
+            activeButton.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
         }
 
         private void dashboardBtn_Click(object sender, EventArgs e)
