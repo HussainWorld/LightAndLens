@@ -83,10 +83,9 @@
             sidePanel.Controls.Add(logotxt);
             sidePanel.Dock = DockStyle.Left;
             sidePanel.Location = new Point(0, 0);
-            sidePanel.Margin = new Padding(3, 4, 3, 4);
             sidePanel.Name = "sidePanel";
-            sidePanel.Padding = new Padding(11, 13, 11, 13);
-            sidePanel.Size = new Size(263, 1055);
+            sidePanel.Padding = new Padding(10);
+            sidePanel.Size = new Size(230, 791);
             sidePanel.TabIndex = 2;
             // 
             // rentalTransactionsBtn
@@ -97,10 +96,9 @@
             rentalTransactionsBtn.ForeColor = Color.White;
             rentalTransactionsBtn.Image = Properties.Resources.Orders;
             rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            rentalTransactionsBtn.Location = new Point(11, 353);
-            rentalTransactionsBtn.Margin = new Padding(3, 4, 3, 4);
+            rentalTransactionsBtn.Location = new Point(10, 265);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
-            rentalTransactionsBtn.Size = new Size(241, 59);
+            rentalTransactionsBtn.Size = new Size(211, 44);
             rentalTransactionsBtn.TabIndex = 7;
             rentalTransactionsBtn.Text = "Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
@@ -114,10 +112,9 @@
             analyticsBtn.ForeColor = Color.White;
             analyticsBtn.Image = Properties.Resources.Analytics;
             analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            analyticsBtn.Location = new Point(11, 517);
-            analyticsBtn.Margin = new Padding(3, 4, 3, 4);
+            analyticsBtn.Location = new Point(10, 388);
             analyticsBtn.Name = "analyticsBtn";
-            analyticsBtn.Size = new Size(241, 59);
+            analyticsBtn.Size = new Size(211, 44);
             analyticsBtn.TabIndex = 5;
             analyticsBtn.Text = "Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
@@ -131,10 +128,9 @@
             returnsBtn.ForeColor = Color.White;
             returnsBtn.Image = Properties.Resources.Return__2_;
             returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            returnsBtn.Location = new Point(11, 437);
-            returnsBtn.Margin = new Padding(3, 4, 3, 4);
+            returnsBtn.Location = new Point(10, 328);
             returnsBtn.Name = "returnsBtn";
-            returnsBtn.Size = new Size(241, 59);
+            returnsBtn.Size = new Size(211, 44);
             returnsBtn.TabIndex = 4;
             returnsBtn.Text = "Returns";
             returnsBtn.UseVisualStyleBackColor = false;
@@ -147,10 +143,9 @@
             rentalRequestsBtn.ForeColor = Color.White;
             rentalRequestsBtn.Image = Properties.Resources.Request;
             rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            rentalRequestsBtn.Location = new Point(11, 273);
-            rentalRequestsBtn.Margin = new Padding(3, 4, 3, 4);
+            rentalRequestsBtn.Location = new Point(10, 205);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
-            rentalRequestsBtn.Size = new Size(241, 59);
+            rentalRequestsBtn.Size = new Size(211, 44);
             rentalRequestsBtn.TabIndex = 3;
             rentalRequestsBtn.Text = "Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
@@ -164,10 +159,9 @@
             EquipmentBtn.ForeColor = Color.White;
             EquipmentBtn.Image = Properties.Resources.Equipment2;
             EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            EquipmentBtn.Location = new Point(11, 193);
-            EquipmentBtn.Margin = new Padding(3, 4, 3, 4);
+            EquipmentBtn.Location = new Point(10, 145);
             EquipmentBtn.Name = "EquipmentBtn";
-            EquipmentBtn.Size = new Size(241, 59);
+            EquipmentBtn.Size = new Size(211, 44);
             EquipmentBtn.TabIndex = 2;
             EquipmentBtn.Text = "Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
@@ -181,10 +175,9 @@
             dashboardBtn.ForeColor = Color.White;
             dashboardBtn.Image = Properties.Resources.Dashboard;
             dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            dashboardBtn.Location = new Point(11, 113);
-            dashboardBtn.Margin = new Padding(3, 4, 3, 4);
+            dashboardBtn.Location = new Point(10, 85);
             dashboardBtn.Name = "dashboardBtn";
-            dashboardBtn.Size = new Size(241, 59);
+            dashboardBtn.Size = new Size(211, 44);
             dashboardBtn.TabIndex = 1;
             dashboardBtn.Text = "Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
@@ -195,9 +188,9 @@
             logotxt.AutoSize = true;
             logotxt.Font = new Font("Vivaldi", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             logotxt.ForeColor = Color.White;
-            logotxt.Location = new Point(10, 13);
+            logotxt.Location = new Point(9, 10);
             logotxt.Name = "logotxt";
-            logotxt.Size = new Size(235, 36);
+            logotxt.Size = new Size(189, 29);
             logotxt.TabIndex = 0;
             logotxt.Text = "Lights And Lenses";
             logotxt.TextAlign = ContentAlignment.MiddleCenter;
@@ -208,11 +201,10 @@
             topHeaderPanel.Controls.Add(labelUserName);
             topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
-            topHeaderPanel.Location = new Point(263, 0);
-            topHeaderPanel.Margin = new Padding(3, 4, 3, 4);
+            topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
-            topHeaderPanel.Padding = new Padding(11, 13, 11, 13);
-            topHeaderPanel.Size = new Size(1280, 80);
+            topHeaderPanel.Padding = new Padding(10);
+            topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 3;
             // 
             // labelUserName
@@ -220,19 +212,18 @@
             labelUserName.AutoSize = true;
             labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(1087, 28);
+            labelUserName.Location = new Point(882, 21);
             labelUserName.Name = "labelUserName";
-            labelUserName.Size = new Size(116, 28);
+            labelUserName.Size = new Size(94, 21);
             labelUserName.TabIndex = 26;
             labelUserName.Text = "User Name";
             // 
             // pictureBoxAvatar
             // 
             pictureBoxAvatar.Image = Properties.Resources.Avatar;
-            pictureBoxAvatar.Location = new Point(1203, 12);
-            pictureBoxAvatar.Margin = new Padding(3, 4, 3, 4);
+            pictureBoxAvatar.Location = new Point(1053, 9);
             pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new Size(49, 57);
+            pictureBoxAvatar.Size = new Size(43, 43);
             pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAvatar.TabIndex = 27;
             pictureBoxAvatar.TabStop = false;
@@ -245,10 +236,9 @@
             panel1.Controls.Add(txtSearch);
             panel1.Controls.Add(btnApply);
             panel1.Controls.Add(btnClear);
-            panel1.Location = new Point(310, 113);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(271, 85);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1185, 80);
+            panel1.Size = new Size(1037, 60);
             panel1.TabIndex = 5;
             // 
             // comboBoxFilterConditions
@@ -260,10 +250,9 @@
             comboBoxFilterConditions.ForeColor = Color.Black;
             comboBoxFilterConditions.FormattingEnabled = true;
             comboBoxFilterConditions.Items.AddRange(new object[] { "All Conditions", "Good", "Damaged", "Defective" });
-            comboBoxFilterConditions.Location = new Point(746, 23);
-            comboBoxFilterConditions.Margin = new Padding(3, 4, 3, 4);
+            comboBoxFilterConditions.Location = new Point(653, 17);
             comboBoxFilterConditions.Name = "comboBoxFilterConditions";
-            comboBoxFilterConditions.Size = new Size(159, 29);
+            comboBoxFilterConditions.Size = new Size(140, 25);
             comboBoxFilterConditions.TabIndex = 4;
             // 
             // comboBoxFilterStatus
@@ -275,10 +264,9 @@
             comboBoxFilterStatus.ForeColor = Color.Black;
             comboBoxFilterStatus.FormattingEnabled = true;
             comboBoxFilterStatus.Items.AddRange(new object[] { "All Status", "Returned", "Pending", "Overdue" });
-            comboBoxFilterStatus.Location = new Point(565, 23);
-            comboBoxFilterStatus.Margin = new Padding(3, 4, 3, 4);
+            comboBoxFilterStatus.Location = new Point(494, 17);
             comboBoxFilterStatus.Name = "comboBoxFilterStatus";
-            comboBoxFilterStatus.Size = new Size(159, 29);
+            comboBoxFilterStatus.Size = new Size(140, 25);
             comboBoxFilterStatus.TabIndex = 3;
             // 
             // txtSearch
@@ -287,11 +275,10 @@
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtSearch.ForeColor = Color.Black;
-            txtSearch.Location = new Point(17, 23);
-            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Location = new Point(15, 17);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search by equipment or customer name";
-            txtSearch.Size = new Size(527, 29);
+            txtSearch.Size = new Size(461, 25);
             txtSearch.TabIndex = 2;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -304,10 +291,9 @@
             btnApply.ForeColor = Color.White;
             btnApply.Image = Properties.Resources.Filter;
             btnApply.ImageAlign = ContentAlignment.MiddleLeft;
-            btnApply.Location = new Point(935, 19);
-            btnApply.Margin = new Padding(3, 4, 3, 4);
+            btnApply.Location = new Point(818, 14);
             btnApply.Name = "btnApply";
-            btnApply.Size = new Size(112, 43);
+            btnApply.Size = new Size(98, 32);
             btnApply.TabIndex = 1;
             btnApply.Text = "Apply";
             btnApply.TextAlign = ContentAlignment.MiddleRight;
@@ -322,10 +308,9 @@
             btnClear.ForeColor = Color.White;
             btnClear.Image = Properties.Resources.FilterOff;
             btnClear.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClear.Location = new Point(1065, 19);
-            btnClear.Margin = new Padding(3, 4, 3, 4);
+            btnClear.Location = new Point(932, 14);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(97, 43);
+            btnClear.Size = new Size(85, 32);
             btnClear.TabIndex = 0;
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
@@ -337,7 +322,7 @@
             panelListReturns.Location = new Point(309, 260);
             panelListReturns.Margin = new Padding(3, 4, 3, 4);
             panelListReturns.Name = "panelListReturns";
-            panelListReturns.Size = new Size(798, 500);
+            panelListReturns.Size = new Size(698, 375);
             panelListReturns.TabIndex = 15;
             // 
             // dgvListReturns
@@ -371,10 +356,9 @@
             panelProcessReturn.Controls.Add(comboBoxSelectCondition);
             panelProcessReturn.Controls.Add(label2);
             panelProcessReturn.Controls.Add(label3);
-            panelProcessReturn.Location = new Point(1129, 260);
-            panelProcessReturn.Margin = new Padding(3, 4, 3, 4);
+            panelProcessReturn.Location = new Point(988, 195);
             panelProcessReturn.Name = "panelProcessReturn";
-            panelProcessReturn.Size = new Size(365, 500);
+            panelProcessReturn.Size = new Size(319, 375);
             panelProcessReturn.TabIndex = 16;
             // 
             // btnReturn
@@ -382,10 +366,9 @@
             btnReturn.BackColor = Color.SeaGreen;
             btnReturn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnReturn.ForeColor = Color.White;
-            btnReturn.Location = new Point(25, 413);
-            btnReturn.Margin = new Padding(3, 4, 3, 4);
+            btnReturn.Location = new Point(22, 310);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(317, 52);
+            btnReturn.Size = new Size(277, 39);
             btnReturn.TabIndex = 9;
             btnReturn.Text = "Mark as Returned";
             btnReturn.UseVisualStyleBackColor = false;
@@ -393,10 +376,9 @@
             // 
             // textBoxReturnNotes
             // 
-            textBoxReturnNotes.Location = new Point(25, 217);
-            textBoxReturnNotes.Margin = new Padding(3, 4, 3, 4);
+            textBoxReturnNotes.Location = new Point(22, 163);
             textBoxReturnNotes.Name = "textBoxReturnNotes";
-            textBoxReturnNotes.Size = new Size(316, 27);
+            textBoxReturnNotes.Size = new Size(277, 23);
             textBoxReturnNotes.TabIndex = 7;
             // 
             // label4
@@ -404,9 +386,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(25, 188);
+            label4.Location = new Point(22, 141);
             label4.Name = "label4";
-            label4.Size = new Size(112, 23);
+            label4.Size = new Size(87, 17);
             label4.TabIndex = 6;
             label4.Text = "Return notes";
             // 
@@ -419,10 +401,9 @@
             comboBoxSelectCondition.ForeColor = Color.Black;
             comboBoxSelectCondition.FormattingEnabled = true;
             comboBoxSelectCondition.Items.AddRange(new object[] { "Select Condition", "Good Condition", "Damaged", "Defective" });
-            comboBoxSelectCondition.Location = new Point(25, 115);
-            comboBoxSelectCondition.Margin = new Padding(3, 4, 3, 4);
+            comboBoxSelectCondition.Location = new Point(22, 86);
             comboBoxSelectCondition.Name = "comboBoxSelectCondition";
-            comboBoxSelectCondition.Size = new Size(316, 29);
+            comboBoxSelectCondition.Size = new Size(277, 25);
             comboBoxSelectCondition.TabIndex = 5;
             // 
             // label2
@@ -430,9 +411,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(25, 85);
+            label2.Location = new Point(22, 64);
             label2.Name = "label2";
-            label2.Size = new Size(89, 23);
+            label2.Size = new Size(69, 17);
             label2.TabIndex = 3;
             label2.Text = "Condition";
             // 
@@ -441,9 +422,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(95, 4);
+            label3.Location = new Point(83, 3);
             label3.Name = "label3";
-            label3.Size = new Size(207, 37);
+            label3.Size = new Size(158, 30);
             label3.TabIndex = 2;
             label3.Text = "Process Return";
             // 
@@ -492,7 +473,7 @@
             // 
             // Returns
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(18, 28, 58);
             ClientSize = new Size(1543, 1055);
@@ -503,11 +484,11 @@
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Returns";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Returns";
             FormClosing += Returns_FormClosing;
+            Load += Returns_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);

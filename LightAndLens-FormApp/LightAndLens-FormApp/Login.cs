@@ -85,7 +85,7 @@ namespace LightAndLens_FormApp
 
                     Session.CurrentUser = user;  // Set logged-in user in session
 
-                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
 
                     var dashboard = new Dashboard();
@@ -125,5 +125,9 @@ namespace LightAndLens_FormApp
             textBoxPassword.Text = "Asd123";
         }
 
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

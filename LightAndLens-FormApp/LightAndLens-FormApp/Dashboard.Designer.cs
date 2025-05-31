@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             panel2 = new Panel();
@@ -286,7 +286,7 @@
             labelUserName.AutoSize = true;
             labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(951, 21);
+            labelUserName.Location = new Point(882, 21);
             labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(94, 21);
             labelUserName.TabIndex = 21;
@@ -540,9 +540,10 @@
             newRentalBtn.Padding = new Padding(20, 0, 0, 0);
             newRentalBtn.Size = new Size(256, 42);
             newRentalBtn.TabIndex = 6;
-            newRentalBtn.Text = "            New Rental";
+            newRentalBtn.Text = "            Quick Rental";
             newRentalBtn.TextAlign = ContentAlignment.MiddleLeft;
             newRentalBtn.UseVisualStyleBackColor = false;
+            newRentalBtn.Click += newRentalBtn_Click;
             // 
             // processReturnBtn
             // 
@@ -557,9 +558,10 @@
             processReturnBtn.Padding = new Padding(20, 0, 0, 0);
             processReturnBtn.Size = new Size(256, 42);
             processReturnBtn.TabIndex = 10;
-            processReturnBtn.Text = "          Process Return";
+            processReturnBtn.Text = "          Quick Return";
             processReturnBtn.TextAlign = ContentAlignment.MiddleLeft;
             processReturnBtn.UseVisualStyleBackColor = false;
+            processReturnBtn.Click += processReturnBtn_Click;
             // 
             // LogsBtn
             // 
@@ -811,14 +813,14 @@
             dataGridViewRequests.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dataGridViewRequests.BackgroundColor = Color.White;
             dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Window;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewRequests.Location = new Point(3, 3);
             dataGridViewRequests.Name = "dataGridViewRequests";
             dataGridViewRequests.RowTemplate.Height = 25;
@@ -840,14 +842,14 @@
             // 
             dataGridViewRentals.BackgroundColor = Color.White;
             dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewRentals.Dock = DockStyle.Fill;
             dataGridViewRentals.Location = new Point(3, 3);
             dataGridViewRentals.Name = "dataGridViewRentals";
@@ -870,14 +872,14 @@
             // 
             dataGridViewReturns.BackgroundColor = Color.White;
             dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Window;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(18, 80, 198);
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewReturns.Dock = DockStyle.Fill;
             dataGridViewReturns.Location = new Point(3, 3);
             dataGridViewReturns.Name = "dataGridViewReturns";
@@ -921,6 +923,7 @@
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
+            FormClosed += Dashboard_FormClosed;
             Load += Form1_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();

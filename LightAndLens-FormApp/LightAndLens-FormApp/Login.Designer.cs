@@ -200,6 +200,7 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Register";
+            FormClosed += Login_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

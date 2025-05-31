@@ -220,7 +220,7 @@ namespace LightAndLens_FormApp
             //dataGridViewRecentActivities.DataSource = null;
         }
 
-        
+
         private void HighlightActiveButton(Button activeButton)
         {
             // Put all buttons in a list for easy iteration
@@ -246,12 +246,12 @@ namespace LightAndLens_FormApp
                 btn.FlatAppearance.BorderColor = defaultBorderColor;
                 btn.ImageAlign = ContentAlignment.MiddleLeft;
                 btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
-                
+
             }
 
             // Set the active button style
             activeButton.BackColor = Color.FromArgb(28, 44, 91);
-            activeButton.ForeColor = Color.White; 
+            activeButton.ForeColor = Color.White;
             activeButton.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
         }
 
@@ -286,9 +286,11 @@ namespace LightAndLens_FormApp
 
         private void analyticsBtn_Click(object sender, EventArgs e)
         {
-            var analyticsForm = new Analytics();
-            analyticsForm.Show();
-            this.Hide();
+            MessageBox.Show(
+            "Whoa! This is an exclusive feature for premium members only.\nUpgrade membership to unlock powerful analytics!",
+            "Premium Feature",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
         }
 
         private void recentActivitiesPanel_Paint(object sender, PaintEventArgs e)
@@ -316,13 +318,45 @@ namespace LightAndLens_FormApp
 
         private void LogsBtn_Click(object sender, EventArgs e)
         {
-            var logsForm = new Logs();
-            logsForm.ShowDialog();
+            if (Session.CurrentUser != null &&
+        Session.CurrentUser.Email != null &&
+        Session.CurrentUser.Email.ToLower().Contains("admin"))
+            {
+                var logsForm = new Logs();
+                logsForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Access denied. This feature is for Admins only.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void newRentalBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+           "This feature is still cooking! We’re putting the finishing touches on Quick Rental.\nStay tuned for an awesome experience soon!",
+           "Coming Soon",
+           MessageBoxButtons.OK,
+           MessageBoxIcon.Information);
+        }
+
+        private void processReturnBtn_Click(object sender, EventArgs e)
+        {
+        MessageBox.Show(
+        "This feature is still cooking! We’re putting the finishing touches on Quick Return.\nStay tuned for an awesome experience soon!",
+        "Coming Soon",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information);
         }
     }
 }

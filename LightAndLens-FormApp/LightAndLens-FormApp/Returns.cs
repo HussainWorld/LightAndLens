@@ -91,9 +91,11 @@ namespace LightAndLens_FormApp
 
         private void analyticsBtn_Click(object sender, EventArgs e)
         {
-            var analyticsForm = new Analytics();
-            analyticsForm.Show();
-            this.Hide();
+         MessageBox.Show(
+         "Whoa! This is an exclusive feature for premium members only.\nUpgrade membership to unlock powerful analytics!",
+         "Premium Feature",
+         MessageBoxButtons.OK,
+         MessageBoxIcon.Information);
         }
 
         private void rentalTransactionsBtn_Click(object sender, EventArgs e)
