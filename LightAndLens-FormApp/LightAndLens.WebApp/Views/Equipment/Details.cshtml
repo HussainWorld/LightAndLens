@@ -4,71 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Equipment Details</h1>
+<hr />
 
-<div>
-    <h4>Equipment</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EquipmentName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EquipmentName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RentalPricePerDay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RentalPricePerDay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Availability)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Availability.AvailabilityStatusName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Condition)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Condition.ConditionName)
-        </dd>
-        <dt class="col-sm-2">Image</dt>
-        <dd class="col-sm-10">
-            @{
-                var mainImage = Model.EquipmentImages?.FirstOrDefault(i => i.IsMain == true);
-                if (mainImage != null)
-                {
-                    <img src="@Url.Content($"~/SharedImages/{mainImage.ImagePath}")" width="200" alt="Equipment Image" />
+<div class="row">
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.EquipmentName)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.EquipmentName)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.RentalPricePerDay)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.RentalPricePerDay)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.Quantity)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Quantity)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.Availability)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Availability.AvailabilityStatusName)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.Category)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Category.CategoryName)</dd>
+
+            <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(m => m.Condition)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Condition.ConditionName)</dd>
+
+            <dt class="col-sm-3 fw-semibold">Image</dt>
+            <dd class="col-sm-9">
+                @{
+                    var mainImage = Model.EquipmentImages?.FirstOrDefault(i => i.IsMain == true);
+                    if (mainImage != null)
+                    {
+                        <img src="@Url.Content($"~/SharedImages/{mainImage.ImagePath}")" class="img-fluid rounded" alt="Equipment Image" style="max-width: 300px;" />
+                    }
+                    else
+                    {
+                        <span>No image available</span>
+                    }
                 }
-                else
-                {
-                    <span>No image available</span>
-                }
-            }
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.EquipmentId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            </dd>
+        </dl>
+
+        <div class="mt-4">
+            <a asp-action="Edit" asp-route-id="@Model?.EquipmentId" class="btn btn-primary me-2">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
 </div>

@@ -4,67 +4,79 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Equipment</h4>
+<h1>Edit Equipment</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" asp-route-id="@Model.EquipmentId" method="post">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form asp-action="Edit" asp-route-id="@Model.EquipmentId" method="post" novalidate id="filterForm">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
             <input type="hidden" asp-for="EquipmentId" />
-            <div class="form-group">
-                <label asp-for="EquipmentName" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="EquipmentName" class="form-label"></label>
                 <input asp-for="EquipmentName" class="form-control" />
                 <span asp-validation-for="EquipmentName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Category</label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="RentalPricePerDay" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="RentalPricePerDay" class="form-label"></label>
                 <input asp-for="RentalPricePerDay" class="form-control" />
                 <span asp-validation-for="RentalPricePerDay" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Quantity" class="form-label"></label>
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Condition</label>
-                <select asp-for="ConditionId" class="form-control" asp-items="ViewBag.ConditionId"></select>
+
+            <div class="mb-3">
+                <label asp-for="ConditionId" class="form-label">Condition</label>
+                <select asp-for="ConditionId" class="form-select" asp-items="ViewBag.ConditionId"></select>
                 <span asp-validation-for="ConditionId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Availability</label>
-                <select asp-for="AvailabilityId" class="form-control" asp-items="ViewBag.AvailabilityId"></select>
+
+            <div class="mb-3">
+                <label asp-for="AvailabilityId" class="form-label">Availability</label>
+                <select asp-for="AvailabilityId" class="form-select" asp-items="ViewBag.AvailabilityId"></select>
                 <span asp-validation-for="AvailabilityId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="d-grid">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form>
-    </div>
-    <script>
-        document.querySelector('form').addEventListener('submit', function () {
-            console.log("Form submitted");
-        });
-    </script>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+        </form>
+
+        <div class="mt-3">
+            <a asp-action="Index" class="btn btn-link">Back to List</a>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+<script>
+    document.querySelector('form').addEventListener('submit', function () {
+        console.log("Form submitted");
+    });
+</script>

@@ -40,7 +40,7 @@
 <!-- KPI Cards Row -->
         <div class="row justify-content-center text-center mb-4">
     <div class="col-lg-2 col-md-4 mb-3">
-        <div class="card text-white bg-warning">
+                <div class="card text-white custom-total-card">
             <div class="card-header">Total Equipment</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.TotalEquipment</h4>
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="col-lg-2 col-md-4 mb-3">
-        <div class="card text-white bg-primary">
+                <div class="card text-white custom-rentals-card">
             <div class="card-header">Active Rentals</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.ActiveRentals</h4>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="col-lg-2 col-md-4 mb-3">
-        <div class="card text-white bg-success">
+                <div class="card text-white custom-pending-card">
             <div class="card-header">Pending Requests</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.PendingRequests</h4>
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="col-lg-2 col-md-4 mb-3">
-        <div class="card text-white bg-danger">
+                <div class="card text-white custom-overdue-card">
             <div class="card-header">Overdue Returns</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.OverdueReturns</h4>
@@ -72,7 +72,7 @@
         </div>
     </div>
     <div class="col-lg-2 col-md-4 mb-3">
-                <div class="card text-white bg-secondary">
+                <div class="card text-white custom-maintenance-card">
             <div class="card-header">Under Maintenance</div>
             <div class="card-body">
                 <h4 class="card-title">@Model.UnderMaintenance</h4>
@@ -197,7 +197,7 @@
 
     <!-- Inventory Progress Bars -->
             <div class="col-lg-4 d-flex flex-column">
-                <div class="card p-3 rounded-4 shadow-sm h-100">
+                <div class="card p-3 rounded-4 shadow-sm h-100 custom-progress-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="mb-0">Inventory Availability</h5>
 
@@ -324,7 +324,7 @@
 
         @if (Model.MaintenanceItems.Any())
         {
-            <form asp-action="UpdateMaintenanceAvailability" method="post">
+            <form asp-action="UpdateMaintenanceAvailability" method="post" id="filterForm">
                 <table class="table table-striped table-sm mt-3">
                     <thead>
                         <tr>

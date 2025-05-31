@@ -14,5 +14,246 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #121c3a !important;
+    color: #e9efff !important; 
+    font-family:'Segoe UI';
 }
+
+nav.navbar {
+    background-color: #202f59 !important;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+
+    nav.navbar .nav-link {
+        color: #e9efff !important;
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+        font-size: large;
+        font-family:'Segoe UI';
+        font-weight:500;
+    }
+
+.navbar .nav-link.active {
+    font-weight: 700;
+    color: #1c6ffa !important;
+}
+
+nav.navbar .nav-link:hover {
+       color: #ffffff !important;
+}
+
+
+.navbar-brand {
+    color: #e9efff;
+    font-family:Vivaldi;
+    font-weight: 350;
+    font-size: 1.65rem;
+}
+
+.navbar-brand:hover {
+    color: #ffffff !important;
+}
+
+.table {
+    --bs-table-bg: #274a7f !important; 
+    --bs-table-color: #e9efff !important; 
+    --bs-table-border-color: #24478f !important; 
+    --bs-table-striped-bg: #3a5a99 !important; 
+    --bs-table-striped-color: #fff !important; 
+}
+
+    .table > thead {
+        background-color: #1c3a66 !important; 
+        color: var(--bs-table-color) !important; 
+    }
+
+.custom-total-card .card-header {
+    background-color: #c8ab60; 
+    color: #fff;
+}
+
+.custom-total-card .card-body {
+    background-color: #e1c16e; 
+    color: #fff;
+}
+
+.custom-rentals-card .card-header {
+    background-color: #1552b8; 
+    color: #fff;
+}
+
+.custom-rentals-card .card-body {
+    background-color: #165ed8; 
+    color: #fff;
+}
+
+.custom-pending-card .card-header {
+    background-color: #187449;
+    color: #fff;
+}
+
+.custom-pending-card .card-body {
+    background-color: #198754;
+    color: #fff;
+}
+
+.custom-overdue-card .card-header {
+    background-color: #bf2f3d; 
+    color: #fff;
+}
+
+.custom-overdue-card .card-body {
+    background-color: #dc3545; 
+    color: #fff;
+}
+
+.custom-maintenance-card .card-header {
+    background-color: #d67031; 
+    color: #fff;
+}
+
+.custom-maintenance-card .card-body {
+    background-color: #f8843c; 
+    color: #fff;
+}
+
+
+.custom-total-card .card-header,
+.custom-rentals-card .card-header,
+.custom-pending-card .card-header,
+.custom-overdue-card .card-header,
+.custom-maintenance-card .card-header {
+    font-weight: 650;
+    padding: 0.75rem 1rem;
+   
+}
+
+.custom-total-card .card-body h4,
+.custom-rentals-card .card-body h4,
+.custom-pending-card .card-body h4,
+.custom-overdue-card .card-body h4,
+.custom-maintenance-card .card-body h4 {
+    font-size: 40px; 
+    margin: 0; 
+    font-weight: 800;
+    color: #fff; 
+}
+
+
+.custom-progress-card {
+    background-color: #1c3a66;  
+}
+
+/*#analytics,
+#analytics * {
+    color: #e9efff !important;
+}
+*/
+
+.apexcharts-text tspan,
+.apexcharts-legend-text,
+.apexcharts-axis-text,
+.apexcharts-tooltip-text {
+    fill: #e9efff !important; 
+    color: #e9efff !important; 
+}
+
+
+.apexcharts-tooltip,
+.apexcharts-menu {
+    background: #121c3a !important; 
+    color: #e9efff !important; 
+    border-color: #274a7f !important; 
+}
+
+    
+    .apexcharts-tooltip:before {
+        border-top-color: #121c3a !important;
+    }
+
+
+.apexcharts-menu-item {
+    color: #e9efff !important;
+    background: transparent !important;
+}
+
+    
+    .apexcharts-menu-item:hover {
+        background-color: #274a7f !important;
+    }
+
+
+/* Dark style for input boxes and selects */
+#filterForm input.form-control,
+#filterForm select.form-select {
+    background-color: #1e2a50 !important;
+    color: #e9efff !important;
+    border: 1px solid #3a4a7c !important;
+    border-radius: 0.25rem !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 2rem;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 10px 7px;
+}
+
+#filterForm select.form-control {
+    background-color: #1e2a50 !important;
+    color: #e9efff !important;
+    border: 1px solid #3a4a7c !important;
+    border-radius: 0.25rem !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 6L9 1' stroke='%23e9efff' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 10px 7px;
+    padding-right: 2rem;
+}
+
+    /* Placeholder text color */
+    #filterForm input.form-control::placeholder {
+        color: #a1a9c0 !important;
+    }
+
+    /* Focus styles */
+    #filterForm input.form-control:focus,
+    #filterForm select.form-select:focus {
+        background-color: #253668 !important;
+        border-color: #1c6ffa !important;
+        color: #ffffff !important;
+        outline: none !important;
+        box-shadow: 0 0 5px #1c6ffa !important;
+    }
+
+/* Dark style for buttons and anchor buttons */
+#filterForm button,
+#filterForm a.btn {
+    background-color: #3a5a99 !important;
+    color: #e9efff !important;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    border: none !important;
+}
+
+    /* Button hover styles */
+    #filterForm button:hover,
+    #filterForm a.btn:hover {
+        background-color: #1c3a66 !important;
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+
+/* Custom dropdown arrow for selects */
+#filterForm select.form-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 6L9 1' stroke='%23e9efff' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+
+

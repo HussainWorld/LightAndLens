@@ -9,7 +9,7 @@
     <a asp-action="Create" class="btn btn-success">Create New Equipment</a>
 </p>
 
-<form method="get" asp-action="Index">
+<form method="get" asp-action="Index" id="filterForm">
     <div class="row mb-3">
         <div class="col-md-3">
             <input type="text" name="searchString" id="searchBox" value="@Context.Request.Query["searchString"]" class="form-control" placeholder="Search by name..." />
@@ -97,7 +97,7 @@
             <th>Category</th>
             <th>Condition</th>
             <th>Image</th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody id="equipment-table-body">

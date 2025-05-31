@@ -43,14 +43,16 @@
     <div class="col-md-1 d-flex align-items-end">
         <a href="@Url.Action("Index", "RentalTransactions")" class="btn btn-secondary w-100">Clear</a>
     </div>
+
+    <div class="mb-3">
+        <input type="text" id="searchBox" class="form-control" placeholder="Search equipment or customer..." />
+    </div>
 </form>
 
-<div class="mb-3">
-    <input type="text" id="searchBox" class="form-control" placeholder="Search equipment or customer..." />
-</div>
+
 
 <table class="table table-bordered table-striped">
-    <thead class="table-light">
+    <thead>
         <tr>
             <th>ID</th>
             <th>Equipment</th>

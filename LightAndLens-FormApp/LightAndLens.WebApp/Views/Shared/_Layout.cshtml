@@ -5,15 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LightAndLens.WebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/Darkly.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LightAndLens.WebApp.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LightAndLens.WebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Light And Lens</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,25 +22,31 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" && ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Privacy" && ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <!--Restrict Dashboard View for Admins, Staff Only-->
-                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Staff"))){
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Staff")))
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")"
+                                   asp-controller="Dashboard" asp-action="Index">Dashboard</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Equipment" asp-action="Index">Equipment</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Equipment" ? "active" : "")"
+                               asp-controller="Equipment" asp-action="Index">Equipment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="RentalRequests" asp-action="Index">Rental Requests</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "RentalRequests" ? "active" : "")"
+                               asp-controller="RentalRequests" asp-action="Index">Rental Requests</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="RentalTransactions" asp-action="Index">Rental Transactions</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "RentalTransactions" ? "active" : "")"
+                               asp-controller="RentalTransactions" asp-action="Index">Rental Transactions</a>
                         </li>
 
                         @* <li class="nav-item"> *@
@@ -54,55 +61,67 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="ReturnRecords" asp-action="Review">Return Records</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Review" && ViewContext.RouteData.Values["controller"]?.ToString() == "ReturnRecords" ? "active" : "")" 
+                                asp-controller="ReturnRecords" asp-action="Review">Return Records</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="ReturnRecords" asp-action="Index">Return Records</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" && ViewContext.RouteData.Values["controller"]?.ToString() == "ReturnRecords" ? "active" : "")" 
+                                asp-controller="ReturnRecords" asp-action="Index">Return Records</a>
                             </li>
                         }
 
                         <!--Restrict Logs View for Admins Only-->
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin")){
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Logs" asp-action="Index">Logs</a>
+                            <a class="nav-link" asp-controller="Logs" asp-action="Index">Logs</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Logs" ? "active" : "")"
+                                   asp-controller="Logs" asp-action="Index">Logs</a>
+                            </li>
+                        }
                         }
                     </ul>
                     <ul class="navbar-nav">
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
                             <li class="nav-item">
-                                <span class="nav-link text-dark">Welcome, @User.Identity.Name!</span>
+                                <span class="nav-link">Welcome, @User.Identity.Name!</span>
                             </li>
                             <li class="nav-item">
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post">
-                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                    <button type="submit" class="nav-link btn btn-link">Logout</button>
                                 </form>
                             </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Users" asp-action="Index">Manage Users</a>
+                                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" ? "active" : "")"
+                                       asp-controller="Users" asp-action="Index">Manage Users</a>
                                 </li>
                             }
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString()?.EndsWith("Login") == true ? "active" : "")"
+                                   asp-area="Identity" asp-page="/Account/Login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString()?.EndsWith("Register") == true ? "active" : "")"
+                                   asp-area="Identity" asp-page="/Account/Register">Register</a>
                             </li>
-
                         }
                     </ul>
-
                 </div>
             </div>
+
+
         </nav>
     </header>
     <div class="container">
