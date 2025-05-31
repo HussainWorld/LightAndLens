@@ -48,24 +48,6 @@ The system allows customers to rent equipment, while admins and staff manage use
   - Email: `staff@lightandlens.com`  
   - Password: `Staff@123`  
 
-(Change passwords after first login for security.)  
-
----
-
-## **Project Structure**  
-```
-LightAndLens/  
-│── WebApp/ (ASP.NET MVC)  
-│   ├── Controllers/  
-│   ├── Models/  
-│   ├── Views/  
-│   ├── App_Data/ (Database)  
-│   └── ...  
-│── WinFormsApp/ (Windows Forms - if applicable)  
-│── README.md  
-└── ...  
-```
-
 ---
 
 ## **Additional Notes**  
