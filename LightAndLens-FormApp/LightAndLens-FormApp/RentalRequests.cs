@@ -78,6 +78,7 @@ namespace LightAndLens_FormApp
 
             RefreshRequestsGridview();
             clearFilters();
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void FilterRequestsGridview()
@@ -289,7 +290,48 @@ namespace LightAndLens_FormApp
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            UpdateRequestStatus(2); // 2 = Approved
+            if (dgvRentalRequests.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int requestId = Convert.ToInt32(dgvRentalRequests.SelectedRows[0].Cells["RequestId"].Value);
+                    var rentalRequest = context.RentalRequests
+                                               .Include(r => r.User)
+                                               .Include(r => r.Equipment)
+                                               .FirstOrDefault(r => r.RequestId == requestId);
+
+                    if (rentalRequest != null)
+                    {
+                        // Update request status to Approved (1)
+                        rentalRequest.RequestStatusId = 1;
+
+                        // Create new RentalTransaction from this approved request
+                        var rentalTransaction = new RentalTransaction
+                        {
+                            RequestId = rentalRequest.RequestId,
+                            UserId = rentalRequest.UserId,
+                            StartDate = rentalRequest.RequestStartDate,
+                            EndDate = rentalRequest.RequestEndDate,
+                            RentalFee = 50m,
+                            DepositPaid = 50m,
+                            Status = "Ongoing"
+                        };
+
+                        context.RentalTransactions.Add(rentalTransaction);
+
+                        context.SaveChanges();
+
+                        MessageBox.Show("Request approved and rental transaction created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        RefreshRequestsGridview(); // Refresh the requests grid
+                                                   // You may want to call RefreshTransactionsGridview() here if you have it to update transactions grid
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error approving request: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnReject_Click(object sender, EventArgs e)
@@ -440,9 +482,16 @@ namespace LightAndLens_FormApp
 
         private void analyticsBtn_Click_1(object sender, EventArgs e)
         {
-            var analyticsForm = new Analytics();
-            analyticsForm.Show();
-            this.Hide();
+            MessageBox.Show(
+            "Whoa! This is an exclusive feature for premium members only.\nUpgrade membership to unlock powerful analytics!",
+            "Premium Feature",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+        }
+
+        private void btnApprove_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -218,7 +218,7 @@
             labelUserName.AutoSize = true;
             labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(951, 21);
+            labelUserName.Location = new Point(882, 21);
             labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(94, 21);
             labelUserName.TabIndex = 24;

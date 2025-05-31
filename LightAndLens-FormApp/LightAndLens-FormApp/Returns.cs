@@ -89,9 +89,11 @@ namespace LightAndLens_FormApp
 
         private void analyticsBtn_Click(object sender, EventArgs e)
         {
-            var analyticsForm = new Analytics();
-            analyticsForm.Show();
-            this.Hide();
+         MessageBox.Show(
+         "Whoa! This is an exclusive feature for premium members only.\nUpgrade membership to unlock powerful analytics!",
+         "Premium Feature",
+         MessageBoxButtons.OK,
+         MessageBoxIcon.Information);
         }
 
         private void rentalTransactionsBtn_Click(object sender, EventArgs e)
@@ -169,8 +171,8 @@ namespace LightAndLens_FormApp
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            if(_selectedReturnId == -1)
-    {
+            if (_selectedReturnId == -1)
+            {
                 MessageBox.Show("Please select a return record first.");
                 return;
             }
@@ -241,6 +243,11 @@ namespace LightAndLens_FormApp
             {
                 MessageBox.Show($"Error saving changes: {ex.Message}");
             }
+        }
+
+        private void Returns_Load(object sender, EventArgs e)
+        {
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
     }
 }

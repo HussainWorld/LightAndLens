@@ -37,6 +37,8 @@ namespace LightAndLens_FormApp
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             panel1 = new Panel();
             dateTimePickerTo = new DateTimePicker();
             dateTimePickerFrom = new DateTimePicker();
@@ -61,17 +63,15 @@ namespace LightAndLens_FormApp
             lblCustName = new Label();
             label3 = new Label();
             recentActivitiesTxt = new Label();
-            labelUserName = new Label();
-            pictureBoxAvatar = new PictureBox();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             panel1.SuspendLayout();
             rentalRequestsPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentalRequests).BeginInit();
             requestDetailsPnl.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCust).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -209,6 +209,27 @@ namespace LightAndLens_FormApp
             topHeaderPanel.Padding = new Padding(10);
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 2;
+            // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(882, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 22;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 23;
+            pictureBoxAvatar.TabStop = false;
             // 
             // panel1
             // 
@@ -372,6 +393,7 @@ namespace LightAndLens_FormApp
             btnApprove.TabIndex = 7;
             btnApprove.Text = "Approve Request";
             btnApprove.UseVisualStyleBackColor = false;
+            btnApprove.Click += btnApprove_Click_1;
             // 
             // panel3
             // 
@@ -499,27 +521,6 @@ namespace LightAndLens_FormApp
             recentActivitiesTxt.Text = "Rental Requests";
             recentActivitiesTxt.Click += recentActivitiesTxt_Click;
             // 
-            // labelUserName
-            // 
-            labelUserName.AutoSize = true;
-            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(951, 21);
-            labelUserName.Name = "labelUserName";
-            labelUserName.Size = new Size(94, 21);
-            labelUserName.TabIndex = 22;
-            labelUserName.Text = "User Name";
-            // 
-            // pictureBoxAvatar
-            // 
-            pictureBoxAvatar.Image = Properties.Resources.Avatar;
-            pictureBoxAvatar.Location = new Point(1053, 9);
-            pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new Size(43, 43);
-            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxAvatar.TabIndex = 23;
-            pictureBoxAvatar.TabStop = false;
-            // 
             // RentalRequests
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -544,6 +545,7 @@ namespace LightAndLens_FormApp
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             rentalRequestsPnl.ResumeLayout(false);
@@ -552,7 +554,6 @@ namespace LightAndLens_FormApp
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCust).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
