@@ -17,6 +17,7 @@ namespace LightAndLens_FormApp
         public Logs()
         {
             InitializeComponent();
+
         }
 
         

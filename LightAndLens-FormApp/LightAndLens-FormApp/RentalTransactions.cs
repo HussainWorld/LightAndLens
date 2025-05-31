@@ -19,7 +19,7 @@ namespace LightAndLens_FormApp
         {
             LoadTransactions();
             LoadFilters();
-
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void LoadTransactions()

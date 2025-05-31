@@ -23,7 +23,7 @@ namespace LightAndLens_FormApp
             LightAndLensDBContext = new LightAndLensDBContext();
             LoadFilters();
             HighlightActiveButton(EquipmentBtn);
-
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void Equipment_Load(object sender, EventArgs e)

@@ -78,6 +78,7 @@ namespace LightAndLens_FormApp
 
             RefreshRequestsGridview();
             clearFilters();
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void FilterRequestsGridview()

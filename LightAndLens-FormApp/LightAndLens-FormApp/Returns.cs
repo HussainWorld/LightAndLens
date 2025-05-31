@@ -21,7 +21,9 @@ namespace LightAndLens_FormApp
             InitializeComponent();
             HighlightActiveButton(returnsBtn);
             LoadPendingReturns();
+            LoadReturnHistory();
             LoadConditionDropdown();
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void Returns_FormClosing(object sender, FormClosingEventArgs e)
@@ -131,7 +133,10 @@ namespace LightAndLens_FormApp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadPendingReturns(txtSearch.Text.Trim());
+            if (tabReturns.SelectedTab == tabPendingReturns)
+                LoadPendingReturns(txtSearch.Text.Trim());
+            else if (tabReturns.SelectedTab == tabReturnHistory)
+                LoadReturnHistory(txtSearch.Text.Trim());
         }
 
         private void LoadConditionDropdown()
@@ -169,8 +174,8 @@ namespace LightAndLens_FormApp
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            if(_selectedReturnId == -1)
-    {
+            if (_selectedReturnId == -1)
+            {
                 MessageBox.Show("Please select a return record first.");
                 return;
             }
@@ -241,6 +246,53 @@ namespace LightAndLens_FormApp
             {
                 MessageBox.Show($"Error saving changes: {ex.Message}");
             }
+        }
+
+        private void dgvListReturns_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Returns_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadReturnHistory(string search = "")
+        {
+            var query = _context.ReturnRecords
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.Request)
+                        .ThenInclude(req => req.Equipment)
+                .Include(r => r.Rental)
+                    .ThenInclude(rt => rt.User)
+                .Where(r => r.ConditionStatus != "Pending");
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(r => r.Rental.User.FullName.Contains(search) ||
+                                         r.Rental.Request.Equipment.EquipmentName.Contains(search));
+            }
+
+            var list = query.Select(r => new
+            {
+                ReturnId = r.ReturnId,
+                CustomerName = r.Rental.User.FullName,
+                EquipmentName = r.Rental.Request.Equipment.EquipmentName,
+                ReturnDate = r.ReturnDate,
+                ConditionStatus = r.ConditionStatus,
+                Notes = r.Notes
+            }).ToList();
+
+            dgvReturnHistory.DataSource = list;
+        }
+
+        private void tabControlReturns_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool isPendingTab = (tabReturns.SelectedTab == tabPendingReturns);
+            comboBoxSelectCondition.Enabled = isPendingTab;
+            textBoxReturnNotes.Enabled = isPendingTab;
+            btnReturn.Enabled = isPendingTab;
         }
     }
 }
