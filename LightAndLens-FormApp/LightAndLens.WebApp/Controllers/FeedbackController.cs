@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace LightAndLens.WebApp.Controllers
 {
+    [Authorize]
     public class FeedbackController : Controller
     {
         private readonly LightAndLensDBContext _context;

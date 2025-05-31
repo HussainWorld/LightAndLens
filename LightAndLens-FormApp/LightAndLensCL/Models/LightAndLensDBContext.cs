@@ -85,7 +85,7 @@ namespace LightAndLensCL.Models
 
             modelBuilder.Entity<Feedback>(entity =>
             {
-                entity.Property(e => e.FeedbackId).ValueGeneratedNever();
+                entity.Property(e => e.FeedbackId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Equipment)
                     .WithMany(p => p.Feedbacks)

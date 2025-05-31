@@ -11,10 +11,11 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using LightAndLens.WebApp.Services;
 using System.Security.Claims;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace LightAndLens.WebApp.Controllers
 {
+    [Authorize]
     public class EquipmentController : Controller
     {
         private readonly LightAndLensDBContext _context;
@@ -59,7 +60,6 @@ namespace LightAndLens.WebApp.Controllers
             }
 
             var equipmentList = await query.ToListAsync();
-            
 
             // Pass dropdowns to view
             ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "CategoryName");
@@ -77,7 +77,6 @@ namespace LightAndLens.WebApp.Controllers
 
             return View(equipmentList);
         }
-
 
         // GET: Equipments/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -111,6 +110,7 @@ namespace LightAndLens.WebApp.Controllers
         }
 
         // GET: Equipments/Create
+        [Authorize(Roles = "Admin,Staff")]
         public IActionResult Create()
         {
             ViewData["AvailabilityId"] = new SelectList(_context.AvailabilityStatuses, "AvailabilityId", "AvailabilityStatusName");
@@ -120,10 +120,9 @@ namespace LightAndLens.WebApp.Controllers
         }
 
         // POST: Equipments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Create([Bind("EquipmentId,EquipmentName,Description,CategoryId,RentalPricePerDay,Quantity,ConditionId,AvailabilityId")] Equipment equipment, IFormFile imageFile)
         {
             if (ModelState.IsValid)
@@ -171,9 +170,8 @@ namespace LightAndLens.WebApp.Controllers
             return View(equipment);
         }
 
-
-
         // GET: Equipments/Edit/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Equipment == null)
@@ -193,11 +191,9 @@ namespace LightAndLens.WebApp.Controllers
         }
 
         // POST: Equipments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int id, [Bind("EquipmentId,EquipmentName,Description,CategoryId,RentalPricePerDay,Quantity,ConditionId,AvailabilityId")] Equipment equipment)
         {
             if (id != equipment.EquipmentId)
@@ -235,7 +231,7 @@ namespace LightAndLens.WebApp.Controllers
                 }
             }
 
-            
+
             foreach (var state in ModelState)
             {
                 foreach (var error in state.Value.Errors)
@@ -252,10 +248,8 @@ namespace LightAndLens.WebApp.Controllers
             return View(equipment);
         }
 
-
-
-
         // GET: Equipments/Delete/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Equipment == null)
@@ -279,6 +273,7 @@ namespace LightAndLens.WebApp.Controllers
         // POST: Equipments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Equipment == null)
@@ -332,12 +327,9 @@ namespace LightAndLens.WebApp.Controllers
             return PartialView("_EquipmentListPartial", filtered);
         }
 
-
-
         private bool EquipmentExists(int id)
         {
-          return (_context.Equipment?.Any(e => e.EquipmentId == id)).GetValueOrDefault();
+            return (_context.Equipment?.Any(e => e.EquipmentId == id)).GetValueOrDefault();
         }
-
     }
 }

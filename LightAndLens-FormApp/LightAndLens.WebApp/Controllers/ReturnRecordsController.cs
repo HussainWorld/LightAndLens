@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace LightAndLens.WebApp.Controllers
 {
+    [Authorize]
     public class ReturnRecordsController : Controller
     {
         private readonly LightAndLensDBContext _context;

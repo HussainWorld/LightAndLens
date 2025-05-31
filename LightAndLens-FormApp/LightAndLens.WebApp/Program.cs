@@ -39,6 +39,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 
 builder.Services.AddTransient<IEmailSender, LightAndLens.WebApp.Services.DummyEmailSender>();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";           // Redirect here if user not authenticated
+    options.AccessDeniedPath = "/Account/AccessDenied"; // Redirect here if user authenticated but lacks role
+});
 
 var app = builder.Build();
 await SeedRolesAsync(app);

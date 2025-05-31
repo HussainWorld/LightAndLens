@@ -6,6 +6,7 @@ using System.Security.Claims; // in case you want to secure it
 
 namespace LightAndLens.WebApp.Controllers
 {
+    [Authorize]
     public class NotificationController : Controller
     {
         private readonly LightAndLensDBContext _context;
