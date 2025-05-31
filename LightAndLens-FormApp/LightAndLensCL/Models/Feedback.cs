@@ -26,5 +26,12 @@ namespace LightAndLensCL.Models
         [ForeignKey("UserId")]
         [InverseProperty("Feedbacks")]
         public virtual User User { get; set; } = null!;
+
+        public int ReturnId { get; set; }
+
+
+        [ForeignKey("ReturnId")]
+        [InverseProperty("Feedbacks")]
+        public virtual ReturnRecord ReturnRecord { get; set; } = null!;
     }
 }

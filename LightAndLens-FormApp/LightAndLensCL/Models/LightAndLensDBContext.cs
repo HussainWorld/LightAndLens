@@ -98,6 +98,12 @@ namespace LightAndLensCL.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserID_Users_Feedback");
+
+                entity.HasOne(d => d.ReturnRecord)
+                .WithMany(p => p.Feedbacks)
+                .HasForeignKey(d => d.ReturnId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Feedback_ReturnRecords");
             });
 
             modelBuilder.Entity<Notification>(entity =>
@@ -162,7 +168,7 @@ namespace LightAndLensCL.Models
 
             modelBuilder.Entity<ReturnRecord>(entity =>
             {
-                entity.Property(e => e.ReturnId).ValueGeneratedNever();
+                entity.Property(e => e.ReturnId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Rental)
                     .WithMany(p => p.ReturnRecords)
