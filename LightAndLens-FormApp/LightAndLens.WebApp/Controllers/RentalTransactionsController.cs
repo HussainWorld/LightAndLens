@@ -266,7 +266,8 @@ namespace LightAndLens.WebApp.Controllers
             await _context.SaveChangesAsync();
 
             await _logHelper.LogActionAsync(user.UserId, $"Submitted return for Rental #{transaction.RentalId}");
-            return RedirectToAction("Index");
+            TempData["Success"] = "Return submitted successfully.";
+            return RedirectToAction("Create", "Feedback", new { returnId = returnRecord.ReturnId });
         }
 
         [HttpPost]
@@ -291,9 +292,20 @@ namespace LightAndLens.WebApp.Controllers
             _context.ReturnRecords.Add(returnRecord);
             await _context.SaveChangesAsync();
 
-            await _logHelper.LogActionAsync(user.UserId, $"Marked return for Rental #{transaction.RentalId}");
+            // Safe logging with null check
+            if (user != null)
+            {
+                await _logHelper.LogActionAsync(user.UserId, $"Marked return for Rental #{transaction.RentalId}");
+            }
+            else
+            {
+                // Optional: Log warning or handle gracefully if user is null
+                Console.WriteLine($"Warning: Could not log action - user not found for identityId {identityId}");
+            }
+            TempData["Success"] = "Return submitted successfully.";
             return RedirectToAction("Index");
         }
+
 
 
 

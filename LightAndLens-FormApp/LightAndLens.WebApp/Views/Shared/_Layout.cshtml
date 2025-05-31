@@ -48,9 +48,25 @@
                             <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "RentalTransactions" ? "active" : "")"
                                asp-controller="RentalTransactions" asp-action="Index">Rental Transactions</a>
                         </li>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Review" && ViewContext.RouteData.Values["controller"]?.ToString() == "ReturnRecords" ? "active" : "")" 
+                                asp-controller="ReturnRecords" asp-action="Review">Return Records</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" && ViewContext.RouteData.Values["controller"]?.ToString() == "ReturnRecords" ? "active" : "")" 
+                                asp-controller="ReturnRecords" asp-action="Index">Return Records</a>
+                            </li>
+                        }
+
+                        <!--Restrict Logs View for Admins Only-->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin")){
                         <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "ReturnRecords" ? "active" : "")"
-                               asp-controller="ReturnRecords" asp-action="Index">Return Records</a>
+                            <a class="nav-link" asp-controller="Logs" asp-action="Index">Logs</a>
                         </li>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {

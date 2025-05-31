@@ -10,6 +10,7 @@ namespace LightAndLensCL.Models
     {
         [Key]
         [Column("ReturnID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReturnId { get; set; }
         [Column("RentalID")]
         public int RentalId { get; set; }
@@ -24,5 +25,8 @@ namespace LightAndLensCL.Models
         [ForeignKey("RentalId")]
         [InverseProperty("ReturnRecords")]
         public virtual RentalTransaction Rental { get; set; } = null!;
+
+        [InverseProperty("ReturnRecord")]
+        public virtual ICollection<Feedback> Feedbacks { get; set; } = new HashSet<Feedback>();
     }
 }

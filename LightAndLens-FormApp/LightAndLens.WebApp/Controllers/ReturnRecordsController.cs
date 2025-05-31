@@ -82,6 +82,7 @@ namespace LightAndLens.WebApp.Controllers
                 .Include(r => r.Rental)
                     .ThenInclude(rt => rt.Request)
                         .ThenInclude(req => req.Equipment)
+                         .Include(r => r.Feedbacks)
                 .AsQueryable();
 
             // Restrict for customer
@@ -112,7 +113,15 @@ namespace LightAndLens.WebApp.Controllers
                     ConditionStatus = r.ConditionStatus,
                     Notes = r.Notes,
                     ConditionOptions = conditionOptions,
-                    AvailabilityOptions = availabilityOptions
+                    AvailabilityOptions = availabilityOptions,
+
+                    // Map feedback if exists (assuming one feedback per return per user)
+                    CustomerFeedback = r.Feedbacks.Select(f => new FeedbackViewModel
+                    {
+                        Rating = f.Rating,
+                        Comments = f.Comments,
+                        CustomerName = f.User.FullName // Add FullName to FeedbackViewModel if needed
+                    }).FirstOrDefault()
                 }).ToListAsync();
 
             // HISTORY = everything else
@@ -378,6 +387,86 @@ namespace LightAndLens.WebApp.Controllers
         private bool ReturnRecordExists(int id)
         {
           return (_context.ReturnRecords?.Any(e => e.ReturnId == id)).GetValueOrDefault();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SubmitFeedback(int returnId)
+        {
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            var returnRecord = await _context.ReturnRecords
+                .Include(r => r.Rental)
+                .ThenInclude(rt => rt.User)
+                .Include(r => r.Rental)
+                .ThenInclude(rt => rt.Request)
+                .ThenInclude(req => req.Equipment)
+                .FirstOrDefaultAsync(r => r.ReturnId == returnId);
+
+            if (returnRecord == null || currentUser == null || returnRecord.Rental.UserId != currentUser.UserId)
+            {
+                return Unauthorized();
+            }
+
+            // Check if feedback already exists for this return
+            var existingFeedback = await _context.Feedbacks.FirstOrDefaultAsync(f => f.ReturnId == returnId && f.UserId == currentUser.UserId);
+
+            var model = new FeedbackViewModel
+            {
+                ReturnId = returnRecord.ReturnId,
+                EquipmentName = returnRecord.Rental.Request.Equipment.EquipmentName,
+                RentalId = returnRecord.RentalId,
+                Rating = existingFeedback?.Rating ?? 0,
+                Comments = existingFeedback?.Comments
+            };
+
+            return View(model);
+
+
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitFeedback(FeedbackViewModel model)
+        {
+            var identityId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityId);
+
+            if (currentUser == null)
+                return Unauthorized();
+
+            var returnRecord = await _context.ReturnRecords.FindAsync(model.ReturnId);
+            if (returnRecord == null || returnRecord.Rental.UserId != currentUser.UserId)
+                return Unauthorized();
+
+            // Check for existing feedback to update or create new
+            var feedback = await _context.Feedbacks.FirstOrDefaultAsync(f => f.ReturnId == model.ReturnId && f.UserId == currentUser.UserId);
+
+            if (feedback == null)
+            {
+                feedback = new Feedback
+                {
+                    ReturnId = model.ReturnId,
+                    UserId = currentUser.UserId,
+                    EquipmentId = returnRecord.Rental.Request.EquipmentId,
+                    Rating = model.Rating,
+                    Comments = model.Comments
+                };
+                _context.Feedbacks.Add(feedback);
+            }
+            else
+            {
+                feedback.Rating = model.Rating;
+                feedback.Comments = model.Comments;
+                _context.Feedbacks.Update(feedback);
+            }
+
+            // Optionally update return record status here
+            returnRecord.ConditionStatus = "Pending"; // or "Feedback Submitted"
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Thank you for your feedback!";
+            return RedirectToAction("Index");
         }
     }
 }
