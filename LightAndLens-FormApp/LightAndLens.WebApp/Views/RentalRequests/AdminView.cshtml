@@ -2,7 +2,6 @@
 
 <h2>Manage Rental Requests</h2>
 
-
 @if (TempData["StatusMessage"] != null)
 {
     <div class="alert alert-success" role="alert">
@@ -10,66 +9,108 @@
     </div>
 }
 
+<!-- Tab Navigation -->
+<ul class="nav nav-tabs" id="rentalTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="manage-tab" data-bs-toggle="tab" data-bs-target="#manageRequests" type="button" role="tab" aria-controls="manageRequests" aria-selected="true">
+            Manage Rental Requests
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="create-tab" data-bs-toggle="tab" data-bs-target="#createRequest" type="button" role="tab" aria-controls="createRequest" aria-selected="false">
+            Create New Rental Request
+        </button>
+    </li>
+</ul>
 
-<form method="get" class="mb-3" id="filterForm">
-    <input type="text" name="search" placeholder="Search..." value="@Model.Search" class="form-control mb-2" />
+<!-- Tab Content -->
+<div class="tab-content pt-3" id="rentalTabsContent">
 
+    <!-- Manage Rental Requests Tab -->
+    <div class="tab-pane fade show active" id="manageRequests" role="tabpanel" aria-labelledby="manage-tab">
+        <form method="get" class="mb-3" id="filterForm">
+            <input type="text" name="search" placeholder="Search..." value="@Model.Search" class="form-control mb-2" />
 
-    @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
-    {
-    new SelectListItem { Text = "All", Value = "", Selected = !Model.Status.HasValue },
-    new SelectListItem { Text = "Approved", Value = "1", Selected = Model.Status == 1 },
-    new SelectListItem { Text = "Pending", Value = "2", Selected = Model.Status == 2 },
-    new SelectListItem { Text = "Rejected", Value = "3", Selected = Model.Status == 3 }
-    }, new { @class = "form-control mb-2" })
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+            {
+            new SelectListItem { Text = "All", Value = "", Selected = !Model.Status.HasValue },
+            new SelectListItem { Text = "Approved", Value = "1", Selected = Model.Status == 1 },
+            new SelectListItem { Text = "Pending", Value = "2", Selected = Model.Status == 2 },
+            new SelectListItem { Text = "Rejected", Value = "3", Selected = Model.Status == 3 }
+            }, new { @class = "form-control mb-2" })
 
-    <button type="submit" class="btn btn-primary">Filter</button>
-    <a href="@Url.Action("AdminView", "RentalRequests")" class="btn btn-secondary ms-2">Clear Filter</a>
-</form>
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a href="@Url.Action("AdminView", "RentalRequests")" class="btn btn-secondary ms-2">Clear Filter</a>
+        </form>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Request ID</th>
-            <th>User Email</th>
-            <th>User Name</th>
-            <th>Equipment</th>
-            <th>Status</th>
-            <th>Request Dates</th>
-            <th>Requested On</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var request in Model.RentalRequests)
-        {
-            <tr>
-                <td>@request.RequestId</td>
-                <td>@request.User.Email</td>
-                <td>@request.User.FullName</td>
-                <td>@request.Equipment.EquipmentName</td>
-                <td>@request.RequestStatus.StatusName</td>
-                <td>@request.RequestStartDate.ToShortDateString() - @request.RequestEndDate.ToShortDateString()</td>
-                <td>@request.RequestSetDate.ToShortDateString()</td>
-                <td>
-                    <form asp-action="UpdateRequestStatus" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@request.RequestId" />
-                        @* apprve value in the data base is 1 *@
-                        <button name="status" value="1" class="btn btn-success btn-sm">Approve</button>
-                        @if (request.RequestStatusId == 1)
-                        {
-                            @* reject value in the data base is 3 *@
-                            <button name="status" value="3" class="btn btn-danger btn-sm" disabled>Reject</button>
-                        }
-                        else
-                        {
-                            @* reject value in the data base is 3 *@
-                            <button name="status" value="3" class="btn btn-danger btn-sm">Reject</button>
-                        }
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>User Email</th>
+                    <th>User Name</th>
+                    <th>Equipment</th>
+                    <th>Status</th>
+                    <th>Request Dates</th>
+                    <th>Requested On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model.RentalRequests)
+                {
+                    <tr>
+                        <td>@request.RequestId</td>
+                        <td>@request.User.Email</td>
+                        <td>@request.User.FullName</td>
+                        <td>@request.Equipment.EquipmentName</td>
+                        <td>@request.RequestStatus.StatusName</td>
+                        <td>@request.RequestStartDate.ToShortDateString() - @request.RequestEndDate.ToShortDateString()</td>
+                        <td>@request.RequestSetDate.ToShortDateString()</td>
+                        <td>
+                            <form asp-action="UpdateRequestStatus" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@request.RequestId" />
 
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                @if (request.RequestStatusId == 2)
+                                {
+                                    <button name="status" value="1" class="btn btn-success btn-sm">Approve</button>
+                                    <button name="status" value="3" class="btn btn-danger btn-sm">Reject</button>
+                                }
+                                else
+                                {
+                                    <button name="status" value="1" class="btn btn-success btn-sm" disabled>Approve</button>
+                                    <button name="status" value="3" class="btn btn-danger btn-sm" disabled>Reject</button>
+                                }
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Create New Rental Request Tab -->
+    <div class="tab-pane fade" id="createRequest" role="tabpanel" aria-labelledby="create-tab">
+        <h3>Create New Rental Request</h3>
+        <form asp-controller="RentalRequests" asp-action="Create" method="post">
+            <div class="mb-3">
+                <label for="EquipmentId" class="form-label">Select Equipment</label>
+                <select id="EquipmentId" name="EquipmentId" class="form-control" required>
+                    <option value="">-- Select Equipment --</option>
+                    @foreach (var equipment in Model.AvailableEquipment) {
+                           <option value="@equipment.EquipmentId">@equipment.EquipmentName</option>
+                       }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="RequestStartDate" class="form-label">Start Date</label>
+                <input type="date" id="RequestStartDate" name="RequestStartDate" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label for="RequestEndDate" class="form-label">End Date</label>
+                <input type="date" id="RequestEndDate" name="RequestEndDate" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+    </div>
+</div>

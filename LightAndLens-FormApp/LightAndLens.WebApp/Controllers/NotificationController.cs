@@ -15,26 +15,26 @@ namespace LightAndLens.WebApp.Controllers
             _context = context;
         }
 
-        //public void NotificationsLogic()
-        //{
-        //    var rentalRequests = _context.RentalRequests
-        //        .Where(r => r.RequestStatusId == 1) // Assuming 1 is the status for pending requests
-        //        .ToList();
-        //}
-
-        public IActionResult Index(string IsReadFilter)
+        public IActionResult Index(string? IsReadFilter)
         {
                 // Get the current user's ID from claims
                 string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
                 var userId = user.UserId;
 
-                //NotificationsLogic();
+                // Start with base query
+                var notificationsQuery = _context.Notifications
+                    .Where(n => n.UserId == userId);
 
+            //// Apply filter if needed
+            if (!string.IsNullOrEmpty(IsReadFilter) && (IsReadFilter == "0" || IsReadFilter == "1"))
+            {
+                bool isReadValue = IsReadFilter == "1";
+                notificationsQuery = notificationsQuery.Where(n => n.IsRead == isReadValue);
+            }
 
-                // Filter notifications for that user
-                var notifications = _context.Notifications
-                .Where(n => n.UserId == userId) //filter by current user
+            // Execute the query and project to view model
+            var notifications = notificationsQuery
                 .OrderByDescending(n => n.NotificationId)
                 .Select(n => new NotificationViewModel
                 {

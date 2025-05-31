@@ -12,12 +12,8 @@
             {
             new SelectListItem { Text = "All", Value = ""},
             new SelectListItem { Text = "Unread", Value = "0"},
-            new SelectListItem { Text = "Read", Value = "2"},
-
-            // new SelectListItem { Text = "All", Value = "", Selected = string.IsNullOrEmpty(Request.Query["IsReadFilter"]) },
-            // new SelectListItem { Text = "Unread", Value = "0", Selected = Request.Query["IsReadFilter"] == "0" },
-            // new SelectListItem { Text = "Read", Value = "1", Selected = Request.Query["IsReadFilter"] == "1" }
-            }, new { @class = "form-control mb-2", onchange = "this.form.submit();" })
+            new SelectListItem { Text = "Read", Value = "1"},
+            }, new { @class = "form-control mb-2" })
 
             <button type="submit" class="btn btn-primary">Filter</button>
             <a href="@Url.Action(null, null)" class="btn btn-secondary ms-2">Clear Filter</a>
@@ -38,6 +34,7 @@
                             <th>Notification Type</th>
                             <th>Message</th>
                             <th>Is Read</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
