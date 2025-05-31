@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             panel2 = new Panel();
@@ -39,26 +42,24 @@
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
-            pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
             totalEquipmentPanel = new Panel();
+            pictureBox1 = new PictureBox();
             totalEquipmentNum = new Label();
             totalEquipmentTxt = new Label();
-            totalEquipmentPic = new PictureBox();
             activeRentalsPanel = new Panel();
+            pictureBox2 = new PictureBox();
             activeRentalsNum = new Label();
             activeRentalsTxt = new Label();
-            activeRentalsPic = new PictureBox();
             pendingRequestsPanel = new Panel();
+            pictureBox3 = new PictureBox();
             pendingRequestsNum = new Label();
             pendingRequestsTxt = new Label();
-            pendingRequestsPic = new PictureBox();
             overdueReturnsPanel = new Panel();
+            pictureBox4 = new PictureBox();
             overdueReturnsNum = new Label();
             overdueReturnsTxt = new Label();
-            overdueReturnsPic = new PictureBox();
             underMaintenancePanel = new Panel();
-            underMaintenancePic = new PictureBox();
+            pictureBox5 = new PictureBox();
             underMaintenanceNum = new Label();
             underMaintenanceTxt = new Label();
             newRentalBtn = new Button();
@@ -90,20 +91,21 @@
             tabReturns = new TabPage();
             dataGridViewReturns = new DataGridView();
             recentActivitiesTxt = new Label();
+            pictureBoxAvatar = new PictureBox();
+            labelUserName = new Label();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             topHeaderPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             totalEquipmentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)totalEquipmentPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             activeRentalsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)activeRentalsPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             pendingRequestsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pendingRequestsPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             overdueReturnsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)overdueReturnsPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             underMaintenancePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)underMaintenancePic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             equipmentInventoryPanel.SuspendLayout();
             tabRecentActivities.SuspendLayout();
             tabRequests.SuspendLayout();
@@ -112,11 +114,12 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).BeginInit();
             tabReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
             // 
-            sidePanel.BackColor = Color.FromArgb(31, 41, 55);
+            sidePanel.BackColor = Color.FromArgb(22, 34, 68);
             sidePanel.Controls.Add(rentalTransactionsBtn);
             sidePanel.Controls.Add(panel2);
             sidePanel.Controls.Add(analyticsBtn);
@@ -134,15 +137,18 @@
             // 
             // rentalTransactionsBtn
             // 
-            rentalTransactionsBtn.BackColor = Color.Transparent;
+            rentalTransactionsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            rentalTransactionsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             rentalTransactionsBtn.FlatStyle = FlatStyle.Flat;
-            rentalTransactionsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            rentalTransactionsBtn.ForeColor = Color.LightGray;
+            rentalTransactionsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            rentalTransactionsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            rentalTransactionsBtn.Image = Properties.Resources.Orders;
+            rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalTransactionsBtn.Location = new Point(10, 267);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
             rentalTransactionsBtn.Size = new Size(211, 44);
             rentalTransactionsBtn.TabIndex = 17;
-            rentalTransactionsBtn.Text = "Rental Transactions";
+            rentalTransactionsBtn.Text = "  Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
             rentalTransactionsBtn.Click += button1_Click_1;
             // 
@@ -168,135 +174,142 @@
             // 
             // analyticsBtn
             // 
-            analyticsBtn.BackColor = Color.Transparent;
+            analyticsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            analyticsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             analyticsBtn.FlatStyle = FlatStyle.Flat;
-            analyticsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            analyticsBtn.ForeColor = Color.LightGray;
+            analyticsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            analyticsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            analyticsBtn.Image = Properties.Resources.Analytics;
+            analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             analyticsBtn.Location = new Point(10, 389);
             analyticsBtn.Name = "analyticsBtn";
             analyticsBtn.Size = new Size(211, 44);
             analyticsBtn.TabIndex = 9;
-            analyticsBtn.Text = "Analytics";
+            analyticsBtn.Text = "  Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
             analyticsBtn.Click += analyticsBtn_Click;
             // 
             // returnsBtn
             // 
-            returnsBtn.BackColor = Color.Transparent;
+            returnsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            returnsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             returnsBtn.FlatStyle = FlatStyle.Flat;
-            returnsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            returnsBtn.ForeColor = Color.LightGray;
+            returnsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            returnsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            returnsBtn.Image = Properties.Resources.Return__2_;
+            returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             returnsBtn.Location = new Point(10, 329);
             returnsBtn.Name = "returnsBtn";
             returnsBtn.Size = new Size(211, 44);
             returnsBtn.TabIndex = 8;
-            returnsBtn.Text = "Returns";
+            returnsBtn.Text = "  Returns";
             returnsBtn.UseVisualStyleBackColor = false;
             returnsBtn.Click += returnsBtn_Click;
             // 
             // rentalRequestsBtn
             // 
-            rentalRequestsBtn.BackColor = Color.Transparent;
+            rentalRequestsBtn.BackColor = Color.FromArgb(22, 34, 68);
+            rentalRequestsBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             rentalRequestsBtn.FlatStyle = FlatStyle.Flat;
-            rentalRequestsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            rentalRequestsBtn.ForeColor = Color.LightGray;
+            rentalRequestsBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            rentalRequestsBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            rentalRequestsBtn.Image = Properties.Resources.Request;
+            rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             rentalRequestsBtn.Location = new Point(10, 205);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
             rentalRequestsBtn.Size = new Size(211, 44);
             rentalRequestsBtn.TabIndex = 7;
-            rentalRequestsBtn.Text = "Rental Requests";
+            rentalRequestsBtn.Text = "  Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
             rentalRequestsBtn.Click += rentalRequestsBtn_Click;
             // 
             // EquipmentBtn
             // 
-            EquipmentBtn.BackColor = Color.Transparent;
+            EquipmentBtn.BackColor = Color.FromArgb(22, 34, 68);
+            EquipmentBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             EquipmentBtn.FlatStyle = FlatStyle.Flat;
-            EquipmentBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            EquipmentBtn.ForeColor = Color.LightGray;
+            EquipmentBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            EquipmentBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            EquipmentBtn.Image = Properties.Resources.Equipment2;
+            EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             EquipmentBtn.Location = new Point(10, 145);
             EquipmentBtn.Name = "EquipmentBtn";
             EquipmentBtn.Size = new Size(211, 44);
             EquipmentBtn.TabIndex = 2;
-            EquipmentBtn.Text = "Equipment";
+            EquipmentBtn.Text = "  Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
             EquipmentBtn.Click += EquipmentBtn_Click;
             // 
             // dashboardBtn
             // 
-            dashboardBtn.BackColor = Color.Transparent;
+            dashboardBtn.BackColor = Color.FromArgb(28, 44, 91);
+            dashboardBtn.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
             dashboardBtn.FlatStyle = FlatStyle.Flat;
-            dashboardBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dashboardBtn.ForeColor = Color.LightGray;
+            dashboardBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dashboardBtn.ForeColor = Color.FromArgb(233, 239, 255);
+            dashboardBtn.Image = Properties.Resources.Dashboard;
+            dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
             dashboardBtn.Location = new Point(10, 85);
             dashboardBtn.Name = "dashboardBtn";
             dashboardBtn.Size = new Size(211, 44);
             dashboardBtn.TabIndex = 1;
-            dashboardBtn.Text = "Dashboard";
+            dashboardBtn.Text = "  Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
             dashboardBtn.Click += dashboardBtn_Click;
             // 
             // logotxt
             // 
             logotxt.AutoSize = true;
-            logotxt.Font = new Font("Vivaldi", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            logotxt.Font = new Font("Vivaldi", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             logotxt.ForeColor = Color.White;
-            logotxt.Location = new Point(9, 10);
+            logotxt.Location = new Point(8, 14);
             logotxt.Name = "logotxt";
-            logotxt.Size = new Size(189, 29);
+            logotxt.Size = new Size(214, 32);
             logotxt.TabIndex = 0;
             logotxt.Text = "Lights And Lenses";
             logotxt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // topHeaderPanel
             // 
-            topHeaderPanel.BackColor = Color.FromArgb(31, 41, 55);
-            topHeaderPanel.Controls.Add(pictureBox1);
-            topHeaderPanel.Controls.Add(textBox1);
-            topHeaderPanel.Dock = DockStyle.Top;
+            topHeaderPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            topHeaderPanel.BackColor = Color.FromArgb(22, 34, 68);
+            topHeaderPanel.Controls.Add(labelUserName);
+            topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Location = new Point(230, 0);
             topHeaderPanel.Name = "topHeaderPanel";
             topHeaderPanel.Padding = new Padding(10);
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 1;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(46, 19);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(18, 15);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(55, 65, 81);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.ForeColor = Color.FromArgb(209, 213, 219);
-            textBox1.Location = new Point(42, 15);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 22);
-            textBox1.TabIndex = 0;
-            textBox1.Text = "       Search...";
-            // 
             // totalEquipmentPanel
             // 
-            totalEquipmentPanel.BackColor = Color.FromArgb(31, 41, 55);
+            totalEquipmentPanel.Anchor = AnchorStyles.Top;
+            totalEquipmentPanel.AutoSize = true;
+            totalEquipmentPanel.BackColor = Color.FromArgb(23, 38, 80);
+            totalEquipmentPanel.Controls.Add(pictureBox1);
             totalEquipmentPanel.Controls.Add(totalEquipmentNum);
             totalEquipmentPanel.Controls.Add(totalEquipmentTxt);
-            totalEquipmentPanel.Controls.Add(totalEquipmentPic);
             totalEquipmentPanel.Location = new Point(271, 85);
             totalEquipmentPanel.Name = "totalEquipmentPanel";
             totalEquipmentPanel.Size = new Size(200, 80);
             totalEquipmentPanel.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.Camera;
+            pictureBox1.Location = new Point(137, 28);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(43, 43);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 19;
+            pictureBox1.TabStop = false;
+            // 
             // totalEquipmentNum
             // 
             totalEquipmentNum.AutoSize = true;
             totalEquipmentNum.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            totalEquipmentNum.ForeColor = Color.LightGray;
-            totalEquipmentNum.Location = new Point(15, 37);
+            totalEquipmentNum.ForeColor = Color.White;
+            totalEquipmentNum.Location = new Point(29, 35);
             totalEquipmentNum.Name = "totalEquipmentNum";
             totalEquipmentNum.Size = new Size(56, 32);
             totalEquipmentNum.TabIndex = 4;
@@ -306,39 +319,42 @@
             // 
             totalEquipmentTxt.AutoSize = true;
             totalEquipmentTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            totalEquipmentTxt.ForeColor = Color.LightGray;
-            totalEquipmentTxt.Location = new Point(6, 11);
+            totalEquipmentTxt.ForeColor = Color.White;
+            totalEquipmentTxt.Location = new Point(11, 6);
             totalEquipmentTxt.Name = "totalEquipmentTxt";
             totalEquipmentTxt.Size = new Size(136, 21);
             totalEquipmentTxt.TabIndex = 3;
             totalEquipmentTxt.Text = "Total Equipment";
             // 
-            // totalEquipmentPic
-            // 
-            totalEquipmentPic.BackColor = Color.DimGray;
-            totalEquipmentPic.Location = new Point(153, 25);
-            totalEquipmentPic.Name = "totalEquipmentPic";
-            totalEquipmentPic.Size = new Size(32, 29);
-            totalEquipmentPic.TabIndex = 2;
-            totalEquipmentPic.TabStop = false;
-            // 
             // activeRentalsPanel
             // 
-            activeRentalsPanel.BackColor = Color.FromArgb(31, 41, 55);
+            activeRentalsPanel.Anchor = AnchorStyles.Top;
+            activeRentalsPanel.AutoSize = true;
+            activeRentalsPanel.BackColor = Color.FromArgb(23, 38, 80);
+            activeRentalsPanel.Controls.Add(pictureBox2);
             activeRentalsPanel.Controls.Add(activeRentalsNum);
             activeRentalsPanel.Controls.Add(activeRentalsTxt);
-            activeRentalsPanel.Controls.Add(activeRentalsPic);
             activeRentalsPanel.Location = new Point(481, 85);
             activeRentalsPanel.Name = "activeRentalsPanel";
             activeRentalsPanel.Size = new Size(200, 80);
             activeRentalsPanel.TabIndex = 3;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.Active;
+            pictureBox2.Location = new Point(145, 28);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(43, 43);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.TabIndex = 20;
+            pictureBox2.TabStop = false;
+            // 
             // activeRentalsNum
             // 
             activeRentalsNum.AutoSize = true;
             activeRentalsNum.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            activeRentalsNum.ForeColor = Color.LightGray;
-            activeRentalsNum.Location = new Point(15, 37);
+            activeRentalsNum.ForeColor = Color.White;
+            activeRentalsNum.Location = new Point(29, 35);
             activeRentalsNum.Name = "activeRentalsNum";
             activeRentalsNum.Size = new Size(56, 32);
             activeRentalsNum.TabIndex = 4;
@@ -348,39 +364,42 @@
             // 
             activeRentalsTxt.AutoSize = true;
             activeRentalsTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            activeRentalsTxt.ForeColor = Color.LightGray;
-            activeRentalsTxt.Location = new Point(6, 11);
+            activeRentalsTxt.ForeColor = Color.White;
+            activeRentalsTxt.Location = new Point(15, 6);
             activeRentalsTxt.Name = "activeRentalsTxt";
             activeRentalsTxt.Size = new Size(118, 21);
             activeRentalsTxt.TabIndex = 3;
             activeRentalsTxt.Text = "Active Rentals";
             // 
-            // activeRentalsPic
-            // 
-            activeRentalsPic.BackColor = Color.DimGray;
-            activeRentalsPic.Location = new Point(153, 25);
-            activeRentalsPic.Name = "activeRentalsPic";
-            activeRentalsPic.Size = new Size(32, 29);
-            activeRentalsPic.TabIndex = 2;
-            activeRentalsPic.TabStop = false;
-            // 
             // pendingRequestsPanel
             // 
-            pendingRequestsPanel.BackColor = Color.FromArgb(31, 41, 55);
+            pendingRequestsPanel.Anchor = AnchorStyles.Top;
+            pendingRequestsPanel.AutoSize = true;
+            pendingRequestsPanel.BackColor = Color.FromArgb(23, 38, 80);
+            pendingRequestsPanel.Controls.Add(pictureBox3);
             pendingRequestsPanel.Controls.Add(pendingRequestsNum);
             pendingRequestsPanel.Controls.Add(pendingRequestsTxt);
-            pendingRequestsPanel.Controls.Add(pendingRequestsPic);
             pendingRequestsPanel.Location = new Point(691, 85);
             pendingRequestsPanel.Name = "pendingRequestsPanel";
             pendingRequestsPanel.Size = new Size(200, 80);
             pendingRequestsPanel.TabIndex = 5;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.Clock;
+            pictureBox3.Location = new Point(145, 27);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(43, 43);
+            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox3.TabIndex = 21;
+            pictureBox3.TabStop = false;
+            // 
             // pendingRequestsNum
             // 
             pendingRequestsNum.AutoSize = true;
             pendingRequestsNum.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            pendingRequestsNum.ForeColor = Color.LightGray;
-            pendingRequestsNum.Location = new Point(15, 37);
+            pendingRequestsNum.ForeColor = Color.White;
+            pendingRequestsNum.Location = new Point(40, 35);
             pendingRequestsNum.Name = "pendingRequestsNum";
             pendingRequestsNum.Size = new Size(42, 32);
             pendingRequestsNum.TabIndex = 4;
@@ -390,39 +409,42 @@
             // 
             pendingRequestsTxt.AutoSize = true;
             pendingRequestsTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            pendingRequestsTxt.ForeColor = Color.LightGray;
-            pendingRequestsTxt.Location = new Point(6, 11);
+            pendingRequestsTxt.ForeColor = Color.White;
+            pendingRequestsTxt.Location = new Point(15, 6);
             pendingRequestsTxt.Name = "pendingRequestsTxt";
             pendingRequestsTxt.Size = new Size(146, 21);
             pendingRequestsTxt.TabIndex = 3;
             pendingRequestsTxt.Text = "Pending Requests";
             // 
-            // pendingRequestsPic
-            // 
-            pendingRequestsPic.BackColor = Color.DimGray;
-            pendingRequestsPic.Location = new Point(153, 25);
-            pendingRequestsPic.Name = "pendingRequestsPic";
-            pendingRequestsPic.Size = new Size(32, 29);
-            pendingRequestsPic.TabIndex = 2;
-            pendingRequestsPic.TabStop = false;
-            // 
             // overdueReturnsPanel
             // 
-            overdueReturnsPanel.BackColor = Color.FromArgb(31, 41, 55);
+            overdueReturnsPanel.Anchor = AnchorStyles.Top;
+            overdueReturnsPanel.AutoSize = true;
+            overdueReturnsPanel.BackColor = Color.FromArgb(23, 38, 80);
+            overdueReturnsPanel.Controls.Add(pictureBox4);
             overdueReturnsPanel.Controls.Add(overdueReturnsNum);
             overdueReturnsPanel.Controls.Add(overdueReturnsTxt);
-            overdueReturnsPanel.Controls.Add(overdueReturnsPic);
             overdueReturnsPanel.Location = new Point(901, 85);
             overdueReturnsPanel.Name = "overdueReturnsPanel";
             overdueReturnsPanel.Size = new Size(200, 80);
             overdueReturnsPanel.TabIndex = 5;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.Overdue;
+            pictureBox4.Location = new Point(147, 27);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(43, 43);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 20;
+            pictureBox4.TabStop = false;
+            // 
             // overdueReturnsNum
             // 
             overdueReturnsNum.AutoSize = true;
             overdueReturnsNum.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            overdueReturnsNum.ForeColor = Color.LightGray;
-            overdueReturnsNum.Location = new Point(15, 37);
+            overdueReturnsNum.ForeColor = Color.White;
+            overdueReturnsNum.Location = new Point(40, 35);
             overdueReturnsNum.Name = "overdueReturnsNum";
             overdueReturnsNum.Size = new Size(42, 32);
             overdueReturnsNum.TabIndex = 4;
@@ -432,26 +454,19 @@
             // 
             overdueReturnsTxt.AutoSize = true;
             overdueReturnsTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            overdueReturnsTxt.ForeColor = Color.LightGray;
-            overdueReturnsTxt.Location = new Point(6, 11);
+            overdueReturnsTxt.ForeColor = Color.White;
+            overdueReturnsTxt.Location = new Point(15, 6);
             overdueReturnsTxt.Name = "overdueReturnsTxt";
             overdueReturnsTxt.Size = new Size(137, 21);
             overdueReturnsTxt.TabIndex = 3;
             overdueReturnsTxt.Text = "Overdue Returns";
             // 
-            // overdueReturnsPic
-            // 
-            overdueReturnsPic.BackColor = Color.DimGray;
-            overdueReturnsPic.Location = new Point(153, 25);
-            overdueReturnsPic.Name = "overdueReturnsPic";
-            overdueReturnsPic.Size = new Size(32, 29);
-            overdueReturnsPic.TabIndex = 2;
-            overdueReturnsPic.TabStop = false;
-            // 
             // underMaintenancePanel
             // 
-            underMaintenancePanel.BackColor = Color.FromArgb(31, 41, 55);
-            underMaintenancePanel.Controls.Add(underMaintenancePic);
+            underMaintenancePanel.Anchor = AnchorStyles.Top;
+            underMaintenancePanel.AutoSize = true;
+            underMaintenancePanel.BackColor = Color.FromArgb(23, 38, 80);
+            underMaintenancePanel.Controls.Add(pictureBox5);
             underMaintenancePanel.Controls.Add(underMaintenanceNum);
             underMaintenancePanel.Controls.Add(underMaintenanceTxt);
             underMaintenancePanel.Location = new Point(1111, 85);
@@ -459,21 +474,22 @@
             underMaintenancePanel.Size = new Size(197, 80);
             underMaintenancePanel.TabIndex = 5;
             // 
-            // underMaintenancePic
+            // pictureBox5
             // 
-            underMaintenancePic.BackColor = Color.DimGray;
-            underMaintenancePic.Location = new Point(154, 35);
-            underMaintenancePic.Name = "underMaintenancePic";
-            underMaintenancePic.Size = new Size(32, 29);
-            underMaintenancePic.TabIndex = 2;
-            underMaintenancePic.TabStop = false;
+            pictureBox5.Image = Properties.Resources.Maintenance2;
+            pictureBox5.Location = new Point(124, 28);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(43, 43);
+            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox5.TabIndex = 20;
+            pictureBox5.TabStop = false;
             // 
             // underMaintenanceNum
             // 
             underMaintenanceNum.AutoSize = true;
             underMaintenanceNum.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            underMaintenanceNum.ForeColor = Color.LightGray;
-            underMaintenanceNum.Location = new Point(15, 37);
+            underMaintenanceNum.ForeColor = Color.White;
+            underMaintenanceNum.Location = new Point(43, 35);
             underMaintenanceNum.Name = "underMaintenanceNum";
             underMaintenanceNum.Size = new Size(28, 32);
             underMaintenanceNum.TabIndex = 4;
@@ -483,8 +499,8 @@
             // 
             underMaintenanceTxt.AutoSize = true;
             underMaintenanceTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            underMaintenanceTxt.ForeColor = Color.LightGray;
-            underMaintenanceTxt.Location = new Point(6, 11);
+            underMaintenanceTxt.ForeColor = Color.White;
+            underMaintenanceTxt.Location = new Point(15, 6);
             underMaintenanceTxt.Name = "underMaintenanceTxt";
             underMaintenanceTxt.Size = new Size(161, 21);
             underMaintenanceTxt.TabIndex = 3;
@@ -492,57 +508,78 @@
             // 
             // newRentalBtn
             // 
-            newRentalBtn.BackColor = Color.FromArgb(117, 147, 199);
+            newRentalBtn.Anchor = AnchorStyles.Top;
+            newRentalBtn.BackColor = Color.FromArgb(18, 80, 198);
             newRentalBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             newRentalBtn.ForeColor = Color.White;
+            newRentalBtn.Image = Properties.Resources.NewRental;
+            newRentalBtn.ImageAlign = ContentAlignment.MiddleLeft;
             newRentalBtn.Location = new Point(270, 178);
             newRentalBtn.Name = "newRentalBtn";
+            newRentalBtn.Padding = new Padding(20, 0, 0, 0);
             newRentalBtn.Size = new Size(256, 42);
             newRentalBtn.TabIndex = 6;
-            newRentalBtn.Text = "New Rental";
+            newRentalBtn.Text = "            New Rental";
+            newRentalBtn.TextAlign = ContentAlignment.MiddleLeft;
             newRentalBtn.UseVisualStyleBackColor = false;
             // 
             // processReturnBtn
             // 
-            processReturnBtn.BackColor = Color.FromArgb(154, 183, 155);
+            processReturnBtn.Anchor = AnchorStyles.Top;
+            processReturnBtn.BackColor = Color.FromArgb(107, 175, 109);
             processReturnBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             processReturnBtn.ForeColor = Color.White;
+            processReturnBtn.Image = Properties.Resources.Return;
+            processReturnBtn.ImageAlign = ContentAlignment.MiddleLeft;
             processReturnBtn.Location = new Point(531, 178);
             processReturnBtn.Name = "processReturnBtn";
+            processReturnBtn.Padding = new Padding(20, 0, 0, 0);
             processReturnBtn.Size = new Size(256, 42);
             processReturnBtn.TabIndex = 10;
-            processReturnBtn.Text = "Process Return";
+            processReturnBtn.Text = "          Process Return";
+            processReturnBtn.TextAlign = ContentAlignment.MiddleLeft;
             processReturnBtn.UseVisualStyleBackColor = false;
             // 
             // LogsBtn
             // 
-            LogsBtn.BackColor = Color.FromArgb(140, 118, 183);
+            LogsBtn.Anchor = AnchorStyles.Top;
+            LogsBtn.BackColor = Color.FromArgb(133, 93, 212);
             LogsBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             LogsBtn.ForeColor = Color.White;
+            LogsBtn.Image = Properties.Resources.Logs;
+            LogsBtn.ImageAlign = ContentAlignment.MiddleLeft;
             LogsBtn.Location = new Point(1055, 178);
             LogsBtn.Name = "LogsBtn";
+            LogsBtn.Padding = new Padding(20, 0, 0, 0);
             LogsBtn.Size = new Size(256, 42);
             LogsBtn.TabIndex = 11;
-            LogsBtn.Text = "View Logs";
+            LogsBtn.Text = "               View Logs";
+            LogsBtn.TextAlign = ContentAlignment.MiddleLeft;
             LogsBtn.UseVisualStyleBackColor = false;
             LogsBtn.Click += LogsBtn_Click;
             // 
             // maintenanceBtn
             // 
-            maintenanceBtn.BackColor = Color.FromArgb(190, 112, 72);
+            maintenanceBtn.Anchor = AnchorStyles.Top;
+            maintenanceBtn.BackColor = Color.FromArgb(223, 121, 68);
             maintenanceBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             maintenanceBtn.ForeColor = Color.White;
+            maintenanceBtn.Image = Properties.Resources.Maintenance;
+            maintenanceBtn.ImageAlign = ContentAlignment.MiddleLeft;
             maintenanceBtn.Location = new Point(794, 178);
             maintenanceBtn.Name = "maintenanceBtn";
+            maintenanceBtn.Padding = new Padding(20, 0, 0, 0);
             maintenanceBtn.Size = new Size(255, 42);
             maintenanceBtn.TabIndex = 12;
-            maintenanceBtn.Text = "Maintenance";
+            maintenanceBtn.Text = "            Maintenance";
+            maintenanceBtn.TextAlign = ContentAlignment.MiddleLeft;
             maintenanceBtn.UseVisualStyleBackColor = false;
             maintenanceBtn.Click += maintenanceBtn_Click;
             // 
             // equipmentInventoryPanel
             // 
-            equipmentInventoryPanel.BackColor = Color.FromArgb(31, 41, 55);
+            equipmentInventoryPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            equipmentInventoryPanel.BackColor = Color.FromArgb(23, 38, 80);
             equipmentInventoryPanel.Controls.Add(stabilizersPercentageLabel);
             equipmentInventoryPanel.Controls.Add(label6);
             equipmentInventoryPanel.Controls.Add(stabilizersProgressBar);
@@ -559,7 +596,7 @@
             equipmentInventoryPanel.Controls.Add(label1);
             equipmentInventoryPanel.Controls.Add(cameraProgressBar);
             equipmentInventoryPanel.Controls.Add(equipmentInventoryTxt);
-            equipmentInventoryPanel.Location = new Point(964, 300);
+            equipmentInventoryPanel.Location = new Point(964, 309);
             equipmentInventoryPanel.Name = "equipmentInventoryPanel";
             equipmentInventoryPanel.Size = new Size(344, 296);
             equipmentInventoryPanel.TabIndex = 14;
@@ -568,7 +605,7 @@
             // 
             stabilizersPercentageLabel.AutoSize = true;
             stabilizersPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            stabilizersPercentageLabel.ForeColor = Color.LightGray;
+            stabilizersPercentageLabel.ForeColor = Color.White;
             stabilizersPercentageLabel.Location = new Point(282, 231);
             stabilizersPercentageLabel.Name = "stabilizersPercentageLabel";
             stabilizersPercentageLabel.Size = new Size(42, 21);
@@ -579,7 +616,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.LightGray;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(4, 232);
             label6.Name = "label6";
             label6.Size = new Size(89, 21);
@@ -598,7 +635,7 @@
             // 
             accessoriesPercentageLabel.AutoSize = true;
             accessoriesPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            accessoriesPercentageLabel.ForeColor = Color.LightGray;
+            accessoriesPercentageLabel.ForeColor = Color.White;
             accessoriesPercentageLabel.Location = new Point(282, 192);
             accessoriesPercentageLabel.Name = "accessoriesPercentageLabel";
             accessoriesPercentageLabel.Size = new Size(42, 21);
@@ -609,7 +646,7 @@
             // 
             lightsPercentageLabel.AutoSize = true;
             lightsPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lightsPercentageLabel.ForeColor = Color.LightGray;
+            lightsPercentageLabel.ForeColor = Color.White;
             lightsPercentageLabel.Location = new Point(282, 149);
             lightsPercentageLabel.Name = "lightsPercentageLabel";
             lightsPercentageLabel.Size = new Size(42, 21);
@@ -620,7 +657,7 @@
             // 
             lensesPercentageLabel.AutoSize = true;
             lensesPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lensesPercentageLabel.ForeColor = Color.LightGray;
+            lensesPercentageLabel.ForeColor = Color.White;
             lensesPercentageLabel.Location = new Point(282, 106);
             lensesPercentageLabel.Name = "lensesPercentageLabel";
             lensesPercentageLabel.Size = new Size(42, 21);
@@ -631,7 +668,7 @@
             // 
             cameraPercentageLabel.AutoSize = true;
             cameraPercentageLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            cameraPercentageLabel.ForeColor = Color.LightGray;
+            cameraPercentageLabel.ForeColor = Color.White;
             cameraPercentageLabel.Location = new Point(282, 65);
             cameraPercentageLabel.Name = "cameraPercentageLabel";
             cameraPercentageLabel.Size = new Size(42, 21);
@@ -642,7 +679,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.LightGray;
+            label5.ForeColor = Color.White;
             label5.Location = new Point(4, 193);
             label5.Name = "label5";
             label5.Size = new Size(97, 21);
@@ -661,7 +698,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.LightGray;
+            label3.ForeColor = Color.White;
             label3.Location = new Point(6, 150);
             label3.Name = "label3";
             label3.Size = new Size(56, 21);
@@ -680,7 +717,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.LightGray;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(6, 107);
             label2.Name = "label2";
             label2.Size = new Size(60, 21);
@@ -699,7 +736,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.LightGray;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(6, 65);
             label1.Name = "label1";
             label1.Size = new Size(75, 21);
@@ -717,11 +754,11 @@
             // equipmentInventoryTxt
             // 
             equipmentInventoryTxt.AutoSize = true;
-            equipmentInventoryTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            equipmentInventoryTxt.ForeColor = Color.LightGray;
-            equipmentInventoryTxt.Location = new Point(9, 9);
+            equipmentInventoryTxt.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            equipmentInventoryTxt.ForeColor = Color.White;
+            equipmentInventoryTxt.Location = new Point(6, 3);
             equipmentInventoryTxt.Name = "equipmentInventoryTxt";
-            equipmentInventoryTxt.Size = new Size(173, 21);
+            equipmentInventoryTxt.Size = new Size(222, 30);
             equipmentInventoryTxt.TabIndex = 7;
             equipmentInventoryTxt.Text = "Equipment Inventory";
             // 
@@ -730,7 +767,7 @@
             tabRecentActivities.Controls.Add(tabRequests);
             tabRecentActivities.Controls.Add(tabRentals);
             tabRecentActivities.Controls.Add(tabReturns);
-            tabRecentActivities.Location = new Point(271, 275);
+            tabRecentActivities.Location = new Point(271, 285);
             tabRecentActivities.Name = "tabRecentActivities";
             tabRecentActivities.SelectedIndex = 0;
             tabRecentActivities.Size = new Size(671, 323);
@@ -750,11 +787,21 @@
             // 
             // dataGridViewRequests
             // 
+            dataGridViewRequests.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            dataGridViewRequests.BackgroundColor = Color.White;
             dataGridViewRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dataGridViewRequests.DefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewRequests.Location = new Point(3, 3);
             dataGridViewRequests.Name = "dataGridViewRequests";
             dataGridViewRequests.RowTemplate.Height = 25;
-            dataGridViewRequests.Size = new Size(654, 289);
+            dataGridViewRequests.Size = new Size(657, 289);
             dataGridViewRequests.TabIndex = 4;
             // 
             // tabRentals
@@ -770,11 +817,21 @@
             // 
             // dataGridViewRentals
             // 
+            dataGridViewRentals.BackgroundColor = Color.White;
             dataGridViewRentals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRentals.Location = new Point(6, 6);
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dataGridViewRentals.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewRentals.Dock = DockStyle.Fill;
+            dataGridViewRentals.Location = new Point(3, 3);
             dataGridViewRentals.Name = "dataGridViewRentals";
             dataGridViewRentals.RowTemplate.Height = 25;
-            dataGridViewRentals.Size = new Size(651, 283);
+            dataGridViewRentals.Size = new Size(657, 289);
             dataGridViewRentals.TabIndex = 19;
             // 
             // tabReturns
@@ -790,29 +847,61 @@
             // 
             // dataGridViewReturns
             // 
+            dataGridViewReturns.BackgroundColor = Color.White;
             dataGridViewReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewReturns.Location = new Point(6, 3);
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dataGridViewReturns.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewReturns.Dock = DockStyle.Fill;
+            dataGridViewReturns.Location = new Point(3, 3);
             dataGridViewReturns.Name = "dataGridViewReturns";
             dataGridViewReturns.RowTemplate.Height = 25;
-            dataGridViewReturns.Size = new Size(651, 289);
+            dataGridViewReturns.Size = new Size(657, 289);
             dataGridViewReturns.TabIndex = 19;
             // 
             // recentActivitiesTxt
             // 
             recentActivitiesTxt.AutoSize = true;
-            recentActivitiesTxt.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            recentActivitiesTxt.ForeColor = Color.LightGray;
-            recentActivitiesTxt.Location = new Point(284, 247);
+            recentActivitiesTxt.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            recentActivitiesTxt.ForeColor = Color.White;
+            recentActivitiesTxt.Location = new Point(270, 246);
             recentActivitiesTxt.Name = "recentActivitiesTxt";
-            recentActivitiesTxt.Size = new Size(137, 21);
+            recentActivitiesTxt.Size = new Size(175, 30);
             recentActivitiesTxt.TabIndex = 6;
             recentActivitiesTxt.Text = "Recent Activities";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 21;
+            pictureBoxAvatar.TabStop = false;
+            // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 21;
+            labelUserName.Text = "User Name";
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(15, 23, 42);
+            AutoSize = true;
+            BackColor = Color.FromArgb(18, 28, 58);
             ClientSize = new Size(1350, 825);
             Controls.Add(recentActivitiesTxt);
             Controls.Add(tabRecentActivities);
@@ -831,7 +920,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Dashboard";
+            Text = " ";
             Load += Form1_Load;
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
@@ -839,22 +928,21 @@
             panel2.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             totalEquipmentPanel.ResumeLayout(false);
             totalEquipmentPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)totalEquipmentPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             activeRentalsPanel.ResumeLayout(false);
             activeRentalsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)activeRentalsPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             pendingRequestsPanel.ResumeLayout(false);
             pendingRequestsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pendingRequestsPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             overdueReturnsPanel.ResumeLayout(false);
             overdueReturnsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)overdueReturnsPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             underMaintenancePanel.ResumeLayout(false);
             underMaintenancePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)underMaintenancePic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             equipmentInventoryPanel.ResumeLayout(false);
             equipmentInventoryPanel.PerformLayout();
             tabRecentActivities.ResumeLayout(false);
@@ -864,6 +952,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewRentals).EndInit();
             tabReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewReturns).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -876,28 +965,21 @@
         private Button dashboardBtn;
         private Button EquipmentBtn;
         private Panel topHeaderPanel;
-        private TextBox textBox1;
-        private PictureBox pictureBox1;
         private Panel totalEquipmentPanel;
         private Label totalEquipmentNum;
         private Label totalEquipmentTxt;
-        private PictureBox totalEquipmentPic;
         private Panel activeRentalsPanel;
         private Label activeRentalsNum;
         private Label activeRentalsTxt;
-        private PictureBox activeRentalsPic;
         private Panel pendingRequestsPanel;
         private Label pendingRequestsNum;
         private Label pendingRequestsTxt;
-        private PictureBox pendingRequestsPic;
         private Panel overdueReturnsPanel;
         private Label overdueReturnsNum;
         private Label overdueReturnsTxt;
-        private PictureBox overdueReturnsPic;
         private Panel underMaintenancePanel;
         private Label underMaintenanceNum;
         private Label underMaintenanceTxt;
-        private PictureBox underMaintenancePic;
         private Button newRentalBtn;
         private Button processReturnBtn;
         private Button LogsBtn;
@@ -933,5 +1015,17 @@
         private Label label6;
         private ProgressBar stabilizersProgressBar;
         private Button rentalTransactionsBtn;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox13;
+        private PictureBox pictureBox14;
+        private PictureBox pictureBox15;
+        private PictureBox pictureBox12;
+        private PictureBox pictureBox11;
+        private Label labelUserName;
+        private PictureBox pictureBoxAvatar;
     }
 }

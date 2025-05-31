@@ -1,6 +1,7 @@
 using LightAndLensCL.Models;
 using Microsoft.EntityFrameworkCore;
-
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace LightAndLens_FormApp
 {
@@ -10,14 +11,15 @@ namespace LightAndLens_FormApp
         public Dashboard()
         {
             InitializeComponent();
-            HighlightActiveButton(dashboardBtn);
             _context = new LightAndLensDBContext();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadDashboardStats();
             LoadRentalRequestsView();
+            HighlightActiveButton(dashboardBtn);
         }
 
         private void LoadDashboardStats()
@@ -57,6 +59,7 @@ namespace LightAndLens_FormApp
                 MessageBox.Show($"Error loading dashboard: {ex.Message}");
             }
         }
+
 
 
         public void RefreshKPI()
@@ -216,17 +219,39 @@ namespace LightAndLens_FormApp
             //dataGridViewRecentActivities.DataSource = null;
         }
 
+        
         private void HighlightActiveButton(Button activeButton)
         {
-            // Reset all to default color
-            dashboardBtn.BackColor = Color.FromArgb(26, 32, 40);
-            EquipmentBtn.BackColor = Color.FromArgb(26, 32, 40);
-            rentalRequestsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            returnsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            analyticsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            rentalTransactionsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            // Set active color
-            activeButton.BackColor = Color.FromArgb(41, 128, 185);
+            // Put all buttons in a list for easy iteration
+            var buttons = new List<Button> {
+            dashboardBtn,
+            EquipmentBtn,
+            rentalRequestsBtn,
+            returnsBtn,
+            analyticsBtn,
+            rentalTransactionsBtn
+    };
+
+            Color defaultBackColor = Color.FromArgb(22, 34, 68);
+            Color defaultForeColor = Color.FromArgb(233, 239, 255);
+            Color defaultBorderColor = Color.FromArgb(41, 58, 107);
+            float fontSize = 15.75F;
+
+            // Reset all buttons to default
+            foreach (var btn in buttons)
+            {
+                btn.BackColor = defaultBackColor;
+                btn.ForeColor = defaultForeColor;
+                btn.FlatAppearance.BorderColor = defaultBorderColor;
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
+                
+            }
+
+            // Set the active button style
+            activeButton.BackColor = Color.FromArgb(28, 44, 91);
+            activeButton.ForeColor = Color.White; 
+            activeButton.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
         }
 
 
@@ -243,11 +268,6 @@ namespace LightAndLens_FormApp
             this.Hide();
         }
 
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void rentalRequestsBtn_Click(object sender, EventArgs e)
         {
@@ -297,6 +317,11 @@ namespace LightAndLens_FormApp
         {
             var logsForm = new Logs();
             logsForm.ShowDialog();
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

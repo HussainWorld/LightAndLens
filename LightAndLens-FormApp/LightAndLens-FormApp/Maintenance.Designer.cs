@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             EquipmentUnderMaintenancetxt = new Label();
             btnApplyChanges = new Button();
@@ -38,7 +39,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(31, 41, 55);
+            panel1.BackColor = Color.FromArgb(23, 38, 80);
             panel1.Controls.Add(EquipmentUnderMaintenancetxt);
             panel1.Controls.Add(btnApplyChanges);
             panel1.Controls.Add(dgvMaintenance);
@@ -52,7 +53,7 @@
             // 
             EquipmentUnderMaintenancetxt.AutoSize = true;
             EquipmentUnderMaintenancetxt.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            EquipmentUnderMaintenancetxt.ForeColor = Color.LightGray;
+            EquipmentUnderMaintenancetxt.ForeColor = Color.White;
             EquipmentUnderMaintenancetxt.Location = new Point(19, 16);
             EquipmentUnderMaintenancetxt.Name = "EquipmentUnderMaintenancetxt";
             EquipmentUnderMaintenancetxt.Size = new Size(319, 30);
@@ -62,7 +63,7 @@
             // 
             // btnApplyChanges
             // 
-            btnApplyChanges.BackColor = SystemColors.HotTrack;
+            btnApplyChanges.BackColor = Color.FromArgb(18, 80, 198);
             btnApplyChanges.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnApplyChanges.ForeColor = Color.White;
             btnApplyChanges.Location = new Point(204, 509);
@@ -75,6 +76,15 @@
             // 
             // dgvMaintenance
             // 
+            dgvMaintenance.BackgroundColor = Color.White;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(18, 80, 198);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvMaintenance.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMaintenance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMaintenance.Location = new Point(19, 61);
             dgvMaintenance.Name = "dgvMaintenance";
@@ -86,7 +96,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(15, 23, 42);
+            BackColor = Color.FromArgb(18, 28, 58);
             ClientSize = new Size(639, 628);
             Controls.Add(panel1);
             Name = "Maintenance";

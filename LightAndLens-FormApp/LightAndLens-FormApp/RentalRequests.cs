@@ -34,6 +34,8 @@ namespace LightAndLens_FormApp
             btnApprove.Click += btnApprove_Click;
             btnReject.Click += btnReject_Click;
 
+            HighlightActiveButton(rentalRequestsBtn);
+
         }
 
 
@@ -78,7 +80,8 @@ namespace LightAndLens_FormApp
             clearFilters();
         }
 
-        private void FilterRequestsGridview(){
+        private void FilterRequestsGridview()
+        {
 
             try
             {
@@ -343,6 +346,40 @@ namespace LightAndLens_FormApp
             }
         }
 
+        private void HighlightActiveButton(Button activeButton)
+        {
+            // Put all buttons in a list for easy iteration
+            var buttons = new List<Button> {
+            dashboardBtn,
+            EquipmentBtn,
+            rentalRequestsBtn,
+            returnsBtn,
+            analyticsBtn,
+            rentalTransactionsBtn
+    };
+
+            Color defaultBackColor = Color.FromArgb(22, 34, 68);
+            Color defaultForeColor = Color.FromArgb(233, 239, 255);
+            Color defaultBorderColor = Color.FromArgb(41, 58, 107);
+            float fontSize = 15.75F;
+
+            // Reset all buttons to default
+            foreach (var btn in buttons)
+            {
+                btn.BackColor = defaultBackColor;
+                btn.ForeColor = defaultForeColor;
+                btn.FlatAppearance.BorderColor = defaultBorderColor;
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
+
+            }
+
+            // Set the active button style
+            activeButton.BackColor = Color.FromArgb(28, 44, 91);
+            activeButton.ForeColor = Color.White;
+            activeButton.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
+        }
+
 
         private void txtSearchCustOrEq_TextChanged(object sender, EventArgs e)
         {
@@ -360,43 +397,52 @@ namespace LightAndLens_FormApp
         }
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void EquipmentBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rentalRequestsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void returnsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void analyticsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
+            var DashboardForm = new Dashboard();
+            DashboardForm.Show();
+            this.Hide();
         }
 
         private void RentalRequests_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void recentActivitiesTxt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rentalTransactionsBtn_Click(object sender, EventArgs e)
+        {
+            var RentalTransactionsForm = new RentalTransactions();
+            RentalTransactionsForm.Show();
+            this.Hide();
+        }
+
+        private void RentalRequests_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void returnsBtn_Click_1(object sender, EventArgs e)
+        {
+            var returnsForm = new Returns();
+            returnsForm.Show();
+            this.Hide();
+        }
+
+        private void EquipmentBtn_Click_1(object sender, EventArgs e)
+        {
+            var equipmentForm = new EquipmentForm();
+            equipmentForm.Show();
+            this.Hide();
+        }
+
+        private void analyticsBtn_Click_1(object sender, EventArgs e)
+        {
+            var analyticsForm = new Analytics();
+            analyticsForm.Show();
+            this.Hide();
         }
     }
 }

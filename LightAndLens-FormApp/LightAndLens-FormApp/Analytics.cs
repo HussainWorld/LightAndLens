@@ -25,21 +25,78 @@ namespace LightAndLens_FormApp
 
         private void HighlightActiveButton(Button activeButton)
         {
-            // Reset all to default color
-            dashboardBtn.BackColor = Color.FromArgb(26, 32, 40);
-            EquipmentBtn.BackColor = Color.FromArgb(26, 32, 40);
-            rentalRequestsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            returnsBtn.BackColor = Color.FromArgb(26, 32, 40);
-            analyticsBtn.BackColor = Color.FromArgb(26, 32, 40);
+            // Put all buttons in a list for easy iteration
+            var buttons = new List<Button> {
+            dashboardBtn,
+            EquipmentBtn,
+            rentalRequestsBtn,
+            returnsBtn,
+            analyticsBtn,
+            rentalTransactionsBtn
+    };
 
-            // Set active color
-            activeButton.BackColor = Color.FromArgb(41, 128, 185); // Example: a nice highlight blue
+            Color defaultBackColor = Color.FromArgb(22, 34, 68);
+            Color defaultForeColor = Color.FromArgb(233, 239, 255);
+            Color defaultBorderColor = Color.FromArgb(41, 58, 107);
+            float fontSize = 15.75F;
+
+            // Reset all buttons to default
+            foreach (var btn in buttons)
+            {
+                btn.BackColor = defaultBackColor;
+                btn.ForeColor = defaultForeColor;
+                btn.FlatAppearance.BorderColor = defaultBorderColor;
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
+
+            }
+
+            // Set the active button style
+            activeButton.BackColor = Color.FromArgb(28, 44, 91);
+            activeButton.ForeColor = Color.White;
+            activeButton.FlatAppearance.BorderColor = Color.FromArgb(41, 58, 107);
         }
 
 
         private void Analytics_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void dashboardBtn_Click(object sender, EventArgs e)
+        {
+            var DashboardForm = new Dashboard();
+            DashboardForm.Show();
+            this.Hide();
+
+        }
+
+        private void EquipmentBtn_Click(object sender, EventArgs e)
+        {
+            var equipmentForm = new EquipmentForm();
+            equipmentForm.Show();
+            this.Hide();
+        }
+
+        private void rentalRequestsBtn_Click(object sender, EventArgs e)
+        {
+            var requestsForm = new RentalRequests();
+            requestsForm.Show();
+            this.Hide();
+        }
+
+        private void rentalTransactionsBtn_Click(object sender, EventArgs e)
+        {
+            var RentalTransactionsForm = new RentalTransactions();
+            RentalTransactionsForm.Show();
+            this.Hide();
+        }
+
+        private void returnsBtn_Click(object sender, EventArgs e)
+        {
+            var returnsForm = new Returns();
+            returnsForm.Show();
+            this.Hide();
         }
     }
 }

@@ -52,9 +52,10 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(292, 22);
+            txtName.Location = new Point(256, 16);
+            txtName.Margin = new Padding(3, 2, 3, 2);
             txtName.Name = "txtName";
-            txtName.Size = new Size(188, 27);
+            txtName.Size = new Size(165, 23);
             txtName.TabIndex = 0;
             // 
             // lblName
@@ -62,17 +63,18 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(80, 21);
+            lblName.Location = new Point(70, 18);
             lblName.Name = "lblName";
-            lblName.Size = new Size(181, 28);
+            lblName.Size = new Size(148, 21);
             lblName.TabIndex = 1;
             lblName.Text = "Equipment Name:";
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(292, 64);
+            txtDescription.Location = new Point(256, 48);
+            txtDescription.Margin = new Padding(3, 2, 3, 2);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(188, 27);
+            txtDescription.Size = new Size(165, 23);
             txtDescription.TabIndex = 0;
             txtDescription.TextChanged += txtDescription_TextChanged;
             // 
@@ -81,18 +83,19 @@
             lblDescription.AutoSize = true;
             lblDescription.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDescription.ForeColor = Color.White;
-            lblDescription.Location = new Point(27, 62);
+            lblDescription.Location = new Point(28, 50);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(234, 28);
+            lblDescription.Size = new Size(190, 21);
             lblDescription.TabIndex = 1;
             lblDescription.Text = "Equipment Description:";
             // 
             // ddlCategory
             // 
             ddlCategory.FormattingEnabled = true;
-            ddlCategory.Location = new Point(292, 113);
+            ddlCategory.Location = new Point(256, 80);
+            ddlCategory.Margin = new Padding(3, 2, 3, 2);
             ddlCategory.Name = "ddlCategory";
-            ddlCategory.Size = new Size(188, 28);
+            ddlCategory.Size = new Size(165, 23);
             ddlCategory.TabIndex = 2;
             // 
             // lblCategory
@@ -100,9 +103,9 @@
             lblCategory.AutoSize = true;
             lblCategory.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblCategory.ForeColor = Color.White;
-            lblCategory.Location = new Point(39, 108);
+            lblCategory.Location = new Point(46, 82);
             lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(211, 28);
+            lblCategory.Size = new Size(172, 21);
             lblCategory.TabIndex = 1;
             lblCategory.Text = "Equipment Category:";
             // 
@@ -111,9 +114,9 @@
             lblAvailability.AutoSize = true;
             lblAvailability.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblAvailability.ForeColor = Color.White;
-            lblAvailability.Location = new Point(27, 157);
+            lblAvailability.Location = new Point(28, 115);
             lblAvailability.Name = "lblAvailability";
-            lblAvailability.Size = new Size(233, 28);
+            lblAvailability.Size = new Size(190, 21);
             lblAvailability.TabIndex = 1;
             lblAvailability.Text = "Equipment Availability:";
             lblAvailability.Click += label2_Click;
@@ -123,9 +126,9 @@
             lblCondition.AutoSize = true;
             lblCondition.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblCondition.ForeColor = Color.White;
-            lblCondition.Location = new Point(33, 202);
+            lblCondition.Location = new Point(40, 152);
             lblCondition.Name = "lblCondition";
-            lblCondition.Size = new Size(217, 28);
+            lblCondition.Size = new Size(178, 21);
             lblCondition.TabIndex = 1;
             lblCondition.Text = "Equipment Condition:";
             lblCondition.Click += label2_Click;
@@ -133,24 +136,27 @@
             // ddlStatus
             // 
             ddlStatus.FormattingEnabled = true;
-            ddlStatus.Location = new Point(292, 158);
+            ddlStatus.Location = new Point(256, 113);
+            ddlStatus.Margin = new Padding(3, 2, 3, 2);
             ddlStatus.Name = "ddlStatus";
-            ddlStatus.Size = new Size(188, 28);
+            ddlStatus.Size = new Size(165, 23);
             ddlStatus.TabIndex = 2;
             // 
             // ddlCondition
             // 
             ddlCondition.FormattingEnabled = true;
-            ddlCondition.Location = new Point(292, 203);
+            ddlCondition.Location = new Point(256, 147);
+            ddlCondition.Margin = new Padding(3, 2, 3, 2);
             ddlCondition.Name = "ddlCondition";
-            ddlCondition.Size = new Size(188, 28);
+            ddlCondition.Size = new Size(165, 23);
             ddlCondition.TabIndex = 2;
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(335, 295);
+            numQuantity.Location = new Point(293, 215);
+            numQuantity.Margin = new Padding(3, 2, 3, 2);
             numQuantity.Name = "numQuantity";
-            numQuantity.Size = new Size(101, 27);
+            numQuantity.Size = new Size(88, 23);
             numQuantity.TabIndex = 3;
             // 
             // label1
@@ -158,9 +164,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(33, 250);
+            label1.Location = new Point(50, 183);
             label1.Name = "label1";
-            label1.Size = new Size(210, 28);
+            label1.Size = new Size(168, 21);
             label1.TabIndex = 1;
             label1.Text = "Rental Price Per Day:";
             label1.Click += label2_Click;
@@ -170,29 +176,31 @@
             lblQuantity.AutoSize = true;
             lblQuantity.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblQuantity.ForeColor = Color.White;
-            lblQuantity.Location = new Point(108, 294);
+            lblQuantity.Location = new Point(137, 217);
             lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(100, 28);
+            lblQuantity.Size = new Size(81, 21);
             lblQuantity.TabIndex = 1;
             lblQuantity.Text = "Quantity:";
             lblQuantity.Click += label2_Click;
             // 
             // numPrice
             // 
-            numPrice.Location = new Point(292, 251);
+            numPrice.Location = new Point(256, 181);
+            numPrice.Margin = new Padding(3, 2, 3, 2);
             numPrice.Name = "numPrice";
-            numPrice.Size = new Size(188, 27);
+            numPrice.Size = new Size(165, 23);
             numPrice.TabIndex = 0;
             numPrice.TextChanged += txtDescription_TextChanged;
             // 
             // btnSave
             // 
-            btnSave.BackColor = Color.Green;
-            btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSave.BackColor = Color.SeaGreen;
+            btnSave.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = SystemColors.ButtonFace;
-            btnSave.Location = new Point(681, 400);
+            btnSave.Location = new Point(223, 299);
+            btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(107, 38);
+            btnSave.Size = new Size(149, 28);
             btnSave.TabIndex = 4;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -201,11 +209,12 @@
             // btnCancel
             // 
             btnCancel.BackColor = Color.FromArgb(192, 0, 0);
-            btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancel.ForeColor = SystemColors.ButtonFace;
-            btnCancel.Location = new Point(572, 400);
+            btnCancel.Location = new Point(378, 299);
+            btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(103, 38);
+            btnCancel.Size = new Size(71, 28);
             btnCancel.TabIndex = 5;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
@@ -213,12 +222,13 @@
             // 
             // btnAddImage
             // 
-            btnAddImage.BackColor = Color.Navy;
+            btnAddImage.BackColor = Color.FromArgb(18, 80, 198);
             btnAddImage.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddImage.ForeColor = SystemColors.ButtonFace;
-            btnAddImage.Location = new Point(603, 237);
+            btnAddImage.Location = new Point(517, 181);
+            btnAddImage.Margin = new Padding(3, 2, 3, 2);
             btnAddImage.Name = "btnAddImage";
-            btnAddImage.Size = new Size(119, 38);
+            btnAddImage.Size = new Size(104, 28);
             btnAddImage.TabIndex = 5;
             btnAddImage.Text = "Browse Image";
             btnAddImage.UseVisualStyleBackColor = false;
@@ -226,18 +236,20 @@
             // 
             // pbPreview
             // 
-            pbPreview.Location = new Point(559, 31);
+            pbPreview.BackColor = Color.FromArgb(23, 38, 80);
+            pbPreview.Location = new Point(477, 23);
+            pbPreview.Margin = new Padding(3, 2, 3, 2);
             pbPreview.Name = "pbPreview";
-            pbPreview.Size = new Size(204, 200);
+            pbPreview.Size = new Size(178, 150);
             pbPreview.TabIndex = 6;
             pbPreview.TabStop = false;
             // 
             // AddEditEquipmentForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(15, 23, 42);
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FromArgb(18, 28, 58);
+            ClientSize = new Size(700, 338);
             Controls.Add(pbPreview);
             Controls.Add(btnAddImage);
             Controls.Add(btnCancel);
@@ -256,6 +268,7 @@
             Controls.Add(numPrice);
             Controls.Add(txtDescription);
             Controls.Add(txtName);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AddEditEquipmentForm";
             Text = "AddEditEquipmentForm";
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
