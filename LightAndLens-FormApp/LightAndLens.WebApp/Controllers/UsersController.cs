@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LightAndLens.WebApp.Controllers
 {
-    
+    [Authorize(Roles ="Admin")]
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

@@ -16,6 +16,7 @@ using System.Reflection;
 
 namespace LightAndLens.WebApp.Controllers
 {
+    [Authorize]
     public class RentalRequestsController : Controller
     {
         private readonly LightAndLensDBContext _context;
