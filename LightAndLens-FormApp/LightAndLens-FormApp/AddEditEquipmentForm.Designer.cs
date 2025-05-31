@@ -241,6 +241,7 @@
             pbPreview.Margin = new Padding(3, 2, 3, 2);
             pbPreview.Name = "pbPreview";
             pbPreview.Size = new Size(178, 150);
+            pbPreview.SizeMode = PictureBoxSizeMode.Zoom;
             pbPreview.TabIndex = 6;
             pbPreview.TabStop = false;
             // 

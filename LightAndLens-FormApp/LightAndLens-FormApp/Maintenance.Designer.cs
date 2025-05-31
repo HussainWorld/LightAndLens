@@ -100,6 +100,7 @@
             ClientSize = new Size(639, 628);
             Controls.Add(panel1);
             Name = "Maintenance";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Maintenance";
             Load += Maintenance_Load;
             panel1.ResumeLayout(false);

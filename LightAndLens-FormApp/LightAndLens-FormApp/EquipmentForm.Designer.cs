@@ -38,6 +38,8 @@
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             panel1 = new Panel();
             ddlCondition = new ComboBox();
             ddlStatus = new ComboBox();
@@ -63,17 +65,15 @@
             label4 = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
-            labelUserName = new Label();
-            pictureBoxAvatar = new PictureBox();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListEquipment).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxEquipment).BeginInit();
             panel2.SuspendLayout();
             panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -212,6 +212,27 @@
             topHeaderPanel.Padding = new Padding(10);
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 3;
+            // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 24;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 25;
+            pictureBoxAvatar.TabStop = false;
             // 
             // panel1
             // 
@@ -502,12 +523,12 @@
             pictureBoxEquipment.Location = new Point(25, 35);
             pictureBoxEquipment.Name = "pictureBoxEquipment";
             pictureBoxEquipment.Size = new Size(220, 155);
+            pictureBoxEquipment.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxEquipment.TabIndex = 0;
             pictureBoxEquipment.TabStop = false;
             // 
             // lblEquipmentDesc
             // 
-            lblEquipmentDesc.AutoSize = true;
             lblEquipmentDesc.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblEquipmentDesc.ForeColor = Color.White;
             lblEquipmentDesc.Location = new Point(27, 338);
@@ -549,27 +570,6 @@
             panel5.Size = new Size(271, 572);
             panel5.TabIndex = 30;
             // 
-            // labelUserName
-            // 
-            labelUserName.AutoSize = true;
-            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(951, 21);
-            labelUserName.Name = "labelUserName";
-            labelUserName.Size = new Size(94, 21);
-            labelUserName.TabIndex = 24;
-            labelUserName.Text = "User Name";
-            // 
-            // pictureBoxAvatar
-            // 
-            pictureBoxAvatar.Image = Properties.Resources.Avatar;
-            pictureBoxAvatar.Location = new Point(1053, 9);
-            pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new Size(43, 43);
-            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxAvatar.TabIndex = 25;
-            pictureBoxAvatar.TabStop = false;
-            // 
             // EquipmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -596,6 +596,7 @@
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListEquipment).EndInit();
@@ -605,7 +606,6 @@
             panel2.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
