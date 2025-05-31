@@ -20,10 +20,11 @@ namespace LightAndLens.WebApp.Controllers
     public class RentalRequestsController : Controller
     {
         private readonly LightAndLensDBContext _context;
-
-        public RentalRequestsController(LightAndLensDBContext context)
+        private readonly Services.LogHelper _logHelper;
+        public RentalRequestsController(LightAndLensDBContext context, Services.LogHelper logHelper)
         {
             _context = context;
+            _logHelper = logHelper;
         }
 
         public IActionResult Index()

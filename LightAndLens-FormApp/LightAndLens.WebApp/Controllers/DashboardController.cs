@@ -20,6 +20,7 @@ namespace LightAndLens.WebApp.Controllers
         {
             _context = context;
             _logHelper = logHelper;
+
         }
 
         [HttpPost]

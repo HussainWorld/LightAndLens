@@ -1,4 +1,4 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +6,37 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+ *@
+
+@{
+    ViewData["Title"] = "Welcome to LightAndLens";
+}
+
+<div class="text-center my-5">
+    <h1 class="display-3 fw-bold">LightAndLens Equipment Rentals</h1>
+    <p class="lead mb-4">Your trusted source for camera and equipment rentals.</p>
+    <a class="btn btn-primary btn-lg mx-2" asp-controller="Equipment" asp-action="Index">Browse Equipment</a>
+    <a class="btn btn-secondary btn-lg mx-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+</div>
+
+<section class="container my-5">
+    <h2 class="text-center mb-4">Why Choose Us?</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <i class="bi bi-speedometer2 fs-1 mb-3"></i>
+            <h4>Fast & Easy Rentals</h4>
+            <p>Reserve your equipment in just a few clicks.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <i class="bi bi-calendar-check fs-1 mb-3"></i>
+            <h4>Real-Time Availability</h4>
+            <p>Always know what’s available when you need it.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <i class="bi bi-shield-lock fs-1 mb-3"></i>
+            <h4>Secure & Reliable</h4>
+            <p>Safe transactions with verified users and staff.</p>
+        </div>
+    </div>
+</section>
+
