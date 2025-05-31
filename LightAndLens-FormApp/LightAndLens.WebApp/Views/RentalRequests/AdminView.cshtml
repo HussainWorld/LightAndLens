@@ -56,8 +56,17 @@
                         <input type="hidden" name="id" value="@request.RequestId" />
                         @* apprve value in the data base is 1 *@
                         <button name="status" value="1" class="btn btn-success btn-sm">Approve</button>
-                        @* reject value in the data base is 3 *@
-                        <button name="status" value="3" class="btn btn-danger btn-sm">Reject</button>
+                        @if (request.RequestStatusId == 1)
+                        {
+                            @* reject value in the data base is 3 *@
+                            <button name="status" value="3" class="btn btn-danger btn-sm" disabled>Reject</button>
+                        }
+                        else
+                        {
+                            @* reject value in the data base is 3 *@
+                            <button name="status" value="3" class="btn btn-danger btn-sm">Reject</button>
+                        }
+
                     </form>
                 </td>
             </tr>

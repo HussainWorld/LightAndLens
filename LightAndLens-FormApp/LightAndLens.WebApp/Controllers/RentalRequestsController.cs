@@ -9,6 +9,7 @@ using LightAndLensCL.Models;
 using System.Security.Claims;
 using LightAndLens.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
 
 
 
@@ -85,6 +86,42 @@ namespace LightAndLens.WebApp.Controllers
 
             request.RequestStatusId = status;
             _context.SaveChanges();
+
+
+            //creating rental transaction
+            var rentalRequest = _context.RentalRequests.Find(id);
+            var equipment = _context.Equipment.Find(rentalRequest.EquipmentId);
+            var rentalDays = (rentalRequest.RequestEndDate - rentalRequest.RequestStartDate).Days;
+            var equipmentRentalFee = equipment.RentalPricePerDay * rentalDays;
+
+            var rentalTransaction = new RentalTransaction
+            {
+                UserId = rentalRequest.UserId,
+                StartDate = rentalRequest.RequestStartDate,
+                EndDate = rentalRequest.RequestEndDate,
+                RentalFee = equipmentRentalFee,
+                DepositPaid = 0,
+                Status = "Ongoing",
+                RequestId = rentalRequest.RequestId
+            };
+
+
+            _context.RentalTransactions.Add(rentalTransaction);
+            _context.SaveChanges();
+
+
+            //creating a notification for the user
+            var notification = new Notification
+            {
+                UserId = rentalRequest.UserId,
+                Message = status == 1 ? $"Your rental request with the id#{rentalRequest.RequestId} has been approved." : $"Your rental request  with the id#{rentalRequest.RequestId} has been rejected.",
+                Type = status == 1 ? "Success" : "Rejected",
+                IsRead = false
+            };
+
+            _context.Notifications.Add(notification);
+            _context.SaveChanges();
+
 
             // Set a TempData message to display after redirect
             TempData["StatusMessage"] = status == 2 ? "Request approved successfully." : "Request rejected successfully.";
@@ -169,16 +206,15 @@ namespace LightAndLens.WebApp.Controllers
 
             int userId = user.UserId;
 
-            // Convert EquipmentID from string to int
             if (int.TryParse(EquipmentID, out int equipmentId))
             {
                 var rentalRequest = new RentalRequest
                 {
                     UserId = userId,
-                    EquipmentId = equipmentId, // Use the converted int here
+                    EquipmentId = equipmentId,
                     RequestStartDate = RequestStartDate,
                     RequestEndDate = RequestEndDate,
-                    RequestStatusId = 1, // Set this according to your logic
+                    RequestStatusId = 1,
                     RequestSetDate = DateTime.Now
                 };
 
@@ -201,6 +237,7 @@ namespace LightAndLens.WebApp.Controllers
         {
             string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+
             if (user == null)
                 return Unauthorized();
 
@@ -218,6 +255,7 @@ namespace LightAndLens.WebApp.Controllers
 
             _context.RentalRequests.Add(newRequest);
             _context.SaveChanges();
+
 
             // Redirect back to CustomerView so that pending requests reload with the new request included
             return RedirectToAction("CustomerView");
