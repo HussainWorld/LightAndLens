@@ -324,7 +324,7 @@
 
         @if (Model.MaintenanceItems.Any())
         {
-            <form asp-action="UpdateMaintenanceAvailability" method="post">
+            <form asp-action="UpdateMaintenanceAvailability" method="post" id="filterForm">
                 <table class="table table-striped table-sm mt-3">
                     <thead>
                         <tr>
