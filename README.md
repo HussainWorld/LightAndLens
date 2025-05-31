@@ -66,4 +66,4 @@ The system allows customers to rent equipment, while admins and staff manage use
 
 ---
 
-Take a shot ! 📷
+Take A Nice Shot ! 📷
