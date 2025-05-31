@@ -1,4 +1,4 @@
-# **README - LightAndLens Rental System**  
+# **LightAndLens Rental System**  
 
 ## **Project Overview**  
 **LightAndLens** is a rental management system designed for a camera and photography equipment store. It consists of:  
