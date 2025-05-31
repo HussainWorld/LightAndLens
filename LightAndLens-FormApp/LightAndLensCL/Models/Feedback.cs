@@ -11,6 +11,7 @@ namespace LightAndLensCL.Models
     {
         [Key]
         [Column("FeedbackID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FeedbackId { get; set; }
         [Column("UserID")]
         public int UserId { get; set; }

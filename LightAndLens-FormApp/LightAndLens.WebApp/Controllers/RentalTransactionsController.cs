@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LightAndLens.WebApp.Controllers
 {
+    [Authorize]
     public class RentalTransactionsController : Controller
     {
         private readonly LightAndLensDBContext _context;
