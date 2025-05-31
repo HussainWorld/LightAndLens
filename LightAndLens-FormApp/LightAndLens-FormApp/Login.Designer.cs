@@ -32,6 +32,8 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            buttonAdminFill = new Button();
+            buttonStaffFill = new Button();
             btnLogin = new Button();
             checkBoxShowPassword = new CheckBox();
             label2 = new Label();
@@ -51,9 +53,8 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(1, -1);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(463, 676);
+            panel1.Size = new Size(405, 507);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -61,19 +62,18 @@
             label1.AutoSize = true;
             label1.Font = new Font("Vivaldi", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(13, 417);
+            label1.Location = new Point(11, 313);
             label1.Name = "label1";
-            label1.Size = new Size(473, 82);
+            label1.Size = new Size(379, 64);
             label1.TabIndex = 2;
             label1.Text = "Lighting Up Creativity, \r\n                  One Lens at a Time.";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Logo;
-            pictureBox1.Location = new Point(33, 17);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(29, 13);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(399, 472);
+            pictureBox1.Size = new Size(349, 354);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
@@ -82,6 +82,8 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(224, 232, 255);
+            panel2.Controls.Add(buttonAdminFill);
+            panel2.Controls.Add(buttonStaffFill);
             panel2.Controls.Add(btnLogin);
             panel2.Controls.Add(checkBoxShowPassword);
             panel2.Controls.Add(label2);
@@ -89,17 +91,39 @@
             panel2.Controls.Add(textBoxEmail);
             panel2.Controls.Add(lblAvailability);
             panel2.Controls.Add(recentActivitiesTxt);
-            panel2.Location = new Point(463, -1);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(405, -1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(463, 676);
+            panel2.Size = new Size(405, 507);
             panel2.TabIndex = 1;
+            // 
+            // buttonAdminFill
+            // 
+            buttonAdminFill.Location = new Point(261, 274);
+            buttonAdminFill.Margin = new Padding(3, 2, 3, 2);
+            buttonAdminFill.Name = "buttonAdminFill";
+            buttonAdminFill.Size = new Size(112, 28);
+            buttonAdminFill.TabIndex = 25;
+            buttonAdminFill.Text = "Admin";
+            buttonAdminFill.UseVisualStyleBackColor = true;
+            buttonAdminFill.Click += button2_Click;
+            // 
+            // buttonStaffFill
+            // 
+            buttonStaffFill.Location = new Point(261, 242);
+            buttonStaffFill.Margin = new Padding(3, 2, 3, 2);
+            buttonStaffFill.Name = "buttonStaffFill";
+            buttonStaffFill.Size = new Size(112, 28);
+            buttonStaffFill.TabIndex = 24;
+            buttonStaffFill.Text = "Staff";
+            buttonStaffFill.UseVisualStyleBackColor = true;
+            buttonStaffFill.Click += button1_Click;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(324, 635);
+            btnLogin.Location = new Point(282, 465);
+            btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(128, 29);
+            btnLogin.Size = new Size(112, 28);
             btnLogin.TabIndex = 23;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -108,10 +132,9 @@
             // checkBoxShowPassword
             // 
             checkBoxShowPassword.AutoSize = true;
-            checkBoxShowPassword.Location = new Point(42, 281);
-            checkBoxShowPassword.Margin = new Padding(3, 4, 3, 4);
+            checkBoxShowPassword.Location = new Point(37, 211);
             checkBoxShowPassword.Name = "checkBoxShowPassword";
-            checkBoxShowPassword.Size = new Size(132, 24);
+            checkBoxShowPassword.Size = new Size(108, 19);
             checkBoxShowPassword.TabIndex = 22;
             checkBoxShowPassword.Text = "Show Password";
             checkBoxShowPassword.UseVisualStyleBackColor = true;
@@ -122,25 +145,27 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(41, 213);
+            label2.Location = new Point(36, 160);
             label2.Name = "label2";
-            label2.Size = new Size(106, 28);
+            label2.Size = new Size(86, 21);
             label2.TabIndex = 21;
             label2.Text = "Password:";
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(41, 244);
+            textBoxPassword.Location = new Point(36, 183);
+            textBoxPassword.Margin = new Padding(3, 2, 3, 2);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(385, 27);
+            textBoxPassword.Size = new Size(337, 23);
             textBoxPassword.TabIndex = 20;
             textBoxPassword.UseSystemPasswordChar = true;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(41, 172);
+            textBoxEmail.Location = new Point(36, 129);
+            textBoxEmail.Margin = new Padding(3, 2, 3, 2);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(385, 27);
+            textBoxEmail.Size = new Size(337, 23);
             textBoxEmail.TabIndex = 19;
             // 
             // lblAvailability
@@ -148,9 +173,9 @@
             lblAvailability.AutoSize = true;
             lblAvailability.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblAvailability.ForeColor = Color.Black;
-            lblAvailability.Location = new Point(41, 141);
+            lblAvailability.Location = new Point(36, 106);
             lblAvailability.Name = "lblAvailability";
-            lblAvailability.Size = new Size(69, 28);
+            lblAvailability.Size = new Size(57, 21);
             lblAvailability.TabIndex = 12;
             lblAvailability.Text = "Email:";
             // 
@@ -159,20 +184,19 @@
             recentActivitiesTxt.AutoSize = true;
             recentActivitiesTxt.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             recentActivitiesTxt.ForeColor = Color.Black;
-            recentActivitiesTxt.Location = new Point(41, 39);
+            recentActivitiesTxt.Location = new Point(36, 29);
             recentActivitiesTxt.Name = "recentActivitiesTxt";
-            recentActivitiesTxt.Size = new Size(165, 62);
+            recentActivitiesTxt.Size = new Size(131, 50);
             recentActivitiesTxt.TabIndex = 8;
             recentActivitiesTxt.Text = "Log In";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(927, 675);
+            ClientSize = new Size(811, 506);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Register";
@@ -210,5 +234,7 @@
         private TextBox textBoxPassword;
         private TextBox textBoxEmail;
         private Button btnLogin;
+        private Button buttonAdminFill;
+        private Button buttonStaffFill;
     }
 }

@@ -106,11 +106,24 @@ namespace LightAndLens_FormApp
             }
         }
 
-        
+
 
         private void checkBoxShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             textBoxPassword.UseSystemPasswordChar = !checkBoxShowPassword.Checked;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBoxEmail.Text = "Staff1@Staff1.com";
+            textBoxPassword.Text = "Asd123";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBoxEmail.Text = "AdminV@AdminV.com";
+            textBoxPassword.Text = "Asd123";
+        }
+
     }
 }

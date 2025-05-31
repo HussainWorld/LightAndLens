@@ -37,6 +37,8 @@
             btnClear = new Button();
             label4 = new Label();
             topHeaderPanel = new Panel();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             sidePanel = new Panel();
             rentalTransactionsBtn = new Button();
             analyticsBtn = new Button();
@@ -47,14 +49,12 @@
             logotxt = new Label();
             panel2 = new Panel();
             rentalTransactionsdgv = new DataGridView();
-            labelUserName = new Label();
-            pictureBoxAvatar = new PictureBox();
             panel1.SuspendLayout();
             topHeaderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             sidePanel.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)rentalTransactionsdgv).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -171,6 +171,27 @@
             topHeaderPanel.Padding = new Padding(10);
             topHeaderPanel.Size = new Size(1120, 60);
             topHeaderPanel.TabIndex = 5;
+            // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(951, 21);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(94, 21);
+            labelUserName.TabIndex = 24;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1053, 9);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(43, 43);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 25;
+            pictureBoxAvatar.TabStop = false;
             // 
             // sidePanel
             // 
@@ -315,27 +336,7 @@
             rentalTransactionsdgv.RowTemplate.Height = 25;
             rentalTransactionsdgv.Size = new Size(1037, 514);
             rentalTransactionsdgv.TabIndex = 0;
-            // 
-            // labelUserName
-            // 
-            labelUserName.AutoSize = true;
-            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(951, 21);
-            labelUserName.Name = "labelUserName";
-            labelUserName.Size = new Size(94, 21);
-            labelUserName.TabIndex = 24;
-            labelUserName.Text = "User Name";
-            // 
-            // pictureBoxAvatar
-            // 
-            pictureBoxAvatar.Image = Properties.Resources.Avatar;
-            pictureBoxAvatar.Location = new Point(1053, 9);
-            pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new Size(43, 43);
-            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxAvatar.TabIndex = 25;
-            pictureBoxAvatar.TabStop = false;
+            rentalTransactionsdgv.CellContentClick += rentalTransactionsdgv_CellContentClick;
             // 
             // RentalTransactions
             // 
@@ -356,11 +357,11 @@
             panel1.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)rentalTransactionsdgv).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             ResumeLayout(false);
         }
 
