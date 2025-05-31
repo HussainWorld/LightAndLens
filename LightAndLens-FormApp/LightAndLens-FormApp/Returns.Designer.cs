@@ -55,13 +55,20 @@
             comboBoxSelectCondition = new ComboBox();
             label2 = new Label();
             label3 = new Label();
+            tabReturns = new TabControl();
+            tabPendingReturns = new TabPage();
+            tabReturnHistory = new TabPage();
+            dgvReturnHistory = new DataGridView();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             panel1.SuspendLayout();
-            panelListReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).BeginInit();
             panelProcessReturn.SuspendLayout();
+            tabReturns.SuspendLayout();
+            tabPendingReturns.SuspendLayout();
+            tabReturnHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvReturnHistory).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -312,8 +319,8 @@
             // panelListReturns
             // 
             panelListReturns.BackColor = Color.FromArgb(23, 38, 80);
-            panelListReturns.Controls.Add(dgvListReturns);
-            panelListReturns.Location = new Point(270, 195);
+            panelListReturns.Location = new Point(309, 260);
+            panelListReturns.Margin = new Padding(3, 4, 3, 4);
             panelListReturns.Name = "panelListReturns";
             panelListReturns.Size = new Size(698, 375);
             panelListReturns.TabIndex = 15;
@@ -330,13 +337,14 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListReturns.Dock = DockStyle.Fill;
-            dgvListReturns.Location = new Point(0, 0);
+            dgvListReturns.Location = new Point(-3, 7);
+            dgvListReturns.Margin = new Padding(3, 4, 3, 4);
             dgvListReturns.Name = "dgvListReturns";
             dgvListReturns.RowHeadersWidth = 51;
             dgvListReturns.RowTemplate.Height = 25;
-            dgvListReturns.Size = new Size(698, 375);
+            dgvListReturns.Size = new Size(788, 497);
             dgvListReturns.TabIndex = 0;
+            dgvListReturns.CellContentClick += dgvListReturns_CellContentClick;
             dgvListReturns.SelectionChanged += dgvListReturns_SelectionChanged;
             // 
             // panelProcessReturn
@@ -420,12 +428,56 @@
             label3.TabIndex = 2;
             label3.Text = "Process Return";
             // 
+            // tabReturns
+            // 
+            tabReturns.Controls.Add(tabPendingReturns);
+            tabReturns.Controls.Add(tabReturnHistory);
+            tabReturns.Location = new Point(311, 239);
+            tabReturns.Name = "tabReturns";
+            tabReturns.SelectedIndex = 0;
+            tabReturns.Size = new Size(793, 521);
+            tabReturns.TabIndex = 17;
+            tabReturns.SelectedIndexChanged += tabControlReturns_SelectedIndexChanged;
+            // 
+            // tabPendingReturns
+            // 
+            tabPendingReturns.Controls.Add(dgvListReturns);
+            tabPendingReturns.Location = new Point(4, 29);
+            tabPendingReturns.Name = "tabPendingReturns";
+            tabPendingReturns.Padding = new Padding(3);
+            tabPendingReturns.Size = new Size(785, 488);
+            tabPendingReturns.TabIndex = 0;
+            tabPendingReturns.Text = "Pending Returns";
+            tabPendingReturns.UseVisualStyleBackColor = true;
+            // 
+            // tabReturnHistory
+            // 
+            tabReturnHistory.Controls.Add(dgvReturnHistory);
+            tabReturnHistory.Location = new Point(4, 29);
+            tabReturnHistory.Name = "tabReturnHistory";
+            tabReturnHistory.Padding = new Padding(3);
+            tabReturnHistory.Size = new Size(785, 488);
+            tabReturnHistory.TabIndex = 1;
+            tabReturnHistory.Text = "Return History";
+            tabReturnHistory.UseVisualStyleBackColor = true;
+            // 
+            // dgvReturnHistory
+            // 
+            dgvReturnHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReturnHistory.Location = new Point(3, 6);
+            dgvReturnHistory.Name = "dgvReturnHistory";
+            dgvReturnHistory.RowHeadersWidth = 51;
+            dgvReturnHistory.RowTemplate.Height = 29;
+            dgvReturnHistory.Size = new Size(776, 486);
+            dgvReturnHistory.TabIndex = 0;
+            // 
             // Returns
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(18, 28, 58);
-            ClientSize = new Size(1350, 791);
+            ClientSize = new Size(1543, 1055);
+            Controls.Add(tabReturns);
             Controls.Add(panelProcessReturn);
             Controls.Add(panelListReturns);
             Controls.Add(panel1);
@@ -444,10 +496,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panelListReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).EndInit();
             panelProcessReturn.ResumeLayout(false);
             panelProcessReturn.PerformLayout();
+            tabReturns.ResumeLayout(false);
+            tabPendingReturns.ResumeLayout(false);
+            tabReturnHistory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvReturnHistory).EndInit();
             ResumeLayout(false);
         }
 
@@ -479,5 +534,9 @@
         private Button rentalTransactionsBtn;
         private Label labelUserName;
         private PictureBox pictureBoxAvatar;
+        private TabControl tabReturns;
+        private TabPage tabPendingReturns;
+        private TabPage tabReturnHistory;
+        private DataGridView dgvReturnHistory;
     }
 }

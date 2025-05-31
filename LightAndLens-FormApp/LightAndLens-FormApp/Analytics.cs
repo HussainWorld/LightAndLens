@@ -20,7 +20,7 @@ namespace LightAndLens_FormApp
 
         private void Analytics_Load(object sender, EventArgs e)
         {
-
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void HighlightActiveButton(Button activeButton)
