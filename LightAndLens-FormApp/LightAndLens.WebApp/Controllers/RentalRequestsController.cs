@@ -10,6 +10,7 @@ using System.Security.Claims;
 using LightAndLens.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Net;
+using System.Reflection;
 
 
 
@@ -65,8 +66,16 @@ namespace LightAndLens.WebApp.Controllers
                 query = query.Where(r => r.RequestStatusId == status.Value);
             }
 
+            //show the rental requests by descending date
+            query = query.OrderByDescending(r => r.RequestSetDate);
+
+            var availableEquipment = _context.Equipment
+             .Where(e => e.Quantity > 0 && e.AvailabilityId == 1)
+             .ToList();
+
             var model = new AdminViewModel
             {
+                AvailableEquipment = availableEquipment,
                 RentalRequests = query.ToList(),
                 Search = search,
                 Status = status
@@ -88,6 +97,14 @@ namespace LightAndLens.WebApp.Controllers
             request.RequestStatusId = status;
             _context.SaveChanges();
 
+            //if the request is rejected the equipment quantity will be increased by 1 && update the availability status to available
+            if (request.RequestStatusId == 3)
+            {
+                var requestEquipment = _context.Equipment.Find(request.EquipmentId);
+                requestEquipment.Quantity += 1;
+                requestEquipment.AvailabilityId = 1;
+                _context.SaveChanges();
+            }
 
             //creating rental transaction
             var rentalRequest = _context.RentalRequests.Find(id);
@@ -106,22 +123,13 @@ namespace LightAndLens.WebApp.Controllers
                 RequestId = rentalRequest.RequestId
             };
 
-
             _context.RentalTransactions.Add(rentalTransaction);
             _context.SaveChanges();
 
 
-            //creating a notification for the user
-            var notification = new Notification
-            {
-                UserId = rentalRequest.UserId,
-                Message = status == 1 ? $"Your rental request with the id#{rentalRequest.RequestId} has been approved." : $"Your rental request  with the id#{rentalRequest.RequestId} has been rejected.",
-                Type = status == 1 ? "Success" : "Rejected",
-                IsRead = false
-            };
-
-            _context.Notifications.Add(notification);
-            _context.SaveChanges();
+            //getting the current methiod name for notification logic method
+            var methodName = MethodBase.GetCurrentMethod().Name;
+            notificationLogic(id, status, methodName);
 
 
             // Set a TempData message to display after redirect
@@ -141,7 +149,7 @@ namespace LightAndLens.WebApp.Controllers
                 .Where(e => e.AvailabilityId == 1) // available items only
                 .ToList();
 
-            return View(availableEquipment); // or use a ViewModel if needed
+            return View(availableEquipment);
         }
 
 
@@ -150,6 +158,7 @@ namespace LightAndLens.WebApp.Controllers
         {
             string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+
             if (user == null)
                 return Unauthorized();
 
@@ -161,21 +170,21 @@ namespace LightAndLens.WebApp.Controllers
                 .Include(r => r.RequestStatus)
                 .AsQueryable();
 
-            // Apply status filter if specified
             if (status.HasValue)
             {
                 query = query.Where(r => r.RequestStatusId == status.Value);
             }
 
-            var filteredRequests = query.ToList();
+            //show the rental requests by descending date
+            query = query.OrderByDescending(r => r.RequestSetDate);
 
             var availableEquipment = _context.Equipment
-                .Where(e => e.Quantity > 0)
+                .Where(e => e.Quantity > 0 && e.AvailabilityId == 1)
                 .ToList();
 
             var viewModel = new CustomerViewModel
             {
-                PendingRequests = filteredRequests,
+                PendingRequests = query.ToList(),
                 AvailableEquipment = availableEquipment,
                 Status = status
             };
@@ -194,55 +203,54 @@ namespace LightAndLens.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRentalRequest(string EquipmentID, DateTime RequestStartDate, DateTime RequestEndDate)
-        {
-            string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
-
-            if (user == null)
-            {
-                return Unauthorized(); // user not found in your DB
-            }
-
-            int userId = user.UserId;
-
-            if (int.TryParse(EquipmentID, out int equipmentId))
-            {
-                var rentalRequest = new RentalRequest
-                {
-                    UserId = userId,
-                    EquipmentId = equipmentId,
-                    RequestStartDate = RequestStartDate,
-                    RequestEndDate = RequestEndDate,
-                    RequestStatusId = 1,
-                    RequestSetDate = DateTime.Now
-                };
-
-                _context.RentalRequests.Add(rentalRequest);
-                _context.SaveChanges();
-
-                return RedirectToAction("Index"); // Redirect to a list of rental requests or some other page
-            }
-            else
-            {
-                // Handle the case when the conversion fails (e.g., show an error message)
-                ModelState.AddModelError("EquipmentID", "Invalid equipment selection.");
-                return View(); // Return to the form view
-            }
-        }
-
-
-        [HttpPost]
         public IActionResult Create(int EquipmentId, DateTime RequestStartDate, DateTime RequestEndDate)
         {
             string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
+            var user = _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.IdentityUserId == identityUserId);
 
             if (user == null)
                 return Unauthorized();
 
             int userId = user.UserId;
+
+            var equipment = _context.Equipment.Find(EquipmentId);
+            if (equipment == null)
+            {
+                ModelState.AddModelError("EquipmentId", "Selected equipment does not exist.");
+                return View(); // Return to the form view with an error
+            }
+            else
+            {
+                // Check if the equipment is available (AvailabilityId == 1)
+                if (equipment.AvailabilityId == 1)
+                {
+                    if (equipment.Quantity >= 1)
+                    {
+                        // Decrease quantity
+                        equipment.Quantity -= 1;
+
+                        // If quantity reaches 0, mark as unavailable
+                        if (equipment.Quantity == 0)
+                        {
+                            equipment.AvailabilityId = 2;
+                        }
+
+                        _context.SaveChanges(); // Save changes
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Quantity", "Equipment is out of stock.");
+                        return View(); // Return to form with error
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("Availability", "This equipment is currently unavailable.");
+                    return View(); // Return to form with error
+                }
+            }
 
             var newRequest = new RentalRequest
             {
@@ -258,8 +266,23 @@ namespace LightAndLens.WebApp.Controllers
             _context.SaveChanges();
 
 
-            // Redirect back to CustomerView so that pending requests reload with the new request included
-            return RedirectToAction("CustomerView");
+
+            //send notification to the admin and staff
+            var methodName = MethodBase.GetCurrentMethod().Name;
+            notificationLogic(newRequest.RequestId, newRequest.RequestStatusId, methodName);
+
+
+            // Redirect based on user role
+            var roleName = user.Role.RoleName?.ToLower();
+
+            if (roleName == "admin" || roleName == "staff")
+            {
+                return RedirectToAction("AdminView", "RentalRequests");
+            }else
+            {
+                return RedirectToAction("CustomerView", "RentalRequests");
+            }
+
         }
 
 
@@ -293,7 +316,7 @@ namespace LightAndLens.WebApp.Controllers
                 EquipmentName = rentalRequest.Equipment?.EquipmentName,
                 StatusName = rentalRequest.RequestStatus?.StatusName,
                 UserEmail = rentalRequest.User?.Email,
-                EquipmentImagePath = equipmentImage // can be null if not found
+                EquipmentImagePath = equipmentImage
             };
 
             return View(vm);
@@ -301,26 +324,26 @@ namespace LightAndLens.WebApp.Controllers
 
 
         // GET: RentalRequests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var rentalRequest = await _context.RentalRequests
-                .Include(r => r.Equipment)
-                .Include(r => r.RequestStatus)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.RequestId == id);
+        //    var rentalRequest = await _context.RentalRequests
+        //        .Include(r => r.Equipment)
+        //        .Include(r => r.RequestStatus)
+        //        .Include(r => r.User)
+        //        .FirstOrDefaultAsync(m => m.RequestId == id);
 
-            if (rentalRequest == null)
-            {
-                return NotFound();
-            }
+        //    if (rentalRequest == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(rentalRequest);
-        }
+        //    return View(rentalRequest);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -342,11 +365,58 @@ namespace LightAndLens.WebApp.Controllers
         }
 
 
+        public void notificationLogic(int id, int status, string method)
+        {
+
+            var rentalRequest = _context.RentalRequests.Find(id);
+
+            if (method == "UpdateRequestStatus")
+            {
+                //creating a notification for the user
+                var notification = new Notification
+                {
+                    UserId = rentalRequest.UserId,
+                    Message = status == 1 ? $"Your rental request with the id#{rentalRequest.RequestId} has been approved." : $"Your rental request  with the id#{rentalRequest.RequestId} has been rejected.",
+                    Type = status == 1 ? "Success" : "Rejected",
+                    IsRead = false
+                };
+
+                _context.Notifications.Add(notification);
+                _context.SaveChanges();
+            }
 
 
+            //creating a notification for the admin && staff
+            if (method == "Create")
+            {
+
+                // Get all users with role Admin or Staff
+                var adminStaffUsers = _context.Users
+                    .Include(u => u.Role)
+                    .Where(u => u.Role.RoleName == "Admin" || u.Role.RoleName == "Staff")
+                    .ToList();
+
+                //creating notifications for each admin and staff user
+                foreach (var user in adminStaffUsers)
+                {
+                    var notification = new Notification
+                    {
+                        UserId = user.UserId,
+                        Message = $"A new rental request with the ID #{rentalRequest.RequestId} has been created by {rentalRequest.User.FullName}.",
+                        Type = "New Request",
+                        IsRead = false
+                    };
+
+                    _context.Notifications.Add(notification);
+                }
+
+                _context.SaveChanges();
 
 
+            }
 
+
+        }
 
     }
 }
