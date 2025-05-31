@@ -46,7 +46,6 @@
             txtSearch = new TextBox();
             btnApply = new Button();
             btnClear = new Button();
-            panelListReturns = new Panel();
             dgvListReturns = new DataGridView();
             panelProcessReturn = new Panel();
             btnReturn = new Button();
@@ -59,6 +58,7 @@
             tabPendingReturns = new TabPage();
             tabReturnHistory = new TabPage();
             dgvReturnHistory = new DataGridView();
+            panelListReturns = new Panel();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
@@ -316,15 +316,6 @@
             btnClear.TextAlign = ContentAlignment.MiddleRight;
             btnClear.UseVisualStyleBackColor = false;
             // 
-            // panelListReturns
-            // 
-            panelListReturns.BackColor = Color.FromArgb(23, 38, 80);
-            panelListReturns.Location = new Point(309, 260);
-            panelListReturns.Margin = new Padding(3, 4, 3, 4);
-            panelListReturns.Name = "panelListReturns";
-            panelListReturns.Size = new Size(698, 375);
-            panelListReturns.TabIndex = 15;
-            // 
             // dgvListReturns
             // 
             dgvListReturns.BackgroundColor = Color.White;
@@ -356,7 +347,7 @@
             panelProcessReturn.Controls.Add(comboBoxSelectCondition);
             panelProcessReturn.Controls.Add(label2);
             panelProcessReturn.Controls.Add(label3);
-            panelProcessReturn.Location = new Point(988, 195);
+            panelProcessReturn.Location = new Point(988, 190);
             panelProcessReturn.Name = "panelProcessReturn";
             panelProcessReturn.Size = new Size(319, 375);
             panelProcessReturn.TabIndex = 16;
@@ -432,20 +423,21 @@
             // 
             tabReturns.Controls.Add(tabPendingReturns);
             tabReturns.Controls.Add(tabReturnHistory);
-            tabReturns.Location = new Point(311, 239);
+            tabReturns.Location = new Point(271, 166);
             tabReturns.Name = "tabReturns";
             tabReturns.SelectedIndex = 0;
-            tabReturns.Size = new Size(793, 521);
+            tabReturns.Size = new Size(711, 521);
             tabReturns.TabIndex = 17;
             tabReturns.SelectedIndexChanged += tabControlReturns_SelectedIndexChanged;
             // 
             // tabPendingReturns
             // 
             tabPendingReturns.Controls.Add(dgvListReturns);
-            tabPendingReturns.Location = new Point(4, 29);
+            tabPendingReturns.Controls.Add(panelListReturns);
+            tabPendingReturns.Location = new Point(4, 24);
             tabPendingReturns.Name = "tabPendingReturns";
             tabPendingReturns.Padding = new Padding(3);
-            tabPendingReturns.Size = new Size(785, 488);
+            tabPendingReturns.Size = new Size(703, 493);
             tabPendingReturns.TabIndex = 0;
             tabPendingReturns.Text = "Pending Returns";
             tabPendingReturns.UseVisualStyleBackColor = true;
@@ -453,10 +445,10 @@
             // tabReturnHistory
             // 
             tabReturnHistory.Controls.Add(dgvReturnHistory);
-            tabReturnHistory.Location = new Point(4, 29);
+            tabReturnHistory.Location = new Point(4, 24);
             tabReturnHistory.Name = "tabReturnHistory";
             tabReturnHistory.Padding = new Padding(3);
-            tabReturnHistory.Size = new Size(785, 488);
+            tabReturnHistory.Size = new Size(703, 493);
             tabReturnHistory.TabIndex = 1;
             tabReturnHistory.Text = "Return History";
             tabReturnHistory.UseVisualStyleBackColor = true;
@@ -471,15 +463,23 @@
             dgvReturnHistory.Size = new Size(776, 486);
             dgvReturnHistory.TabIndex = 0;
             // 
+            // panelListReturns
+            // 
+            panelListReturns.BackColor = Color.FromArgb(23, 38, 80);
+            panelListReturns.Location = new Point(77, 69);
+            panelListReturns.Margin = new Padding(3, 4, 3, 4);
+            panelListReturns.Name = "panelListReturns";
+            panelListReturns.Size = new Size(698, 375);
+            panelListReturns.TabIndex = 15;
+            // 
             // Returns
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(18, 28, 58);
-            ClientSize = new Size(1543, 1055);
+            ClientSize = new Size(1350, 791);
             Controls.Add(tabReturns);
             Controls.Add(panelProcessReturn);
-            Controls.Add(panelListReturns);
             Controls.Add(panel1);
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
@@ -522,7 +522,6 @@
         private TextBox txtSearch;
         private Button btnApply;
         private Button btnClear;
-        private Panel panelListReturns;
         private DataGridView dgvListReturns;
         private Panel panelProcessReturn;
         private Label label3;
@@ -538,5 +537,6 @@
         private TabPage tabPendingReturns;
         private TabPage tabReturnHistory;
         private DataGridView dgvReturnHistory;
+        private Panel panelListReturns;
     }
 }

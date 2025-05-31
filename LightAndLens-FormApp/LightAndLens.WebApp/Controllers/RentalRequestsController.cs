@@ -134,7 +134,7 @@ namespace LightAndLens.WebApp.Controllers
 
 
             // Set a TempData message to display after redirect
-            TempData["StatusMessage"] = status == 2 ? "Request approved successfully." : "Request rejected successfully.";
+            TempData["StatusMessage"] = status == 1 ? "Request approved successfully." : "Request rejected successfully.";
 
             return RedirectToAction("AdminView");
         }
