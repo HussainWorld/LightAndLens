@@ -79,7 +79,7 @@ namespace LightAndLensCL.Models
                 entity.HasOne(d => d.Equipment)
                     .WithMany(p => p.EquipmentImages)
                     .HasForeignKey(d => d.EquipmentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_EquipmentID_Equipment_EquipmentImages");
             });
 

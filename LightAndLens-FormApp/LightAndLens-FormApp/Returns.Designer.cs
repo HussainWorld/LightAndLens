@@ -38,6 +38,8 @@
             dashboardBtn = new Button();
             logotxt = new Label();
             topHeaderPanel = new Panel();
+            labelUserName = new Label();
+            pictureBoxAvatar = new PictureBox();
             panel1 = new Panel();
             comboBoxFilterConditions = new ComboBox();
             comboBoxFilterStatus = new ComboBox();
@@ -48,21 +50,25 @@
             dgvListReturns = new DataGridView();
             panelProcessReturn = new Panel();
             btnReturn = new Button();
-            checkBoxLate = new CheckBox();
-            textBoxDesc = new TextBox();
+            textBoxReturnNotes = new TextBox();
             label4 = new Label();
             comboBoxSelectCondition = new ComboBox();
             label2 = new Label();
             label3 = new Label();
-            labelUserName = new Label();
-            pictureBoxAvatar = new PictureBox();
+            tabReturns = new TabControl();
+            tabPendingReturns = new TabPage();
+            tabReturnHistory = new TabPage();
+            dgvReturnHistory = new DataGridView();
             sidePanel.SuspendLayout();
             topHeaderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             panel1.SuspendLayout();
-            panelListReturns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).BeginInit();
             panelProcessReturn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
+            tabReturns.SuspendLayout();
+            tabPendingReturns.SuspendLayout();
+            tabReturnHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvReturnHistory).BeginInit();
             SuspendLayout();
             // 
             // sidePanel
@@ -77,9 +83,10 @@
             sidePanel.Controls.Add(logotxt);
             sidePanel.Dock = DockStyle.Left;
             sidePanel.Location = new Point(0, 0);
+            sidePanel.Margin = new Padding(3, 4, 3, 4);
             sidePanel.Name = "sidePanel";
-            sidePanel.Padding = new Padding(10);
-            sidePanel.Size = new Size(230, 825);
+            sidePanel.Padding = new Padding(11, 13, 11, 13);
+            sidePanel.Size = new Size(263, 1055);
             sidePanel.TabIndex = 2;
             // 
             // rentalTransactionsBtn
@@ -90,9 +97,10 @@
             rentalTransactionsBtn.ForeColor = Color.White;
             rentalTransactionsBtn.Image = Properties.Resources.Orders;
             rentalTransactionsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            rentalTransactionsBtn.Location = new Point(10, 265);
+            rentalTransactionsBtn.Location = new Point(11, 353);
+            rentalTransactionsBtn.Margin = new Padding(3, 4, 3, 4);
             rentalTransactionsBtn.Name = "rentalTransactionsBtn";
-            rentalTransactionsBtn.Size = new Size(211, 44);
+            rentalTransactionsBtn.Size = new Size(241, 59);
             rentalTransactionsBtn.TabIndex = 7;
             rentalTransactionsBtn.Text = "Transactions";
             rentalTransactionsBtn.UseVisualStyleBackColor = false;
@@ -106,9 +114,10 @@
             analyticsBtn.ForeColor = Color.White;
             analyticsBtn.Image = Properties.Resources.Analytics;
             analyticsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            analyticsBtn.Location = new Point(10, 388);
+            analyticsBtn.Location = new Point(11, 517);
+            analyticsBtn.Margin = new Padding(3, 4, 3, 4);
             analyticsBtn.Name = "analyticsBtn";
-            analyticsBtn.Size = new Size(211, 44);
+            analyticsBtn.Size = new Size(241, 59);
             analyticsBtn.TabIndex = 5;
             analyticsBtn.Text = "Analytics";
             analyticsBtn.UseVisualStyleBackColor = false;
@@ -122,9 +131,10 @@
             returnsBtn.ForeColor = Color.White;
             returnsBtn.Image = Properties.Resources.Return__2_;
             returnsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            returnsBtn.Location = new Point(10, 328);
+            returnsBtn.Location = new Point(11, 437);
+            returnsBtn.Margin = new Padding(3, 4, 3, 4);
             returnsBtn.Name = "returnsBtn";
-            returnsBtn.Size = new Size(211, 44);
+            returnsBtn.Size = new Size(241, 59);
             returnsBtn.TabIndex = 4;
             returnsBtn.Text = "Returns";
             returnsBtn.UseVisualStyleBackColor = false;
@@ -137,9 +147,10 @@
             rentalRequestsBtn.ForeColor = Color.White;
             rentalRequestsBtn.Image = Properties.Resources.Request;
             rentalRequestsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            rentalRequestsBtn.Location = new Point(10, 205);
+            rentalRequestsBtn.Location = new Point(11, 273);
+            rentalRequestsBtn.Margin = new Padding(3, 4, 3, 4);
             rentalRequestsBtn.Name = "rentalRequestsBtn";
-            rentalRequestsBtn.Size = new Size(211, 44);
+            rentalRequestsBtn.Size = new Size(241, 59);
             rentalRequestsBtn.TabIndex = 3;
             rentalRequestsBtn.Text = "Requests";
             rentalRequestsBtn.UseVisualStyleBackColor = false;
@@ -153,9 +164,10 @@
             EquipmentBtn.ForeColor = Color.White;
             EquipmentBtn.Image = Properties.Resources.Equipment2;
             EquipmentBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            EquipmentBtn.Location = new Point(10, 145);
+            EquipmentBtn.Location = new Point(11, 193);
+            EquipmentBtn.Margin = new Padding(3, 4, 3, 4);
             EquipmentBtn.Name = "EquipmentBtn";
-            EquipmentBtn.Size = new Size(211, 44);
+            EquipmentBtn.Size = new Size(241, 59);
             EquipmentBtn.TabIndex = 2;
             EquipmentBtn.Text = "Equipment";
             EquipmentBtn.UseVisualStyleBackColor = false;
@@ -169,9 +181,10 @@
             dashboardBtn.ForeColor = Color.White;
             dashboardBtn.Image = Properties.Resources.Dashboard;
             dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            dashboardBtn.Location = new Point(10, 85);
+            dashboardBtn.Location = new Point(11, 113);
+            dashboardBtn.Margin = new Padding(3, 4, 3, 4);
             dashboardBtn.Name = "dashboardBtn";
-            dashboardBtn.Size = new Size(211, 44);
+            dashboardBtn.Size = new Size(241, 59);
             dashboardBtn.TabIndex = 1;
             dashboardBtn.Text = "Dashboard";
             dashboardBtn.UseVisualStyleBackColor = false;
@@ -182,9 +195,9 @@
             logotxt.AutoSize = true;
             logotxt.Font = new Font("Vivaldi", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             logotxt.ForeColor = Color.White;
-            logotxt.Location = new Point(9, 10);
+            logotxt.Location = new Point(10, 13);
             logotxt.Name = "logotxt";
-            logotxt.Size = new Size(189, 29);
+            logotxt.Size = new Size(235, 36);
             logotxt.TabIndex = 0;
             logotxt.Text = "Lights And Lenses";
             logotxt.TextAlign = ContentAlignment.MiddleCenter;
@@ -195,11 +208,34 @@
             topHeaderPanel.Controls.Add(labelUserName);
             topHeaderPanel.Controls.Add(pictureBoxAvatar);
             topHeaderPanel.Dock = DockStyle.Top;
-            topHeaderPanel.Location = new Point(230, 0);
+            topHeaderPanel.Location = new Point(263, 0);
+            topHeaderPanel.Margin = new Padding(3, 4, 3, 4);
             topHeaderPanel.Name = "topHeaderPanel";
-            topHeaderPanel.Padding = new Padding(10);
-            topHeaderPanel.Size = new Size(1120, 60);
+            topHeaderPanel.Padding = new Padding(11, 13, 11, 13);
+            topHeaderPanel.Size = new Size(1280, 80);
             topHeaderPanel.TabIndex = 3;
+            // 
+            // labelUserName
+            // 
+            labelUserName.AutoSize = true;
+            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserName.ForeColor = Color.White;
+            labelUserName.Location = new Point(1087, 28);
+            labelUserName.Name = "labelUserName";
+            labelUserName.Size = new Size(116, 28);
+            labelUserName.TabIndex = 26;
+            labelUserName.Text = "User Name";
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.Image = Properties.Resources.Avatar;
+            pictureBoxAvatar.Location = new Point(1203, 12);
+            pictureBoxAvatar.Margin = new Padding(3, 4, 3, 4);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(49, 57);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 27;
+            pictureBoxAvatar.TabStop = false;
             // 
             // panel1
             // 
@@ -209,9 +245,10 @@
             panel1.Controls.Add(txtSearch);
             panel1.Controls.Add(btnApply);
             panel1.Controls.Add(btnClear);
-            panel1.Location = new Point(271, 85);
+            panel1.Location = new Point(310, 113);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1037, 60);
+            panel1.Size = new Size(1185, 80);
             panel1.TabIndex = 5;
             // 
             // comboBoxFilterConditions
@@ -223,9 +260,10 @@
             comboBoxFilterConditions.ForeColor = Color.Black;
             comboBoxFilterConditions.FormattingEnabled = true;
             comboBoxFilterConditions.Items.AddRange(new object[] { "All Conditions", "Good", "Damaged", "Defective" });
-            comboBoxFilterConditions.Location = new Point(653, 17);
+            comboBoxFilterConditions.Location = new Point(746, 23);
+            comboBoxFilterConditions.Margin = new Padding(3, 4, 3, 4);
             comboBoxFilterConditions.Name = "comboBoxFilterConditions";
-            comboBoxFilterConditions.Size = new Size(140, 25);
+            comboBoxFilterConditions.Size = new Size(159, 29);
             comboBoxFilterConditions.TabIndex = 4;
             // 
             // comboBoxFilterStatus
@@ -237,9 +275,10 @@
             comboBoxFilterStatus.ForeColor = Color.Black;
             comboBoxFilterStatus.FormattingEnabled = true;
             comboBoxFilterStatus.Items.AddRange(new object[] { "All Status", "Returned", "Pending", "Overdue" });
-            comboBoxFilterStatus.Location = new Point(494, 17);
+            comboBoxFilterStatus.Location = new Point(565, 23);
+            comboBoxFilterStatus.Margin = new Padding(3, 4, 3, 4);
             comboBoxFilterStatus.Name = "comboBoxFilterStatus";
-            comboBoxFilterStatus.Size = new Size(140, 25);
+            comboBoxFilterStatus.Size = new Size(159, 29);
             comboBoxFilterStatus.TabIndex = 3;
             // 
             // txtSearch
@@ -248,11 +287,13 @@
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtSearch.ForeColor = Color.Black;
-            txtSearch.Location = new Point(15, 17);
+            txtSearch.Location = new Point(17, 23);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(461, 25);
+            txtSearch.PlaceholderText = "Search by equipment or customer name";
+            txtSearch.Size = new Size(527, 29);
             txtSearch.TabIndex = 2;
-            txtSearch.Text = "        Search by customer or equipment name";
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // btnApply
             // 
@@ -263,9 +304,10 @@
             btnApply.ForeColor = Color.White;
             btnApply.Image = Properties.Resources.Filter;
             btnApply.ImageAlign = ContentAlignment.MiddleLeft;
-            btnApply.Location = new Point(818, 14);
+            btnApply.Location = new Point(935, 19);
+            btnApply.Margin = new Padding(3, 4, 3, 4);
             btnApply.Name = "btnApply";
-            btnApply.Size = new Size(98, 32);
+            btnApply.Size = new Size(112, 43);
             btnApply.TabIndex = 1;
             btnApply.Text = "Apply";
             btnApply.TextAlign = ContentAlignment.MiddleRight;
@@ -280,9 +322,10 @@
             btnClear.ForeColor = Color.White;
             btnClear.Image = Properties.Resources.FilterOff;
             btnClear.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClear.Location = new Point(932, 14);
+            btnClear.Location = new Point(1065, 19);
+            btnClear.Margin = new Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(85, 32);
+            btnClear.Size = new Size(97, 43);
             btnClear.TabIndex = 0;
             btnClear.Text = "Clear";
             btnClear.TextAlign = ContentAlignment.MiddleRight;
@@ -291,10 +334,10 @@
             // panelListReturns
             // 
             panelListReturns.BackColor = Color.FromArgb(23, 38, 80);
-            panelListReturns.Controls.Add(dgvListReturns);
-            panelListReturns.Location = new Point(270, 195);
+            panelListReturns.Location = new Point(309, 260);
+            panelListReturns.Margin = new Padding(3, 4, 3, 4);
             panelListReturns.Name = "panelListReturns";
-            panelListReturns.Size = new Size(698, 375);
+            panelListReturns.Size = new Size(798, 500);
             panelListReturns.TabIndex = 15;
             // 
             // dgvListReturns
@@ -309,26 +352,29 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvListReturns.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvListReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListReturns.Dock = DockStyle.Fill;
-            dgvListReturns.Location = new Point(0, 0);
+            dgvListReturns.Location = new Point(-3, 7);
+            dgvListReturns.Margin = new Padding(3, 4, 3, 4);
             dgvListReturns.Name = "dgvListReturns";
+            dgvListReturns.RowHeadersWidth = 51;
             dgvListReturns.RowTemplate.Height = 25;
-            dgvListReturns.Size = new Size(698, 375);
+            dgvListReturns.Size = new Size(788, 497);
             dgvListReturns.TabIndex = 0;
+            dgvListReturns.CellContentClick += dgvListReturns_CellContentClick;
+            dgvListReturns.SelectionChanged += dgvListReturns_SelectionChanged;
             // 
             // panelProcessReturn
             // 
             panelProcessReturn.BackColor = Color.FromArgb(23, 38, 80);
             panelProcessReturn.Controls.Add(btnReturn);
-            panelProcessReturn.Controls.Add(checkBoxLate);
-            panelProcessReturn.Controls.Add(textBoxDesc);
+            panelProcessReturn.Controls.Add(textBoxReturnNotes);
             panelProcessReturn.Controls.Add(label4);
             panelProcessReturn.Controls.Add(comboBoxSelectCondition);
             panelProcessReturn.Controls.Add(label2);
             panelProcessReturn.Controls.Add(label3);
-            panelProcessReturn.Location = new Point(988, 195);
+            panelProcessReturn.Location = new Point(1129, 260);
+            panelProcessReturn.Margin = new Padding(3, 4, 3, 4);
             panelProcessReturn.Name = "panelProcessReturn";
-            panelProcessReturn.Size = new Size(319, 375);
+            panelProcessReturn.Size = new Size(365, 500);
             panelProcessReturn.TabIndex = 16;
             // 
             // btnReturn
@@ -336,40 +382,31 @@
             btnReturn.BackColor = Color.SeaGreen;
             btnReturn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnReturn.ForeColor = Color.White;
-            btnReturn.Location = new Point(22, 310);
+            btnReturn.Location = new Point(25, 413);
+            btnReturn.Margin = new Padding(3, 4, 3, 4);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(277, 39);
+            btnReturn.Size = new Size(317, 52);
             btnReturn.TabIndex = 9;
             btnReturn.Text = "Mark as Returned";
             btnReturn.UseVisualStyleBackColor = false;
+            btnReturn.Click += btnReturn_Click;
             // 
-            // checkBoxLate
+            // textBoxReturnNotes
             // 
-            checkBoxLate.AutoSize = true;
-            checkBoxLate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            checkBoxLate.ForeColor = Color.White;
-            checkBoxLate.Location = new Point(29, 273);
-            checkBoxLate.Name = "checkBoxLate";
-            checkBoxLate.Size = new Size(98, 21);
-            checkBoxLate.TabIndex = 8;
-            checkBoxLate.Text = "Late Return";
-            checkBoxLate.UseVisualStyleBackColor = true;
-            // 
-            // textBoxDesc
-            // 
-            textBoxDesc.Location = new Point(22, 163);
-            textBoxDesc.Name = "textBoxDesc";
-            textBoxDesc.Size = new Size(277, 23);
-            textBoxDesc.TabIndex = 7;
+            textBoxReturnNotes.Location = new Point(25, 217);
+            textBoxReturnNotes.Margin = new Padding(3, 4, 3, 4);
+            textBoxReturnNotes.Name = "textBoxReturnNotes";
+            textBoxReturnNotes.Size = new Size(316, 27);
+            textBoxReturnNotes.TabIndex = 7;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(22, 141);
+            label4.Location = new Point(25, 188);
             label4.Name = "label4";
-            label4.Size = new Size(87, 17);
+            label4.Size = new Size(112, 23);
             label4.TabIndex = 6;
             label4.Text = "Return notes";
             // 
@@ -382,9 +419,10 @@
             comboBoxSelectCondition.ForeColor = Color.Black;
             comboBoxSelectCondition.FormattingEnabled = true;
             comboBoxSelectCondition.Items.AddRange(new object[] { "Select Condition", "Good Condition", "Damaged", "Defective" });
-            comboBoxSelectCondition.Location = new Point(22, 86);
+            comboBoxSelectCondition.Location = new Point(25, 115);
+            comboBoxSelectCondition.Margin = new Padding(3, 4, 3, 4);
             comboBoxSelectCondition.Name = "comboBoxSelectCondition";
-            comboBoxSelectCondition.Size = new Size(277, 25);
+            comboBoxSelectCondition.Size = new Size(316, 29);
             comboBoxSelectCondition.TabIndex = 5;
             // 
             // label2
@@ -392,9 +430,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(22, 64);
+            label2.Location = new Point(25, 85);
             label2.Name = "label2";
-            label2.Size = new Size(69, 17);
+            label2.Size = new Size(89, 23);
             label2.TabIndex = 3;
             label2.Text = "Condition";
             // 
@@ -403,45 +441,69 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(83, 3);
+            label3.Location = new Point(95, 4);
             label3.Name = "label3";
-            label3.Size = new Size(158, 30);
+            label3.Size = new Size(207, 37);
             label3.TabIndex = 2;
             label3.Text = "Process Return";
             // 
-            // labelUserName
+            // tabReturns
             // 
-            labelUserName.AutoSize = true;
-            labelUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelUserName.ForeColor = Color.White;
-            labelUserName.Location = new Point(951, 21);
-            labelUserName.Name = "labelUserName";
-            labelUserName.Size = new Size(94, 21);
-            labelUserName.TabIndex = 26;
-            labelUserName.Text = "User Name";
+            tabReturns.Controls.Add(tabPendingReturns);
+            tabReturns.Controls.Add(tabReturnHistory);
+            tabReturns.Location = new Point(311, 239);
+            tabReturns.Name = "tabReturns";
+            tabReturns.SelectedIndex = 0;
+            tabReturns.Size = new Size(793, 521);
+            tabReturns.TabIndex = 17;
+            tabReturns.SelectedIndexChanged += tabControlReturns_SelectedIndexChanged;
             // 
-            // pictureBoxAvatar
+            // tabPendingReturns
             // 
-            pictureBoxAvatar.Image = Properties.Resources.Avatar;
-            pictureBoxAvatar.Location = new Point(1053, 9);
-            pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new Size(43, 43);
-            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxAvatar.TabIndex = 27;
-            pictureBoxAvatar.TabStop = false;
+            tabPendingReturns.Controls.Add(dgvListReturns);
+            tabPendingReturns.Location = new Point(4, 29);
+            tabPendingReturns.Name = "tabPendingReturns";
+            tabPendingReturns.Padding = new Padding(3);
+            tabPendingReturns.Size = new Size(785, 488);
+            tabPendingReturns.TabIndex = 0;
+            tabPendingReturns.Text = "Pending Returns";
+            tabPendingReturns.UseVisualStyleBackColor = true;
+            // 
+            // tabReturnHistory
+            // 
+            tabReturnHistory.Controls.Add(dgvReturnHistory);
+            tabReturnHistory.Location = new Point(4, 29);
+            tabReturnHistory.Name = "tabReturnHistory";
+            tabReturnHistory.Padding = new Padding(3);
+            tabReturnHistory.Size = new Size(785, 488);
+            tabReturnHistory.TabIndex = 1;
+            tabReturnHistory.Text = "Return History";
+            tabReturnHistory.UseVisualStyleBackColor = true;
+            // 
+            // dgvReturnHistory
+            // 
+            dgvReturnHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReturnHistory.Location = new Point(3, 6);
+            dgvReturnHistory.Name = "dgvReturnHistory";
+            dgvReturnHistory.RowHeadersWidth = 51;
+            dgvReturnHistory.RowTemplate.Height = 29;
+            dgvReturnHistory.Size = new Size(776, 486);
+            dgvReturnHistory.TabIndex = 0;
             // 
             // Returns
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(18, 28, 58);
-            ClientSize = new Size(1350, 825);
+            ClientSize = new Size(1543, 1055);
+            Controls.Add(tabReturns);
             Controls.Add(panelProcessReturn);
             Controls.Add(panelListReturns);
             Controls.Add(panel1);
             Controls.Add(topHeaderPanel);
             Controls.Add(sidePanel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Returns";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Returns";
@@ -450,13 +512,16 @@
             sidePanel.PerformLayout();
             topHeaderPanel.ResumeLayout(false);
             topHeaderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panelListReturns.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListReturns).EndInit();
             panelProcessReturn.ResumeLayout(false);
             panelProcessReturn.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
+            tabReturns.ResumeLayout(false);
+            tabPendingReturns.ResumeLayout(false);
+            tabReturnHistory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvReturnHistory).EndInit();
             ResumeLayout(false);
         }
 
@@ -482,12 +547,15 @@
         private Label label3;
         private Label label2;
         private ComboBox comboBoxSelectCondition;
-        private TextBox textBoxDesc;
+        private TextBox textBoxReturnNotes;
         private Label label4;
-        private CheckBox checkBoxLate;
         private Button btnReturn;
         private Button rentalTransactionsBtn;
         private Label labelUserName;
         private PictureBox pictureBoxAvatar;
+        private TabControl tabReturns;
+        private TabPage tabPendingReturns;
+        private TabPage tabReturnHistory;
+        private DataGridView dgvReturnHistory;
     }
 }

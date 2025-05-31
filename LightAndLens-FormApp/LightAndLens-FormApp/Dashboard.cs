@@ -20,6 +20,7 @@ namespace LightAndLens_FormApp
             LoadDashboardStats();
             LoadRentalRequestsView();
             HighlightActiveButton(dashboardBtn);
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void LoadDashboardStats()

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightAndLens-FormApp", "LightAndLens-FormApp\LightAndLens-FormApp.csproj", "{69A22A9C-A9FC-4B41-838E-73A857A40BE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightAndLens_FormApp", "LightAndLens-FormApp\LightAndLens_FormApp.csproj", "{69A22A9C-A9FC-4B41-838E-73A857A40BE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightAndLensCL", "LightAndLensCL\LightAndLensCL.csproj", "{03DD2EA1-7E13-4AF4-9938-EE0A42FAE62D}"
 EndProject

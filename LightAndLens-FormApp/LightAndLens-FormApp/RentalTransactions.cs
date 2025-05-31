@@ -19,7 +19,7 @@ namespace LightAndLens_FormApp
         {
             LoadTransactions();
             LoadFilters();
-
+            labelUserName.Text = Session.CurrentUser.UserName;
         }
 
         private void LoadTransactions()
@@ -41,6 +41,18 @@ namespace LightAndLens_FormApp
                                 }).ToList();
 
             rentalTransactionsdgv.DataSource = transactions;
+
+            if (!rentalTransactionsdgv.Columns.Contains("MarkForReturn"))
+            {
+                var btnColumn = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Mark for Return",
+                    Name = "MarkForReturn",
+                    Text = "Mark for Return",
+                    UseColumnTextForButtonValue = true
+                };
+                rentalTransactionsdgv.Columns.Add(btnColumn);
+            }
         }
 
         private void LoadFilters()
@@ -190,6 +202,45 @@ namespace LightAndLens_FormApp
         private void RentalTransactions_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void rentalTransactionsdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ensure click is on a valid row and on the "MarkForReturn" button column
+            if (e.RowIndex >= 0 && rentalTransactionsdgv.Columns[e.ColumnIndex].Name == "MarkForReturn")
+            {
+                // Get RentalId from the current row
+                int rentalId = Convert.ToInt32(rentalTransactionsdgv.Rows[e.RowIndex].Cells["ID"].Value);
+
+                try
+                {
+                    
+                    var returnRecord = _context.ReturnRecords.FirstOrDefault(r => r.RentalId == rentalId);
+
+                    if (returnRecord != null)
+                    {
+                        // Update the condition status to "Pending"
+                        returnRecord.ConditionStatus = "Pending";
+
+                        // Save changes to the database
+                        _context.SaveChanges();
+
+                        // Inform the user
+                        MessageBox.Show("Order marked as pending return.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Reload data to refresh grid
+                        LoadTransactions();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Return record not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error updating status: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
