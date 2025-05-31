@@ -1,0 +1,41 @@
+﻿@model LightAndLens.WebApp.Models.FeedbackViewModel
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+<h2>Submit Feedback</h2>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="ReturnId" />
+    <div>
+        <label>Equipment:</label>
+        <span>@Model.EquipmentName</span>
+    </div>
+    <div>
+        <label>Customer:</label>
+        <span>@Model.CustomerName</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <select asp-for="Rating" class="form-control" required>
+            <option value="">Select rating</option>
+            @for (int i = 1; i <= 5; i++)
+            {
+                <option value="@i">@i star@(i > 1 ? "s" : "")</option>
+            }
+        </select>
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Comments"></label>
+        <textarea asp-for="Comments" class="form-control"></textarea>
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

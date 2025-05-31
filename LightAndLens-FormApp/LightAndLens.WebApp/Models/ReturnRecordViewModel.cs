@@ -19,10 +19,13 @@ namespace LightAndLens.WebApp.Models
         // For pending form
         public int? SelectedConditionId { get; set; }
         public int? SelectedAvailabilityId { get; set; }
+        public FeedbackViewModel CustomerFeedback { get; set; }
 
         public List<SelectListItem> ConditionOptions { get; set; }
         public List<SelectListItem> AvailabilityOptions { get; set; }
         public List<ReturnRecordViewModel> PendingReturns { get; set; }
         public List<ReturnRecordViewModel> HistoryReturns { get; set; }
+
+        public List<FeedbackViewModel> Feedbacks { get; set; } = new List<FeedbackViewModel>();
     }
 }

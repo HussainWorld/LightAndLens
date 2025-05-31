@@ -42,6 +42,7 @@
                                 <th>Availability</th>
                                 <th>Notes</th>
                                 <th>Update</th>
+                                <th>Feedback</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,6 +74,12 @@
                                     </td>
                                     <td>
                                         <button type="submit" class="btn btn-sm btn-success">Apply</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm"
+                                                onclick="showFeedback('@item.ReturnId')">
+                                            Show Feedback
+                                        </button>
                                     </td>
                                 </tr>
                             }
@@ -121,3 +128,29 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        const feedbackData = {
+        @foreach (var item in Model.PendingReturns)
+        {
+            <text>
+                    '@item.ReturnId': {
+                           rating: '@(item.CustomerFeedback != null ? item.CustomerFeedback.Rating.ToString() : "No feedback")',
+                        comments: '@(item.CustomerFeedback?.Comments ?? "No feedback for this rental")'
+                    },
+            </text>
+        }
+        };
+
+        function showFeedback(returnId) {
+            const fb = feedbackData[returnId];
+            if (!fb || fb.rating === "No feedback") {
+                alert("No feedback for this rental");
+            } else {
+                alert("Rating: " + fb.rating + "\nComments: " + fb.comments);
+            }
+        }
+    </script>
+}
+
