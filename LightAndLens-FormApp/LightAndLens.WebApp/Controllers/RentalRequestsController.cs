@@ -148,7 +148,7 @@ namespace LightAndLens.WebApp.Controllers
                 .Where(e => e.AvailabilityId == 1) // available items only
                 .ToList();
 
-            return View(availableEquipment); // or use a ViewModel if needed
+            return View(availableEquipment);
         }
 
 
@@ -169,7 +169,6 @@ namespace LightAndLens.WebApp.Controllers
                 .Include(r => r.RequestStatus)
                 .AsQueryable();
 
-            // Apply status filter if specified
             if (status.HasValue)
             {
                 query = query.Where(r => r.RequestStatusId == status.Value);
@@ -201,46 +200,6 @@ namespace LightAndLens.WebApp.Controllers
             ViewData["AvailableEquipment"] = availableEquipment; // Pass equipment list to the view
             return View();
         }
-
-        //[HttpPost]
-        //public IActionResult CreateRentalRequest(string EquipmentID, DateTime RequestStartDate, DateTime RequestEndDate)
-        //{
-        //    string identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    var user = _context.Users.FirstOrDefault(u => u.IdentityUserId == identityUserId);
-
-        //    if (user == null)
-        //    {
-        //        return Unauthorized(); // user not found in your DB
-        //    }
-
-        //    int userId = user.UserId;
-
-        //    if (int.TryParse(EquipmentID, out int equipmentId))
-        //    {
-        //        var rentalRequest = new RentalRequest
-        //        {
-        //            UserId = userId,
-        //            EquipmentId = equipmentId,
-        //            RequestStartDate = RequestStartDate,
-        //            RequestEndDate = RequestEndDate,
-        //            RequestStatusId = 1,
-        //            RequestSetDate = DateTime.Now
-        //        };
-
-        //        _context.RentalRequests.Add(rentalRequest);
-        //        _context.SaveChanges();
-
-        //        return RedirectToAction("Index"); // Redirect to a list of rental requests or some other page
-        //    }
-        //    else
-        //    {
-        //        // Handle the case when the conversion fails (e.g., show an error message)
-        //        ModelState.AddModelError("EquipmentID", "Invalid equipment selection.");
-        //        return View(); // Return to the form view
-        //    }
-        //}
-
 
         [HttpPost]
         public IActionResult Create(int EquipmentId, DateTime RequestStartDate, DateTime RequestEndDate)
@@ -356,7 +315,7 @@ namespace LightAndLens.WebApp.Controllers
                 EquipmentName = rentalRequest.Equipment?.EquipmentName,
                 StatusName = rentalRequest.RequestStatus?.StatusName,
                 UserEmail = rentalRequest.User?.Email,
-                EquipmentImagePath = equipmentImage // can be null if not found
+                EquipmentImagePath = equipmentImage
             };
 
             return View(vm);
@@ -364,26 +323,26 @@ namespace LightAndLens.WebApp.Controllers
 
 
         // GET: RentalRequests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var rentalRequest = await _context.RentalRequests
-                .Include(r => r.Equipment)
-                .Include(r => r.RequestStatus)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.RequestId == id);
+        //    var rentalRequest = await _context.RentalRequests
+        //        .Include(r => r.Equipment)
+        //        .Include(r => r.RequestStatus)
+        //        .Include(r => r.User)
+        //        .FirstOrDefaultAsync(m => m.RequestId == id);
 
-            if (rentalRequest == null)
-            {
-                return NotFound();
-            }
+        //    if (rentalRequest == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(rentalRequest);
-        }
+        //    return View(rentalRequest);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
